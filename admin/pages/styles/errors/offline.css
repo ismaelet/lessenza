@@ -1,0 +1,22 @@
+/*
+* Layout
+*/
+main {
+	grid-template-rows: 1fr max-content;
+}
+
+/*
+* Main content
+*/
+.logo {
+	--box-height: 10rem;
+	height: var(--box-height);
+	margin-top: calc(var(--box-height) / -2);
+}
+
+/*
+* Login bar
+*/
+.login-btn {
+	color: var(--clr-primary-400);
+}

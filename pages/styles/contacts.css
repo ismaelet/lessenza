@@ -1,0 +1,76 @@
+/*
+* Contacts
+*/
+.contact {
+	display: grid;
+	grid-template-columns: 3rem minmax(0, 1fr);
+	align-items: center;
+	gap: 1rem;
+}
+
+.contact__icon {
+	border-radius: 50%;
+	padding: 0.9rem;
+	background-color: var(--clr-primary-400);
+	transition: background-color 0.2s;
+}
+
+.contact__icon:hover {
+	background-color: var(--clr-primary-500);
+}
+
+.contact__label {
+	color: var(--fc-700);
+	font-weight: var(--fw-bold);
+	text-transform: uppercase;
+}
+
+/* Contact form */
+.contact-form {
+	overflow: hidden;
+}
+
+.animated-field__label {
+	--_height: 2rem;
+	translate: 0 var(--_height);
+	transform: scale(1.2);
+	transform-origin: left;
+	font-size: var(--fs-300);
+	font-weight: var(--fw-medium);
+	pointer-events: none;
+	transition: translate 0.2s, transform 0.2s, color 0.2s;
+}
+
+.animated-field.is-used .animated-field__label {
+	translate: 0;
+	transform: translateY(0.5rem) scale(1);
+}
+
+.animated-field:has(:focus) .animated-field__label {
+	color: var(--clr-primary-400);
+}
+
+.animated-field__input {
+	background-color: transparent;
+	padding: 0;
+	border: none;
+	border-bottom: 1px solid var(--border-clr-700);
+	border-radius: 0;
+	outline: none;
+	transition: border-color 0.2s;
+}
+
+.animated-field:has(:focus) .animated-field__input {
+	border-color: var(--clr-primary-400);
+	box-shadow: unset;
+}
+
+input.animated-field__input {
+	line-height: 3rem;
+}
+
+textarea.animated-field__input {
+	height: 10rem;
+	padding-top: 1rem;
+	resize: none;
+}

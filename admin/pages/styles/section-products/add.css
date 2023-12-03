@@ -1,0 +1,46 @@
+/**
+* Slug
+*/
+.slug {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+}
+
+.slug__url {
+	word-break: break-word;
+}
+
+.slug__input {
+	flex-grow: 1;
+	width: auto;
+	padding-inline: 0.5em;
+	font-size: var(--fs-400);
+	line-height: 2.5;
+}
+
+/**
+* Stock status
+*/
+[name='inStock'] {
+	font-weight: var(--fw-medium);
+}
+
+[name='inStock']:has([value='0']:checked) {
+	color: var(--clr-bad-400);
+}
+
+[name='inStock']:has([value='1']:checked) {
+	color: var(--clr-good-400);
+}
+
+[name='inStock'] option {
+	color: var(--fc-700);
+}
+
+/**
+* Image
+*/
+.form-image img {
+	max-height: unset;
+}

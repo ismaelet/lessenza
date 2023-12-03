@@ -1,0 +1,127 @@
+/*
+* Layout
+*/
+main {
+	display: grid;
+	align-items: center;
+}
+
+/*
+* Welcome panel
+*/
+.welcome {
+	min-height: min(20rem, 30vh);
+	background-color: #101010;
+}
+
+.welcome_bgr {
+	opacity: 0.9;
+}
+
+.welcome_content {
+	max-width: 768px;
+	padding: 5rem 3rem;
+	margin-inline: auto;
+	position: relative;
+}
+
+.welcome_title {
+	font-size: min(4rem, 5vw);
+	font-weight: bold;
+	line-height: 1;
+	margin-bottom: 2rem;
+}
+
+.welcome_text {
+	font-size: var(--fs-600);
+	letter-spacing: 0.05em;
+	line-height: 2;
+}
+
+/*
+* Login form
+*/
+.form {
+	width: 100%;
+	max-width: 550px;
+	padding: 5rem 2rem;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.warning {
+	color: red;
+	text-align: center;
+}
+
+/* Form head */
+.form .title {
+	margin-bottom: 2rem;
+	font-weight: 600;
+	font-size: 3rem;
+	letter-spacing: 0.1em;
+	text-align: center;
+	text-transform: uppercase;
+}
+
+.form .title--register {
+	font-size: 2.5rem;
+}
+
+/* Form body */
+.form-body {
+	display: grid;
+	gap: 1rem;
+}
+
+.form-lbl {
+	font-size: 1rem;
+	letter-spacing: 0.03em;
+}
+
+.form .options-bar {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(min(14rem, 100%), 1fr));
+	gap: 1rem;
+}
+
+.form .options-bar a {
+	transition: color 0.2s;
+}
+
+.form .options-bar a:hover {
+	color: var(--text-color-strong);
+}
+
+/* Form footer */
+.form-footer {
+	display: grid;
+	margin-top: 3rem;
+	gap: 0.5rem;
+	justify-content: center;
+}
+
+/* Components */
+main input {
+	padding-inline: 1.5rem;
+	line-height: 3.2rem;
+}
+
+/*
+* Responsive
+*/
+@media (min-width: 1025px) {
+	main {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+
+	.welcome {
+		min-height: 100%;
+	}
+}
+
+@media (min-width: 1441px) {
+	main {
+		grid-template-columns: minmax(0, 3fr) minmax(20rem, 2fr);
+	}
+}

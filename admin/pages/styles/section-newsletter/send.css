@@ -1,0 +1,25 @@
+/**
+* Layout
+*/
+.page-wrapper {
+	display: grid;
+	place-items: center;
+	width: 100%;
+	min-height: 100%;
+}
+
+.panel {
+	width: 100%;
+	max-width: 768px;
+	margin-inline: auto;
+
+	& input,
+	& textarea {
+		font-size: var(--fs-400);
+	}
+}
+
+.panel__title {
+	text-align: center;
+	font-size: var(--fs-700);
+}

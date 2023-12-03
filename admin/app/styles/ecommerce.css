@@ -1,0 +1,46 @@
+:root {
+	--status-color--canceled: #c94040;
+	--status-color--open: #aaa;
+	--status-color--waiting-payment: #5dace0;
+	--status-color--confirmed-payment: #f7a128;
+	--status-color--shipped: #ff7b00;
+	--status-color--delivered: #44c544;
+}
+
+.status-color--canceled {
+	--_color: var(--status-color--canceled);
+}
+.status-color--open {
+	--_color: var(--status-color--open);
+}
+.status-color--waiting-payment {
+	--_color: var(--status-color--waiting-payment);
+}
+.status-color--confirmed-payment {
+	--_color: var(--status-color--confirmed-payment);
+}
+.status-color--shipped {
+	--_color: var(--status-color--shipped);
+}
+.status-color--delivered {
+	--_color: var(--status-color--delivered);
+}
+
+.background-status-color--canceled {
+	background-color: var(--status-color--canceled);
+}
+.background-status-color--open {
+	background-color: var(--status-color--open);
+}
+.background-status-color--waiting-payment {
+	background-color: var(--status-color--waiting-payment);
+}
+.background-status-color--confirmed-payment {
+	background-color: var(--status-color--confirmed-payment);
+}
+.background-status-color--shipped {
+	background-color: var(--status-color--shipped);
+}
+.background-status-color--delivered {
+	background-color: var(--status-color--delivered);
+}

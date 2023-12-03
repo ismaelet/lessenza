@@ -1,0 +1,169 @@
+/*
+* Layout
+*/
+.reviews-wrapper {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr);
+	gap: 1rem;
+	max-width: 960px;
+	margin-inline: auto;
+	margin-top: 3rem;
+	transition: transform 0.6s;
+}
+
+.review {
+	display: grid;
+	grid-template-columns: max-content minmax(0, 1fr);
+	gap: 0 3rem;
+	align-items: center;
+}
+
+/*
+* Stars
+*/
+.review-stars {
+	display: flex;
+}
+
+.review-star {
+	mask-size: 200% auto !important;
+	-webkit-mask-size: 200% auto !important;
+	width: 0.75rem;
+	aspect-ratio: 0.5;
+	background-color: #ddd;
+}
+
+.review-star_post {
+	cursor: pointer;
+	transition: background 0.2s;
+}
+
+.review-star:nth-of-type(2n + 1) {
+	mask-position: left !important;
+	-webkit-mask-position: left !important;
+}
+
+.review-star:nth-of-type(2n) {
+	mask-position: right !important;
+	-webkit-mask-position: right !important;
+}
+
+.review-star.active {
+	background-color: #202020;
+}
+
+/*
+* Score block
+*/
+.review-score {
+	display: grid;
+	grid-row: span 2;
+	justify-items: center;
+}
+
+.review-name {
+	font-size: 1.125rem;
+	font-weight: 600;
+}
+
+/*
+* Text block
+*/
+.review-quotes {
+	color: var(--c1);
+	font-size: 3rem;
+	font-weight: 600;
+	line-height: 1;
+}
+
+.review-text {
+	font-size: 1rem;
+}
+
+/*
+* Arrows
+*/
+.reviews-arrow {
+	width: 2.5rem;
+	aspect-ratio: 1;
+	opacity: 0.8;
+	border-radius: 50%;
+	cursor: pointer;
+	transition: opacity 0.3s;
+}
+
+.reviews-arrow:hover {
+	opacity: 1;
+}
+
+.reviews-arrow[data-direction='right'] {
+	transform: rotate(180deg);
+}
+
+/*
+* Post a review
+*/
+.post-review {
+	padding-top: 3rem;
+	margin-top: 3rem;
+	margin-bottom: 3rem;
+	border-top: 1px solid var(--border-color-fade);
+}
+
+.post-review-body {
+	display: grid;
+	grid-template-columns: max-content 1fr;
+	gap: 2rem;
+	align-items: center;
+}
+
+.post-review-cbx {
+	display: none;
+}
+
+.post-review-text {
+	--inp-bgr: #fff;
+	height: auto;
+	padding: 1rem;
+	outline-color: #eee;
+	border-radius: var(--border-radius);
+	font-size: 1rem;
+}
+
+.delete-review {
+	margin-top: 0.5rem;
+	background-color: transparent;
+	border: none;
+	color: red;
+	cursor: pointer;
+}
+
+/*
+* Responsive
+*/
+@media (max-width: 1024px) {
+	.review {
+		grid-template-columns: 1fr;
+		gap: 0.5rem;
+	}
+
+	.review-score {
+		grid-row: 2;
+		justify-content: left;
+	}
+
+	.reviews-wrapper {
+		gap: 1.5rem;
+	}
+
+	.review-body {
+		align-items: center;
+	}
+}
+
+@media (max-width: 768px) {
+	.post-review-body {
+		grid-template-columns: 1fr;
+		justify-items: center;
+	}
+}
