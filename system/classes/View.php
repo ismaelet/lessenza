@@ -16,7 +16,7 @@ class View {
 		self::$description = __(sys_config('description'));
 		self::$title = sys_config('name');
 		self::$tabTitle = sys_config('name');
-		self::$thumbnail = client_path(sys_config('logo'));
+		self::$thumbnail = '/app/assets/logo/thumbnail.png';
 
 		if (!empty(sys_config('short-description'))) {
 			self::$tabTitle .= ' | ' . sys_config('short-description');
