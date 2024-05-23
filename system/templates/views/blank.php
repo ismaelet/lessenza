@@ -7,6 +7,7 @@
 	<meta name="description" content="<?= View::$description ?>">
 	<meta property="og:image" content="<?= View::$thumbnail ?>">
 	<meta property="og:description" content="<?= View::$description ?>">
+	<link rel="icon" href="/app/assets/favicon/favicon.ico">
 
 	<title><?= View::$tabTitle ?></title>
 
@@ -16,9 +17,6 @@
 	<!-- Scripts -->
 	<?= ScriptLoader::load() . PHP_EOL . PHP_EOL ?>
 	<?= ScriptLoader::loadHeadInline()  . PHP_EOL . PHP_EOL ?>
-
-	<!-- Favicon -->
-	<?= favicon() . PHP_EOL ?>
 </head>
 
 <body>
