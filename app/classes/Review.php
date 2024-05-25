@@ -10,6 +10,12 @@ class Review {
 	public const INDEX = 'id';
 
 	public $id;
+	public $location;
+	public $text;
+	public $rating;
+	public $contactUrl;
+	public $time;
+	public $name;
 
 	/*
 	* Get methods

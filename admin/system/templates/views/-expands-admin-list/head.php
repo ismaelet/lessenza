@@ -4,7 +4,7 @@
 	<?php foreach ($fields as $field) {
 		$type = $field['type'] ?? 'show';
 
-		if (in_array($type, ['show', 'find', 'btn', 'image', 'custom', 'boolean-icon'])) {
+		if (in_array($type, ['show', 'find', 'btn', 'image', 'embedded-video', 'custom', 'boolean-icon'])) {
 			$sort = $field['name'] ?? null;
 			$sort = !empty($field['not-sortable']) ? null : $sort;
 			$active = $sort && $sort == $queryConfig['order-index'];

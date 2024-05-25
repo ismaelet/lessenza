@@ -170,7 +170,7 @@ class ViewManager {
 
 			<div class="cart-order js-cart-order">
 
-				<?php if (!$cart->status) { ?>
+				<?php if (!$cart->statusId) { ?>
 
 					<div class="cart-order__remove js-remove-from-cart" data-order-id="<?= $order->id ?>">
 						<?= icon_embed('close') ?>

@@ -14,6 +14,9 @@ class Customer {
 	public const USER_INDEX = 'userId';
 
 	public $id;
+	public $userId;
+	public $groupId;
+	public $time;
 
 	/*
 	* Get methods

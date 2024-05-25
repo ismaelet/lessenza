@@ -161,16 +161,16 @@ class ViewManager {
 					<p class="section-subtitle"><?= $this->shopSettings->productCount . ($this->shopSettings->productCount == 1 ? ' risultato' : ' risultati') ?></p>
 
 					<!-- Sort products -->
-					<section class="sort-bar">
+					<section class="sort-bar" x-data>
 						<label>
-							<input type="checkbox" class="js-sort" name="sort" value="new" <?= $this->shopSettings->sort == 'new' ? 'checked' : '' ?>>
+							<input type="radio" class="js-sort" name="sort" value="new" <?= $this->shopSettings->sort == 'new' ? 'checked' : '' ?> @input="$el.closest('form').submit()">
 							<p class="sort-bar__text interactive">Novità</p>
 						</label>
 
 						<p class="sort-bar__text">&middot;</p>
 
 						<label>
-							<input type="checkbox" class="js-sort" name="sort" value="popular" <?= $this->shopSettings->sort == 'popular' ? 'checked' : '' ?>>
+							<input type="radio" class="js-sort" name="sort" value="popular" <?= $this->shopSettings->sort == 'popular' ? 'checked' : '' ?> @input="$el.closest('form').submit()">
 							<p class="sort-bar__text interactive">Popolari</p>
 						</label>
 					</section>

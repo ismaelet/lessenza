@@ -25,8 +25,17 @@ class Product {
 	public $description;
 	public $details;
 	public $variations;
-
-	private $slug;
+	public $slug;
+	public $time;
+	public $name;
+	public $ingredients;
+	public $resellerPrice;
+	public $inStock;
+	public $highlighted;
+	public $sales;
+	public $recentSales;
+	public $statusId;
+	public $processed;
 
 	/**
 	 * Get methods

@@ -49,3 +49,8 @@ function rows_to_objects(Query_Result $rows = null, string $className) {
 function debug($array) {
 	print('<pre>' . print_r($array, true) . '</pre>');
 }
+
+function dd($array) {
+	print('<pre>' . print_r($array, true) . '</pre>');
+	exit;
+}

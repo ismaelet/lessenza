@@ -14,6 +14,13 @@ class ShippingMethod {
 	private const MONTH_NAMES = ['Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno', 'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre'];
 	private const DAY_NAMES = ['Lunedì', 'Martedì', 'Mercoledì', 'Giovedì', 'Venerdì', 'Sabato', 'Domenica'];
 
+	public $id;
+	public $name;
+	public $description;
+	public $processingDays;
+	public $minimumDeliveryDays;
+	public $maximumDeliveryDays;
+
 	private $api;
 	private $minimumPrice;
 	private $maximumPrice;

@@ -546,3 +546,225 @@
 [19-May-2024 08:26:42 Europe/Rome] PHP Warning:  Undefined variable $error in /home/e23kpxmv/public_html/admin/pages/views/access/login.php on line 25
 [19-May-2024 08:26:51 Europe/Rome] PHP Warning:  Undefined variable $error in /home/e23kpxmv/public_html/admin/pages/views/access/login.php on line 25
 [19-May-2024 08:26:59 Europe/Rome] PHP Warning:  Undefined variable $error in /home/e23kpxmv/public_html/admin/pages/views/access/login.php on line 25
+[25-May-2024 04:57:17 UTC] Connection error: No such file or directory
+On page: /admin/
+[25-May-2024 04:57:17 UTC] PHP Fatal error:  Uncaught Error: Call to a member function prepare() on null in /var/www/html/admin/system/classes/DB.php:12
+Stack trace:
+#0 /var/www/html/admin/system/classes/DB.php(174): DB::execute('SHOW TABLES LIK...')
+#1 /var/www/html/admin/system/migration/admin.php(4): DB::table('admin_categorie...')
+#2 /var/www/html/admin/system/setup/setup.php(83): include_once('/var/www/html/a...')
+#3 /var/www/html/admin/system/setup/setup.php(144): Setup::migrate()
+#4 /var/www/html/admin/system/setup/setup.php(21): Setup::execute()
+#5 /var/www/html/admin/index.php(13): include('/var/www/html/a...')
+#6 {main}
+  thrown in /var/www/html/admin/system/classes/DB.php on line 12
+[25-May-2024 06:58:25 Europe/Rome] PHP Warning:  Undefined variable $error in /var/www/html/admin/pages/views/access/login.php on line 25
+[25-May-2024 06:59:08 Europe/Rome] PHP Warning:  Undefined variable $error in /var/www/html/admin/pages/views/access/login.php on line 25
+[25-May-2024 06:59:21 Europe/Rome] PHP Deprecated:  Creation of dynamic property User::$password is deprecated in /var/www/html/admin/system/classes/Structure/ConstructFromDatabase.php on line 11
+[25-May-2024 06:59:21 Europe/Rome] PHP Deprecated:  Creation of dynamic property User::$email is deprecated in /var/www/html/admin/system/classes/Structure/ConstructFromDatabase.php on line 11
+[25-May-2024 06:59:21 Europe/Rome] PHP Deprecated:  Creation of dynamic property User::$lastName is deprecated in /var/www/html/admin/system/classes/Structure/ConstructFromDatabase.php on line 11
+[25-May-2024 06:59:21 Europe/Rome] PHP Deprecated:  Creation of dynamic property User::$time is deprecated in /var/www/html/admin/system/classes/Structure/ConstructFromDatabase.php on line 11
+[25-May-2024 06:59:21 Europe/Rome] PHP Deprecated:  Creation of dynamic property User::$password is deprecated in /var/www/html/admin/system/classes/Structure/ConstructFromDatabase.php on line 11
+[25-May-2024 06:59:21 Europe/Rome] PHP Deprecated:  Creation of dynamic property User::$email is deprecated in /var/www/html/admin/system/classes/Structure/ConstructFromDatabase.php on line 11
+[25-May-2024 06:59:21 Europe/Rome] PHP Deprecated:  Creation of dynamic property User::$lastName is deprecated in /var/www/html/admin/system/classes/Structure/ConstructFromDatabase.php on line 11
+[25-May-2024 06:59:21 Europe/Rome] PHP Deprecated:  Creation of dynamic property User::$time is deprecated in /var/www/html/admin/system/classes/Structure/ConstructFromDatabase.php on line 11
+[25-May-2024 06:59:43 Europe/Rome] PHP Deprecated:  Creation of dynamic property User::$password is deprecated in /var/www/html/admin/system/classes/Structure/ConstructFromDatabase.php on line 11
+[25-May-2024 06:59:43 Europe/Rome] PHP Deprecated:  Creation of dynamic property User::$email is deprecated in /var/www/html/admin/system/classes/Structure/ConstructFromDatabase.php on line 11
+[25-May-2024 06:59:43 Europe/Rome] PHP Deprecated:  Creation of dynamic property User::$lastName is deprecated in /var/www/html/admin/system/classes/Structure/ConstructFromDatabase.php on line 11
+[25-May-2024 06:59:43 Europe/Rome] PHP Deprecated:  Creation of dynamic property User::$time is deprecated in /var/www/html/admin/system/classes/Structure/ConstructFromDatabase.php on line 11
+[25-May-2024 06:59:43 Europe/Rome] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/admin/system/classes/Structure/ConstructFromDatabase.php:11) in /var/www/html/admin/system/functions/file-paths.php on line 228
+[25-May-2024 07:00:58 Europe/Rome] PHP Deprecated:  strpos(): Passing null to parameter #1 ($haystack) of type string is deprecated in /var/www/html/admin/system/templates/logic/admin-list.php on line 215
+[25-May-2024 07:00:58 Europe/Rome] PHP Deprecated:  strpos(): Passing null to parameter #1 ($haystack) of type string is deprecated in /var/www/html/admin/system/templates/logic/admin-list.php on line 215
+[25-May-2024 07:00:58 Europe/Rome] PHP Deprecated:  strpos(): Passing null to parameter #1 ($haystack) of type string is deprecated in /var/www/html/admin/system/templates/logic/admin-list.php on line 215
+[25-May-2024 07:00:58 Europe/Rome] PHP Deprecated:  strpos(): Passing null to parameter #1 ($haystack) of type string is deprecated in /var/www/html/admin/system/templates/logic/admin-list.php on line 215
+[25-May-2024 07:00:58 Europe/Rome] PHP Deprecated:  strpos(): Passing null to parameter #1 ($haystack) of type string is deprecated in /var/www/html/admin/system/templates/logic/admin-list.php on line 215
+[25-May-2024 07:00:58 Europe/Rome] PHP Deprecated:  strpos(): Passing null to parameter #1 ($haystack) of type string is deprecated in /var/www/html/admin/system/templates/logic/admin-list.php on line 215
+[25-May-2024 07:04:43 Europe/Rome] PHP Deprecated:  Creation of dynamic property Blog\Post::$youtube_url is deprecated in /var/www/html/admin/system/classes/Structure/ConstructFromDatabase.php on line 11
+[25-May-2024 07:06:07 Europe/Rome] PHP Deprecated:  Creation of dynamic property Blog\Post::$video_url is deprecated in /var/www/html/admin/system/classes/Structure/ConstructFromDatabase.php on line 11
+[25-May-2024 07:59:44 Europe/Rome] PHP Warning:  Undefined array key "table" in /var/www/html/admin/system/templates/logic/admin-list.php on line 38
+[25-May-2024 07:59:44 Europe/Rome] PHP Warning:  Undefined array key "index" in /var/www/html/admin/system/templates/logic/admin-list.php on line 42
+[25-May-2024 07:59:44 Europe/Rome] PHP Fatal error:  Uncaught mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ORDER BY  DESC LIMIT 0, 40' at line 1 in /var/www/html/admin/system/classes/DB.php:12
+Stack trace:
+#0 /var/www/html/admin/system/classes/DB.php(12): mysqli->prepare('SELECT * FROM  ...')
+#1 /var/www/html/admin/system/classes/DB.php(50): DB::execute('SELECT * FROM  ...', NULL)
+#2 /var/www/html/admin/system/templates/logic/admin-list.php(77): DB::select('SELECT * FROM  ...', Array)
+#3 /var/www/html/admin/system/classes/Logic.php(73): include_once('/var/www/html/a...')
+#4 /var/www/html/admin/system/classes/Logic.php(63): Logic::loadFile('/var/www/html/a...')
+#5 /var/www/html/admin/system/classes/View.php(119): Logic::load()
+#6 /var/www/html/admin/system/routes/admin.php(20): View::show()
+#7 /var/www/html/admin/system/classes/Route.php(26): Setup::{closure}('/admin/blog/vid...')
+#8 /var/www/html/admin/system/setup/setup.php(166): Route::run()
+#9 /var/www/html/admin/system/setup/setup.php(25): Setup::execute()
+#10 /var/www/html/admin/index.php(13): include('/var/www/html/a...')
+#11 {main}
+  thrown in /var/www/html/admin/system/classes/DB.php on line 12
+[25-May-2024 08:03:17 Europe/Rome] PHP Warning:  Undefined array key "table" in /var/www/html/admin/system/templates/logic/admin-list.php on line 38
+[25-May-2024 08:03:17 Europe/Rome] PHP Warning:  Undefined array key "index" in /var/www/html/admin/system/templates/logic/admin-list.php on line 42
+[25-May-2024 08:03:17 Europe/Rome] PHP Fatal error:  Uncaught mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ORDER BY  DESC LIMIT 0, 40' at line 1 in /var/www/html/admin/system/classes/DB.php:12
+Stack trace:
+#0 /var/www/html/admin/system/classes/DB.php(12): mysqli->prepare('SELECT * FROM  ...')
+#1 /var/www/html/admin/system/classes/DB.php(50): DB::execute('SELECT * FROM  ...', NULL)
+#2 /var/www/html/admin/system/templates/logic/admin-list.php(77): DB::select('SELECT * FROM  ...', Array)
+#3 /var/www/html/admin/system/classes/Logic.php(73): include_once('/var/www/html/a...')
+#4 /var/www/html/admin/system/classes/Logic.php(63): Logic::loadFile('/var/www/html/a...')
+#5 /var/www/html/admin/system/classes/View.php(119): Logic::load()
+#6 /var/www/html/admin/system/routes/admin.php(20): View::show()
+#7 /var/www/html/admin/system/classes/Route.php(26): Setup::{closure}('/admin/blog/vid...')
+#8 /var/www/html/admin/system/setup/setup.php(166): Route::run()
+#9 /var/www/html/admin/system/setup/setup.php(25): Setup::execute()
+#10 /var/www/html/admin/index.php(13): include('/var/www/html/a...')
+#11 {main}
+  thrown in /var/www/html/admin/system/classes/DB.php on line 12
+[25-May-2024 08:07:22 Europe/Rome] PHP Fatal error:  Uncaught mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'SELECT id FROM videos WHERE url = ? LIMIT 1' at line 1 in /var/www/html/admin/system/classes/DB.php:12
+Stack trace:
+#0 /var/www/html/admin/system/classes/DB.php(12): mysqli->prepare('SELECT 1 FROM S...')
+#1 /var/www/html/admin/system/classes/DB.php(50): DB::execute('SELECT 1 FROM S...', Array)
+#2 /var/www/html/admin/system/classes/DB.php(166): DB::select('SELECT 1 FROM S...', Array)
+#3 /var/www/html/admin/pages/logic/section-blog/add.php(54): DB::exists('1 FROM SELECT i...', Array)
+#4 [internal function]: Logic::{closure}(Array, 6)
+#5 /var/www/html/admin/app/classes/ViewManager/Admin.php(66): call_user_func(Object(Closure), Array, 6)
+#6 /var/www/html/admin/system/templates/logic/admin-form.php(85): ViewManager\Admin::runAdditionalFormUpdateFunction(Array, 6)
+#7 /var/www/html/admin/system/classes/Logic.php(73): include_once('/var/www/html/a...')
+#8 /var/www/html/admin/system/classes/Logic.php(63): Logic::loadFile('/var/www/html/a...')
+#9 /var/www/html/admin/system/classes/View.php(119): Logic::load()
+#10 /var/www/html/admin/system/routes/admin.php(20): View::show()
+#11 /var/www/html/admin/system/classes/Route.php(26): Setup::{closure}('/admin/blog/add')
+#12 /var/www/html/admin/system/setup/setup.php(166): Route::run()
+#13 /var/www/html/admin/system/setup/setup.php(25): Setup::execute()
+#14 /var/www/html/admin/index.php(13): include('/var/www/html/a...')
+#15 {main}
+  thrown in /var/www/html/admin/system/classes/DB.php on line 12
+[25-May-2024 08:07:35 Europe/Rome] PHP Fatal error:  Uncaught mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1 in /var/www/html/admin/system/classes/DB.php:12
+Stack trace:
+#0 /var/www/html/admin/system/classes/DB.php(12): mysqli->prepare('INSERT INTO vid...')
+#1 /var/www/html/admin/system/classes/DB.php(116): DB::execute('INSERT INTO vid...', Array)
+#2 /var/www/html/admin/pages/logic/section-blog/add.php(55): DB::add('INSERT INTO vid...', Array)
+#3 [internal function]: Logic::{closure}(Array, 6)
+#4 /var/www/html/admin/app/classes/ViewManager/Admin.php(66): call_user_func(Object(Closure), Array, 6)
+#5 /var/www/html/admin/system/templates/logic/admin-form.php(85): ViewManager\Admin::runAdditionalFormUpdateFunction(Array, 6)
+#6 /var/www/html/admin/system/classes/Logic.php(73): include_once('/var/www/html/a...')
+#7 /var/www/html/admin/system/classes/Logic.php(63): Logic::loadFile('/var/www/html/a...')
+#8 /var/www/html/admin/system/classes/View.php(119): Logic::load()
+#9 /var/www/html/admin/system/routes/admin.php(20): View::show()
+#10 /var/www/html/admin/system/classes/Route.php(26): Setup::{closure}('/admin/blog/add')
+#11 /var/www/html/admin/system/setup/setup.php(166): Route::run()
+#12 /var/www/html/admin/system/setup/setup.php(25): Setup::execute()
+#13 /var/www/html/admin/index.php(13): include('/var/www/html/a...')
+#14 {main}
+  thrown in /var/www/html/admin/system/classes/DB.php on line 12
+[25-May-2024 08:08:02 Europe/Rome] PHP Fatal error:  Uncaught ArgumentCountError: mysqli_stmt::bind_param() does not accept unknown named parameters in /var/www/html/admin/system/classes/DB.php:35
+Stack trace:
+#0 /var/www/html/admin/system/classes/DB.php(35): mysqli_stmt->bind_param('s', url: 'https://www.you...')
+#1 /var/www/html/admin/system/classes/DB.php(116): DB::execute('INSERT INTO vid...', Array)
+#2 /var/www/html/admin/pages/logic/section-blog/add.php(55): DB::add('INSERT INTO vid...', Array)
+#3 [internal function]: Logic::{closure}(Array, 6)
+#4 /var/www/html/admin/app/classes/ViewManager/Admin.php(66): call_user_func(Object(Closure), Array, 6)
+#5 /var/www/html/admin/system/templates/logic/admin-form.php(85): ViewManager\Admin::runAdditionalFormUpdateFunction(Array, 6)
+#6 /var/www/html/admin/system/classes/Logic.php(73): include_once('/var/www/html/a...')
+#7 /var/www/html/admin/system/classes/Logic.php(63): Logic::loadFile('/var/www/html/a...')
+#8 /var/www/html/admin/system/classes/View.php(119): Logic::load()
+#9 /var/www/html/admin/system/routes/admin.php(20): View::show()
+#10 /var/www/html/admin/system/classes/Route.php(26): Setup::{closure}('/admin/blog/add')
+#11 /var/www/html/admin/system/setup/setup.php(166): Route::run()
+#12 /var/www/html/admin/system/setup/setup.php(25): Setup::execute()
+#13 /var/www/html/admin/index.php(13): include('/var/www/html/a...')
+#14 {main}
+  thrown in /var/www/html/admin/system/classes/DB.php on line 35
+[25-May-2024 08:08:18 Europe/Rome] PHP Fatal error:  Uncaught ArgumentCountError: mysqli_stmt::bind_param() does not accept unknown named parameters in /var/www/html/admin/system/classes/DB.php:35
+Stack trace:
+#0 /var/www/html/admin/system/classes/DB.php(35): mysqli_stmt->bind_param('s', url: 'https://www.you...')
+#1 /var/www/html/admin/system/classes/DB.php(116): DB::execute('INSERT INTO vid...', Array)
+#2 /var/www/html/admin/pages/logic/section-blog/add.php(55): DB::add('INSERT INTO vid...', Array)
+#3 [internal function]: Logic::{closure}(Array, 6)
+#4 /var/www/html/admin/app/classes/ViewManager/Admin.php(66): call_user_func(Object(Closure), Array, 6)
+#5 /var/www/html/admin/system/templates/logic/admin-form.php(85): ViewManager\Admin::runAdditionalFormUpdateFunction(Array, 6)
+#6 /var/www/html/admin/system/classes/Logic.php(73): include_once('/var/www/html/a...')
+#7 /var/www/html/admin/system/classes/Logic.php(63): Logic::loadFile('/var/www/html/a...')
+#8 /var/www/html/admin/system/classes/View.php(119): Logic::load()
+#9 /var/www/html/admin/system/routes/admin.php(20): View::show()
+#10 /var/www/html/admin/system/classes/Route.php(26): Setup::{closure}('/admin/blog/add')
+#11 /var/www/html/admin/system/setup/setup.php(166): Route::run()
+#12 /var/www/html/admin/system/setup/setup.php(25): Setup::execute()
+#13 /var/www/html/admin/index.php(13): include('/var/www/html/a...')
+#14 {main}
+  thrown in /var/www/html/admin/system/classes/DB.php on line 35
+[25-May-2024 08:08:53 Europe/Rome] PHP Fatal error:  Uncaught mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'videos (url) VALUES (?)' at line 1 in /var/www/html/admin/system/classes/DB.php:12
+Stack trace:
+#0 /var/www/html/admin/system/classes/DB.php(12): mysqli->prepare('videos (url) VA...')
+#1 /var/www/html/admin/pages/logic/section-blog/add.php(55): DB::execute('videos (url) VA...', Array)
+#2 [internal function]: Logic::{closure}(Array, 6)
+#3 /var/www/html/admin/app/classes/ViewManager/Admin.php(66): call_user_func(Object(Closure), Array, 6)
+#4 /var/www/html/admin/system/templates/logic/admin-form.php(85): ViewManager\Admin::runAdditionalFormUpdateFunction(Array, 6)
+#5 /var/www/html/admin/system/classes/Logic.php(73): include_once('/var/www/html/a...')
+#6 /var/www/html/admin/system/classes/Logic.php(63): Logic::loadFile('/var/www/html/a...')
+#7 /var/www/html/admin/system/classes/View.php(119): Logic::load()
+#8 /var/www/html/admin/system/routes/admin.php(20): View::show()
+#9 /var/www/html/admin/system/classes/Route.php(26): Setup::{closure}('/admin/blog/add')
+#10 /var/www/html/admin/system/setup/setup.php(166): Route::run()
+#11 /var/www/html/admin/system/setup/setup.php(25): Setup::execute()
+#12 /var/www/html/admin/index.php(13): include('/var/www/html/a...')
+#13 {main}
+  thrown in /var/www/html/admin/system/classes/DB.php on line 12
+[25-May-2024 08:09:02 Europe/Rome] PHP Fatal error:  Uncaught mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'videos (url)' at line 1 in /var/www/html/admin/system/classes/DB.php:12
+Stack trace:
+#0 /var/www/html/admin/system/classes/DB.php(12): mysqli->prepare('videos (url)')
+#1 /var/www/html/admin/pages/logic/section-blog/add.php(55): DB::execute('videos (url)', Array)
+#2 [internal function]: Logic::{closure}(Array, 6)
+#3 /var/www/html/admin/app/classes/ViewManager/Admin.php(66): call_user_func(Object(Closure), Array, 6)
+#4 /var/www/html/admin/system/templates/logic/admin-form.php(85): ViewManager\Admin::runAdditionalFormUpdateFunction(Array, 6)
+#5 /var/www/html/admin/system/classes/Logic.php(73): include_once('/var/www/html/a...')
+#6 /var/www/html/admin/system/classes/Logic.php(63): Logic::loadFile('/var/www/html/a...')
+#7 /var/www/html/admin/system/classes/View.php(119): Logic::load()
+#8 /var/www/html/admin/system/routes/admin.php(20): View::show()
+#9 /var/www/html/admin/system/classes/Route.php(26): Setup::{closure}('/admin/blog/add')
+#10 /var/www/html/admin/system/setup/setup.php(166): Route::run()
+#11 /var/www/html/admin/system/setup/setup.php(25): Setup::execute()
+#12 /var/www/html/admin/index.php(13): include('/var/www/html/a...')
+#13 {main}
+  thrown in /var/www/html/admin/system/classes/DB.php on line 12
+[25-May-2024 08:12:19 Europe/Rome] Class Blog\Video method getVideo_url doesn't exits
+[25-May-2024 08:12:19 Europe/Rome] PHP Deprecated:  parse_url(): Passing null to parameter #1 ($url) of type string is deprecated in /var/www/html/app/classes/Blog/Video.php on line 22
+[25-May-2024 08:12:19 Europe/Rome] PHP Warning:  Undefined array key "query" in /var/www/html/app/classes/Blog/Video.php on line 24
+[25-May-2024 08:12:19 Europe/Rome] PHP Deprecated:  parse_str(): Passing null to parameter #1 ($string) of type string is deprecated in /var/www/html/app/classes/Blog/Video.php on line 24
+[25-May-2024 08:13:49 Europe/Rome] PHP Warning:  Undefined array key "index-field" in /var/www/html/admin/system/templates/logic/admin-form.php on line 49
+[25-May-2024 08:13:49 Europe/Rome] PHP Fatal error:  Uncaught mysqli_sql_exception: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'WHERE =? LIMIT 1' at line 1 in /var/www/html/admin/system/classes/DB.php:12
+Stack trace:
+#0 /var/www/html/admin/system/classes/DB.php(12): mysqli->prepare('SELECT * FROM  ...')
+#1 /var/www/html/admin/system/classes/DB.php(50): DB::execute('SELECT * FROM  ...', Array)
+#2 /var/www/html/admin/system/classes/DB.php(63): DB::select('SELECT * FROM  ...', Array)
+#3 /var/www/html/admin/system/templates/logic/admin-form.php(49): DB::row('* FROM  WHERE =...', Array)
+#4 /var/www/html/admin/system/classes/Logic.php(73): include_once('/var/www/html/a...')
+#5 /var/www/html/admin/system/classes/Logic.php(63): Logic::loadFile('/var/www/html/a...')
+#6 /var/www/html/admin/system/classes/View.php(119): Logic::load()
+#7 /var/www/html/admin/system/routes/admin.php(20): View::show()
+#8 /var/www/html/admin/system/classes/Route.php(26): Setup::{closure}('/admin/blog/vid...')
+#9 /var/www/html/admin/system/setup/setup.php(166): Route::run()
+#10 /var/www/html/admin/system/setup/setup.php(25): Setup::execute()
+#11 /var/www/html/admin/index.php(13): include('/var/www/html/a...')
+#12 {main}
+  thrown in /var/www/html/admin/system/classes/DB.php on line 12
+[25-May-2024 08:14:41 Europe/Rome] Class Blog\Video method getHasImage doesn't exits
+[25-May-2024 08:14:41 Europe/Rome] PHP Warning:  Undefined array key "title" in /var/www/html/admin/system/templates/logic/admin-form.php on line 50
+[25-May-2024 08:14:53 Europe/Rome] PHP Warning:  Undefined array key "title" in /var/www/html/admin/system/templates/logic/admin-form.php on line 50
+[25-May-2024 08:15:04 Europe/Rome] PHP Warning:  Undefined array key "title" in /var/www/html/admin/system/templates/logic/admin-form.php on line 50
+[25-May-2024 08:24:31 Europe/Rome] PHP Fatal error:  Uncaught Error: Call to undefined function dd() in /var/www/html/admin/pages/logic/section-blog/add.php:50
+Stack trace:
+#0 [internal function]: Logic::{closure}(Array, 6)
+#1 /var/www/html/admin/app/classes/ViewManager/Admin.php(66): call_user_func(Object(Closure), Array, 6)
+#2 /var/www/html/admin/system/templates/logic/admin-form.php(85): ViewManager\Admin::runAdditionalFormUpdateFunction(Array, 6)
+#3 /var/www/html/admin/system/classes/Logic.php(73): include_once('/var/www/html/a...')
+#4 /var/www/html/admin/system/classes/Logic.php(63): Logic::loadFile('/var/www/html/a...')
+#5 /var/www/html/admin/system/classes/View.php(119): Logic::load()
+#6 /var/www/html/admin/system/routes/admin.php(20): View::show()
+#7 /var/www/html/admin/system/classes/Route.php(26): Setup::{closure}('/admin/blog/add')
+#8 /var/www/html/admin/system/setup/setup.php(166): Route::run()
+#9 /var/www/html/admin/system/setup/setup.php(25): Setup::execute()
+#10 /var/www/html/admin/index.php(13): include('/var/www/html/a...')
+#11 {main}
+  thrown in /var/www/html/admin/pages/logic/section-blog/add.php on line 50
+[25-May-2024 08:24:45 Europe/Rome] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/admin/system/functions/arrays.php:50) in /var/www/html/admin/system/templates/logic/admin-form.php on line 90
+[25-May-2024 08:24:54 Europe/Rome] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/admin/system/functions/arrays.php:50) in /var/www/html/admin/system/templates/logic/admin-form.php on line 90
+[25-May-2024 08:25:34 Europe/Rome] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/admin/system/functions/arrays.php:50) in /var/www/html/admin/system/templates/logic/admin-form.php on line 90
+[25-May-2024 08:25:42 Europe/Rome] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/admin/system/functions/arrays.php:50) in /var/www/html/admin/system/templates/logic/admin-form.php on line 90
+[25-May-2024 08:25:51 Europe/Rome] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/admin/system/functions/arrays.php:50) in /var/www/html/admin/system/templates/logic/admin-form.php on line 90
+[25-May-2024 08:26:09 Europe/Rome] PHP Warning:  Cannot modify header information - headers already sent by (output started at /var/www/html/admin/system/functions/arrays.php:50) in /var/www/html/admin/system/templates/logic/admin-form.php on line 90

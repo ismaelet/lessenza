@@ -13,6 +13,10 @@ class Post {
 	public const INDEX = 'id';
 
 	public $id;
+	public $title;
+	public $text;
+	public $time;
+	public $video_url;
 
 	/*
 	* Misc methods
@@ -56,6 +60,20 @@ class Post {
 
 	private function getHasImage() {
 		return file_exists($this->serverImage);
+	}
+
+	/**
+	 * Transform the video URL into an embedded URL
+	 */
+	public function embeddedVideoUrl(): ?string {
+		$queryParams = [];
+		$parsedUrl = parse_url($this->video_url);
+
+		parse_str($parsedUrl['query'], $queryParams);
+
+		$videoId = $queryParams['v'] ?? null;
+
+		return $videoId ? 'https://www.youtube.com/embed/' . $videoId : null;
 	}
 
 	// related posts

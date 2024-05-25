@@ -1,5 +1,7 @@
 <?php
 
+use Blog\Video;
+
 foreach ($listRows as $rowId => $result) {
 
 	// if set, make the row a link
@@ -53,6 +55,18 @@ foreach ($listRows as $rowId => $result) {
 					?>
 						<div class="admin-list__field">
 							<img class="admin-list__image" src="<?= $entry['src'] ?>" alt="" loading="lazy" style="<?= $maxSizeSnippet ?>">
+						</div>
+					<?php
+						break;
+
+					case 'embedded-video':
+						/*
+						* Video field
+						*/
+						$record = new Video($entry['value']);
+					?>
+						<div class="admin-list__field">
+							<iframe class="w-100 aspect-video" src="<?= $record->embeddedVideoUrl() . '?controls=0' ?>" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 						</div>
 					<?php
 						break;

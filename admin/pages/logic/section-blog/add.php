@@ -5,6 +5,7 @@ use ViewManager\Admin;
 
 $id = View::get('id');
 $post = new Post($id);
+$video = $post?->video_url;
 
 /*
 * Page configuration
@@ -31,6 +32,10 @@ $inputs = [
 		['type' => 'textarea', 'name' => 'text', 'text' => 'Testo', 'required' => true,],
 	],
 	[
+		['type' => 'lbl', 'text' => 'URL del video su YouTube (opzionale)'],
+		['name' => 'video_url', 'text' => 'URL del video su YouTube',],
+	],
+	[
 		['type' => 'lbl', 'text' => 'Immagine'],
 		['type' => 'image', 'name' => 'image', 'client-path' => $post->id && $post->hasImage ? $post->clientImage : null],
 	],
@@ -39,7 +44,19 @@ $inputs = [
 /*
 * Form handling
 */
-$uploadFunction = function ($inputs, $id) {
+$uploadFunction = function ($inputs, $id) use ($video) {
+	// Save or remove video
+	$post = new Post($id);
+
+	if ($video && $video != $_POST['video_url']) {
+		DB::delete('videos WHERE url = ?', [$video]);
+	}
+
+	if ($_POST['video_url'] && !DB::exists('videos WHERE url = ?', [$_POST['video_url']])) {
+		DB::add('videos (url)', [$_POST['video_url']]);
+	}
+
+	// Upload file
 	if ($_FILES['image']['name']) {
 		$post = new Post($id);
 

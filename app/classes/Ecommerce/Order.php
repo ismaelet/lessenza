@@ -16,6 +16,15 @@ class Order {
 	public const CART_INDEX = 'cartId';
 	public const CUSTOMER_INDEX = 'customerId';
 
+	public $id;
+	public $cartId;
+	public $customerId;
+	public $productId;
+	public $staticFullPrice;
+	public $staticDiscount;
+	public $quantity;
+	public $time;
+
 	/*
 	* Get methods
 	*/

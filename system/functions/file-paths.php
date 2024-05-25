@@ -126,8 +126,8 @@ function icon_svg($icon) {
 
 // get the url of a page's image folder 
 function assets_directory($page_url) {
-	$url = substr($page_url, strpos($page_url, 'pages') - 1);
-	$url = str_replace(['/views/', '.php'], ['/assets/', '/'], $url);
+	$url = $page_url ? substr($page_url, strpos($page_url, 'pages') - 1) : $page_url;
+	$url = $page_url ? str_replace(['/views/', '.php'], ['/assets/', '/'], $url) : $page_url;
 
 	return $url;
 }

@@ -14,6 +14,10 @@ class User {
 	public $firstName;
 	public $groupId;
 	public $admin;
+	public $password;
+	public $email;
+	public $lastName;
+	public $time;
 
 	/*
 	* Get methods

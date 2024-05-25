@@ -1,6 +1,10 @@
 <?php
 
 // fetch app config
+require_once __DIR__ . '/../../../vendor/autoload.php';
+(Dotenv\Dotenv::createImmutable(__DIR__ . '/../../../'))->load();
+
+// fetch app config
 require_once(__DIR__ . '/../../app/config/config.php');
 require_once(__DIR__ . '/../../app/config/vendor-config.php');
 

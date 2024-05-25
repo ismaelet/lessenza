@@ -7,6 +7,14 @@ Route::add('/', function () {
 });
 
 // about us
+Route::add('/videos', function () {
+	View::setPage('videos')
+		->setTitle('Video')
+		->setLocation('videos')
+		->show();
+});
+
+// about us
 Route::add('/about-us', function () {
 	View::setPage('about-us')
 		->setTitle('Chi siamo')

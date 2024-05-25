@@ -212,7 +212,7 @@ function _generate_buttons(&$entry, $queryRow, $queryConfig, $buttons) {
 				break;
 		}
 
-		if (strpos($url, '{{')) {
+		if ($url && strpos($url, '{{')) {
 			$urlIndex = explode('}}', explode('{{', $url)[1])[0];
 			$url = str_replace('{{' . $urlIndex . '}}', $queryRow[$urlIndex], $url) ?? null;
 		}

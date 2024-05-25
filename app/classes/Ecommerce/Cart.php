@@ -23,6 +23,12 @@ class Cart {
 	public $step;
 	public $statusId;
 	public $trackingCode;
+	public $customerId;
+	public $paymentMethodId;
+	public $staticFullShippingPrice;
+	public $staticShippingDiscount;
+	public $couponId;
+	public $time;
 
 	/*
 	* Public methods

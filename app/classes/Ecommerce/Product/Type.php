@@ -15,6 +15,10 @@ class Type {
 	public $name;
 	public $names;
 
+	private $category;
+	private $status;
+	private $time;
+
 	/*
 	* Get methods
 	*/

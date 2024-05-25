@@ -15,6 +15,7 @@
 	<?= StyleLoader::load() . PHP_EOL . PHP_EOL ?>
 
 	<!-- Scripts -->
+	<script src="//unpkg.com/alpinejs" defer></script>
 	<?= ScriptLoader::load() . PHP_EOL . PHP_EOL ?>
 	<?= ScriptLoader::loadHeadInline()  . PHP_EOL . PHP_EOL ?>
 </head>

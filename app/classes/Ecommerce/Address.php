@@ -22,6 +22,9 @@ class Address {
 	public $email;
 	public $phone;
 	public $notes;
+	public $id;
+	public $customerId;
+	public $time;
 
 	/*
 	* Instace methods

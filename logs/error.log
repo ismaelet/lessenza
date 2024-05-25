@@ -1,0 +1,6 @@
+[25-May-2024 06:52:02 UTC] PHP Fatal error:  Uncaught Error: Class "Dotenv\Repository\RepositoryBuilder" not found in /home/e23kpxmv/public_html/vendor/vlucas/phpdotenv/src/Dotenv.php:150
+Stack trace:
+#0 /home/e23kpxmv/public_html/system/setup/setup.php(4): Dotenv\Dotenv::createImmutable()
+#1 /home/e23kpxmv/public_html/index.php(13): require_once('/home/e23kpxmv/...')
+#2 {main}
+  thrown in /home/e23kpxmv/public_html/vendor/vlucas/phpdotenv/src/Dotenv.php on line 150

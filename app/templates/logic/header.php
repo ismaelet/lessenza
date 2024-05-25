@@ -6,7 +6,7 @@ global $user, $header;
 $header['theme'] = 'light';
 $header['floating'] = false;
 $header['sticky'] = false;
-$header['mobile-threshold'] = 768;
+$header['mobile-threshold'] = 1024;
 
 /*
 * Elements
@@ -64,6 +64,7 @@ $header['links'] = [
 	['label' => 'Chi Siamo', 'location' => 'about-us', 'url' => client_url('/about-us')],
 	['label' => 'Recensioni', 'location' => 'reviews', 'url' => client_url('/reviews')],
 	['label' => 'Blog', 'location' => 'blog', 'url' => client_url('/blog')],
+	['label' => 'Video', 'location' => 'video', 'url' => client_url('/videos')],
 	['label' => 'Contatti', 'location' => 'contacts', 'url' => client_url('/contacts')],
 	['label' => 'Gestione', 'location' => 'admin', 'url' => client_url('/admin'), 'admin' => true]
 ];

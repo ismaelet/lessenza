@@ -1,10 +1,14 @@
 {% block main %}
 
-<div class="page-body main-wrap grid-flow" data-spacing="700">
+<div class="page-body main-wrap grid-flow mt-16" data-spacing="700">
 	<h1 class="main-post__title title"><?= $post->title ?></h1>
 
 	<section class="main-post__content grid-flow" data-spacing="700">
-		<img class="main-post__image" src="<?= $post->clientImage ?>" alt="">
+		<?php if ($post->video_url) { ?>
+			<iframe class="main-post__video w-100 aspect-video" src="<?= $post->embeddedVideoUrl() . '?controls=0' ?>" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+		<?php } else { ?>
+			<img class="main-post__image" src="<?= $post->clientImage ?>" alt="">
+		<?php } ?>
 
 		<div>
 			<p class="main-post__date"><?= $post->date ?></p>
