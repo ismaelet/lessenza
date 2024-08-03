@@ -70,7 +70,7 @@ $fields = [
 ];
 
 $buttons = [
-	['title' => 'Gestisci', 'color' => 'blue', 'url' => 'edit?id={{' . Cart::INDEX . '}}'],
+	['title' => 'Gestisci', 'color' => 'blue', 'url' => 'add?id={{' . Cart::INDEX . '}}'],
 	// ['title' => 'Rinvia l\'email', 'color' => 'green', 'name' => 'resend-status-email'],
 ];
 
@@ -100,7 +100,7 @@ function _expand_results(&$entry, $field, $key, $row) {
 		$entry['value'] = implode('<br>', $entry['value']);
 	} else if ($key == 2) {
 		// address
-		$entry['value'] = $cart->address->fullAddress;
+		$entry['value'] = $cart->address->id ? $cart->address->fullAddress : '- indirizzo non ancora aggiunto -';
 	} else if ($key == 3) {
 		// contacts
 		$entry['value'] = $cart->address->contactsString;

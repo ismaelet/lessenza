@@ -20,7 +20,7 @@ use function Ecommerce\format_price;
 			<!-- Price and availability -->
 			<div class="flex-group" data-spacing="400">
 
-				<?php if (logged()) { ?>
+				<?php if (true || logged()) { ?>
 
 					<p class="product-price heading-like">
 
@@ -157,7 +157,7 @@ use function Ecommerce\format_price;
 					<span class="quantity__edit quantity__edit--add js-quantity-add">+</span>
 				</label>
 
-				<?php if (logged()) { ?>
+				<?php if (true || logged()) { ?>
 
 					<button type="button" class="button add-to-cart js-add-to-cart" data-product-id="<?= $product->id ?>" data-quantity="1" value="<?= $product->id ?>" <?= !$product->inStock ? 'disabled' : '' ?>>
 						<?= icon_embed('cart') ?>

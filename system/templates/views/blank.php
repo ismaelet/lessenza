@@ -15,6 +15,7 @@
 	<?= StyleLoader::load() . PHP_EOL . PHP_EOL ?>
 
 	<!-- Scripts -->
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 	<script src="//unpkg.com/alpinejs" defer></script>
 	<?= ScriptLoader::load() . PHP_EOL . PHP_EOL ?>
 	<?= ScriptLoader::loadHeadInline()  . PHP_EOL . PHP_EOL ?>
