@@ -1,6 +1,36 @@
-[25-May-2024 06:52:02 UTC] PHP Fatal error:  Uncaught Error: Class "Dotenv\Repository\RepositoryBuilder" not found in /home/e23kpxmv/public_html/vendor/vlucas/phpdotenv/src/Dotenv.php:150
+[12-Nov-2024 12:36:50 Europe/Rome] PHP Warning:  Undefined variable $customerId in /home/e23kpxmv/public_html/app/classes/Ecommerce/Customer.php on line 74
+[12-Nov-2024 12:36:52 Europe/Rome] Class Ecommerce\Cart method getStatus doesn't exits
+[12-Nov-2024 12:36:52 Europe/Rome] Class Ecommerce\Cart method getStatus doesn't exits
+[14-Nov-2024 18:18:14 Europe/Rome] PHP Warning:  Undefined variable $customerId in /home/e23kpxmv/public_html/app/classes/Ecommerce/Customer.php on line 74
+[17-Nov-2024 19:34:24 Europe/Rome] PHP Warning:  Undefined variable $customerId in /home/e23kpxmv/public_html/app/classes/Ecommerce/Customer.php on line 74
+[17-Nov-2024 19:34:30 Europe/Rome] Class Ecommerce\Cart method getStatus doesn't exits
+[17-Nov-2024 19:34:30 Europe/Rome] Class Ecommerce\Cart method getStatus doesn't exits
+[17-Nov-2024 19:35:24 Europe/Rome] Class Ecommerce\Cart method getStatus doesn't exits
+[17-Nov-2024 19:35:24 Europe/Rome] Class Ecommerce\Cart method getStatus doesn't exits
+[20-Nov-2024 16:22:36 Europe/Rome] PHP Fatal error:  Uncaught TypeError: Ecommerce\Product::__construct(): Argument #1 ($id) must be of type ?int, string given, called in /home/e23kpxmv/public_html/pages/logic/product.php on line 8 and defined in /home/e23kpxmv/public_html/system/classes/Structure/ConstructFromDatabase.php:8
 Stack trace:
-#0 /home/e23kpxmv/public_html/system/setup/setup.php(4): Dotenv\Dotenv::createImmutable()
-#1 /home/e23kpxmv/public_html/index.php(13): require_once('/home/e23kpxmv/...')
-#2 {main}
-  thrown in /home/e23kpxmv/public_html/vendor/vlucas/phpdotenv/src/Dotenv.php on line 150
+#0 /home/e23kpxmv/public_html/pages/logic/product.php(8): Ecommerce\Product->__construct()
+#1 /home/e23kpxmv/public_html/system/classes/Logic.php(73): include_once('/home/e23kpxmv/...')
+#2 /home/e23kpxmv/public_html/system/classes/Logic.php(63): Logic::loadFile()
+#3 /home/e23kpxmv/public_html/system/classes/View.php(121): Logic::load()
+#4 /home/e23kpxmv/public_html/app/routes/ecommerce.php(29): View::show()
+#5 /home/e23kpxmv/public_html/system/classes/Route.php(26): Setup::{closure}()
+#6 /home/e23kpxmv/public_html/system/setup/setup.php(167): Route::run()
+#7 /home/e23kpxmv/public_html/system/setup/setup.php(26): Setup::execute()
+#8 /home/e23kpxmv/public_html/index.php(13): require_once('/home/e23kpxmv/...')
+#9 {main}
+  thrown in /home/e23kpxmv/public_html/system/classes/Structure/ConstructFromDatabase.php on line 8
+[02-Dec-2024 10:34:18 Europe/Rome] PHP Warning:  Undefined variable $customerId in /home/e23kpxmv/public_html/app/classes/Ecommerce/Customer.php on line 74
+[02-Dec-2024 10:34:21 Europe/Rome] Class Ecommerce\Cart method getStatus doesn't exits
+[02-Dec-2024 10:34:21 Europe/Rome] Class Ecommerce\Cart method getStatus doesn't exits
+[02-Dec-2024 10:34:40 Europe/Rome] Class Ecommerce\Cart method getStatus doesn't exits
+[02-Dec-2024 10:34:40 Europe/Rome] Class Ecommerce\Cart method getStatus doesn't exits
+[13-Dec-2024 11:50:12 Europe/Rome] PHP Warning:  Undefined variable $customerId in /home/e23kpxmv/public_html/app/classes/Ecommerce/Customer.php on line 74
+[13-Dec-2024 11:50:20 Europe/Rome] Class Ecommerce\Cart method getStatus doesn't exits
+[13-Dec-2024 11:50:20 Europe/Rome] Class Ecommerce\Cart method getStatus doesn't exits
+[30-Jan-2025 20:59:51 Europe/Rome] PHP Warning:  Undefined variable $customerId in /home/e23kpxmv/public_html/app/classes/Ecommerce/Customer.php on line 74
+[30-Jan-2025 21:00:00 Europe/Rome] Class Ecommerce\Cart method getStatus doesn't exits
+[30-Jan-2025 21:00:00 Europe/Rome] Class Ecommerce\Cart method getStatus doesn't exits
+[02-Mar-2025 10:23:46 Europe/Rome] PHP Warning:  Undefined variable $customerId in /home/e23kpxmv/public_html/app/classes/Ecommerce/Customer.php on line 74
+[02-Mar-2025 10:24:44 Europe/Rome] Class Ecommerce\Cart method getStatus doesn't exits
+[02-Mar-2025 10:24:44 Europe/Rome] Class Ecommerce\Cart method getStatus doesn't exits

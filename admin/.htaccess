@@ -14,7 +14,7 @@ RewriteRule ^(.*)$ index.php [QSA]
 ## redirect to https
 RewriteCond %{HTTP_HOST} !^localhost [NC]
 RewriteCond %{REMOTE_ADDR} !^127\.0\.0\.1$
-RewriteCond %{HTTPS} !=on
+RewriteCond %{HTTPS} on
 RewriteRule .* https://%{SERVER_NAME}%{REQUEST_URI} [R,L]
 
 ## error log
