@@ -8,6 +8,9 @@
 /storage
 /vendor
 /uploads
+/admin/uploads
+
+/admin/error.log
 
 .env
 .env.backup
