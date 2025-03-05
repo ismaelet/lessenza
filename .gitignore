@@ -9,6 +9,7 @@
 /vendor
 /uploads
 /admin/uploads
+/logs
 
 /admin/error.log
 
