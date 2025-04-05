@@ -89,7 +89,7 @@ class ScriptLoader {
 
 	// get the file name
 	private static function getFileName($fileUrl) {
-		return explode('.js', explode_last('/', $fileUrl))[0];
+		return explode('.js', explode_last_legacy('/', $fileUrl))[0];
 	}
 
 	/*

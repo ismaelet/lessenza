@@ -9,7 +9,7 @@ use Structure\DatabaseObject;
 
 class Product {
 
-	use DatabaseObject;
+	use \Legacy\System\Traits\DatabaseObject;
 
 	private const BRAND_SKU = '';
 	private const DEFAULT_IMAGE_RESOLUTION = 1024;
@@ -47,7 +47,7 @@ class Product {
 		if (!$slug) {
 			$slug = generate_product_slug($this->name);
 
-			DB::update(self::TABLE . ' SET slug = ? WHERE ' . self::INDEX . ' = ?', [$slug, $this->id]);
+			\Legacy\System\Classes\DB::update(self::TABLE . ' SET slug = ? WHERE ' . self::INDEX . ' = ?', [$slug, $this->id]);
 		}
 
 		return $slug;
@@ -76,7 +76,7 @@ class Product {
 	}
 
 	private function getIsLiked() {
-		return DB::exists('ecommerce_product_likes WHERE productId = ? AND userId = ?', [$this->id, userId()]);
+		return \Legacy\System\Classes\DB::exists('ecommerce_product_likes WHERE productId = ? AND userId = ?', [$this->id, userId()]);
 	}
 
 	// Prices
@@ -158,7 +158,7 @@ class Product {
 
 	// related products
 	public function getRelatedProducts(int $count = 5) {
-		$products = rows_to_objects(DB::select(self::INDEX . ' FROM ' . self::TABLE . ' WHERE ' . self::INDEX . ' <> ? AND ' . self::TYPE_INDEX . ' = ? ORDER BY recentSales DESC, sales DESC, ' . self::INDEX . ' DESC LIMIT ?', [$this->id, $this->typeId, $count]), self::class);
+		$products = rows_to_objects(\Legacy\System\Classes\DB::select(self::INDEX . ' FROM ' . self::TABLE . ' WHERE ' . self::INDEX . ' <> ? AND ' . self::TYPE_INDEX . ' = ? ORDER BY recentSales DESC, sales DESC, ' . self::INDEX . ' DESC LIMIT ?', [$this->id, $this->typeId, $count]), self::class);
 
 		return $products;
 	}
@@ -168,13 +168,13 @@ class Product {
 	 */
 	public function delete(bool $permanently = true) {
 		if ($permanently) {
-			DB::delete(self::TABLE . ' WHERE ' . self::INDEX . ' = ?', [$this->id]);
+			\Legacy\System\Classes\DB::delete(self::TABLE . ' WHERE ' . self::INDEX . ' = ?', [$this->id]);
 
 			foreach ($this->allServerImages as $image) {
 				unlink($image);
 			}
 		} else {
-			DB::update(self::TABLE . ' SET ' . self::STATUS_INDEX . ' = ? WHERE ' . self::INDEX . ' = ?', [0, $this->id]);
+			\Legacy\System\Classes\DB::update(self::TABLE . ' SET ' . self::STATUS_INDEX . ' = ? WHERE ' . self::INDEX . ' = ?', [0, $this->id]);
 		}
 
 		$this->reset();

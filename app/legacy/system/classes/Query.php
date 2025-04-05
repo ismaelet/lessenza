@@ -1,5 +1,7 @@
 <?php
 
+namespace Legacy\System\Classes;
+
 class Query {
 
 	public $stmt = false;
@@ -17,28 +19,33 @@ class Query {
 			$res = [];
 			$row = [];
 			$params = [];
-			
+
 			$fields = $this->stmt->result_metadata();
-			
+
 			while ($field = $fields->fetch_field()) $params[] = &$row[$field->name];
 
 			$this->stmt->bind_result(...$params);
 
-			$i = 0; while ($this->stmt->fetch()) {
+			$i = 0;
+			while ($this->stmt->fetch()) {
 
-				$j = 0; foreach ($row as $value) {
+				$j = 0;
+				foreach ($row as $value) {
 					$res[$i][array_keys($row)[$j]] = $value;
-				$j++;}
+					$j++;
+				}
 
-			$i++;}
+				$i++;
+			}
 
 			$this->res = $res;
-
 		}
 	}
 
 	//get result
-	function get_result() {return new Query_Result($this);}
+	function get_result() {
+		return new Query_Result($this);
+	}
 }
 
 class Query_Result {
@@ -60,7 +67,6 @@ class Query_Result {
 			$row = array_shift($this->res);
 
 			return $row;
-
 		} else return false;
 	}
 }

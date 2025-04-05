@@ -131,8 +131,8 @@ $tempList = [
 ];
 
 foreach ($tempList as $subscriber) {
-	if (!DB::exists('newsletter_subscribers WHERE email = ?', [$subscriber])) {
-		DB::add('newsletter_subscribers (email)', [$subscriber]);
+	if (!\Legacy\System\Classes\DB::exists('newsletter_subscribers WHERE email = ?', [$subscriber])) {
+		\Legacy\System\Classes\DB::add('newsletter_subscribers (email)', [$subscriber]);
 	}
 }
 
@@ -160,17 +160,17 @@ if (isset($_POST['send']) && !empty($_POST['text'])) {
 		'text' => $_POST['text'],
 	];
 
-	$newsletterSubscribers = DB::select('id, email FROM newsletter_subscribers WHERE sent = 0');
+	$newsletterSubscribers = \Legacy\System\Classes\DB::select('id, email FROM newsletter_subscribers WHERE sent = 0');
 
 	while ($newsletterSubscriber = $newsletterSubscribers->fetch_assoc()) {
 		$emailData['to'] = $newsletterSubscriber['email'];
 
 		Email::send($emailData);
 
-		DB::update('newsletter_subscribers SET sent = 1 WHERE id = ?', [$newsletterSubscriber['id']]);
+		\Legacy\System\Classes\DB::update('newsletter_subscribers SET sent = 1 WHERE id = ?', [$newsletterSubscriber['id']]);
 	}
 
 	$_SESSION['sent'] = true;
 
-	redirect();
+	redirect_legacy();
 }

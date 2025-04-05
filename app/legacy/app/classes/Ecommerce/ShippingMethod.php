@@ -6,7 +6,7 @@ use Structure\DatabaseObject;
 
 class ShippingMethod {
 
-	use DatabaseObject;
+	use \Legacy\System\Traits\DatabaseObject;
 
 	public const TABLE = 'ecommerce_shipping_methods';
 	public const INDEX = 'id';

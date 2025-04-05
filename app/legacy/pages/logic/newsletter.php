@@ -8,8 +8,8 @@ if (isset($_POST['submit'])) {
 	$fullName = $firstName . ' ' . $lastName;
 	$email = $_POST['email'];
 
-	if (!DB::exists('newsletter_subscribers WHERE email = ?', [$email])) {
-		DB::add('newsletter_subscribers (firstName, lastName, fullName, email)', [$firstName, $lastName, $fullName, $email]);
+	if (!\Legacy\System\Classes\DB::exists('newsletter_subscribers WHERE email = ?', [$email])) {
+		\Legacy\System\Classes\DB::add('newsletter_subscribers (firstName, lastName, fullName, email)', [$firstName, $lastName, $fullName, $email]);
 	}
 
 	$sent = true;

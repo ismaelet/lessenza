@@ -8,11 +8,11 @@ include_once(SERVER_ROOT . '/app/functions/vendor/melhor-envio.php');
 	vendor_melhor_envio_refresh_token();
 }*/
 
-$onlyGiftCard = !DB::exists('ecommerce_orders WHERE cartId=? AND itemId<>61', [$cart->id]);
+$onlyGiftCard = !\Legacy\System\Classes\DB::exists('ecommerce_orders WHERE cartId=? AND itemId<>61', [$cart->id]);
 
 $shippingTypes = !$onlyGiftCard ?
-	DB::select('id FROM ecommerce_shipping WHERE visible=1 ORDER BY id ASC') :
-	DB::select('id FROM ecommerce_shipping WHERE id=3 ORDER BY id ASC');
+	\Legacy\System\Classes\DB::select('id FROM ecommerce_shipping WHERE visible=1 ORDER BY id ASC') :
+	\Legacy\System\Classes\DB::select('id FROM ecommerce_shipping WHERE id=3 ORDER BY id ASC');
 
 //advance
 if (isset($_POST['submit'])) {

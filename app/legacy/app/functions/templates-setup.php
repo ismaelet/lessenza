@@ -1,8 +1,8 @@
 <?php
 
-Logic::$dependencies['profile'] = 'main';
-Logic::$dependencies['shop'] = 'main';
-Logic::$dependencies['cart'] = 'main';
-Logic::$priorities['profile'] = 60;
-Logic::$priorities['shop'] = 60;
-Logic::$priorities['cart'] = 60;
+\Legacy\System\Classes\Logic::$dependencies['profile'] = 'main';
+\Legacy\System\Classes\Logic::$dependencies['shop'] = 'main';
+\Legacy\System\Classes\Logic::$dependencies['cart'] = 'main';
+\Legacy\System\Classes\Logic::$priorities['profile'] = 60;
+\Legacy\System\Classes\Logic::$priorities['shop'] = 60;
+\Legacy\System\Classes\Logic::$priorities['cart'] = 60;

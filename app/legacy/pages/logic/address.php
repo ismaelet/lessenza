@@ -2,7 +2,7 @@
 
 global $customer;
 
-$address = new Ecommerce\Address(DB::find('id FROM ecommerce_addresses WHERE customerId=? ORDER BY id DESC', [$customer->id]));
+$address = new Ecommerce\Address(\Legacy\System\Classes\DB::find('id FROM ecommerce_addresses WHERE customerId=? ORDER BY id DESC', [$customer->id]));
 
 $inputs = [
 	[
@@ -26,5 +26,5 @@ $inputs = [
 
 if (isset($_POST['submit'])) {
 	query_from_inputs('ecommerce_addresses', $inputs, $address->id);
-	redirect('/profile');
+	redirect_legacy('/profile');
 }

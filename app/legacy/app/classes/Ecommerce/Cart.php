@@ -9,7 +9,7 @@ use View;
 
 class Cart {
 
-	use DatabaseObject;
+	use \Legacy\System\Traits\DatabaseObject;
 
 	public const TABLE = 'ecommerce_carts';
 	public const INDEX = 'id';
@@ -34,7 +34,7 @@ class Cart {
 	* Public methods
 	*/
 	public function advance(int $currentStep = null) {
-		$currentStep = $currentStep ?: View::get('currentStep');
+		$currentStep = $currentStep ?: \Legacy\System\Classes\View::get('currentStep');
 
 		if ($this->step == $currentStep) {
 			$this->updateStep($currentStep + 1);
@@ -43,14 +43,14 @@ class Cart {
 		return $this;
 	}
 
-	public function advanceAndRedirect() {
+	public function advanceAndredirect_legacy() {
 		$this->advance();
 
-		redirect('/cart?step=' . $this->step);
+		redirect_legacy('/cart?step=' . $this->step);
 	}
 
 	public function confirm() {
-		DB::update(self::TABLE . ' SET time = NOW() WHERE ' . self::INDEX . ' = ?', [$this->id]);
+		\Legacy\System\Classes\DB::update(self::TABLE . ' SET time = NOW() WHERE ' . self::INDEX . ' = ?', [$this->id]);
 
 		// send email
 		$debug = false;
@@ -97,10 +97,10 @@ class Cart {
 
 	static public function new(int $customerId) {
 		// get default address
-		$addressId = DB::find(Address::INDEX . ' FROM ' . Address::TABLE . ' WHERE customerId = ? ORDER BY ' . Address::INDEX . ' DESC', [$customerId]);
+		$addressId = \Legacy\System\Classes\DB::find(Address::INDEX . ' FROM ' . Address::TABLE . ' WHERE customerId = ? ORDER BY ' . Address::INDEX . ' DESC', [$customerId]);
 
 		// generate a new cart
-		$cartId = DB::add(self::TABLE . ' (' . self::CUSTOMER_INDEX . ')', [$customerId]);
+		$cartId = \Legacy\System\Classes\DB::add(self::TABLE . ' (' . self::CUSTOMER_INDEX . ')', [$customerId]);
 		$cart = new self($cartId);
 
 		// associate existing address to the cart
@@ -112,8 +112,8 @@ class Cart {
 	}
 
 	public function delete() {
-		DB::delete(self::TABLE . ' WHERE ' . self::INDEX . ' = ?', [$this->id]);
-		DB::delete(Order::TABLE . ' WHERE ' . Order::CART_INDEX . ' = ?', [$this->id]);
+		\Legacy\System\Classes\DB::delete(self::TABLE . ' WHERE ' . self::INDEX . ' = ?', [$this->id]);
+		\Legacy\System\Classes\DB::delete(Order::TABLE . ' WHERE ' . Order::CART_INDEX . ' = ?', [$this->id]);
 
 		$this->reset();
 	}
@@ -156,11 +156,11 @@ class Cart {
 
 	// orders
 	private function getOrders() {
-		return rows_to_objects(DB::select(Order::INDEX . ' FROM ' . Order::TABLE . ' WHERE ' . Order::CART_INDEX . ' = ? ORDER BY ' . Order::INDEX . ' DESC', [$this->id]), Order::class);
+		return rows_to_objects(\Legacy\System\Classes\DB::select(Order::INDEX . ' FROM ' . Order::TABLE . ' WHERE ' . Order::CART_INDEX . ' = ? ORDER BY ' . Order::INDEX . ' DESC', [$this->id]), Order::class);
 	}
 
 	private function getQuantity() {
-		return (int) DB::sum('quantity FROM ' . Order::TABLE . ' WHERE ' . Order::CART_INDEX . ' = ?', [$this->id]);
+		return (int) \Legacy\System\Classes\DB::sum('quantity FROM ' . Order::TABLE . ' WHERE ' . Order::CART_INDEX . ' = ?', [$this->id]);
 	}
 
 	// address
@@ -328,7 +328,7 @@ class Cart {
 	* Update methods
 	*/
 	public function updateAddressId(int $addressId) {
-		DB::update(self::TABLE . ' SET addressId = ? WHERE id = ?', [$addressId, $this->id]);
+		\Legacy\System\Classes\DB::update(self::TABLE . ' SET addressId = ? WHERE id = ?', [$addressId, $this->id]);
 
 		$this->setAddressId($addressId);
 
@@ -340,13 +340,13 @@ class Cart {
 
 		$this->setShippingMethodId($shippingMethodId);
 
-		DB::update(self::TABLE . ' SET ' . self::SHIPPING_METHOD_INDEX . ' = ?, staticFullShippingPrice = ?, staticShippingDiscount = ? WHERE ' . self::INDEX . ' = ?', [$shippingMethod->id, $this->fullShippingPrice, $this->shippingDiscount, $this->id]);
+		\Legacy\System\Classes\DB::update(self::TABLE . ' SET ' . self::SHIPPING_METHOD_INDEX . ' = ?, staticFullShippingPrice = ?, staticShippingDiscount = ? WHERE ' . self::INDEX . ' = ?', [$shippingMethod->id, $this->fullShippingPrice, $this->shippingDiscount, $this->id]);
 
 		return $this;
 	}
 
 	public function updateGift(bool $isGift) {
-		DB::update(self::TABLE . ' SET gift = ? WHERE ' . self::INDEX . ' = ?', [$isGift ? 1 : 0, $this->id]);
+		\Legacy\System\Classes\DB::update(self::TABLE . ' SET gift = ? WHERE ' . self::INDEX . ' = ?', [$isGift ? 1 : 0, $this->id]);
 
 		$this->setIsGift($isGift);
 
@@ -354,7 +354,7 @@ class Cart {
 	}
 
 	public function updateStep(int $step) {
-		DB::update(self::TABLE . ' SET step = ? WHERE ' . self::INDEX . ' = ?', [$step, $this->id]);
+		\Legacy\System\Classes\DB::update(self::TABLE . ' SET step = ? WHERE ' . self::INDEX . ' = ?', [$step, $this->id]);
 
 		$this->setStep($step);
 
@@ -362,7 +362,7 @@ class Cart {
 	}
 
 	public function updateStatusId(int $statusId) {
-		DB::update(self::TABLE . ' SET statusId = ? WHERE ' . self::INDEX . ' = ?', [$statusId, $this->id]);
+		\Legacy\System\Classes\DB::update(self::TABLE . ' SET statusId = ? WHERE ' . self::INDEX . ' = ?', [$statusId, $this->id]);
 
 		$this->setStatusId($statusId);
 
@@ -372,7 +372,7 @@ class Cart {
 	}
 
 	public function updateTrackingCode(string $trackingCode) {
-		DB::update(self::TABLE . ' SET tracking = ? WHERE ' . self::INDEX . ' = ?', [$trackingCode, $this->id]);
+		\Legacy\System\Classes\DB::update(self::TABLE . ' SET tracking = ? WHERE ' . self::INDEX . ' = ?', [$trackingCode, $this->id]);
 
 		$this->setTrackingCode($trackingCode);
 

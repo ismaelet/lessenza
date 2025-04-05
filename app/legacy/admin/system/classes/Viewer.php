@@ -18,8 +18,8 @@ class Viewer {
 	static public function render() {
 
 		// fetch the view files
-		self::$templateFile = self::getTemplateFile(View::$template);
-		if (file_exists($file = self::VIEWS_PATH . '/' . View::$name . '.php')) self::$viewFile = $file;
+		self::$templateFile = self::getTemplateFile(\Legacy\System\Classes\View::$template);
+		if (file_exists($file = self::VIEWS_PATH . '/' . \Legacy\System\Classes\View::$name . '.php')) self::$viewFile = $file;
 
 		echo self::renderView();
 	}
@@ -43,7 +43,7 @@ class Viewer {
 		$parentName = false;
 
 		// access variables
-		foreach (View::$variables as $var => $value) {
+		foreach (\Legacy\System\Classes\View::$variables as $var => $value) {
 			${$var} = $value;
 		}
 

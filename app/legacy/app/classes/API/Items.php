@@ -12,7 +12,7 @@ class Items {
 		$results = [];
 		$scope = explode(',', $requestContent['scope']);
 		$searchFor = $requestContent['search'];
-		$resultRows = DB::select("id FROM items WHERE id=? OR name LIKE CONCAT('%',?,'%') LIMIT ?", [$searchFor, $searchFor, $requestContent['limit']]);
+		$resultRows = \Legacy\System\Classes\DB::select("id FROM items WHERE id=? OR name LIKE CONCAT('%',?,'%') LIMIT ?", [$searchFor, $searchFor, $requestContent['limit']]);
 
 		while ($resultRow = $resultRows->fetch_assoc()) {
 			$result = [];

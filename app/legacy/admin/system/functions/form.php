@@ -57,12 +57,12 @@ function query_from_inputs(string $table, array $formBlocks, int $id = null) {
 	if ($action == 'add') {
 		$query = $table . ' (' . $fields . ')';
 
-		return DB::add($query, $values);
+		return \Legacy\System\Classes\DB::add($query, $values);
 	} else if ($action == 'update') {
 		$values[] = $id;
-		$indexField = DB::execute('SHOW columns FROM ' . $table . ' WHERE `Key` = "PRI"')->res[0]['Field'];
+		$indexField = \Legacy\System\Classes\DB::execute('SHOW columns FROM ' . $table . ' WHERE `Key` = "PRI"')->res[0]['Field'];
 
-		DB::update($table . ' SET ' . $fields . ' WHERE ' . $indexField . ' = ?', $values);
+		\Legacy\System\Classes\DB::update($table . ' SET ' . $fields . ' WHERE ' . $indexField . ' = ?', $values);
 	}
 }
 
@@ -171,7 +171,7 @@ function generate_input($input, $data, $error, $done) {
 			case 'select':
 
 				if (isset($input['query'])) {
-					$selectOptions = DB::select($input['query'])->res;
+					$selectOptions = \Legacy\System\Classes\DB::select($input['query'])->res;
 					$fieldId = $input['field-name'];
 					$fieldShow = $input['field-show'];
 				} else if (isset($input['array'])) {

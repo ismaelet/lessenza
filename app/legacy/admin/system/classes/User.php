@@ -4,7 +4,7 @@ use Structure\DatabaseObject;
 
 class User {
 
-	use DatabaseObject;
+	use \Legacy\System\Traits\DatabaseObject;
 
 	public const TABLE = 'users';
 	public const INDEX = 'id';
@@ -39,7 +39,7 @@ class User {
 	/*
 
 	function __construct($id) {
-		if ($row = DB::row('* FROM users WHERE id=?', [$id])) {
+		if ($row = \Legacy\System\Classes\DB::row('* FROM users WHERE id=?', [$id])) {
 			$this->id = $id;
 			$this->username = $row['username'] ?: $row['email'];
 			$this->userFirstName = ucfirst($row['firstName']);
@@ -115,8 +115,8 @@ class User {
 	}
 
 	private function getPhone() {
-		$customerId = DB::find('id FROM ecommerce_customers WHERE userId=?', [$this->id]);
-		$phone = DB::find('phone FROM ecommerce_addresses WHERE customerId=? ORDER BY time DESC', [$customerId]);
+		$customerId = \Legacy\System\Classes\DB::find('id FROM ecommerce_customers WHERE userId=?', [$this->id]);
+		$phone = \Legacy\System\Classes\DB::find('phone FROM ecommerce_addresses WHERE customerId=? ORDER BY time DESC', [$customerId]);
 
 		return $phone;
 	}

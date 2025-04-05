@@ -107,8 +107,8 @@ $inputs = [
 ];
 
 //  type list
-$currentTypes = $id ? explode(',', DB::find('types FROM ecommerce_coupons WHERE id=?', [$id])) : [];
-$typesRes = DB::select('id, name FROM ecommerce_product_types ORDER BY name ASC');
+$currentTypes = $id ? explode(',', \Legacy\System\Classes\DB::find('types FROM ecommerce_coupons WHERE id=?', [$id])) : [];
+$typesRes = \Legacy\System\Classes\DB::select('id, name FROM ecommerce_product_types ORDER BY name ASC');
 
 while ($type = $typesRes->fetch_assoc()) {
 	$inputs['type-row'][] = [
@@ -128,7 +128,7 @@ if (!$id) {
 
 	while (!$new) {
 		$code = str_pad(rand(100, 99999999), 8, '0', STR_PAD_LEFT);
-		if (!DB::exists('ecommerce_coupons WHERE code=?', [$code])) $new = true;
+		if (!\Legacy\System\Classes\DB::exists('ecommerce_coupons WHERE code=?', [$code])) $new = true;
 	}
 
 	$inputs['code-row']['code']['value'] = $code;

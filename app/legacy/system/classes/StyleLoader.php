@@ -1,16 +1,20 @@
 <?php
 
+namespace Legacy\System\Classes;
+
 class StyleLoader {
+
+	private const ROOT = '/app';
 
 	private static $list = [];
 
 	public static function __constructStatic() {
 		// add framework styles
-		$files = glob(SERVER_ROOT . '/system/styles/*.css');
+		$files = glob(self::ROOT . '/system/styles/*.css');
 		foreach ($files as $file) self::add(self::getFileName($file), 'system');
 
 		// add app styles
-		$files = glob(SERVER_ROOT . '/app/styles/*.css');
+		$files = glob(self::ROOT . '/app/styles/*.css');
 		foreach ($files as $file) self::add(self::getFileName($file), 'app');
 	}
 
@@ -28,10 +32,10 @@ class StyleLoader {
 				$file = '/app/styles/' . $fileName . '.css';
 				break;
 			case 'template':
-				if (file_exists(SERVER_ROOT . $fetchingFile = '/app/templates/styles/' . $fileName . '.css')) {
+				if (file_exists(self::ROOT . $fetchingFile = '/app/templates/styles/' . $fileName . '.css')) {
 					$priority = $priority ?: 3;
 					$file = $fetchingFile;
-				} else if (file_exists(SERVER_ROOT . $fetchingFile = '/system/templates/styles/' . $fileName . '.css')) {
+				} else if (file_exists(self::ROOT . $fetchingFile = '/system/templates/styles/' . $fileName . '.css')) {
 					$priority = $priority ?: 2;
 					$file = $fetchingFile;
 				}
@@ -40,7 +44,7 @@ class StyleLoader {
 
 				break;
 			case 'page':
-				if (file_exists(SERVER_ROOT . $fetchingFile = '/pages/styles/' . $fileName . '.css')) {
+				if (file_exists(self::ROOT . $fetchingFile = '/pages/styles/' . $fileName . '.css')) {
 					$priority = $priority ?: 4;
 					$file = $fetchingFile;
 				}
@@ -53,15 +57,15 @@ class StyleLoader {
 
 		// store the file URL in the list
 		if ($file) {
-			$file .= '?v=' . filemtime(SERVER_ROOT . $file);
+			$file .= '?v=' . filemtime(self::ROOT . $file);
 			self::$list[] = [$priority, $file];
 		}
 	}
 
 	// add template style
 	private static function addAdditionalTemplateStyles($templateName) {
-		$additionalSystemStyles = glob(SERVER_ROOT . '/system/templates/styles/-expands-' . $templateName . '/*.css');
-		$additionalAppStyles = glob(SERVER_ROOT . '/app/templates/styles/-expands-' . $templateName . '/*.css');
+		$additionalSystemStyles = glob(self::ROOT . '/system/templates/styles/-expands-' . $templateName . '/*.css');
+		$additionalAppStyles = glob(self::ROOT . '/app/templates/styles/-expands-' . $templateName . '/*.css');
 
 		foreach ($additionalSystemStyles as $additionalStyle) {
 			self::add($additionalStyle, 'template-expansion', 2);
@@ -74,7 +78,7 @@ class StyleLoader {
 
 	// add the page style
 	public static function addPageStyles($pageName) {
-		$additionalStyles = glob(SERVER_ROOT . '/pages/styles/-expands-' . $pageName . '/*.css');
+		$additionalStyles = glob(self::ROOT . '/pages/styles/-expands-' . $pageName . '/*.css');
 
 		self::add($pageName, 'page');
 
@@ -96,6 +100,6 @@ class StyleLoader {
 
 	// get the file name
 	private static function getFileName($fileUrl) {
-		return explode('.css', explode_last('/', $fileUrl))[0];
+		return explode('.css', explode_last_legacy('/', $fileUrl))[0];
 	}
 }

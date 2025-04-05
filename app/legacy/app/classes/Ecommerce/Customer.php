@@ -7,7 +7,7 @@ use Structure\DatabaseObject;
 
 class Customer {
 
-	use DatabaseObject;
+	use \Legacy\System\Traits\DatabaseObject;
 
 	public const TABLE = 'ecommerce_customers';
 	public const INDEX = 'id';
@@ -28,12 +28,12 @@ class Customer {
 
 	// carts
 	private function getCart() {
-		$cartId = DB::find(Cart::INDEX . ' FROM ' . Cart::TABLE . ' WHERE ' . Cart::CUSTOMER_INDEX . ' = ? AND statusId = 0', [$this->id]);
+		$cartId = \Legacy\System\Classes\DB::find(Cart::INDEX . ' FROM ' . Cart::TABLE . ' WHERE ' . Cart::CUSTOMER_INDEX . ' = ? AND statusId = 0', [$this->id]);
 		return new Cart($cartId);
 	}
 
 	private function getConfirmedCarts() {
-		return rows_to_objects(DB::select(Cart::INDEX . ' FROM ' . Cart::TABLE . ' WHERE ' . Cart::CUSTOMER_INDEX . ' = ? AND statusId <> 0 ORDER BY time DESC', [$this->id]), Cart::class);
+		return rows_to_objects(\Legacy\System\Classes\DB::select(Cart::INDEX . ' FROM ' . Cart::TABLE . ' WHERE ' . Cart::CUSTOMER_INDEX . ' = ? AND statusId <> 0 ORDER BY time DESC', [$this->id]), Cart::class);
 	}
 
 	private function getConfirmedCartsCount() {
@@ -42,7 +42,7 @@ class Customer {
 
 	// addresses
 	private function getDefaultAddressId() {
-		return DB::find(Address::INDEX . ' FROM ' . Address::TABLE . ' WHERE ' . Address::CUSTOMER_INDEX . ' = ? ORDER BY ' . Address::INDEX . ' DESC', [$this->id]);
+		return \Legacy\System\Classes\DB::find(Address::INDEX . ' FROM ' . Address::TABLE . ' WHERE ' . Address::CUSTOMER_INDEX . ' = ? ORDER BY ' . Address::INDEX . ' DESC', [$this->id]);
 	}
 
 	private function getDefaultAddress() {
@@ -68,11 +68,11 @@ class Customer {
 	*/
 	public static function new() {
 		if (logged()) {
-			$customerId = DB::find(self::INDEX . ' FROM ' . self::TABLE . ' WHERE ' . self::USER_INDEX . ' = ?', [userId()]);
+			$customerId = \Legacy\System\Classes\DB::find(self::INDEX . ' FROM ' . self::TABLE . ' WHERE ' . self::USER_INDEX . ' = ?', [userId()]);
 		}
 
 		if (!$customerId) {
-			$customerId = DB::add(self::TABLE . ' (' . self::USER_INDEX . ')', [userId() ?: 0]);
+			$customerId = \Legacy\System\Classes\DB::add(self::TABLE . ' (' . self::USER_INDEX . ')', [userId() ?: 0]);
 		}
 
 		return new self($customerId);

@@ -7,7 +7,7 @@ use Structure\DatabaseObject;
 
 class Address {
 
-	use DatabaseObject;
+	use \Legacy\System\Traits\DatabaseObject;
 
 	public const TABLE = 'ecommerce_addresses';
 	public const INDEX = 'id';
@@ -30,13 +30,13 @@ class Address {
 	* Instace methods
 	*/
 	public static function new(array $data) {
-		$id = DB::add(self::TABLE . ' (customerId, fullName, address, number, city, zip, region, email, phone, notes)', [$data['customerId'] ?? customerId(), $data['fullName'], $data['address'], $data['number'], $data['city'], $data['zip'], $data['region'], $data['email'], $data['phone'], $data['notes']]);
+		$id = \Legacy\System\Classes\DB::add(self::TABLE . ' (customerId, fullName, address, number, city, zip, region, email, phone, notes)', [$data['customerId'] ?? customerId(), $data['fullName'], $data['address'], $data['number'], $data['city'], $data['zip'], $data['region'], $data['email'], $data['phone'], $data['notes']]);
 
 		return new self($id);
 	}
 
 	public function update(array $data) {
-		DB::update(self::TABLE . ' SET fullName = ?, address = ?, number = ?, city = ?, zip = ?, region = ?, email = ?, phone = ?, notes = ? WHERE ' . self::INDEX . ' = ?', [$data['fullName'], $data['address'], $data['number'], $data['city'], $data['zip'], $data['region'], $data['email'], $data['phone'], $data['notes'], $this->id]);
+		\Legacy\System\Classes\DB::update(self::TABLE . ' SET fullName = ?, address = ?, number = ?, city = ?, zip = ?, region = ?, email = ?, phone = ?, notes = ? WHERE ' . self::INDEX . ' = ?', [$data['fullName'], $data['address'], $data['number'], $data['city'], $data['zip'], $data['region'], $data['email'], $data['phone'], $data['notes'], $this->id]);
 
 		$this->reset();
 

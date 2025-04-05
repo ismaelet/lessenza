@@ -2,5 +2,5 @@
 
 if (isset($_POST['submit'])) {
 	if (isset($_SESSION['userId'])) logout('login');
-	else redirect('/login');
+	else redirect_legacy('/login');
 }

@@ -17,7 +17,7 @@ class Review {
 
 	function __construct($id) {
 
-		if ($row = DB::row('* FROM ecommerce_reviews WHERE id=?', [$id])) {
+		if ($row = \Legacy\System\Classes\DB::row('* FROM ecommerce_reviews WHERE id=?', [$id])) {
 			$this->userId = $row['userId'];
 			$this->text = $row['text'];
 			$this->score = $row['score'];
@@ -30,7 +30,7 @@ class Review {
 	function __get($name) {
 		switch ($name) {
 			case 'fullName':
-				return $this->fullName = (new User($this->userId))->fullName;
+				return $this->fullName = (new \Legacy\System\Classes\User($this->userId))->fullName;
 		}
 	}
 }

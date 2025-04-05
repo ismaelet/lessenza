@@ -1,6 +1,6 @@
 <?php
 
-if (!isset($_SESSION['paypal-cartId'])) redirect('/cart');
+if (!isset($_SESSION['paypal-cartId'])) redirect_legacy('/cart');
 
 $cartId = $_SESSION['paypal-cartId'];
 
@@ -8,4 +8,4 @@ $cart = new Ecommerce\Cart($cartId);
 
 if (!$cart->status) $cart->updateStatusId('waiting-payment');
 
-redirect('/order/completed?id=' . $cart->id . '&success=1');
+redirect_legacy('/order/completed?id=' . $cart->id . '&success=1');

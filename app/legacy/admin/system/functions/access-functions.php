@@ -3,7 +3,7 @@
 function login($userId, $url = false, $remember = true) {
 
 	// remove old accesses
-	DB::delete('auth_tokens WHERE expiration < NOW() AND userID=?', [$userId]);
+	\Legacy\System\Classes\DB::delete('auth_tokens WHERE expiration < NOW() AND userID=?', [$userId]);
 
 	// remember me
 	if ($remember) {
@@ -11,13 +11,13 @@ function login($userId, $url = false, $remember = true) {
 		$validator = bin2hex(random_bytes(12));
 		$validatorHash = hash('sha256', $validator);
 
-		DB::add('auth_tokens (selector, validator, userID, expiration) VALUES (?, ?, ?, (NOW() + INTERVAL 1 MONTH))', [$selector, $validatorHash, $userId]);
+		\Legacy\System\Classes\DB::add('auth_tokens (selector, validator, userID, expiration) VALUES (?, ?, ?, (NOW() + INTERVAL 1 MONTH))', [$selector, $validatorHash, $userId]);
 
 		setcookie('auth_token', $selector . '_' . $validator, time() + 60 * 60 * 24 * 30);
 	}
 
 	if (function_exists('associate_cart')) {
-		$customerId = DB::find('id FROM ecommerce_customers WHERE userId=?', [$userId]);
+		$customerId = \Legacy\System\Classes\DB::find('id FROM ecommerce_customers WHERE userId=?', [$userId]);
 		associate_cart($customerId);
 	}
 
@@ -27,7 +27,7 @@ function login($userId, $url = false, $remember = true) {
 	if (isset($_SESSION['login-attempts'])) unset($_SESSION['login-attempts']);
 
 	// redirect
-	if ($url) redirect($url);
+	if ($url) redirect_legacy($url);
 }
 
 // normal login
@@ -39,7 +39,7 @@ function standard_login($username, $password, $url = false, $remember = true) {
 	if (!$url) $url = sys_config('logged-redirect') ?: '/';
 
 	// fetch user data
-	$userData = DB::row('id, password FROM users WHERE (lower(username)=? OR lower(email)=?)', [$username, $username]);
+	$userData = \Legacy\System\Classes\DB::row('id, password FROM users WHERE (lower(username)=? OR lower(email)=?)', [$username, $username]);
 
 	// if it's a valid username
 	if ($userData) {
@@ -49,7 +49,7 @@ function standard_login($username, $password, $url = false, $remember = true) {
 		// update old password
 		if ($dbPassword[0] != '$' && ($password == $dbPassword || md5($password) == $dbPassword)) {
 			$dbPassword = password_hash($password, PASSWORD_DEFAULT);
-			DB::update('users SET password=? WHERE id=?', [$dbPassword, $userId]);
+			\Legacy\System\Classes\DB::update('users SET password=? WHERE id=?', [$dbPassword, $userId]);
 		}
 
 		// successful login
@@ -70,7 +70,7 @@ function login_direct($token) {
 	$validToken = false;
 	$token = explode('_', $token);
 	$selector = $token[0];
-	$userData = DB::row('userId, validator FROM auth_tokens WHERE selector=? AND expiration>NOW()', [$selector]);
+	$userData = \Legacy\System\Classes\DB::row('userId, validator FROM auth_tokens WHERE selector=? AND expiration>NOW()', [$selector]);
 
 	if (isset($token[1]) && $userData) {
 		$validator = $token[1];
@@ -91,9 +91,9 @@ function logout($url = '') {
 
 	setcookie('auth_token', '', -1);
 
-	DB::delete('auth_tokens WHERE userID=?', $user->id);
+	\Legacy\System\Classes\DB::delete('auth_tokens WHERE userID=?', $user->id);
 
 	session_destroy();
 
-	redirect($url);
+	redirect_legacy($url);
 }

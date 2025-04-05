@@ -1,8 +1,8 @@
 <?php
 
 //menu categories table
-if (!DB::table('admin_categories')) {
-	DB::execute("
+if (!\Legacy\System\Classes\DB::table('admin_categories')) {
+	\Legacy\System\Classes\DB::execute("
 		CREATE TABLE admin_categories (
 			id INT(3) AUTO_INCREMENT PRIMARY KEY,
 			name VARCHAR(30),
@@ -12,12 +12,12 @@ if (!DB::table('admin_categories')) {
 		)
 	");
 
-	DB::execute("INSERT INTO admin_categories (name, slug, manager) VALUES ('Impostazioni', 'settings', 1)");
+	\Legacy\System\Classes\DB::execute("INSERT INTO admin_categories (name, slug, manager) VALUES ('Impostazioni', 'settings', 1)");
 }
 
 //menu sections table
-if (!DB::table('admin_sections')) {
-	DB::execute("
+if (!\Legacy\System\Classes\DB::table('admin_sections')) {
+	\Legacy\System\Classes\DB::execute("
 		CREATE TABLE admin_sections (
 			id INT(4) AUTO_INCREMENT PRIMARY KEY,
 			name VARCHAR(50),
@@ -31,17 +31,17 @@ if (!DB::table('admin_sections')) {
 		)
 	");
 
-	DB::execute("INSERT INTO admin_sections (name, slug, category, manager) VALUES ('Generali', 'general', 'settings', 1)");
-	DB::execute("INSERT INTO admin_sections (name, slug, category, template, manager) VALUES ('Menu - Categorie', 'categories/list', 'settings', 'list', 1)");
-	DB::execute("INSERT INTO admin_sections (name, slug, category, template, hidden, manager) VALUES ('Aggiungi a Menu - Categorie', 'categories/add', 'settings', 'form', 1, 1)");
-	DB::execute("INSERT INTO admin_sections (name, slug, category, template, manager) VALUES ('Menu - Sezioni', 'sections/list', 'settings', 'list', 1)");
-	DB::execute("INSERT INTO admin_sections (name, slug, category, template, hidden, manager) VALUES ('Aggiungi a Menu - Sezioni', 'sections/add', 'settings', 'form', 1, 1)");
-	DB::execute("INSERT INTO admin_sections (name, slug, category, template, manager) VALUES ('Variabili di sistema', 'variables/list', 'settings', 'list', 1)");
-	DB::execute("INSERT INTO admin_sections (name, slug, category, template, hidden, manager) VALUES ('Aggiungi una variabile', 'variables/add', 'settings', 'form', 1, 1)");
+	\Legacy\System\Classes\DB::execute("INSERT INTO admin_sections (name, slug, category, manager) VALUES ('Generali', 'general', 'settings', 1)");
+	\Legacy\System\Classes\DB::execute("INSERT INTO admin_sections (name, slug, category, template, manager) VALUES ('Menu - Categorie', 'categories/list', 'settings', 'list', 1)");
+	\Legacy\System\Classes\DB::execute("INSERT INTO admin_sections (name, slug, category, template, hidden, manager) VALUES ('Aggiungi a Menu - Categorie', 'categories/add', 'settings', 'form', 1, 1)");
+	\Legacy\System\Classes\DB::execute("INSERT INTO admin_sections (name, slug, category, template, manager) VALUES ('Menu - Sezioni', 'sections/list', 'settings', 'list', 1)");
+	\Legacy\System\Classes\DB::execute("INSERT INTO admin_sections (name, slug, category, template, hidden, manager) VALUES ('Aggiungi a Menu - Sezioni', 'sections/add', 'settings', 'form', 1, 1)");
+	\Legacy\System\Classes\DB::execute("INSERT INTO admin_sections (name, slug, category, template, manager) VALUES ('Variabili di sistema', 'variables/list', 'settings', 'list', 1)");
+	\Legacy\System\Classes\DB::execute("INSERT INTO admin_sections (name, slug, category, template, hidden, manager) VALUES ('Aggiungi una variabile', 'variables/add', 'settings', 'form', 1, 1)");
 }
 
 //authentication table
-DB::execute("
+\Legacy\System\Classes\DB::execute("
 	CREATE TABLE IF NOT EXISTS auth_tokens_admin (
 		id INT(11) AUTO_INCREMENT PRIMARY KEY,
 		selector VARCHAR(12),

@@ -9,34 +9,34 @@ use function Ecommerce\ecommerce_config;
 use function Ecommerce\order_count;
 
 // Shop
-Route::add('/shop', function () {
-	View::setPage('shop')
+Legacy\System\Classes\Route::add('/shop', function () {
+	\Legacy\System\Classes\View::setPage('shop')
 		->setTemplate('shop')
 		->show();
 });
 
 // Product
-Route::add('/' . __('products') . '/*', function ($path) {
+Legacy\System\Classes\Route::add('/' . __('products') . '/*', function ($path) {
 	$fullProductName = explode(__('products') . '/', $path)[1] ?? null;
 	$productId = explode('-', $fullProductName)[0] ?? null;
 
-	if (!$productId || !DB::exists(Product::TABLE . ' WHERE ' . Product::INDEX . ' = ?', [$productId])) {
-		redirect('/shop');
+	if (!$productId || !\Legacy\System\Classes\DB::exists(Product::TABLE . ' WHERE ' . Product::INDEX . ' = ?', [$productId])) {
+		redirect_legacy('/shop');
 	}
 
-	View::setPage('product')
+	\Legacy\System\Classes\View::setPage('product')
 		->set('productId', $productId)
 		->show();
 });
 
 // Wishlist
-Route::add('/wishlist', function () {
-	View::setPage('wishlist')
+Legacy\System\Classes\Route::add('/wishlist', function () {
+	\Legacy\System\Classes\View::setPage('wishlist')
 		->show();
 });
 
 // Cart
-Route::add('/cart', function () {
+Legacy\System\Classes\Route::add('/cart', function () {
 	// car steps
 	$cartSteps = ecommerce_config('cart-page')['steps'];
 	$currentStep = $_GET['step'] ?? 1;
@@ -44,26 +44,26 @@ Route::add('/cart', function () {
 
 	// middlewares
 	if (!order_count()) {
-		redirect('/cart/empty');
+		redirect_legacy('/cart/empty');
 	}
 
 	if (cart()->step < $currentStep) {
-		redirect('/cart?step=' . cart()->step);
+		redirect_legacy('/cart?step=' . cart()->step);
 	}
 
 	// render view
-	View::setPage('cart/' . $cartSteps[$currentStep][1])
+	\Legacy\System\Classes\View::setPage('cart/' . $cartSteps[$currentStep][1])
 		->setTemplate('cart')
 		->set('currentStep', $currentStep)
 		->show();
 });
 
-Route::add('/cart/empty', function () {
+Legacy\System\Classes\Route::add('/cart/empty', function () {
 	if (cart()->quantity) {
-		redirect('/cart');
+		redirect_legacy('/cart');
 	}
 
-	View::setPage('cart/empty')
+	\Legacy\System\Classes\View::setPage('cart/empty')
 		->setTitle('Carrello Vuoto')
 		->show();
 });
@@ -72,7 +72,7 @@ Route::add('/cart/empty', function () {
 * Payments
 */
 // PayPal
-Route::add('/payment/paypal', function () {
+Legacy\System\Classes\Route::add('/payment/paypal', function () {
 	global $customer;
 	global $cart;
 
@@ -80,25 +80,25 @@ Route::add('/payment/paypal', function () {
 	$cartId = $_GET['id'] ?? null;
 
 	if (!$cartId) {
-		$cartId = DB::find('id FROM ecommerce_carts WHERE customerId=? AND status=1 AND processed=0 ORDER BY id DESC', [$customer->id]);
+		$cartId = \Legacy\System\Classes\DB::find('id FROM ecommerce_carts WHERE customerId=? AND status=1 AND processed=0 ORDER BY id DESC', [$customer->id]);
 	}
 
 	$cart = new Cart($cartId);
 
-	if (!$cart->id) redirect('/cart/empty');
-	else if (!$cart->status) redirect('/cart');
-	else if ($cart->status != 1 || $cart->payment->slug != 'paypal') redirect('/order/completed?id=' . $cart->id);
+	if (!$cart->id) redirect_legacy('/cart/empty');
+	else if (!$cart->status) redirect_legacy('/cart');
+	else if ($cart->status != 1 || $cart->payment->slug != 'paypal') redirect_legacy('/order/completed?id=' . $cart->id);
 	else {
 		$_SESSION['trying-to-pay'] = $cart->id;
 	}
 
-	View::setPage('cart/payments/paypal')
+	\Legacy\System\Classes\View::setPage('cart/payments/paypal')
 		->setTemplate('void')
 		->show();
 });
 
 // Bank Transfer
-Route::add('/payment/bank-transfer', function () {
+Legacy\System\Classes\Route::add('/payment/bank-transfer', function () {
 	global $customer;
 	global $cart;
 
@@ -106,58 +106,58 @@ Route::add('/payment/bank-transfer', function () {
 	$cartId = $_GET['id'] ?? null;
 
 	if (!$cartId) {
-		$cartId = DB::find('id FROM ecommerce_carts WHERE customerId=? AND status=1 AND processed=0 ORDER BY id DESC', [$customer->id]);
+		$cartId = \Legacy\System\Classes\DB::find('id FROM ecommerce_carts WHERE customerId=? AND status=1 AND processed=0 ORDER BY id DESC', [$customer->id]);
 	}
 
 	$cart = new Cart($cartId);
 
-	if (!$cart->id) redirect('/cart/empty');
-	else if (!$cart->status) redirect('/cart');
-	else if ($cart->status != 1 || $cart->payment->slug != 'bank-transfer') redirect('/order/completed?id=' . $cart->id);
+	if (!$cart->id) redirect_legacy('/cart/empty');
+	else if (!$cart->status) redirect_legacy('/cart');
+	else if ($cart->status != 1 || $cart->payment->slug != 'bank-transfer') redirect_legacy('/order/completed?id=' . $cart->id);
 	else {
 		$_SESSION['trying-to-pay'] = $cart->id;
 	}
 
-	View::setPage('cart/payments/bank-transfer')
+	\Legacy\System\Classes\View::setPage('cart/payments/bank-transfer')
 		->show();
 });
 
 // Success
-Route::add('/success', function () {
-	View::setPage('order/success')
+Legacy\System\Classes\Route::add('/success', function () {
+	\Legacy\System\Classes\View::setPage('order/success')
 		->setTemplate('void')
 		->show();
 });
 
 // Completed order
-Route::add('/order', function () {
+Legacy\System\Classes\Route::add('/order', function () {
 	$cartId = $_GET['id'] ?? null;
 	$customerId = $_GET['customerId'] ?? customerId();
 
 	// setup cart
-	$cartId = DB::exists(Cart::TABLE . ' WHERE ' . cart::INDEX . ' = ? AND ' . Cart::CUSTOMER_INDEX . ' = ?', [$cartId, $customerId]) ? $cartId : null;
+	$cartId = \Legacy\System\Classes\DB::exists(Cart::TABLE . ' WHERE ' . cart::INDEX . ' = ? AND ' . Cart::CUSTOMER_INDEX . ' = ?', [$cartId, $customerId]) ? $cartId : null;
 
 	if (!$cartId) {
-		redirect('/shop');
+		redirect_legacy('/shop');
 	} else {
 		$cart = new Cart($cartId);
 
 		if (!$cart->statusId) {
-			redirect('/cart');
+			redirect_legacy('/cart');
 		}
 	}
 
-	View::setPage('order/completed')
+	\Legacy\System\Classes\View::setPage('order/completed')
 		->set('cart', $cart)
 		->setTitle('Ordine ' . $cart->idCode)
 		->show();
 });
 
 // Profile
-Route::add('/profile/*', function ($path) {
+Legacy\System\Classes\Route::add('/profile/*', function ($path) {
 	$page = ltrim(explode('profile', $path)[1], '/') ?: 'recap';
 
-	View::setPage('profile/' . $page)
+	\Legacy\System\Classes\View::setPage('profile/' . $page)
 		->addMiddlewares(['logged'])
 		->setTemplate('profile')
 		->setTitle('Profilo')
@@ -165,8 +165,8 @@ Route::add('/profile/*', function ($path) {
 });
 
 // Address
-Route::add('/address/edit', function () {
-	View::setPage('address')
+Legacy\System\Classes\Route::add('/address/edit', function () {
+	\Legacy\System\Classes\View::setPage('address')
 		->setTitle('Modifica Indirizzo')
 		->addMiddlewares(['logged'])
 		->setTemplate('form')
@@ -174,12 +174,12 @@ Route::add('/address/edit', function () {
 });
 
 // Wishlist
-Route::add('/wishlist', function () {
-	View::setPage('wishlist')
+Legacy\System\Classes\Route::add('/wishlist', function () {
+	\Legacy\System\Classes\View::setPage('wishlist')
 		->show();
 });
 
 // Listeners
-Route::add('/listener/paypal', function () {
+Legacy\System\Classes\Route::add('/listener/paypal', function () {
 	include_once(SERVER_ROOT . '/listeners/paypal.php');
 });

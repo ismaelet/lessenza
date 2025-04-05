@@ -4,11 +4,11 @@ use Blog\Post;
 use Ecommerce\Cart;
 use Ecommerce\Product;
 
-$orderCount = DB::count(Cart::TABLE);
-$productCount = DB::count(Product::TABLE);
-$postCount = DB::count(Post::TABLE);
-$reviewCount = DB::count(Review::TABLE);
-$usersCount = DB::count(User::TABLE);
+$orderCount = \Legacy\System\Classes\DB::count(Cart::TABLE);
+$productCount = \Legacy\System\Classes\DB::count(Product::TABLE);
+$postCount = \Legacy\System\Classes\DB::count(Post::TABLE);
+$reviewCount = \Legacy\System\Classes\DB::count(Re\Legacy\System\Classes\View::TABLE);
+$usersCount = \Legacy\System\Classes\DB::count(User::TABLE);
 
 $panels = [
 	[

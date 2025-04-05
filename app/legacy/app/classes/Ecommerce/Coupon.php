@@ -21,7 +21,7 @@ class Coupon {
 	public $code;
 
 	function __construct($id) {
-		if ($row = DB::row('* FROM ecommerce_coupons WHERE id=?', [$id])) {
+		if ($row = \Legacy\System\Classes\DB::row('* FROM ecommerce_coupons WHERE id=?', [$id])) {
 			$this->id = $id;
 			$this->code = $row['code'];
 			$this->percentageDiscount = $row['percentage-discount'];
@@ -44,7 +44,7 @@ class Coupon {
 		$customer->cart->shippingDiscount = $customer->cart->originalShippingPrice;
 		$customer->cart->freeShipping = true;
 
-		DB::update('ecommerce_carts SET freeShipping=1 WHERE id=?', [$customer->cart->id]);
+		\Legacy\System\Classes\DB::update('ecommerce_carts SET freeShipping=1 WHERE id=?', [$customer->cart->id]);
 	}
 
 	private function calculateCode() {
@@ -77,7 +77,7 @@ class Coupon {
 				$discount = round(($order->originalPrice * $percentage / 100) + $flat, 2);
 
 				// update the order price
-				DB::update('ecommerce_orders SET discount=? WHERE id=?', [$discount, $order->id]);
+				\Legacy\System\Classes\DB::update('ecommerce_orders SET discount=? WHERE id=?', [$discount, $order->id]);
 			}
 		}
 	}
@@ -94,12 +94,12 @@ class Coupon {
 				$error = 'coupon-expired';
 			else if ($this->onePerUser && !logged())
 				$error = 'coupon-not-logged';
-			else if ($this->onePerUser && DB::exists('ecommerce_carts WHERE couponId=? AND customerId=?', [$this->id, $customer->cart->customerId]))
+			else if ($this->onePerUser && \Legacy\System\Classes\DB::exists('ecommerce_carts WHERE couponId=? AND customerId=?', [$this->id, $customer->cart->customerId]))
 				$error = 'coupon-used';
 			else if ($this->minPrice && $customer->cart->originalItemsPrice < $this->minPrice)
 				$error = 'coupon-min-price';
 			else {
-				DB::update('ecommerce_carts SET couponId=? WHERE id=?', [$this->id, $customer->cart->id]);
+				\Legacy\System\Classes\DB::update('ecommerce_carts SET couponId=? WHERE id=?', [$this->id, $customer->cart->id]);
 
 				if ($this->freeShipping) {
 					$this->applyFreeShipping($customer->cart->id);
@@ -120,8 +120,8 @@ class Coupon {
 		$customer->cart->couponId = 0;
 		unset($customer->cart->coupon);
 
-		DB::update('ecommerce_carts SET couponId=0, shippingDiscount=0 WHERE id=?', [$customer->cart->id]);
-		DB::update('ecommerce_orders SET discount=0 WHERE cartId=?', [$customer->cart->id]);
+		\Legacy\System\Classes\DB::update('ecommerce_carts SET couponId=0, shippingDiscount=0 WHERE id=?', [$customer->cart->id]);
+		\Legacy\System\Classes\DB::update('ecommerce_orders SET discount=0 WHERE cartId=?', [$customer->cart->id]);
 
 		$customer->cart->updateItemPrices();
 	}

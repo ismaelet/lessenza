@@ -1,7 +1,7 @@
 <?php
 
 // newsletter subscribers
-DB::execute('
+\Legacy\System\Classes\DB::execute('
 	CREATE TABLE IF NOT EXISTS newsletter_subscribers (
 		id INT(11) AUTO_INCREMENT PRIMARY KEY,
 		fullName VARCHAR(200) DEFAULT "",

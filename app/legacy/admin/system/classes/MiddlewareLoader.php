@@ -8,35 +8,35 @@ class MiddlewareLoader {
 		$defaultMiddlewareLoader = [
 			'public' => function () {
 				global $user;
-				$public = sys_config('static') ?: DB::find('value FROM config WHERE name=?', ['public']);
-				if (!$public && !$user->admin) redirect('/offline');
+				$public = sys_config('static') ?: \Legacy\System\Classes\DB::find('value FROM config WHERE name=?', ['public']);
+				if (!$public && !$user->admin) redirect_legacy('/offline');
 			},
 
 			'not-public' => function () {
-				$public = sys_config('static') ?: DB::find('value FROM config WHERE name=?', ['public']);
-				if ($public) redirect('/');
+				$public = sys_config('static') ?: \Legacy\System\Classes\DB::find('value FROM config WHERE name=?', ['public']);
+				if ($public) redirect_legacy('/');
 			},
 
 			'wip' => function () {
-				redirect('/wip');
+				redirect_legacy('/wip');
 			},
 
 			'logged' => function () {
-				if (!logged()) redirect('/login');
+				if (!logged()) redirect_legacy('/login');
 			},
 
 			'not-logged' => function () {
-				if (sys_config('static') || logged()) redirect(sys_config('logged-redirect') ?: '/');
+				if (sys_config('static') || logged()) redirect_legacy(sys_config('logged-redirect') ?: '/');
 			},
 
 			'admin' => function () {
 				global $user;
-				if (!$user->admin) redirect('/login');
+				if (!$user->admin) redirect_legacy('/login');
 			},
 
 			'not-admin' => function () {
 				global $user;
-				if ($user->admin) redirect(sys_config('logged-redirect') ?: '/');
+				if ($user->admin) redirect_legacy(sys_config('logged-redirect') ?: '/');
 			},
 		];
 

@@ -10,7 +10,7 @@
 
 	<!-- Header -->
 	<div class="form-head">
-		<h1 class="title title--register load--fade-in js-load" data-direction="bottom" data-delay="0"><?= View::$title ?></h1>
+		<h1 class="title title--register load--fade-in js-load" data-direction="bottom" data-delay="0"><?= \Legacy\System\Classes\View::$title ?></h1>
 	</div>
 
 	<!-- Body -->

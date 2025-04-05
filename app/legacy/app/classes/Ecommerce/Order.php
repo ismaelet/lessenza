@@ -8,7 +8,7 @@ use Structure\DatabaseObject;
 
 class Order {
 
-	use DatabaseObject;
+	use \Legacy\System\Traits\DatabaseObject;
 
 	public const TABLE = 'ecommerce_orders';
 	public const INDEX = 'id';
@@ -90,17 +90,17 @@ class Order {
 		}
 
 		// check if there is already an order with the same characteristics
-		$orderId = DB::find(
+		$orderId = \Legacy\System\Classes\DB::find(
 			self::INDEX . ' FROM ' . self::TABLE . ' WHERE ' . self::CART_INDEX . ' = ? AND ' . self::CUSTOMER_INDEX . ' = ? AND ' . self::PRODUCT_INDEX . ' = ?',
 			[cartId(), customerId(), $data[self::PRODUCT_INDEX]]
 		);
 
 		if ($orderId) {
 			// add the quantity to the previous order
-			DB::update(self::TABLE . ' SET quantity = quantity + ?, time = NOW() WHERE ' . self::INDEX . ' = ?', [$data['quantity'], $orderId]);
+			\Legacy\System\Classes\DB::update(self::TABLE . ' SET quantity = quantity + ?, time = NOW() WHERE ' . self::INDEX . ' = ?', [$data['quantity'], $orderId]);
 		} else {
 			// create a new order
-			$orderId = DB::add(
+			$orderId = \Legacy\System\Classes\DB::add(
 				self::TABLE . ' (' . self::CART_INDEX . ', ' . self::CUSTOMER_INDEX . ',' . self::PRODUCT_INDEX . ', quantity)',
 				[cartId(), customerId(), $data[self::PRODUCT_INDEX], $data['quantity']]
 			);
@@ -116,7 +116,7 @@ class Order {
 	}
 
 	public function delete() {
-		DB::delete(self::TABLE . ' WHERE ' . self::INDEX . ' = ?', [$this->id]);
+		\Legacy\System\Classes\DB::delete(self::TABLE . ' WHERE ' . self::INDEX . ' = ?', [$this->id]);
 
 		$this->reset();
 		$this->cart->resetDynamicProperties();

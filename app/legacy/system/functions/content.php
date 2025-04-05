@@ -1,7 +1,7 @@
 <?php
 
 function place_text($slug) {
-	$textRow = DB::row('* FROM texts WHERE slug=?', [$slug]);
+	$textRow = \Legacy\System\Classes\DB::row('* FROM texts WHERE slug=?', [$slug]);
 
 	$content = $textRow['text'];
 
@@ -14,7 +14,7 @@ function place_image($slug) {
 	$content = '';
 
 	if (admin()) {
-		$imageRow = DB::row('id FROM images WHERE path=?', [$slug]);
+		$imageRow = \Legacy\System\Classes\DB::row('id FROM images WHERE path=?', [$slug]);
 		$content =
 			'<a class="admin-replace-img" href="' . client_url('/admin/content/images/add?id=' . $imageRow['id']) . '">
 				<div class="admin-replace-img_icon icon-box" href="' . client_url('/admin/content/images/add?id=' . $imageRow['id']) . '">

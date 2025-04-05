@@ -2,7 +2,7 @@
 
 use function Ecommerce\ecommerce_config;
 
-$profileLocation = explode('profile/', View::$name)[1];
+$profileLocation = explode('profile/', \Legacy\System\Classes\View::$name)[1];
 
 //navigation menu
 $profileLinks = [

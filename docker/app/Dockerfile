@@ -1,0 +1,27 @@
+# Get the base image
+FROM php:apache
+
+# Set working directory
+WORKDIR /app
+COPY ./app/ .
+
+# Install the zip extension
+RUN apt-get update && \
+	apt-get install -y zlib1g-dev libzip-dev && \
+	docker-php-ext-configure zip && \
+	docker-php-ext-install zip
+
+# Install MySQLi
+RUN docker-php-ext-install pdo pdo_mysql mysqli && \
+	docker-php-ext-enable mysqli
+
+# Install Composer dependencies
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer && \
+	composer update
+
+# Install NPM dependencies
+RUN curl -fsSL https://deb.nodesource.com/setup_22.x | bash - && \
+	apt-get install -y nodejs && \
+	rm -rf node_modules && \
+	npm install && \
+	npm run build

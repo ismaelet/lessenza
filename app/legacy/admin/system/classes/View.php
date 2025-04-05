@@ -114,13 +114,13 @@ class View {
 		foreach (self::$middlewares as $middleware) MiddlewareLoader::run($middleware);
 
 		// load the logic
-		Logic::add(self::$template, 'template');
-		Logic::add(self::$name, 'page');
-		Logic::load();
+		\Legacy\System\Classes\Logic::add(self::$template, 'template');
+		\Legacy\System\Classes\Logic::add(self::$name, 'page');
+		\Legacy\System\Classes\Logic::load();
 
 		// load page resources
-		StyleLoader::addPageStyles(View::$name);
-		ScriptLoader::addPageScripts(View::$name);
+		\Legacy\System\Classes\StyleLoader::addPageStyles(\Legacy\System\Classes\View::$name);
+		\Legacy\System\Classes\ScriptLoader::addPageScripts(\Legacy\System\Classes\View::$name);
 
 		// render page
 		Viewer::render();

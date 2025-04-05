@@ -31,7 +31,7 @@ class Route {
 
 		// error 404
 		if (!$path_found) {
-			View::setPage('errors/404')
+			\Legacy\System\Classes\View::setPage('errors/404')
 				->setTitle('Error 404')
 				->setTemplate('void')
 				->setMiddlewares()

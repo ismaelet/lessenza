@@ -1,7 +1,7 @@
 <?php
 
 // style
-StyleLoader::add('access/login', 'page');
+\Legacy\System\Classes\StyleLoader::add('access/login', 'page');
 
 // setup variables
 $error = false;
@@ -47,7 +47,7 @@ if (isset($_POST['submit'])) {
 
 	// check for errors
 	switch (true) {
-		case DB::exists('users WHERE email = ?', [$email]):
+		case \Legacy\System\Classes\DB::exists('users WHERE email = ?', [$email]):
 			$error = 'email-exists';
 			break;
 

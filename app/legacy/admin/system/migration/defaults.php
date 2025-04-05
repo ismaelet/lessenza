@@ -3,7 +3,7 @@
 global $con;
 
 // config table
-DB::execute('
+\Legacy\System\Classes\DB::execute('
 	CREATE TABLE IF NOT EXISTS config (
 		id INT(3) AUTO_INCREMENT PRIMARY KEY,
 		name VARCHAR(30),
@@ -11,10 +11,10 @@ DB::execute('
 	)
 ');
 
-if (!DB::exists('config WHERE name="public"')) DB::add('config (name, value) VALUES (?, ?)', ['public', 1]);
+if (!\Legacy\System\Classes\DB::exists('config WHERE name="public"')) \Legacy\System\Classes\DB::add('config (name, value) VALUES (?, ?)', ['public', 1]);
 
 // users table
-DB::execute('
+\Legacy\System\Classes\DB::execute('
 	CREATE TABLE IF NOT EXISTS users (
 		id INT(11) AUTO_INCREMENT PRIMARY KEY,
 		username VARCHAR(50) DEFAULT "",
@@ -29,7 +29,7 @@ DB::execute('
 ');
 
 // password resets
-DB::execute('
+\Legacy\System\Classes\DB::execute('
 	CREATE TABLE IF NOT EXISTS user_resets (
 		id INT(11) AUTO_INCREMENT PRIMARY KEY,
 		userID INT(11),
@@ -39,7 +39,7 @@ DB::execute('
 ');
 
 // authentication table
-DB::execute('
+\Legacy\System\Classes\DB::execute('
 	CREATE TABLE IF NOT EXISTS auth_tokens (
 		id INT(11) AUTO_INCREMENT PRIMARY KEY,
 		selector VARCHAR(12),

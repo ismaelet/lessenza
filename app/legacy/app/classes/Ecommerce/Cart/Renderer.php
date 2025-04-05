@@ -129,9 +129,9 @@ function advance_cart() {
 	global $customer;
 
 	$cart = $customer->cart;
-	$currentStep = View::get('currentStep');
+	$currentStep = \Legacy\System\Classes\View::get('currentStep');
 
 	$cart->advance($currentStep);
 
-	redirect('/cart?step=' . $cart->step);
+	redirect_legacy('/cart?step=' . $cart->step);
 }

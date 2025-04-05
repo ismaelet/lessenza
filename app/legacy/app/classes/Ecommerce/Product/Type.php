@@ -6,7 +6,7 @@ use Structure\DatabaseObject;
 
 class Type {
 
-	use DatabaseObject;
+	use \Legacy\System\Traits\DatabaseObject;
 
 	public const TABLE = 'ecommerce_product_types';
 	public const INDEX = 'id';

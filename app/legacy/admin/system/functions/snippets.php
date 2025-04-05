@@ -99,13 +99,13 @@ function favicon() {
  * Snippet page header
  *
  * @param array $config [
- * 	'title' => string View::$title
+ * 	'title' => string \Legacy\System\Classes\View::$title
  * 	'contrasting-background' => bool false
  * ]
  * @return returnedType
  */
 function snippet_page_header(array $config = []) {
-	$title = $config['title'] ?? View::$title;
+	$title = $config['title'] ?? \Legacy\System\Classes\View::$title;
 	$contrastingBackground = !empty($config['contrasting-background']) ? 'contrasting-background' : '';
 
 	ob_start();

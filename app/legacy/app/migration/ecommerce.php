@@ -1,7 +1,7 @@
 <?php
 
 // products table
-DB::execute('
+\Legacy\System\Classes\DB::execute('
 	CREATE TABLE IF NOT EXISTS ecommerce_products (
 		id INT(11) AUTO_INCREMENT PRIMARY KEY,
 		name VARCHAR(50),
@@ -18,7 +18,7 @@ DB::execute('
 ');
 
 // product images
-DB::execute('
+\Legacy\System\Classes\DB::execute('
 	CREATE TABLE IF NOT EXISTS ecommerce_product_images (
 		id INT(11) AUTO_INCREMENT PRIMARY KEY,
 		productId INT(11),
@@ -27,7 +27,7 @@ DB::execute('
 ');
 
 // product types
-DB::execute('
+\Legacy\System\Classes\DB::execute('
 	CREATE TABLE IF NOT EXISTS ecommerce_product_types (
 		id INT(3) AUTO_INCREMENT PRIMARY KEY,
 		name VARCHAR(50),
@@ -39,7 +39,7 @@ DB::execute('
 ');
 
 // product categories
-DB::execute('
+\Legacy\System\Classes\DB::execute('
 	CREATE TABLE IF NOT EXISTS ecommerce_product_categories (
 		id INT(3) AUTO_INCREMENT PRIMARY KEY,
 		name VARCHAR(50),
@@ -50,7 +50,7 @@ DB::execute('
 ');
 
 // products liked by users
-DB::execute('
+\Legacy\System\Classes\DB::execute('
 	CREATE TABLE IF NOT EXISTS ecommerce_product_likes (
 		id INT(3) AUTO_INCREMENT PRIMARY KEY,
 		productId INT(11),
@@ -60,7 +60,7 @@ DB::execute('
 ');
 
 // customers
-DB::execute('
+\Legacy\System\Classes\DB::execute('
 	CREATE TABLE IF NOT EXISTS ecommerce_customers (
 		id INT(11) AUTO_INCREMENT PRIMARY KEY,
 		userId INT(11) DEFAULT 0,
@@ -70,7 +70,7 @@ DB::execute('
 ');
 
 // carts
-DB::execute('
+\Legacy\System\Classes\DB::execute('
 	CREATE TABLE IF NOT EXISTS ecommerce_carts (
 		id INT(3) AUTO_INCREMENT PRIMARY KEY,
 		customerId INT(11),
@@ -89,7 +89,7 @@ DB::execute('
 ');
 
 // carts comments
-DB::execute('
+\Legacy\System\Classes\DB::execute('
 	CREATE TABLE IF NOT EXISTS ecommerce_carts_comments (
 		id INT(11) AUTO_INCREMENT PRIMARY KEY,
 		cartId INT(11),
@@ -99,7 +99,7 @@ DB::execute('
 ');
 
 // orders
-DB::execute('
+\Legacy\System\Classes\DB::execute('
 	CREATE TABLE IF NOT EXISTS ecommerce_orders (
 		id INT(3) AUTO_INCREMENT PRIMARY KEY,
 		cartId INT(11),
@@ -113,7 +113,7 @@ DB::execute('
 ');
 
 // coupons
-DB::execute('
+\Legacy\System\Classes\DB::execute('
 	CREATE TABLE IF NOT EXISTS ecommerce_coupons (
 		id INT(11) AUTO_INCREMENT PRIMARY KEY,
 		code VARCHAR(11),
@@ -135,7 +135,7 @@ DB::execute('
 ');
 
 // addresses
-DB::execute('
+\Legacy\System\Classes\DB::execute('
 	CREATE TABLE IF NOT EXISTS ecommerce_addresses (
 		id INT(3) AUTO_INCREMENT PRIMARY KEY,
 		customerId INT(11),
@@ -153,7 +153,7 @@ DB::execute('
 ');
 
 // shipping types
-DB::execute('
+\Legacy\System\Classes\DB::execute('
 	CREATE TABLE IF NOT EXISTS ecommerce_shipping_methods (
 		id INT(3) AUTO_INCREMENT PRIMARY KEY,
 		name VARCHAR(100),
@@ -170,7 +170,7 @@ DB::execute('
 ');
 
 // payment types
-DB::execute('
+\Legacy\System\Classes\DB::execute('
 	CREATE TABLE IF NOT EXISTS ecommerce_payments (
 		id INT(3) AUTO_INCREMENT PRIMARY KEY,
 		name VARCHAR(100),
@@ -180,7 +180,7 @@ DB::execute('
 ');
 
 // product reviews
-DB::execute('
+\Legacy\System\Classes\DB::execute('
 	CREATE TABLE IF NOT EXISTS ecommerce_reviews (
 		id INT(11) AUTO_INCREMENT PRIMARY KEY,
 		productId INT(11),
@@ -192,7 +192,7 @@ DB::execute('
 ');
 
 // product promotions
-DB::execute('
+\Legacy\System\Classes\DB::execute('
 	CREATE TABLE IF NOT EXISTS ecommerce_promotions (
 		id INT(11) AUTO_INCREMENT PRIMARY KEY,
 		productId INT(11),

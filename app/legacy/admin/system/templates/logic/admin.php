@@ -3,16 +3,16 @@
 // fetch current section
 $currentSection = false;
 
-if (strpos(View::$name, '-')) {
-	$currentPath = explode('/', explode('section-', View::$name)[1], 2);
-	$currentSection = DB::row('* FROM admin_sections WHERE category=? AND slug=?', [$currentPath[0], $currentPath[1]]);
+if (strpos(\Legacy\System\Classes\View::$name, '-')) {
+	$currentPath = explode('/', explode('section-', \Legacy\System\Classes\View::$name)[1], 2);
+	$currentSection = \Legacy\System\Classes\DB::row('* FROM admin_sections WHERE category=? AND slug=?', [$currentPath[0], $currentPath[1]]);
 }
 
 // fetch categories
 $menu['categories'] = [];
 $queryManager = manager() ? '' : 'manager=0';
 
-$categories = DB::select('* FROM admin_categories ' . ($queryManager ? 'WHERE ' . $queryManager : '') . ' ORDER BY manager ASC, sort ASC, name ASC');
+$categories = \Legacy\System\Classes\DB::select('* FROM admin_categories ' . ($queryManager ? 'WHERE ' . $queryManager : '') . ' ORDER BY manager ASC, sort ASC, name ASC');
 
 while ($categoryData = $categories->fetch_assoc()) {
 	$category = [];
@@ -20,7 +20,7 @@ while ($categoryData = $categories->fetch_assoc()) {
 	$category['slug'] = $categoryData['slug'];
 	$category['checked'] = $currentSection && $category['slug'] == $currentSection['category'];
 
-	$sections = DB::select('* FROM admin_sections WHERE category=? AND hidden=0 ' . ($queryManager ? 'AND ' . $queryManager : '') . ' ORDER BY sort ASC, name ASC', [$category['slug']]);
+	$sections = \Legacy\System\Classes\DB::select('* FROM admin_sections WHERE category=? AND hidden=0 ' . ($queryManager ? 'AND ' . $queryManager : '') . ' ORDER BY sort ASC, name ASC', [$category['slug']]);
 
 	while ($sectionData = $sections->fetch_assoc()) {
 		$section = [];

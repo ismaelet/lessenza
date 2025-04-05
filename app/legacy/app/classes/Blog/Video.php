@@ -6,7 +6,7 @@ use Structure\DatabaseObject;
 
 class Video {
 
-	use DatabaseObject;
+	use \Legacy\System\Traits\DatabaseObject;
 
 	public const TABLE = 'videos';
 	public const INDEX = 'id';

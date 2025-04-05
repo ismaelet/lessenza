@@ -1,22 +1,26 @@
 /*
  * Constants
  */
-const changeEvent = new Event('change')
+const changeEvent = new Event("change");
 
 /*
  * Functions
  */
-function redirect(url) {
-	const root = document.querySelector('html').getAttribute('data-client-root')
+function redirect_legacy(url) {
+    const root = document
+        .querySelector("html")
+        .getAttribute("data-client-root");
 
-	window.location.href = root + url
+    window.location.href = root + url;
 }
 
 function client_path(baseUrl) {
-	const clientRoot = document.querySelector('html').getAttribute('data-client-root')
-	const url = clientRoot + baseUrl
+    const clientRoot = document
+        .querySelector("html")
+        .getAttribute("data-client-root");
+    const url = clientRoot + baseUrl;
 
-	return url
+    return url;
 }
 
 /*

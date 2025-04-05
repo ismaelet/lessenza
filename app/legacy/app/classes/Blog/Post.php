@@ -7,7 +7,7 @@ use Structure\DatabaseObject;
 
 class Post {
 
-	use DatabaseObject;
+	use \Legacy\System\Traits\DatabaseObject;
 
 	public const TABLE = 'blog_posts';
 	public const INDEX = 'id';
@@ -78,6 +78,6 @@ class Post {
 
 	// related posts
 	private function getRelatedPosts() {
-		return rows_to_objects(DB::select(self::INDEX . ' FROM ' . self::TABLE . ' WHERE ' . self::INDEX . ' <> ? ORDER BY ' . self::INDEX . ' DESC', [$this->id]), self::class);
+		return rows_to_objects(\Legacy\System\Classes\DB::select(self::INDEX . ' FROM ' . self::TABLE . ' WHERE ' . self::INDEX . ' <> ? ORDER BY ' . self::INDEX . ' DESC', [$this->id]), self::class);
 	}
 }

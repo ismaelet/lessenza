@@ -1,16 +1,16 @@
 <?php
 
 // login
-Route::add('/login', function () {
-	View::setPage('access/login')
+Legacy\System\Classes\Route::add('/login', function () {
+	\Legacy\System\Classes\View::setPage('access/login')
 		->setTitle('Login')
 		->setMiddlewares(['not-logged'])
 		->show();
 });
 
 // logout
-Route::add('/logout', function () {
-	View::setPage('access/logout')
+Legacy\System\Classes\Route::add('/logout', function () {
+	\Legacy\System\Classes\View::setPage('access/logout')
 		->setTitle('Logout')
 		->setTemplate('form')
 		->setMiddlewares(['logged'])
@@ -18,16 +18,16 @@ Route::add('/logout', function () {
 });
 
 // register
-Route::add('/register', function () {
-	View::setPage('access/register')
+Legacy\System\Classes\Route::add('/register', function () {
+	\Legacy\System\Classes\View::setPage('access/register')
 		->setTitle(__('Register'))
 		->setMiddlewares(['not-logged'])
 		->show();
 });
 
 // offline page
-Route::add('/offline', function () {
-	View::setPage('errors/offline')
+Legacy\System\Classes\Route::add('/offline', function () {
+	\Legacy\System\Classes\View::setPage('errors/offline')
 		->setTitle('Offline')
 		->setTemplate('void')
 		->setMiddlewares(['not-public'])
@@ -35,8 +35,8 @@ Route::add('/offline', function () {
 });
 
 // recover
-Route::add('/recover', function () {
-	View::setPage('access/recover')
+Legacy\System\Classes\Route::add('/recover', function () {
+	\Legacy\System\Classes\View::setPage('access/recover')
 		->setTitle('Recupera i dati di accesso')
 		->setTemplate('form')
 		->setMiddlewares(['not-logged'])
@@ -44,13 +44,13 @@ Route::add('/recover', function () {
 });
 
 // reset
-Route::add('/reset', function () {
+Legacy\System\Classes\Route::add('/reset', function () {
 	$userId = $_GET['id'] ?? false;
 	$security = $_GET['security'] ?? false;
 
-	if (!DB::exists('user_resets WHERE userId=? AND security=?', [$userId, $security])) redirect('/recover');
+	if (!\Legacy\System\Classes\DB::exists('user_resets WHERE userId=? AND security=?', [$userId, $security])) redirect_legacy('/recover');
 
-	View::setPage('access/reset')
+	\Legacy\System\Classes\View::setPage('access/reset')
 		->setTitle('Reimposta la password')
 		->setTemplate('form')
 		->setMiddlewares(['not-logged'])

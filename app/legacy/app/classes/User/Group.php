@@ -12,7 +12,7 @@ class Group {
 	public $priceMultiplier = 1;
 
 	function __construct($id) {
-		if ($row = DB::row('* FROM user_groups WHERE id=?', [$id])) {
+		if ($row = \Legacy\System\Classes\DB::row('* FROM user_groups WHERE id=?', [$id])) {
 			$this->id = $id;
 			$this->discountPercentage = $row['discount'];
 			$this->priceMultiplier = (100 - $this->discountPercentage) / 100;

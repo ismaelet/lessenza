@@ -58,7 +58,7 @@ $ecommerceConfig = [
 				'title' => 'Collezioni',
 				'slug' => 'typeId',
 				'opened-by-default' => true,
-				'list' => rows_to_objects(DB::select(Type::INDEX . ' FROM ' . Type::TABLE . ' ORDER BY names ASC, name ASC'), 'Ecommerce\Product\Type'),
+				'list' => rows_to_objects(\Legacy\System\Classes\DB::select(Type::INDEX . ' FROM ' . Type::TABLE . ' ORDER BY names ASC, name ASC'), 'Ecommerce\Product\Type'),
 			],
 		],
 	],

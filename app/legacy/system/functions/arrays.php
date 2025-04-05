@@ -14,7 +14,7 @@ function extract_subvalue(array $array, mixed $subKey) {
 	return $array;
 }
 
-function explode_last($separator, $string) {
+function explode_last_legacy($separator, $string) {
 	$array = explode($separator, $string);
 	return end($array);
 }
@@ -48,9 +48,4 @@ function rows_to_objects(Query_Result $rows = null, string $className) {
 
 function debug($array) {
 	print('<pre>' . print_r($array, true) . '</pre>');
-}
-
-function dd($array) {
-	print('<pre>' . print_r($array, true) . '</pre>');
-	exit;
 }

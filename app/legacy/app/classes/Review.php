@@ -4,7 +4,7 @@ use Structure\DatabaseObject;
 
 class Review {
 
-	use DatabaseObject;
+	use \Legacy\System\Traits\DatabaseObject;
 
 	public const TABLE = 'global_reviews';
 	public const INDEX = 'id';

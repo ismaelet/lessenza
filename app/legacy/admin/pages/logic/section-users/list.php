@@ -38,5 +38,5 @@ if (manager()) {
 if (isset($_POST['login'])) {
 	$_SESSION['userId'] = $_POST['id'];
 
-	redirect(PUBLIC_CLIENT_URL . '/profile');
+	redirect_legacy(PUBLIC_CLIENT_URL . '/profile');
 }

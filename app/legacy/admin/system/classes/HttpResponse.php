@@ -51,7 +51,7 @@ class HttpResponse {
 
 			case 'REDIRECT':
 				if (!empty($queryFields)) $url = $url . '?' . http_build_query($queryFields);
-				redirect($url);
+				redirect_legacy($url);
 				break;
 		}
 	}

@@ -1,8 +1,8 @@
 <?php
 
 // home
-Route::add('/contacts', function () {
-	View::setPage('contacts')
+Legacy\System\Classes\Route::add('/contacts', function () {
+	\Legacy\System\Classes\View::setPage('contacts')
 		->setTitle(__('Contacts'))
 		->show();
 });

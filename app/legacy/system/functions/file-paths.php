@@ -11,7 +11,7 @@ function generate_base_url(string $file = '') {
 	if ($file[0] == '/') {
 		$url = $file;
 	} else {
-		$url = assets_directory(View::$url) . $file;
+		$url = assets_directory(\Legacy\System\Classes\View::$url) . $file;
 	}
 
 	return $url;
@@ -88,7 +88,7 @@ function icon_url_raw($file) {
 	$file = $file . '.svg';
 
 	if ($file[0] == '/') $urlRaw = $file;
-	else if (file_exists(SERVER_ROOT . $path = assets_directory(View::$url) . $file)) $urlRaw = $path;
+	else if (file_exists(SERVER_ROOT . $path = assets_directory(\Legacy\System\Classes\View::$url) . $file)) $urlRaw = $path;
 	else if (file_exists(SERVER_ROOT . $path = APP_ICONS_DIR . $file)) $urlRaw = $path;
 	else $urlRaw = ICONS_DIR . $file;
 
@@ -192,7 +192,7 @@ function public_server_root() {
 /*
 * Redirect
 */
-function redirect($path = false) {
+function redirect_legacy($path = false) {
 	if (empty($path)) {
 		$url = $_SERVER['REQUEST_URI'];
 	} else if ($path[0] == '?') {

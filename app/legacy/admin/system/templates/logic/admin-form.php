@@ -2,14 +2,14 @@
 
 use ViewManager\Admin;
 
-$id = View::get('id');
-$entry = View::get('entry') ?? null;
-$queryConfig = View::get('queryConfig');
-$pageConfig = View::get('pageConfig') ?? [];
+$id = \Legacy\System\Classes\View::get('id');
+$entry = \Legacy\System\Classes\View::get('entry') ?? null;
+$queryConfig = \Legacy\System\Classes\View::get('queryConfig');
+$pageConfig = \Legacy\System\Classes\View::get('pageConfig') ?? [];
 $listFilters = $_GET['list-filters'] ?? null;
-$error = View::get('error') ?? false;
-$done = View::get('done') ?? false;
-$inputs = View::get('inputs') ?? null;
+$error = \Legacy\System\Classes\View::get('error') ?? false;
+$done = \Legacy\System\Classes\View::get('done') ?? false;
+$inputs = \Legacy\System\Classes\View::get('inputs') ?? null;
 $pageConfig['edit'] = (bool) $id;
 
 /*
@@ -21,7 +21,7 @@ $pageConfig['edit'] = (bool) $id;
 *	? (string) confirm: is set, the user will have to agree to the confirmation message to procede
 *	? (string) return-page: the relative path of the page to go back after the form submit
 */
-$pageConfig['title'] = $pageConfig['title'] ?? View::$title;
+$pageConfig['title'] = $pageConfig['title'] ?? \Legacy\System\Classes\View::$title;
 $pageConfig['parcial-title'] = $pageConfig['parcial-title'] ?? __('Edit');
 $pageConfig['free'] = $pageConfig['free'] ?? false;
 $pageConfig['centered'] = $pageConfig['centered'] ?? false;
@@ -46,7 +46,7 @@ $pageConfig['return-url'] .= $pageConfig['edit'] ? '#row' . $id : null;
 
 // fetch entry data
 if ($pageConfig['edit']) {
-	$entry = $entry ?? DB::row($queryConfig['select'] . ' FROM ' . $queryConfig['from'] . ' WHERE ' . $queryConfig['index-field'] . '=?', [$id]);
+	$entry = $entry ?? \Legacy\System\Classes\DB::row($queryConfig['select'] . ' FROM ' . $queryConfig['from'] . ' WHERE ' . $queryConfig['index-field'] . '=?', [$id]);
 	$pageConfig['title'] = $pageConfig['parcial-title'] . ': <span class="fw-bold">' . $entry[$queryConfig['title-field']] . '</span>';
 }
 

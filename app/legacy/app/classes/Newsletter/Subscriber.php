@@ -7,7 +7,7 @@ use Structure\DatabaseObject;
 
 class Subscriber {
 
-	use DatabaseObject;
+	use \Legacy\System\Traits\DatabaseObject;
 
 	public const TABLE = 'newsletter_subscribers';
 	public const INDEX = 'id';
@@ -17,14 +17,14 @@ class Subscriber {
 	 */
 	public static function new(array $data) {
 		$email = $data['email'];
-		$id = DB::find(self::INDEX . ' FROM ' . self::TABLE . ' WHERE email = ?', [$email]);
+		$id = \Legacy\System\Classes\DB::find(self::INDEX . ' FROM ' . self::TABLE . ' WHERE email = ?', [$email]);
 
 		if (!$id) {
 			$firstName = $data['firstName'] ?? '';
 			$lastName = $data['lastName'] ?? '';
 			$fullName = $data['fullName'] ?? '';
 
-			$id = DB::add(self::TABLE . ' (firstName, lastName, fullName, email)', [$firstName, $lastName, $fullName, $email]);
+			$id = \Legacy\System\Classes\DB::add(self::TABLE . ' (firstName, lastName, fullName, email)', [$firstName, $lastName, $fullName, $email]);
 		}
 
 		return new self($id);

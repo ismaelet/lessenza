@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ . '/../../vendor/autoload.php';
+require_once __DIR__ . '/../../../vendor/autoload.php';
 (Dotenv\Dotenv::createImmutable(__DIR__ . '/../../'))->load();
 
 // fetch app config
@@ -31,7 +31,7 @@ class Setup {
 		global $sysConfig;
 
 		define('SERVER_ROOT', explode('/system', str_replace("\\", "/", __DIR__))[0]);
-		define('CLIENT_ROOT', str_replace(rtrim($_SERVER['DOCUMENT_ROOT'], '/'), '', SERVER_ROOT));
+		define('CLIENT_ROOT', env('APP_URL', '/'));
 		define('CLIENT_URL', !empty($sysConfig['domain']) ? 'https://' . $sysConfig['domain'] : (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . CLIENT_ROOT);
 		define('ICONS_DIR', '/system/assets/icons/');
 		define('APP_ICONS_DIR', '/app/assets/icons/');
@@ -102,7 +102,7 @@ class Setup {
 			}
 
 			$userId = $_SESSION['userId'] ?? 0;
-			$user = new User($userId);
+			$user = new \Legacy\System\Classes\User($userId);
 		}
 	}
 
@@ -164,6 +164,6 @@ class Setup {
 		}
 
 		// render page
-		Route::run();
+		Legacy\System\Classes\Route::run();
 	}
 }

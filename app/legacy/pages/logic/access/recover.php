@@ -7,14 +7,14 @@ if (isset($_POST['submit'])) {
 	$submitted = true;
 	$email = $_POST['email'];
 
-	if ($userId = DB::find('id FROM users WHERE email=?', [$email])) {
+	if ($userId = \Legacy\System\Classes\DB::find('id FROM users WHERE email=?', [$email])) {
 		$found = true;
-		$userToRecover = new User($userId);
+		$userToRecover = new \Legacy\System\Classes\User($userId);
 
 		// generate reset security code
-		if (!$resetCode = DB::find('security FROM user_resets WHERE userId=?', [$userToRecover->id])) {
+		if (!$resetCode = \Legacy\System\Classes\DB::find('security FROM user_resets WHERE userId=?', [$userToRecover->id])) {
 			$resetCode = (string) random_string();
-			DB::add('user_resets (userId, security)', [$userToRecover->id, $resetCode]);
+			\Legacy\System\Classes\DB::add('user_resets (userId, security)', [$userToRecover->id, $resetCode]);
 		}
 
 		// generare reset endpoint

@@ -7,10 +7,10 @@ use ViewManager\Admin;
 $values = [];
 $listRows = [];
 $currentPage = $_GET['page'] ?? 1;
-$pageConfig = View::get('pageConfig') ?? [];
-$queryConfig = View::get('queryConfig');
-$fields = View::get('fields');
-$buttons = View::get('buttons') ?? [];
+$pageConfig = \Legacy\System\Classes\View::get('pageConfig') ?? [];
+$queryConfig = \Legacy\System\Classes\View::get('queryConfig');
+$fields = \Legacy\System\Classes\View::get('fields');
+$buttons = \Legacy\System\Classes\View::get('buttons') ?? [];
 
 /*
 * Page configuration fields
@@ -47,7 +47,7 @@ $queryConfig['maximum-results'] = $queryConfig['maximum-results'] ?? 40;
 * Table interactions
 */
 if (isset($_POST['delete'])) {
-	DB::delete($queryConfig['table'] . ' WHERE ' . $queryConfig['index'] . ' = ?', [$_POST['delete']]);
+	\Legacy\System\Classes\DB::delete($queryConfig['table'] . ' WHERE ' . $queryConfig['index'] . ' = ?', [$_POST['delete']]);
 }
 
 /*
@@ -74,8 +74,8 @@ for ($i = 0; $i < substr_count($queryConfig['where-string'], '?'); $i++) {
 }
 
 // execute the queries
-$queryResults = DB::select($sql, $values);
-$resultCount = DB::count($sqlCount, $values);
+$queryResults = \Legacy\System\Classes\DB::select($sql, $values);
+$resultCount = \Legacy\System\Classes\DB::count($sqlCount, $values);
 
 /*
 * Setup the page
@@ -124,7 +124,7 @@ while ($queryRow = $queryResults->fetch_assoc()) {
 				$entry['value'] = $field['value'];
 				break;
 			case $field['type'] == 'find':
-				$entry['value'] = DB::find($field['find'], [$queryRow[$field['name']]]) ?: '-';
+				$entry['value'] = \Legacy\System\Classes\DB::find($field['find'], [$queryRow[$field['name']]]) ?: '-';
 				break;
 			case $field['name'] && isset($queryRow[$field['name']]):
 				$entry['value'] = strlen($queryRow[$field['name']]) ? $queryRow[$field['name']] : '-';

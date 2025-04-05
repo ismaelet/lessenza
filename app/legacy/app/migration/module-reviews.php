@@ -1,7 +1,7 @@
 <?php
 
 // global reviews table
-DB::execute('
+\Legacy\System\Classes\DB::execute('
 	CREATE TABLE IF NOT EXISTS global_reviews (
 		id INT(11) AUTO_INCREMENT PRIMARY KEY,
 		name VARCHAR(50),

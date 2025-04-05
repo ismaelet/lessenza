@@ -105,13 +105,13 @@ class Shop {
 
 		$productCountQuery = Product::TABLE . ' ' . $queryWhere;
 
-		$this->products = rows_to_objects(DB::select($productsQuery, $queryValues), Product::class);
-		$this->productCount = DB::count($productCountQuery, $queryValues);
+		$this->products = rows_to_objects(\Legacy\System\Classes\DB::select($productsQuery, $queryValues), Product::class);
+		$this->productCount = \Legacy\System\Classes\DB::count($productCountQuery, $queryValues);
 
 		// fetch price range
 		if (!ecommerce_config('dynamic-product-price')) {
-			$priceMin = DB::find('price FROM ' . Product::TABLE . ' WHERE status=1 ORDER BY price ASC');
-			$priceMax = DB::find('price FROM ' . Product::TABLE . ' WHERE status=1 ORDER BY price DESC');
+			$priceMin = \Legacy\System\Classes\DB::find('price FROM ' . Product::TABLE . ' WHERE status=1 ORDER BY price ASC');
+			$priceMax = \Legacy\System\Classes\DB::find('price FROM ' . Product::TABLE . ' WHERE status=1 ORDER BY price DESC');
 
 			$this->priceRange = ['min' => floor($priceMin), 'max' => ceil($priceMax)];
 			if (!$this->currentPriceRange) $this->currentPriceRange = $this->priceRange;

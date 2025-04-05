@@ -12,7 +12,7 @@ class Promotion {
 	public $end;
 
 	function __construct($id) {
-		if ($data = DB::row('* FROM ecommerce_promotions WHERE id=?', [$id])) {
+		if ($data = \Legacy\System\Classes\DB::row('* FROM ecommerce_promotions WHERE id=?', [$id])) {
 			$this->id = $id;
 			$this->price = $data['price'];
 			$this->end = $data['end'];

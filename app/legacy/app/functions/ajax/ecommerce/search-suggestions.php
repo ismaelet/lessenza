@@ -1,7 +1,7 @@
 <?php
 
 $searchWord = $_GET['searchWord'] ?? null;
-$results = DB::select(
+$results = \Legacy\System\Classes\DB::select(
 	"items.id, IF(quantity IS NOT NULL AND quantity > 0 AND receivedDate <= NOW() AND expirationDate > NOW(), 1, 0) as inStock
 	FROM items
 	LEFT OUTER JOIN item_stocks

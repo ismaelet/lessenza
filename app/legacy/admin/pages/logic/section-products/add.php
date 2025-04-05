@@ -6,7 +6,7 @@ use Ecommerce\Product\Type;
 /**
  * Setup
  */
-$productId = View::get('id');
+$productId = \Legacy\System\Classes\View::get('id');
 $newProduct = (bool) !$productId;
 $product = !$newProduct ? new Product($productId) : null;
 
@@ -23,7 +23,7 @@ if (isset($_POST['submit'])) {
 
 	// create the product is it doesn't exist
 	if ($newProduct) {
-		$productId = DB::add(Product::TABLE . ' ()');
+		$productId = \Legacy\System\Classes\DB::add(Product::TABLE . ' ()');
 		$product = new Product($productId);
 		$productSlug = $product->slug;
 	} else {
@@ -31,7 +31,7 @@ if (isset($_POST['submit'])) {
 	}
 
 	// update the product
-	DB::update(
+	\Legacy\System\Classes\DB::update(
 		Product::TABLE . ' SET name = ?, typeId = ?, slug = ?, description = ?, highlighted = ?, inStock = ?, statusId = ? WHERE ' . Product::INDEX . ' = ?',
 		[$productName, $productTypeId, $productSlug, $productDescription, $productHighlighted, $productInStock, $productStatusId, $productId]
 	);
@@ -49,9 +49,9 @@ if (isset($_POST['submit'])) {
 	}
 
 	if ($newProduct) {
-		redirect('?id=' . $productId . '&added=1');
+		redirect_legacy('?id=' . $productId . '&added=1');
 	} else {
-		redirect('?id=' . $productId . '&updated=1');
+		redirect_legacy('?id=' . $productId . '&updated=1');
 	}
 }
 
@@ -74,7 +74,10 @@ $productInputs = [
 	[
 		['type' => 'lbl', 'text' => 'Categoria'],
 		[
-			'type' => 'select', 'name' => Product::TYPE_INDEX, 'text' => 'Categoria', 'query' => Type::INDEX . ', name FROM ' . Type::TABLE . ' ORDER BY name ASC',
+			'type' => 'select',
+			'name' => Product::TYPE_INDEX,
+			'text' => 'Categoria',
+			'query' => Type::INDEX . ', name FROM ' . Type::TABLE . ' ORDER BY name ASC',
 			'field-name' => Type::INDEX,
 			'field-show' => 'name',
 			'value' => $newProduct ? '' : $product->typeId,
@@ -95,30 +98,30 @@ $imageInputConfig = [
 if (isset($_POST['delete'])) {
 	$product->delete();
 
-	redirect('list');
+	redirect_legacy('list');
 }
 
 // add an img
 if (isset($_POST['upload-image'])) {
 	$imageId = $_POST['upload-image'][0];
 
-	redirect('#gallery');
+	redirect_legacy('#gallery');
 }
 
 // delete an img
 if (isset($_POST['delete-img'])) {
 
-	redirect('#gallery');
+	redirect_legacy('#gallery');
 }
 
 // add a promotion
 if (isset($_POST['add-promotion'])) {
 
-	redirect('#promotions');
+	redirect_legacy('#promotions');
 }
 
 // delete promotion
 if (isset($_POST['delete-promotion'])) {
 
-	redirect('#promotions');
+	redirect_legacy('#promotions');
 }

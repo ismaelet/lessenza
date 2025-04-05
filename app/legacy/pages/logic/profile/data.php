@@ -44,18 +44,18 @@ $passwordInputs = [
 if (isset($_POST['edit-data'])) {
 	$email = $_POST['email'];
 
-	if (DB::exists('users WHERE email = ? AND id <> ?', [$mail, $user->id])) {
+	if (\Legacy\System\Classes\DB::exists('users WHERE email = ? AND id <> ?', [$mail, $user->id])) {
 		$error = 'existing-mail';
 	} else {
 		query_from_inputs('users', $dataInputs, $user->id);
-		redirect('?done=1#user-data');
+		redirect_legacy('?done=1#user-data');
 	}
 
-	redirect('?error=' . $error . '#user-data');
+	redirect_legacy('?error=' . $error . '#user-data');
 }
 
 if (isset($_POST['edit-password'])) {
-	$dbPassword = DB::find('password FROM users WHERE id=?', [$user->id]);
+	$dbPassword = \Legacy\System\Classes\DB::find('password FROM users WHERE id=?', [$user->id]);
 	$oldPassword = $_POST['old-password'];
 	$newPassword = $_POST['new-password'];
 	$passwordConfirmation = $_POST['password-confirmation'];
@@ -64,9 +64,9 @@ if (isset($_POST['edit-password'])) {
 	else if ($newPassword != $passwordConfirmation) $error = 'password-not-matching';
 	else {
 		$newPassword = password_hash($newPassword, PASSWORD_DEFAULT);
-		DB::update('users SET password=? WHERE id=?', [$newPassword, $user->id]);
-		redirect('?done=1#user-data');
+		\Legacy\System\Classes\DB::update('users SET password=? WHERE id=?', [$newPassword, $user->id]);
+		redirect_legacy('?done=1#user-data');
 	}
 
-	redirect('?error=' . $error . '#password-edit');
+	redirect_legacy('?error=' . $error . '#password-edit');
 }

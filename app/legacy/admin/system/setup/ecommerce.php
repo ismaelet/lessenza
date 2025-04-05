@@ -7,10 +7,10 @@ EcommerceSetup::execute();
 class EcommerceSetup {
 	// routes
 	private static function initializeRoutes() {
-		Logic::$dependencies['profile'] = 'main';
-		Logic::$dependencies['cart'] = 'main';
-		Logic::$priorities['profile'] = 60;
-		Logic::$priorities['cart'] = 80;
+		\Legacy\System\Classes\Logic::$dependencies['profile'] = 'main';
+		\Legacy\System\Classes\Logic::$dependencies['cart'] = 'main';
+		\Legacy\System\Classes\Logic::$priorities['profile'] = 60;
+		\Legacy\System\Classes\Logic::$priorities['cart'] = 80;
 	}
 
 	// customer

@@ -2,7 +2,7 @@
 
 use ViewManager\Admin;
 
-$id = View::get('id');
+$id = \Legacy\System\Classes\View::get('id');
 $review = new Review($id);
 
 /*
@@ -13,8 +13,8 @@ $review = new Review($id);
 /*
 * Query configuration
 */
-$queryConfig['table'] = Review::TABLE;
-$queryConfig['index-field'] = Review::INDEX;
+$queryConfig['table'] = Re\Legacy\System\Classes\View::TABLE;
+$queryConfig['index-field'] = Re\Legacy\System\Classes\View::INDEX;
 $queryConfig['title-field'] = 'name';
 
 /*

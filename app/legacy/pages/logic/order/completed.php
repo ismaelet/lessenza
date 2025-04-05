@@ -1,3 +1,3 @@
 <?php
 
-$cart = View::get('cart');
+$cart = \Legacy\System\Classes\View::get('cart');

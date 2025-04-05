@@ -7,7 +7,7 @@ use function Ecommerce\cart;
 use function Ecommerce\ecommerce_config;
 
 // shipping methods
-$shippingMethods = rows_to_objects(DB::select(ShippingMethod::INDEX . ' FROM ' . ShippingMethod::TABLE . ' ORDER BY ' . ShippingMethod::INDEX . ' ASC'), ShippingMethod::class);
+$shippingMethods = rows_to_objects(\Legacy\System\Classes\DB::select(ShippingMethod::INDEX . ' FROM ' . ShippingMethod::TABLE . ' ORDER BY ' . ShippingMethod::INDEX . ' ASC'), ShippingMethod::class);
 
 // address data
 $address = cart()->address;
@@ -59,5 +59,5 @@ if (isset($_POST['advance'])) {
 	}
 
 	// advance cart
-	cart()->advanceAndRedirect();
+	cart()->advanceAndredirect_legacy();
 }

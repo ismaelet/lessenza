@@ -5,10 +5,10 @@ use Ecommerce\Cart;
 $updated = false;
 $added = false;
 
-$id = View::get('id');
+$id = \Legacy\System\Classes\View::get('id');
 $cart = new Cart($id);
 
-View::setTitle('Ordine ' . $cart->idCode);
+\Legacy\System\Classes\View::setTitle('Ordine ' . $cart->idCode);
 
 /**
  * Page config
@@ -25,10 +25,10 @@ if (isset($_POST['statusId'])) {
 	$cart->updateStatusId($statusId);
 
 	if ($comment) {
-		if (DB::exists('ecommerce_carts_comments WHERE cartId=?', $id)) {
-			DB::update('ecommerce_carts_comments SET comment=? WHERE cartId=?', [$comment, $id]);
+		if (\Legacy\System\Classes\DB::exists('ecommerce_carts_comments WHERE cartId=?', $id)) {
+			\Legacy\System\Classes\DB::update('ecommerce_carts_comments SET comment=? WHERE cartId=?', [$comment, $id]);
 		} else {
-			DB::add('ecommerce_carts_comments (cartId, comment) VALUES (?, ?)', [$id, $comment]);
+			\Legacy\System\Classes\DB::add('ecommerce_carts_comments (cartId, comment) VALUES (?, ?)', [$id, $comment]);
 		}
 	}
 

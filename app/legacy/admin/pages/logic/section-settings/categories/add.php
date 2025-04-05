@@ -37,11 +37,11 @@ $inputs = [
 * Form handling
 */
 function _replace_edit($table, $inputs, $index, $id) {
-	$old = DB::find('slug FROM admin_categories WHERE id=?', $id);
+	$old = \Legacy\System\Classes\DB::find('slug FROM admin_categories WHERE id=?', $id);
 
 	query_from_inputs($table, $inputs, $id);
 
-	DB::update('admin_sections SET category=? WHERE category=?', [$_POST['slug'], $old]);
+	\Legacy\System\Classes\DB::update('admin_sections SET category=? WHERE category=?', [$_POST['slug'], $old]);
 
 	if (file_exists($file = SERVER_ROOT . '/app/assets/icons/navigation/' . $old . '.svg')) rename($file, SERVER_ROOT . '/app/assets/icons/navigation/' . $_POST['slug'] . '.svg');
 }

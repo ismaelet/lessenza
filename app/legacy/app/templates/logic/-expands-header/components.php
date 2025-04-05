@@ -9,7 +9,7 @@ use function Ecommerce\cart;
 function header_filter_navigation_items(array $items, bool $isMobileMenu = null) {
 	foreach ($items as $key => $item) {
 		switch (true) {
-				// check mobile filters
+			// check mobile filters
 			case (isset($item['mobile']) && $item['mobile'] && $isMobileMenu === false):
 			case (isset($item['mobile']) && !$item['mobile'] && $isMobileMenu):
 
@@ -72,7 +72,7 @@ $headerComponent['desktop-navigation'] = function () {
 
 		// classes
 		$classActive = isset($item['url']) ? 'h__link--active' : 'h__link--inactive';
-		$classHighlighted = View::$location == $item['location'] ? 'h__link--highlighted' : '';
+		$classHighlighted = \Legacy\System\Classes\View::$location == $item['location'] ? 'h__link--highlighted' : '';
 		$classes = array_filter(['h__link', $classActive, $classHighlighted]);
 		$classes = implode(' ', $classes);
 

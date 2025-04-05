@@ -1,7 +1,7 @@
 <?php
 
 // blog posts table
-DB::execute('
+\Legacy\System\Classes\DB::execute('
 	CREATE TABLE IF NOT EXISTS blog_posts (
 		id INT(11) AUTO_INCREMENT PRIMARY KEY,
 		title VARCHAR(200),

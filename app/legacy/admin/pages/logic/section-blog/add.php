@@ -3,7 +3,7 @@
 use Blog\Post;
 use ViewManager\Admin;
 
-$id = View::get('id');
+$id = \Legacy\System\Classes\View::get('id');
 $post = new Post($id);
 $video = $post?->video_url;
 
@@ -49,11 +49,11 @@ $uploadFunction = function ($inputs, $id) use ($video) {
 	$post = new Post($id);
 
 	if ($video && $video != $_POST['video_url']) {
-		DB::delete('videos WHERE url = ?', [$video]);
+		\Legacy\System\Classes\DB::delete('videos WHERE url = ?', [$video]);
 	}
 
-	if ($_POST['video_url'] && !DB::exists('videos WHERE url = ?', [$_POST['video_url']])) {
-		DB::add('videos (url)', [$_POST['video_url']]);
+	if ($_POST['video_url'] && !\Legacy\System\Classes\DB::exists('videos WHERE url = ?', [$_POST['video_url']])) {
+		\Legacy\System\Classes\DB::add('videos (url)', [$_POST['video_url']]);
 	}
 
 	// Upload file

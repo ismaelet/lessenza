@@ -1,6 +1,6 @@
 <?php
 
-namespace Structure;
+namespace Legacy\System\Traits;
 
 trait DynamicProperties {
 

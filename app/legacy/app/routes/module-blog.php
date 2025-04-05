@@ -4,22 +4,22 @@
 
 use Blog\Post;
 
-Route::add('/blog', function () {
-	View::setPage('blog')
+Legacy\System\Classes\Route::add('/blog', function () {
+	\Legacy\System\Classes\View::setPage('blog')
 		->setTitle('Blog')
 		->show();
 });
 
 // post
-Route::add('/blog/post', function () {
+Legacy\System\Classes\Route::add('/blog/post', function () {
 	$postId = $_GET['id'] ?? null;
 	$post = new Post($postId);
 
 	if (!$post->id) {
-		redirect('/blog');
+		redirect_legacy('/blog');
 	}
 
-	View::setPage('blog/post')
+	\Legacy\System\Classes\View::setPage('blog/post')
 		->setTitle($post->title)
 		->set('post', $post)
 		->show();

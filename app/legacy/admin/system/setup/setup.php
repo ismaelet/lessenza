@@ -101,7 +101,7 @@ class Setup {
 			}
 
 			$userId = $_SESSION['userId'] ?? 0;
-			$user = new User($userId);
+			$user = new \Legacy\System\Classes\User($userId);
 		}
 	}
 
@@ -163,6 +163,6 @@ class Setup {
 		}
 
 		// render page
-		Route::run();
+		Legacy\System\Classes\Route::run();
 	}
 }

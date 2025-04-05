@@ -3,7 +3,7 @@
 /*
 * Ajax calls
 */
-Route::add('/ajax/*', function ($path) {
+Legacy\System\Classes\Route::add('/ajax/*', function ($path) {
 	$ajaxFile = null;
 	$ajaxRequest = explode('ajax/', $path)[1] ?? null;
 	$ajaxModule = explode('?', $ajaxRequest)[0] ?? null;
@@ -19,7 +19,7 @@ Route::add('/ajax/*', function ($path) {
 * API calls
 */
 // Function call
-Route::add('/api/call-function/*', function ($path) {
+Legacy\System\Classes\Route::add('/api/call-function/*', function ($path) {
 	$response = [];
 
 	// request data
@@ -33,7 +33,7 @@ Route::add('/api/call-function/*', function ($path) {
 });
 
 // Search a table
-Route::add('/api/search-table/*', function ($path) {
+Legacy\System\Classes\Route::add('/api/search-table/*', function ($path) {
 	$response = [];
 	$queryFilters = [];
 	$queryParameters = [];
@@ -63,14 +63,14 @@ Route::add('/api/search-table/*', function ($path) {
 
 		$query = $querySelect . ' FROM ' . $table . ' WHERE ' . $queryFilters . '  ORDER BY ' . $queryOrder . ' ' . $queryOrderDirection . ' LIMIT ' . $limit;
 
-		$response = (DB::select($query, $queryParameters))->res;
+		$response = (\Legacy\System\Classes\DB::select($query, $queryParameters))->res;
 	}
 
 	echo json_encode($response);
 });
 
 // Class interactions
-Route::add(['/api/get-class-properties/*', '/api/call-class-method/*'], function ($path) {
+Legacy\System\Classes\Route::add(['/api/get-class-properties/*', '/api/call-class-method/*'], function ($path) {
 	$response = [];
 
 	if (empty($_POST)) {
@@ -125,7 +125,7 @@ Route::add(['/api/get-class-properties/*', '/api/call-class-method/*'], function
 });
 
 // Class interactions
-Route::add(['/api/old-get-class-properties/*', '/api/old-call-class-method/*'], function ($path) {
+Legacy\System\Classes\Route::add(['/api/old-get-class-properties/*', '/api/old-call-class-method/*'], function ($path) {
 	$response = [];
 
 	// request data
@@ -184,6 +184,6 @@ Route::add(['/api/old-get-class-properties/*', '/api/old-call-class-method/*'], 
 /*
 * Favicon
 */
-Route::add('/favicon.ico', function () {
+Legacy\System\Classes\Route::add('/favicon.ico', function () {
 	include(SERVER_ROOT . '/app/assets/favicon/favicon.ico');
 });

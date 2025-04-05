@@ -11,7 +11,7 @@ class PaymentMethod {
 	public $slug;
 
 	function __construct($id) {
-		if ($data = DB::row('* FROM ecommerce_payments WHERE id=?', [$id])) {
+		if ($data = \Legacy\System\Classes\DB::row('* FROM ecommerce_payments WHERE id=?', [$id])) {
 			$this->id = $id;
 			$this->name = $data['name'];
 			$this->slug = $data['slug'];

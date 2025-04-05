@@ -1,8 +1,8 @@
 <?php
 
 // login
-Route::add('/login', function () {
-	View::setPage('access/login')
+Legacy\System\Classes\Route::add('/login', function () {
+	\Legacy\System\Classes\View::setPage('access/login')
 		->setTitle('Login')
 		->setMiddlewares(['not-admin'])
 		->setTemplate('void')
@@ -10,8 +10,8 @@ Route::add('/login', function () {
 });
 
 // logout
-Route::add('/logout', function () {
-	View::setPage('access/logout')
+Legacy\System\Classes\Route::add('/logout', function () {
+	\Legacy\System\Classes\View::setPage('access/logout')
 		->setTitle('Logout')
 		->setMiddlewares(['admin'])
 		->setTemplate('void')

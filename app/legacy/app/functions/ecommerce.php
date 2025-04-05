@@ -94,24 +94,24 @@ function associate_cart($permanentCustomerId, $guestCustomerId = false) {
 		$guestCustomer = $guestCustomerId ? new Customer($guestCustomerId) : $customer;
 
 		if (!$permanentCustomer->id) {
-			DB::add('ecommerce_customers (userId)', [$permanentCustomerId]);
+			\Legacy\System\Classes\DB::add('ecommerce_customers (userId)', [$permanentCustomerId]);
 			$permanentCustomer = new Customer($permanentCustomerId);
 		}
 
 		if ($guestCustomer->hasCart) {
 			if ($permanentCustomer->hasCart) {
 				// if the user has a cart transfer the guest orders to it
-				DB::update('ecommerce_orders SET cartId=? WHERE cartId=?', [$permanentCustomer->cart->id, $guestCustomer->cart->id]);
-				DB::delete('ecommerce_carts WHERE id=?', [$guestCustomer->cart->id]);
+				\Legacy\System\Classes\DB::update('ecommerce_orders SET cartId=? WHERE cartId=?', [$permanentCustomer->cart->id, $guestCustomer->cart->id]);
+				\Legacy\System\Classes\DB::delete('ecommerce_carts WHERE id=?', [$guestCustomer->cart->id]);
 			} else {
 				// otherwise convert the session cart to the user cart
-				DB::update('ecommerce_carts SET customerId=? WHERE id=?', [$permanentCustomer->id, $guestCustomer->cart->id]);
-				DB::update('ecommerce_orders SET customerId=? WHERE cartId=?', [$permanentCustomer->id, $guestCustomer->cart->id]);
+				\Legacy\System\Classes\DB::update('ecommerce_carts SET customerId=? WHERE id=?', [$permanentCustomer->id, $guestCustomer->cart->id]);
+				\Legacy\System\Classes\DB::update('ecommerce_orders SET customerId=? WHERE cartId=?', [$permanentCustomer->id, $guestCustomer->cart->id]);
 
 				// add an address
 				if (!$guestCustomer->cart->addressId) {
-					$addressId = DB::find('id FROM ecommerce_addresses WHERE customerId=? ORDER BY id DESC', [$permanentCustomer->id]);
-					DB::update('ecommerce_carts SET addressId=? WHERE id=?', [$addressId, $guestCustomer->cart->id]);
+					$addressId = \Legacy\System\Classes\DB::find('id FROM ecommerce_addresses WHERE customerId=? ORDER BY id DESC', [$permanentCustomer->id]);
+					\Legacy\System\Classes\DB::update('ecommerce_carts SET addressId=? WHERE id=?', [$addressId, $guestCustomer->cart->id]);
 				}
 			}
 		}

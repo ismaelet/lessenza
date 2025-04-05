@@ -10,7 +10,7 @@ class Category {
 	public $name;
 
 	function __construct($id) {
-		if ($id && $row = DB::row('name FROM items_categories WHERE id=?', [$id])) {
+		if ($id && $row = \Legacy\System\Classes\DB::row('name FROM items_categories WHERE id=?', [$id])) {
 
 			$this->id = $id;
 			$this->name = $row['name'];

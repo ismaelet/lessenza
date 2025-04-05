@@ -2,7 +2,7 @@
 
 use Blog\Video;
 
-$id = View::get('id');
+$id = \Legacy\System\Classes\View::get('id');
 $record = new Video($id);
 
 /*

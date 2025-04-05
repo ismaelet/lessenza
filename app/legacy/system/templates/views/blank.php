@@ -4,21 +4,21 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0">
-	<meta name="description" content="<?= View::$description ?>">
-	<meta property="og:image" content="<?= View::$thumbnail ?>">
-	<meta property="og:description" content="<?= View::$description ?>">
+	<meta name="description" content="<?= \Legacy\System\Classes\View::$description ?>">
+	<meta property="og:image" content="<?= \Legacy\System\Classes\View::$thumbnail ?>">
+	<meta property="og:description" content="<?= \Legacy\System\Classes\View::$description ?>">
 	<link rel="icon" href="/app/assets/favicon/favicon.ico">
 
-	<title><?= View::$tabTitle ?></title>
+	<title><?= \Legacy\System\Classes\View::$tabTitle ?></title>
 
 	<!-- Styles -->
-	<?= StyleLoader::load() . PHP_EOL . PHP_EOL ?>
+	<?= \Legacy\System\Classes\StyleLoader::load() . PHP_EOL . PHP_EOL ?>
 
 	<!-- Scripts -->
 	<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 	<script src="//unpkg.com/alpinejs" defer></script>
-	<?= ScriptLoader::load() . PHP_EOL . PHP_EOL ?>
-	<?= ScriptLoader::loadHeadInline()  . PHP_EOL . PHP_EOL ?>
+	<?= \Legacy\System\Classes\ScriptLoader::load() . PHP_EOL . PHP_EOL ?>
+	<?= \Legacy\System\Classes\ScriptLoader::loadHeadInline()  . PHP_EOL . PHP_EOL ?>
 </head>
 
 <body>
@@ -43,6 +43,6 @@
 </body>
 
 <!-- Foot scripts -->
-<?= ScriptLoader::loadFootInline() ?>
+<?= \Legacy\System\Classes\ScriptLoader::loadFootInline() ?>
 
 </html>
