@@ -1,0 +1,100 @@
+<?php
+
+namespace Ecommerce;
+
+use Email;
+
+class EmailService {
+	public static function sendStatusEmail(int $cartId, string $statusCode = null, bool $debug = false) {
+		$orderList = '';
+		$cart = new Cart($cartId);
+		$statusCode = $statusCode ?: $cart->statusCode;
+		$emailContent = file_get_contents(public_server_path('/app/templates/assets/emails/cart-update.html'));
+
+		// generate dynamic content
+		switch ($statusCode) {
+			case 'waiting-payment':
+				$subject = $title = 'Ordine ricevuto';
+				$info = 'Grazie per l\'acquisto su <a href="' . sys_config('domain') . '">' . sys_config('name') . '</a>. L\'ordine è stato ricevuto e sarà processato al più presto.';
+				break;
+			case 'confirmed':
+				$subject = $title = 'Pagamento confermato';
+				$info = 'Abbiamo aggiornato lo stato dell\'ordine. Il nuovo stato è:<br><span style="display: block; font-size: 25px; font-weight: bold; letter-spacing: .05em; text-align: center;">CONFERMATO</span>';
+				break;
+			case 'shipped':
+				$subject = $title = 'Ordine spedito';
+				$info = 'Abbiamo aggiornato lo stato dell\'ordine. Il nuovo stato è:<br><span style="display: block; font-size: 25px; font-weight: bold; letter-spacing: .05em; text-align: center;">SPEDITO</span>';
+				break;
+			case 'delivered':
+				$subject = $title = 'Ordine consegnato';
+				$info = 'Abbiamo aggiornato lo stato dell\'ordine. Il nuovo stato è:<br><span style="display: block; font-size: 25px; font-weight: bold; letter-spacing: .05em; text-align: center;">CONSEGNATO</span>';
+				break;
+			case 'canceled':
+				$subject = $title = 'Ordine cancellato';
+				$info = '<span style="text-align: center;">Il suo ordine è stato cancellato.</span>';
+				break;
+		}
+
+		// generate order list
+		foreach ($cart->orders as $order) {
+			$orderList .= '
+			<tr style="border-bottom: 1px solid #f4f4f4">
+				<td><p style="line-height: 3">' . $order->name . '</p></td>
+				<td><p style="text-align: right">' . $order->priceString . '</p></td>
+			</tr>';
+		}
+
+		// populate mail body
+		$emailContent = str_replace('{{ title }}', $title, $emailContent);
+		$emailContent = str_replace('{{ info }}', $info, $emailContent);
+		$emailContent = str_replace('{{ cartId }}', $cart->idCode, $emailContent);
+		$emailContent = str_replace('{{ cart-url }}', $cart->staticUrl, $emailContent);
+		$emailContent = str_replace('{{ contacts }}', $cart->address->email . '<br>' . $cart->address->phone, $emailContent);
+		$emailContent = str_replace('{{ address }}', $cart->address->fullAddress, $emailContent);
+		$emailContent = str_replace('{{ payment }}', $cart->paymentMethod->name ?: '-', $emailContent);
+		$emailContent = str_replace('{{ shipping }}', $cart->shippingMethod->name, $emailContent);
+		$emailContent = str_replace('{{ order-list }}', $orderList, $emailContent);
+		$emailContent = str_replace('{{ shipping-price }}', $cart->shippingPriceString, $emailContent);
+		$emailContent = str_replace('{{ total-price }}', $cart->priceString, $emailContent);
+
+		$emailBody = Email::prepareBody($emailContent);
+
+		// setup mail config
+		$emailData = [
+			'debug' => $debug,
+			'reply-address' => sys_config('contact-email'),
+			'reply-name' => sys_config('name'),
+			'to' => $debug ? 'ismaele.tuffanelli@gmail.com' : $cart->address->email,
+			'subject' => $subject,
+			'text' => $emailBody,
+		];
+
+		if (!in_array($_SERVER['REMOTE_ADDR'], ['127.0.0.1', '::1']) || $debug) {
+			Email::send($emailData);
+		}
+	}
+
+	public static function sendTrackingEmail(int $cartId, bool $debug = false) {
+		$cart = new Cart($cartId);
+		$emailContent = file_get_contents(public_server_path('/app/templates/assets/emails/cart-tracking.html'));
+
+		// populate mail body
+		$emailContent = str_replace('{{ cartId }}', $cart->id, $emailContent);
+		$emailContent = str_replace('{{ tracking-code }}', $cart->tracking, $emailContent);
+
+		// setup mail config
+		$emailData = [
+			'debug' => $debug,
+			'reply-address' => sys_config('contact-email'),
+			'reply-name' => sys_config('name'),
+			'to' => $debug ? 'ismaele.tuffanelli@gmail.com' : $cart->address->email,
+			'subject' => 'Notifica di spedizione',
+			'text' => $emailContent,
+		];
+
+		// send mail
+		if (!in_array($_SERVER['REMOTE_ADDR'], ['127.0.0.1', '::1']) || $debug) {
+			Email::send($emailData);
+		}
+	}
+}

@@ -1,0 +1,41 @@
+/*
+* Layout
+*/
+.f__content {
+	padding-block: 3rem;
+	background-color: var(--clr-secondary-400);
+}
+
+.f__contact {
+	--icon-size: 50%;
+	width: 2.5rem;
+	aspect-ratio: 1;
+	background-color: var(--clr-secondary-700);
+	border-radius: 50%;
+	color: var(--fc-700);
+	transition: background-color 0.2s, color 0.2s;
+}
+
+.f__contact:hover {
+	background-color: var(--clr-primary-400);
+	color: var(--clr-neutral-100);
+}
+
+.f__link {
+	font-size: var(--fs-300);
+	font-weight: var(--fw-medium);
+	text-transform: uppercase;
+	transition: color 0.2s;
+}
+
+.f__link:hover {
+	color: var(--clr-primary-400);
+}
+
+.f__notes {
+	padding-block: 1rem;
+	background-color: var(--clr-secondary-500);
+	color: var(--clr-secondary-200);
+	font-size: var(--fs-300);
+	text-align: center;
+}

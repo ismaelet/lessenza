@@ -1,0 +1,57 @@
+/*
+* Payments
+*/
+.payments {
+	display: grid;
+	margin-top: 2rem;
+	border-radius: 3px;
+}
+
+.payment {
+	padding-block: 2rem;
+	border-top: 1px solid var(--border-color);
+}
+
+.payment:last-child {
+	border-bottom: 1px solid var(--border-color);
+}
+
+.payment-header {
+	display: grid;
+	grid-template-columns: max-content max-content 1fr;
+	align-items: center;
+	gap: 1rem;
+	border-radius: 3px;
+	cursor: pointer;
+}
+
+.payment-header .cbx {
+	margin-top: 0;
+	pointer-events: none;
+}
+
+.payment-header .cbx .icon {
+	background-color: #fff;
+}
+
+.payment-header .cbx .icon,
+.payment-header .cbx .icon:after {
+	transition: none;
+}
+
+.payment-logo {
+	height: 2.5rem;
+}
+
+.payment-title {
+	font-size: 1.2rem;
+}
+
+.payment-body {
+	display: none;
+	margin-top: 1rem;
+}
+
+.active .payment-body {
+	display: block;
+}

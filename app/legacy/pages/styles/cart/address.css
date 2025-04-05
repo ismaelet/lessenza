@@ -1,0 +1,37 @@
+/*
+* Forms
+*/
+.form-grid {
+	display: grid;
+	gap: 1.5rem;
+}
+
+.inp-cep {
+	max-width: 12rem;
+}
+
+.cep-error {
+	display: none;
+	width: max-content;
+	border-bottom: 1px solid;
+	color: red;
+}
+
+.address-data {
+	display: none;
+}
+.address-data.visible {
+	display: grid;
+}
+
+.cart-advance {
+	justify-self: right;
+}
+
+[name='region'] {
+	text-transform: uppercase;
+}
+
+.shipping-method__price {
+	display: none;
+}
