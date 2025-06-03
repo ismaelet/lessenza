@@ -1,6 +1,6 @@
 <?php
 
-namespace Legacy\System\Classes;
+namespace App\Legacy\System;
 
 class Viewer {
 	const SYSTEM_TEMPLATES = SERVER_ROOT . '/system/templates';

@@ -7,7 +7,7 @@ use Structure\DatabaseObject;
 
 class Post {
 
-	use \Legacy\System\Traits\DatabaseObject;
+	use DatabaseObject;
 
 	public const TABLE = 'blog_posts';
 	public const INDEX = 'id';

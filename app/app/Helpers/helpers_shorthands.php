@@ -44,13 +44,23 @@ function public_asset(string $path): string {
 }
 
 /**
- * Import an svg and embed it in the HTML
+ * Import an SVG and embed it in the HTML
  * 
  * @param string $fileName
  * @param array $customClasses
  */
 function embed_svg(string $fileName, array $customClasses = []): ?string {
 	return FileHelper::embedSvg($fileName, $customClasses);
+}
+
+/**
+ * Import an icon and embed it in the HTML
+ * 
+ * @param string $fileName
+ * @param array $customClasses
+ */
+function embed_icon(string $fileName, array $customClasses = []): ?string {
+	return FileHelper::embedIcon($fileName, $customClasses);
 }
 
 /**

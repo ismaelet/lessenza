@@ -13,7 +13,7 @@ use function Ecommerce\product_card;
 	<!-- Personal data -->
 	<section>
 		<h2 class="section-title">
-			<?= icon_embed('user-circle') ?>
+			<?= embed_svg('user-circle') ?>
 			Account
 		</h2>
 
@@ -42,7 +42,7 @@ use function Ecommerce\product_card;
 	<!-- Addresses -->
 	<section>
 		<h2 class="section-title">
-			<?= icon_embed('address') ?>
+			<?= embed_svg('address') ?>
 			Indirizzi registrati
 		</h2>
 
@@ -86,7 +86,7 @@ use function Ecommerce\product_card;
 	<!-- Orders -->
 	<section>
 		<h2 class="section-title">
-			<?= icon_embed('orders') ?>
+			<?= embed_svg('orders') ?>
 			Ordini
 		</h2>
 
@@ -101,7 +101,7 @@ use function Ecommerce\product_card;
 		<!-- Wishlist -->
 		<section>
 			<h2 class="section-title">
-				<?= icon_embed('love') ?>
+				<?= embed_svg('love') ?>
 				Wishlist
 			</h2>
 

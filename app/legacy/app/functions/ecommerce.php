@@ -1,6 +1,6 @@
 <?php
 
-namespace Ecommerce;
+namespace App\Legacy\Ecommerce;
 
 use DB;
 
@@ -49,11 +49,6 @@ function format_price($price, $alwaysNumber = true) {
 /*
 * 2. Customer
 */
-function customer() {
-	global $customer;
-
-	return $customer;
-}
 
 function customerId() {
 	return customer()->id;
@@ -78,9 +73,6 @@ function requireActiveCustomer() {
 /*
 * 3. Cart
 */
-function cart() {
-	return customer()->cart;
-}
 
 function cartId() {
 	return cart()->id;

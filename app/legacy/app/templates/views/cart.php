@@ -46,7 +46,7 @@ use function Ecommerce\ecommerce_config;
 
 			<label class="sidebar__header">
 				<input type="checkbox" class="sidebar__checkbox hidden" checked>
-				<div class="sidebar__icon"><?= icon_embed('navigation/arrow1-down') ?></div>
+				<div class="sidebar__icon"><?= embed_svg('navigation/arrow1-down') ?></div>
 				<h3 class="sidebar__menu">Dettagli dell'ordine</h3>
 			</label>
 

@@ -34,7 +34,7 @@
 
 				<?php if (!$cart->status) { ?>
 					<div class="order-delete icon-box" onclick="$(this).parent().submit()">
-						<?= icon_embed('close') ?>
+						<?= embed_svg('close') ?>
 					</div>
 				<?php } ?>
 			</div>

@@ -1,8 +1,15 @@
-@props(['title' => null, 'theme' => 'modern', 'colorScheme' => null])
+@props([
+    'title' => null,
+    'description' => null,
+    'thumbnail' => null,
+    'colorScheme' => null,
+])
 
 @php
 	$appName = config('app.name');
 	$appDescription = config('custom.meta_data.description');
+	$description = $description ?: $appDescription;
+	$thumbnail = $thumbnail ?: Vite::image('thumbnail.jpg');
 
 	$title = $title ? $title . ' | ' . $appName : $appName . ' | ' . config('custom.meta_data.short_description');
 
@@ -23,11 +30,11 @@
 	>
 	<meta
 		name="description"
-		content="{{ $description ?? $appDescription }}"
+		content="{{ $description }}"
 	>
 	<meta
 		property="og:image"
-		content="{{ Vite::image('thumbnail.jpg') }}"
+		content="{{ $thumbnail }}"
 	>
 	<link
 		rel="icon"

@@ -14,7 +14,7 @@
 			<!-- Page header -->
 			<section class="confirmation">
 				<div class="confirmation-icon status-color--<?= $cart->statusCode ?>">
-					<?= icon_embed($cart->statusIcon) ?>
+					<?= embed_svg($cart->statusIcon) ?>
 				</div>
 				<div class="confirmation-content">
 					<p>Stato dell'ordine:</p>
@@ -103,7 +103,7 @@
 		<section class="flex-group center-content">
 			<a class="button button--secondary" href="<?= client_url('/profile/orders') ?>">
 				Lista degli ordini
-				<?= icon_embed('navigation/back') ?>
+				<?= embed_svg('navigation/back') ?>
 			</a>
 		</section>
 

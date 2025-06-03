@@ -64,7 +64,7 @@ class FileHelper {
 	}
 
 	/**
-	 * Import an icon and embed it in the HTML
+	 * Import an SVG file and embed it in the HTML
 	 * 
 	 * @param string $fileName The name of the svg file
 	 * @param array $customClasses The custom classes to add to the svg element
@@ -79,5 +79,15 @@ class FileHelper {
 		$file = file_get_contents($filePath);
 
 		return str_replace('<svg', '<svg class="' . $classes . '"', $file);
+	}
+
+	/**
+	 * Import an icon and embed it in the HTML
+	 * 
+	 * @param string $fileName The name of the svg file
+	 * @param array $customClasses The custom classes to add to the svg element
+	 */
+	public static function embedIcon(string $fileName, array $customClasses = []): string {
+		return self::embedSvg('icons/' . $fileName, $customClasses);
 	}
 }

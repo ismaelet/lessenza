@@ -1,6 +1,6 @@
 <?php
 
-namespace Legacy\System\Classes;
+namespace App\Legacy\System;
 
 /**
  * Requires: phpmailer/phpmailer

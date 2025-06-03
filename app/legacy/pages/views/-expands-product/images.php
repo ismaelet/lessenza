@@ -11,7 +11,7 @@
 					<video src="<?= $productImage ?>" class="product-other-img sqr image-fill clickable <?= $key ? '' : 'active' ?>" data-src="<?= $productImage ?>" data-type="video"></video>
 
 					<div class="video-play pos-rel icon-box">
-						<?= icon_embed('play') ?>
+						<?= embed_svg('play') ?>
 					</div>
 				</div>
 
@@ -31,7 +31,7 @@
 			<img class="product-spotlight product-img image-fill active" src="<?= $product->clientImage ?>" alt="">
 			<!-- <video src="" class="product-spotlight product-video image-fill"></video>
 			<div class="play-main-video video-play pos-rel icon-box">
-				<?= icon_embed('play') ?>
+				<?= embed_svg('play') ?>
 			</div> -->
 		</div>
 	</div>

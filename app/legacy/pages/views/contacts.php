@@ -19,7 +19,7 @@
 
 				<div class="contact">
 					<a class="contact__icon contrasting-background" href="<?= sys_config('contact-' . $contactSlug . '-link') ?>" target="_blank">
-						<?= icon_embed('contacts/' . $contactSlug) ?>
+						<?= embed_svg('contacts/' . $contactSlug) ?>
 					</a>
 
 					<div class="contact__content">

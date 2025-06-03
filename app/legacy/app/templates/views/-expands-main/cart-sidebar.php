@@ -14,7 +14,7 @@ use function Ecommerce\cart;
 			<div class="cart-sidebar__header flex-group">
 				<h2 class="cart-sidebar__title">Carrello</h2>
 				<div class="cart-sidebar__close js-close-cart-sidebar">
-					<?= icon_embed('close') ?>
+					<?= embed_svg('close') ?>
 				</div>
 			</div>
 

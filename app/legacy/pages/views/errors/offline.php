@@ -12,7 +12,7 @@
 <!-- Login button -->
 <form class="flex-group center-content" method="POST">
 	<button class="login-btn ebtn btn-auto-width" type="submit" name="submit">
-		<?= icon_embed('key') ?>
+		<?= embed_svg('key') ?>
 		<?= __('Admin login') ?>
 	</button>
 </form>

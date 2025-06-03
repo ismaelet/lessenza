@@ -45,7 +45,7 @@ use function Ecommerce\format_price;
 				<?php if (ecommerce_config('product-page')['availability']) { ?>
 
 					<div class="product-availability <?= $product->inStock ? 'product-availability--available' : 'product-availability--unavailable' ?>">
-						<?= icon_embed($product->inStock ? 'checked' : 'close-border') ?>
+						<?= embed_svg($product->inStock ? 'checked' : 'close-border') ?>
 						<p class="product-availability__text"><?= $product->inStock ? __('In stock') : __('Out of stock') ?></p>
 					</div>
 
@@ -160,14 +160,14 @@ use function Ecommerce\format_price;
 				<?php if (true || logged()) { ?>
 
 					<button type="button" class="button add-to-cart js-add-to-cart" data-product-id="<?= $product->id ?>" data-quantity="1" value="<?= $product->id ?>" <?= !$product->inStock ? 'disabled' : '' ?>>
-						<?= icon_embed('cart') ?>
+						<?= embed_svg('cart') ?>
 						<?= __('Add to cart') ?>
 					</button>
 
 				<?php } else { ?>
 
 					<a class="button add-to-cart" href="<?= client_url('/login') ?>" <?= !$product->inStock ? 'disabled' : '' ?>>
-						<?= icon_embed('cart') ?>
+						<?= embed_svg('cart') ?>
 						<?= __('Add to cart') ?>
 					</a>
 

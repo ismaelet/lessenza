@@ -1,9 +1,10 @@
 <?php
 
-use App\Http\Controllers\LegacyController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /**
- * Legacy routes
+ * * Home
  */
-Route::any('{path}', LegacyController::class)->where('path', '.*');
+Route::get('/', [HomeController::class, 'index'])
+	->name('home');

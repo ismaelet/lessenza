@@ -7,7 +7,7 @@ use Structure\DatabaseObject;
 
 class Subscriber {
 
-	use \Legacy\System\Traits\DatabaseObject;
+	use DatabaseObject;
 
 	public const TABLE = 'newsletter_subscribers';
 	public const INDEX = 'id';

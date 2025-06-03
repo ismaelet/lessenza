@@ -4,7 +4,7 @@
 	<!-- Title -->
 	<label class="profile-nav_header" for="profile-nav-cbx">
 		<h3 class="profile-nav-title flex-group">
-			<?= icon_embed('list') ?>
+			<?= embed_svg('list') ?>
 			Profilo
 		</h3>
 	</label>
@@ -17,7 +17,7 @@
 			<li class="profile-nav-link <?= $profileLocation == $profileLink['location'] ? 'active' : '' ?>">
 				<a href="<?= client_url($profileLink['url']) ?>">
 					<p class="flex-group" data-spacing="400">
-						<?= icon_embed($profileLink['icon']) ?>
+						<?= embed_svg($profileLink['icon']) ?>
 						<?= $profileLink['title'] ?>
 					</p>
 				</a>

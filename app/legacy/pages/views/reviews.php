@@ -34,7 +34,7 @@
 									<span>
 										<?= $review->name ?>
 									</span>
-									<?= icon_embed('link') ?>
+									<?= embed_svg('link') ?>
 								</a>
 							</h3>
 							<p class="review__subtitle"><?= $review->location ?></p>

@@ -53,7 +53,7 @@ function guest() {
 	return !logged();
 }
 
-function admin() {
+function is_admin() {
 	return (bool) user()->admin;
 }
 

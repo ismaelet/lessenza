@@ -9,7 +9,7 @@ use Ecommerce\ViewManager;
 <div class="page-block">
 	<section>
 		<h2 class="section-title mar-b-2">
-			<?= icon_embed('orders') ?>
+			<?= embed_svg('orders') ?>
 			I miei ordini
 		</h2>
 

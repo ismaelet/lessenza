@@ -1,0 +1,66 @@
+/* Assets */
+@font-face {
+    font-family: "FontName";
+    font-weight: 400;
+    font-style: normal;
+    font-display: auto;
+    unicode-range: U+000-5FF;
+    src: local("FontName"),
+        url("/fonts/FontName/FontName-Regular.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "FontName";
+    font-weight: 700;
+    font-style: normal;
+    font-display: auto;
+    unicode-range: U+000-5FF;
+    src: local("FontName"),
+        url("/fonts/FontName/FontName-Bold.ttf") format("truetype");
+}
+
+/* Theme */
+@theme {
+    /* Theme: Colors */
+    --color-background-hue: 237deg;
+    --color-primary-hue: 15deg;
+
+    --color-background-400: hsl(var(--color-background-hue) 50% 8%);
+    --color-background-500: hsl(var(--color-background-hue) 65% 5%);
+    --color-background-600: hsl(var(--color-background-hue) 72% 4%);
+    --color-background: var(--color-background-400);
+
+    --color-neutral-50: hsl(var(--color-background-hue) 0% 0%);
+    --color-neutral-400: hsl(var(--color-background-hue) 15% 57%);
+    --color-neutral-950: hsl(var(--color-background-hue) 0% 100%);
+
+    --color-primary-400: hsl(var(--color-primary-hue) 100% 50%);
+    --color-primary: var(--color-primary-400);
+
+    /* Theme: Fonts */
+    --font-heading: "Lato", system-ui, sans-serif;
+    --font-sans: "Lato", system-ui, sans-serif;
+}
+
+/* General variables */
+:root {
+    --breakout-width: 1440px;
+    --content-width: 1200px;
+    --content-padding: 2rem;
+}
+
+/* Basic setup */
+body {
+    background-color: var(--color-background);
+    color: var(--color-neutral-400);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: var(--color-white);
+    font-family: var(--font-heading);
+}

@@ -3,7 +3,7 @@
 <div class="page-block">
 	<section>
 		<h2 class="section-title mar-b-2">
-			<?= icon_embed('user-circle') ?>
+			<?= embed_svg('user-circle') ?>
 			I miei dati
 		</h2>
 

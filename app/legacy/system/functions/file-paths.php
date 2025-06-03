@@ -1,27 +1,6 @@
 <?php
 
-/*
-* File url
-*/
-function generate_base_url(string $file = '') {
-	if (!strpos($file, '.')) {
-		$file .= '.webp';
-	}
 
-	if ($file[0] == '/') {
-		$url = $file;
-	} else {
-		$url = assets_directory(\Legacy\System\Classes\View::$url) . $file;
-	}
-
-	return $url;
-}
-
-function client_path(string $file = '') {
-	$url = CLIENT_ROOT . file_time(generate_base_url($file));
-
-	return $url;
-}
 
 function public_client_path(string $file = '') {
 	if (defined('PUBLIC_CLIENT_ROOT')) {
@@ -73,11 +52,6 @@ function file_time($file) {
 	return $file;
 }
 
-// put the image as background image
-function background_image($img) {
-	return 'style="background-image: url(' . client_path($img) . ');"';
-}
-
 // put a svg as background image
 function img_svg($img) {
 	return 'style="mask: url(' . client_path($img) . '); -webkit-mask: url(' . client_path($img) . ') center;"';
@@ -104,7 +78,7 @@ function icon_url($file) {
 }
 
 // get an embedded icon
-function icon_embed(string $file, array $customClasses = []) {
+function embed_svg(string $file, array $customClasses = []) {
 	$classes = implode(' ', ['icon-embed', ...$customClasses]);
 
 	$url = SERVER_ROOT . icon_url_raw($file);
