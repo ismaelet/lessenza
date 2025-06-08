@@ -33,8 +33,8 @@
 @pushOnce('styles')
 	<style>
 		/*
-			* Layout
-			*/
+						* Layout
+						*/
 		.f__content {
 			padding-block: 3rem;
 			background-color: var(--clr-secondary-400);
@@ -46,13 +46,13 @@
 			aspect-ratio: 1;
 			background-color: var(--clr-secondary-700);
 			border-radius: 50%;
-			color: var(--fc-700);
+			color: var(--color-neutral-700);
 			transition: background-color 0.2s, color 0.2s;
 		}
 
 		.f__contact:hover {
 			background-color: var(--clr-primary-400);
-			color: var(--clr-neutral-100);
+			color: var(--color-neutral-50);
 		}
 
 		.f__link {
@@ -99,10 +99,12 @@
 						class="f__contact"
 						href="<?= $f_contact['link'] ?>"
 					>
-						<?= embed_svg('contacts/' . $f_contact['slug']) ?>
-					</a>
+						<x-icon-{{ $f_contact['slug'] }}
+							/
+							</a
+						>
 
-					<?php } ?>
+							<?php } ?>
 
 				</div>
 

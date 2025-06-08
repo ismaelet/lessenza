@@ -8,14 +8,14 @@
 	<!-- Background -->
 	<div
 		class="slider__background fill-all background-fill responsive-max-1024"
-		<?= background_image('slider-background-mobile.webp') ?>
+		<?= background_image('home/slider-background-mobile.webp') ?>
 	>
 		<div class="slider__overlay fill-all"></div>
 	</div>
 
 	<div
 		class="slider__background fill-all background-fill responsive-min-1024"
-		<?= background_image('slider-background.webp') ?>
+		<?= background_image('home/slider-background.webp') ?>
 	>
 		<div class="slider__overlay fill-all"></div>
 	</div>
@@ -89,20 +89,20 @@
 						class="slider__logo js-load load--fade-in mar-b-1"
 						data-direction="top"
 						data-delay="1"
-						src="<?= client_path('slider/logo.svg') ?>"
+						src="{{ Vite::image('home/logo.svg') }}"
 						alt=""
 					>
 					<img
 						class="slider__title--image js-load load--fade-in"
 						data-direction="bottom"
-						src="<?= client_path('slider/title.svg') ?>"
+						src="{{ Vite::image('home/title.svg') }}"
 						alt=""
 					>
 					<img
 						class="slider__subtitle--image js-load load--fade-in"
 						data-direction="bottom"
 						data-delay="1"
-						src="<?= client_path('slider/subtitle.webp') ?>"
+						src="{{ Vite::image('home/subtitle.webp') }}"
 						alt=""
 					>
 					<!-- <p class="slider__subtitle js-load load--fade-in" data-direction="bottom" data-delay="1">Respira la</p> -->

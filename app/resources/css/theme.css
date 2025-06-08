@@ -1,22 +1,10 @@
 /* Assets */
 @font-face {
-    font-family: "FontName";
-    font-weight: 400;
-    font-style: normal;
+    font-family: "Open Sans";
+    font-weight: 400 700;
     font-display: auto;
-    unicode-range: U+000-5FF;
-    src: local("FontName"),
-        url("/fonts/FontName/FontName-Regular.ttf") format("truetype");
-}
-
-@font-face {
-    font-family: "FontName";
-    font-weight: 700;
-    font-style: normal;
-    font-display: auto;
-    unicode-range: U+000-5FF;
-    src: local("FontName"),
-        url("/fonts/FontName/FontName-Bold.ttf") format("truetype");
+    src: local("Open Sans"),
+        url("../../public/fonts/OpenSans.ttf") format("truetype");
 }
 
 /* Theme */
@@ -30,23 +18,26 @@
     --color-background-600: hsl(var(--color-background-hue) 72% 4%);
     --color-background: var(--color-background-400);
 
-    --color-neutral-50: hsl(var(--color-background-hue) 0% 0%);
-    --color-neutral-400: hsl(var(--color-background-hue) 15% 57%);
-    --color-neutral-950: hsl(var(--color-background-hue) 0% 100%);
+    --color-neutral-50: hsl(var(--color-background-hue) 0% 100%);
+    --color-neutral-400: hsl(var(--color-background-hue) 0% 47%);
+    --color-neutral-700: hsl(var(--color-background-hue) 0% 13%);
+    --color-neutral-950: hsl(var(--color-background-hue) 0% 0%);
 
     --color-primary-400: hsl(var(--color-primary-hue) 100% 50%);
     --color-primary: var(--color-primary-400);
 
     /* Theme: Fonts */
     --font-heading: "Lato", system-ui, sans-serif;
-    --font-sans: "Lato", system-ui, sans-serif;
-}
+    --font-sans: "Open Sans", system-ui, sans-serif;
 
-/* General variables */
-:root {
+    --font-weight-bold: 700;
+
+    --text-600: min(1.5rem, 6vw);
+
+    /* Spacing */
     --breakout-width: 1440px;
     --content-width: 1200px;
-    --content-padding: 2rem;
+    --content-padding: clamp(1rem, 5vw, 2rem);
 }
 
 /* Basic setup */

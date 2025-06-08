@@ -106,7 +106,7 @@ function connection() {
 }
 
 function background_image($img) {
-	return 'style="background-image: url(' . client_path($img) . ');"';
+	return 'style="background-image: url(' . Vite::image($img) . ');"';
 }
 
 function client_path(string $file = '') {

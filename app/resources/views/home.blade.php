@@ -12,7 +12,10 @@
 	></script>
 @endpushOnce
 
-<x-layouts.legacy-main :$locationTag>
+<x-layouts.legacy-main
+	:$locationTag
+	:headerConfig="['floating' => true]"
+>
 	<div class="full-width">
 		@include('home/slider');
 		{{-- @include('home/products'); --}}

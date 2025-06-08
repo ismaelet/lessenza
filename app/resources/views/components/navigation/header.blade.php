@@ -1,3 +1,5 @@
+@props(['config' => []])
+
 @php
 
 	global $header;
@@ -6,39 +8,9 @@
 
 	// theme
 	$header['theme'] = 'light';
-	$header['floating'] = false;
+	$header['floating'] = $config['floating'] ?? false;
 	$header['sticky'] = false;
 	$header['mobile-threshold'] = 1024;
-
-	/*
-	 * Elements
-	 *	- Navigation:
-	 *		desktop-navigation: desktop navigation bar
-	 *		mobile-icon: the burger icon to open the mobile menu
-	 *	- Branding
-	 *		logo: the svg or webp logo
-	 *		name: the name of the website
-	 *	- Profile
-	 *		profile-icon: the icon that redirects to he user's profile
- *		profile-link: the button that redirects to he user's profile
-	 *	- Ecommerce
-	 *		cart-icon: the cart icon
-	 *	- Search
-	 *		search-icon: inline search icon with expanding search bar
-	 *		search-bar: extended search bar
-	 *		simple-search-icon: search icon with dropdown search bar
-	 *	- Languages
-	 *		language-icon: language switcher with dropdown
-	 */
-	$header['structure'] = [
-	    'left' => ['simple-search-icon'],
-	    'center' => ['desktop-navigation'],
-	    'right' => ['profile-icon', 'cart-icon'],
-	    'mobile-left' => ['simple-search-icon'],
-	    'mobile-center' => [],
-	    'mobile-right' => ['profile-icon', 'cart-icon', 'mobile-icon'],
-	    'hanging-content' => [],
-	];
 
 	/*
 	 * Elements settings
@@ -81,6 +53,12 @@
 
 @endphp
 
+@pushOnce('styles')
+	<style>
+
+	</style>
+@endpushOnce
+
 <?php
 
 /*
@@ -112,96 +90,6 @@ function header_filter_navigation_items(array $items, bool $isMobileMenu = null)
 }
 
 /*
-* Desktop navigation bar
-*/
-$headerComponent['desktop-navigation'] = function () {
-	// nav structure
-	function generate_nav() {
-		$items = generate_nav_items();
-
-		$html = '<!-- Desktop navigation -->
-					<nav class="h__nav">
-						<ul>
-							' . $items . '
-						</ul>
-					</nav>';
-
-		return $html;
-	}
-
-	// nav item list
-	function generate_nav_items() {
-		global $header;
-
-		$items = [];
-		$navigationItemList = header_filter_navigation_items((array) $header['links'], false);
-
-		foreach ($navigationItemList as $item) {
-			$items[] = generate_nav_item($item);
-		}
-
-		return implode('', $items);
-	}
-
-	// nav item
-	function generate_nav_item($item) {
-		$link = isset($item['url']) ? 'href="' . $item['url'] . '"' : '';
-		$title = $item['label'];
-		$dropdownIcon = isset($item['drop']) ? '<span class="h__ddown-icon">&#x25BC;</span>' : '';
-		$dropdown = isset($item['drop']) ? generate_dropdown($item) : '';
-		$dataMegameu = isset($item['megamenu']) ? 'data-function="open-megamenu" data-target="' . $item['megamenu'] . '"' : '';
-
-		// classes
-		$classActive = isset($item['url']) ? 'h__link--active' : 'h__link--inactive';
-		$classHighlighted =  '';
-		$classes = array_filter(['h__link', $classActive, $classHighlighted]);
-		$classes = implode(' ', $classes);
-
-		$html = '<li class="' . $classes . '" ' . $dataMegameu . '>
-								<a ' . $link . '>
-									' . $title . '' . $dropdownIcon . '
-								</a>
-								' . $dropdown . '
-							</li>
-							';
-
-		return $html;
-	}
-
-	// dropdown
-	function generate_dropdown($item) {
-		global $header;
-
-		$items = [];
-
-		// dropdown items
-		foreach ((array) $header['dropdowns'][$item['drop']] as $dropdownItem) {
-
-			$link = $dropdownItem[1];
-			$title = $dropdownItem[0];
-
-			$itemHtml = '
-					<p class="h__ddown-link">
-						<a href="' . $link . '">' . $title . '</a>
-					</p>';
-
-			$items[] = $itemHtml;
-		}
-
-		$items = implode('', $items);
-
-		// dropdown structure
-		$html = '<div class="h__ddown">
-					' . $items . '
-				</div>';
-
-		return $html;
-	}
-
-	return generate_nav();
-};
-
-/*
 * Mobile icon
 */
 $headerComponent['mobile-icon'] = function () { ?>
@@ -230,13 +118,11 @@ $headerComponent['mobile-menu'] = function () {
 <nav class="h__mobile-navigation">
 	<ul class="h__mobile-navigation__links">
 
-		<?php foreach ($navigationItemList as $link) { ?>
-
-		<li class="h__mobile-navigation__link">
-			<a href="<?= $link['url'] ?>"><?= $link['label'] ?></a>
-		</li>
-
-		<?php } ?>
+		@foreach ($navigationItemList as $link)
+			<li class="h__mobile-navigation__link">
+				<a href="{{ $link['url'] }}">{{ $link['label'] }}</a>
+			</li>
+		@endforeach
 
 	</ul>
 </nav>
@@ -287,19 +173,6 @@ $headerComponent['search-bar'] = function () { ?>
 
 $headerComponent['search-icon'] = function () { ?>
 <!--  -->
-<?php };
-
-$headerComponent['simple-search-icon'] = function () { ?>
-<!-- <form class="" action="<?= client_url('/shop#shop') ?>" method="GET" autocomplete="off"> -->
-<a
-	class="h__nav-icon"
-	href="<?= client_url('/shop') ?>"
->
-	<?= embed_icon('search') ?>
-</a>
-
-<!-- <input type="text" class="h__search-inp" name="search" placeholder="<?= __('Search') ?>"> -->
-<!-- </form> -->
 <?php };
 
 /*
@@ -361,48 +234,27 @@ $headerComponent['simple-search-icon'] = function () { ?>
 /*
 * Profile icon
 */
-$headerComponent['profile-icon'] = function () { ?>
-<a
-	class="h__nav-icon"
-	href="<?= client_url('/profile') ?>"
->
-	<?= embed_icon('profile-full') ?>
-</a>
-<?php };
-
 $headerComponent['profile-button'] = '
-	<a class="h__profile h__nav-icon" href="' . client_url('/profile') . '">
-		<div class="icon-box">
-			' . embed_icon('profile-circle') . '
-		</div>
-
-		<p>' . ($user?->firstName ?: 'Profilo') . '</p>
-	</a>
-';
-
-/*
-* Cart icon
-*/
-$headerComponent['cart-icon'] = function () { ?>
-
 <a
-	class="h__nav-icon h__nav-icon--cart <?= cart()->quantity ? 'active' : '' ?> js-cart-data-quantity"
-	href="<?= client_url('/cart') ?>"
-	data-quantity="<?= cart()->quantity ?>"
+	class="h__profile h__nav-icon"
+	href="' . client_url('/profile') . '"
 >
-	<?= embed_icon('bag') ?>
-</a>
+	<div class="icon-box">
+		' . embed_icon('profile-circle') . '
+	</div>
 
-<?php };
+	<p>' . ($user?->firstName ?: 'Profilo') . '</p>
+</a>
+';
 
 /*
 * Megamenus
 */
 $headerComponent['megamenus'] = function () {
-	global $header;
+global $header;
 
-	if (isset($header['megamenus'])) {
-	?>
+if (isset($header['megamenus'])) {
+?>
 
 <section class="megamenus">
 
@@ -507,59 +359,80 @@ $headerComponent['megamenus'] = function () {
 		<div class="h__main-content">
 
 			<!-- Header desktop -->
-			<div class="h__desktop responsive-min-<?= $header['mobile-threshold'] ?>">
+			<div class="h__desktop hidden lg:block">
 				<section class="h__bars h-bars--desktop">
 					<!-- Top left bar -->
 					<div class="h__bar h-bar--desktop">
-						<?php foreach ($header['structure']['left'] as $h_component) {
-						    echo $headerComponent[$h_component]();
-						} ?>
+						<x-navigation.header.search />
 					</div>
 					<div class="h__bar h-bar--desktop">
-						<?php foreach ($header['structure']['center'] as $h_component) {
-						    echo $headerComponent[$h_component]();
-						} ?>
+						<x-navigation.header.desktop-navigation :links="$header['links']" />
 					</div>
 					<div class="h__bar h-bar--desktop">
-						<?php foreach ($header['structure']['right'] as $h_component) {
-						    echo $headerComponent[$h_component]();
-						} ?>
+						<x-navigation.header.profile-icon />
+						<x-navigation.header.cart-icon />
 					</div>
 				</section>
 			</div>
 
 			<!-- Mobile Header -->
-			<div class="h__mobile responsive-max-<?= $header['mobile-threshold'] ?>">
+			<div class="h__mobile lg:hidden">
 				<div class="h__bars h-bars--mobile">
 					<div class="h__bar h-bar--mob">
-						<?php foreach ($header['structure']['mobile-left'] as $h_component) {
-						    echo $headerComponent[$h_component]();
-						} ?>
+						<x-navigation.header.search />
 					</div>
 					<div class="h__bar h-bar--mob">
-						<?php foreach ($header['structure']['mobile-center'] as $h_component) {
-						    echo $headerComponent[$h_component]();
-						} ?>
 					</div>
 					<div class="h__bar h-bar--mob">
-						<?php foreach ($header['structure']['mobile-right'] as $h_component) {
-						    echo $headerComponent[$h_component]();
-						} ?>
+						<x-navigation.header.profile-icon />
+						<x-navigation.header.cart-icon />
+						<x-navigation.header.mobile-icon />
 					</div>
 				</div>
 			</div>
 		</div>
 
+		{{-- Hanging content --}}
 		<div class="h__hanging-content">
-			<?php foreach ($header['structure']['hanging-content'] as $h_component) {
-			    echo $headerComponent[$h_component]();
-			} ?>
 
 			<!-- Mobile navigation -->
-			<?= $headerComponent['mobile-menu']() ?>
+			<nav class="h__mobile-navigation">
+				<ul class="h__mobile-navigation__links">
 
-			<!-- Megamenus -->
-			<?= $headerComponent['megamenus']() ?>
+					<li class="h__mobile-navigation__link">
+						<a href="/">Home</a>
+					</li>
+					<li class="h__mobile-navigation__link">
+						<a href="/shop">Le Fragranze</a>
+					</li>
+
+
+					<li class="h__mobile-navigation__link">
+						<a href="/about-us">Chi Siamo</a>
+					</li>
+
+
+					<li class="h__mobile-navigation__link">
+						<a href="/reviews">Recensioni</a>
+					</li>
+
+
+					<li class="h__mobile-navigation__link">
+						<a href="/blog">Blog</a>
+					</li>
+
+
+					<li class="h__mobile-navigation__link">
+						<a href="/videos">Video</a>
+					</li>
+
+
+					<li class="h__mobile-navigation__link">
+						<a href="/contacts">Contatti</a>
+					</li>
+
+				</ul>
+			</nav>
 		</div>
 	</div>
 </header>

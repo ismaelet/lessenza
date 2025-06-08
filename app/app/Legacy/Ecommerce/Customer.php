@@ -28,7 +28,7 @@ class Customer {
 
 	// carts
 	private function getCart() {
-		$cartId = DB::find(Cart::INDEX . ' FROM ' . Cart::TABLE . ' WHERE ' . Cart::CUSTOMER_INDEX . ' = ? AND status = 0', [$this->id]);
+		$cartId = DB::find(Cart::INDEX . ' FROM ' . Cart::TABLE . ' WHERE ' . Cart::CUSTOMER_INDEX . ' = ? AND statusId = 0', [$this->id]);
 		return new Cart($cartId);
 	}
 

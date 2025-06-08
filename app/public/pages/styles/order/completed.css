@@ -2,99 +2,99 @@
 * Layout
 */
 main {
-	min-height: 100vh;
+    min-height: 100vh;
 }
 
 .page__header {
-	background-color: var(--clr-surface-200);
+    background-color: var(--clr-surface-200);
 }
 
 .subsection-title {
-	padding-bottom: 0.2em;
-	border-bottom: var(--border);
+    padding-bottom: 0.2em;
+    border-bottom: var(--border);
 }
 
 .section-subtitle {
-	font-weight: 600;
-	font-size: 0.9rem;
-	margin-bottom: 1rem;
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
 }
 
 .status-name {
-	font-size: var(--fs-600);
-	font-weight: var(--fw-semibold);
-	color: var(--fc-700);
-	line-height: 1;
+    font-size: var(--text-600);
+    font-weight: var(--fw-semibold);
+    color: var(--color-neutral-700);
+    line-height: 1;
 }
 
 .page__wrapper {
-	padding-top: min(5rem, 15vw);
-	padding-bottom: 5rem;
+    padding-top: min(5rem, 15vw);
+    padding-bottom: 5rem;
 }
 
 .page__body {
-	gap: 3rem 5rem;
+    gap: 3rem 5rem;
 }
 
 .page__section {
-	display: grid;
-	grid-template-columns: minmax(0, 1fr);
-	gap: 2rem;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2rem;
 }
 
 @media (min-width: 769px) {
-	.page__body {
-		grid-template-columns: 1fr 0.75fr;
-	}
+    .page__body {
+        grid-template-columns: 1fr 0.75fr;
+    }
 }
 
 /*
 * Confirmation message
 */
 .confirmation {
-	display: grid;
-	grid-template-columns: 3rem auto;
-	align-items: center;
-	gap: 1rem;
+    display: grid;
+    grid-template-columns: 3rem auto;
+    align-items: center;
+    gap: 1rem;
 }
 
 .confirmation-icon {
-	--icon-size: 50%;
-	aspect-ratio: 1;
-	border: 2px solid var(--_color);
-	border-radius: 50%;
-	color: var(--_color);
+    --icon-size: 50%;
+    aspect-ratio: 1;
+    border: 2px solid var(--_color);
+    border-radius: 50%;
+    color: var(--_color);
 }
 
 /*
 * Footer
 */
 .page-footer {
-	justify-content: space-between;
+    justify-content: space-between;
 }
 
 .go-back {
-	margin-left: auto;
-	justify-content: center;
-	border: 2px solid var(--text-color-strong);
-	border-radius: 2rem;
-	color: var(--text-color-strong);
-	line-height: 3;
+    margin-left: auto;
+    justify-content: center;
+    border: 2px solid var(--text-color-strong);
+    border-radius: 2rem;
+    color: var(--text-color-strong);
+    line-height: 3;
 }
 
 .go-back .text-icon {
-	background-color: var(--text-color-strong);
+    background-color: var(--text-color-strong);
 }
 
 /*
 * Responsive
 */
 @media (max-width: 768px) {
-	.client-data .grid2 {
-		grid-template-columns: 1fr;
-	}
+    .client-data .grid2 {
+        grid-template-columns: 1fr;
+    }
 
-	.go-back {
-		width: 100%;
-	}
+    .go-back {
+        width: 100%;
+    }
 }

@@ -2,108 +2,108 @@
 * Layout
 */
 .reviews {
-	--_gap: 1rem;
-	columns: 1;
-	gap: calc(var(--_gap) * 2);
-	padding-block: min(8rem, 25vw);
-	font-size: 0;
+    --_gap: 1rem;
+    columns: 1;
+    gap: calc(var(--_gap) * 2);
+    padding-block: min(8rem, 25vw);
+    font-size: 0;
 }
 
 .review {
-	--_icon-size: 4.5rem;
-	--_padding: 3rem;
-	display: inline-block;
-	width: 100%;
-	margin-block: var(--_gap);
-	overflow: hidden;
-	border-bottom: 0.5rem solid var(--clr-secondary-300);
-	border-radius: var(--border-radius-400);
-	box-shadow: var(--shadow);
-	font-size: 1rem;
+    --_icon-size: 4.5rem;
+    --_padding: 3rem;
+    display: inline-block;
+    width: 100%;
+    margin-block: var(--_gap);
+    overflow: hidden;
+    border-bottom: 0.5rem solid var(--clr-secondary-300);
+    border-radius: var(--border-radius-400);
+    box-shadow: var(--shadow);
+    font-size: 1rem;
 }
 
 .review__image {
-	height: 12rem;
+    height: 12rem;
 }
 
 .review__image img {
-	object-position: 50% 80%;
+    object-position: 50% 80%;
 }
 
 .review__content {
-	padding-inline: 2rem;
-	padding-block: var(--_padding);
+    padding-inline: 2rem;
+    padding-block: var(--_padding);
 }
 
 .review__icon {
-	--_icon-size: 4.5rem;
-	position: relative;
-	z-index: 1;
-	overflow: hidden;
-	width: var(--_icon-size);
-	aspect-ratio: 1;
-	border: 4px solid #fff;
-	border-radius: var(--border-radius-1000);
-	margin-inline: auto;
-	margin-top: calc(var(--_icon-size) / -2 - var(--_padding));
-	box-shadow: var(--shadow);
+    --_icon-size: 4.5rem;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    width: var(--_icon-size);
+    aspect-ratio: 1;
+    border: 4px solid #fff;
+    border-radius: var(--border-radius-1000);
+    margin-inline: auto;
+    margin-top: calc(var(--_icon-size) / -2 - var(--_padding));
+    box-shadow: var(--shadow);
 }
 
 .review__name {
-	--icon-size: 0.75em;
-	color: var(--clr-primary-400);
-	font-size: var(--fs-500);
-	font-weight: var(--fw-bold);
-	line-height: 1.4;
+    --icon-size: 0.75em;
+    color: var(--clr-primary-400);
+    font-size: var(--fs-500);
+    font-weight: var(--font-weight-bold);
+    line-height: 1.4;
 }
 
 .review__name a {
-	display: unset;
+    display: unset;
 }
 
 .review__name a > * {
-	display: inline;
-	vertical-align: middle;
+    display: inline;
+    vertical-align: middle;
 }
 
 .review__subtitle {
-	color: var(--fc-300);
-	font-style: italic;
-	font-weight: var(--fw-light);
+    color: var(--fc-300);
+    font-style: italic;
+    font-weight: var(--fw-light);
 }
 
 .review__text {
-	margin-top: 2rem;
-	letter-spacing: 0.03em;
-	line-height: 2;
+    margin-top: 2rem;
+    letter-spacing: 0.03em;
+    line-height: 2;
 }
 
 .review__text::before {
-	content: '\201C';
-	display: block;
-	font-size: 3rem;
-	line-height: var(--fs-400);
-	margin-bottom: -0.5rem;
-	font-family: var(--ff-serif);
+    content: "\201C";
+    display: block;
+    font-size: 3rem;
+    line-height: var(--fs-400);
+    margin-bottom: -0.5rem;
+    font-family: var(--ff-serif);
 }
 
 /*
 * Responsive
 */
 @media (max-width: 480px) {
-	.page-head__title {
-		font-size: 2.5rem;
-	}
+    .page-head__title {
+        font-size: 2.5rem;
+    }
 }
 
 @media (min-width: 481px) {
-	.review {
-		--_padding: 3rem;
-	}
+    .review {
+        --_padding: 3rem;
+    }
 }
 
 @media (min-width: 769px) {
-	.reviews {
-		columns: 2;
-	}
+    .reviews {
+        columns: 2;
+    }
 }

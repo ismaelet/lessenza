@@ -21,8 +21,8 @@
 */
 /* 1.1 Default state */
 header {
-    --header-background: var(--clr-neutral-100);
-    --header-fc: var(--fc-700);
+    --header-background: var(--color-neutral-50);
+    --header-fc: var(--color-neutral-700);
     --header-padding-block: 1.5rem;
     position: relative;
     top: 0;
@@ -46,7 +46,7 @@ header {
     left: 0;
     width: 100%;
     padding-block: var(--header-padding-block);
-    padding-inline: var(--wrap-padding);
+    padding-inline: var(--content-padding);
     background-color: var(--header-background);
     pointer-events: all;
     transition: background 0.2s;
@@ -85,7 +85,7 @@ header[data-floating="true"] {
 }
 
 header[data-floating="true"]:not(.opened) {
-    --header-fc: var(--clr-neutral-100);
+    --header-fc: var(--color-neutral-50);
 }
 
 header[data-floating="true"]:not(.opened) .h__main-content {
@@ -110,7 +110,7 @@ header[data-floating="true"]:not(.opened) .h__main-content {
 }
 
 .h__link--highlighted {
-    font-weight: var(--fw-bold);
+    font-weight: var(--font-weight-bold);
 }
 
 .h__link a {
@@ -155,12 +155,11 @@ header.opened .h__mobile-navigation {
 }
 
 .h__mobile-navigation__link {
-    translate: 0 var(--animation-movement-intensity);
+    translate: 0 1rem;
     opacity: 0;
-    font-size: var(--fs-600);
+    font-size: var(--text-600);
     letter-spacing: 0.05em;
-    transition: translate var(--animation-duration),
-        opacity var(--animation-duration);
+    transition: translate 0.4s, opacity 0.4s;
 }
 
 header.opened .h__mobile-navigation__link {
