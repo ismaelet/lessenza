@@ -1,8 +1,5 @@
-/**
-* Layout
-*/
 .newsletter {
-    margin-block: 5rem 7.5rem;
+    margin-block: 2.5rem 7.5rem;
 }
 
 .newsletter__body {
@@ -85,9 +82,15 @@
     padding-inline: 0;
     background-color: transparent;
     border: none;
+    line-height: 3rem;
+    outline: none;
     border-radius: 0;
     border-bottom: var(--border-width) solid #ddd;
     box-shadow: unset !important;
+
+    &:focus {
+        border-color: var(--color-primary-400);
+    }
 
     &::placeholder {
         font-size: 13px;
@@ -115,7 +118,7 @@
     }
 }
 
-.newsletter__button {
+button.newsletter__button {
     min-width: unset;
     border-radius: 0 0 var(--radius-md) var(--radius-md);
 

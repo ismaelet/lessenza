@@ -1,7 +1,14 @@
-<section class="laboratory padded-section">
+@pushOnce('styles')
+	<link
+		rel="stylesheet"
+		href="{{ asset('css/legacy/home-laboratory.css') }}"
+	>
+@endpushOnce
+
+<section class="laboratory padded-section span-full-width">
 	<div class="center-content main-wrap grid">
-		<p class="section-subtitle">il nostro</p>
-		<h2 class="laboratory__title section-title">Laboratorio</h2>
+		<x-subheading.section>il nostro</x-subheading.section>
+		<x-heading.section>Laboratorio</x-heading.section>
 
 		<p class="laboratory__text page-text mar-t-3">
 			E’ alla costante ricerca di un prodotto etico, senza Alcohol, che non provochi schiuma, che non intasi con i residui
@@ -13,16 +20,14 @@
 
 	<div class="laboratory__gallery">
 
-		<?php for ($i = 1; $i <= 5; $i++) { ?>
-
-		<img
-			class="laboratory__image js-load load--fade-in"
-			src="<?= client_path('laboratory/image-' . $i) ?>"
-			alt=""
-			data-direction="bottom"
-		>
-
-		<?php } ?>
+		@for ($i = 1; $i <= 5; $i++)
+			<img
+				class="laboratory__image js-load load--fade-in"
+				src="{{ Vite::image('home/laboratory/image-' . $i . '.webp') }}"
+				alt=""
+				data-direction="bottom"
+			>
+		@endfor
 
 	</div>
 </section>

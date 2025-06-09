@@ -1,23 +1,23 @@
-<section class="history split-section">
+<section class="history split-section span-full-width">
 	<div class="split-section__image">
 		<img
 			class="fill-all image-cover"
-			src="<?= client_path('history-image.webp') ?>"
+			src="{{ Vite::image('home/history-image.webp') }}"
 			alt=""
 		>
 	</div>
 
 	<div
 		class="split-section__content center-content background-fill grid"
-		<?= background_image('history-background.webp') ?>
+		<?= background_image('home/history-background.webp') ?>
 	>
 		<div
 			class="split-section__body grid"
 			data-spacing="700"
 		>
 			<div>
-				<p class="section-subtitle">La nostra</p>
-				<h2 class="section-title">Storia</h2>
+				<x-subheading.section>La nostra</x-subheading.section>
+				<x-heading.section>Storia</x-heading.section>
 			</div>
 
 			<p class="page-text">

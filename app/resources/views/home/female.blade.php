@@ -1,12 +1,23 @@
-<section class="female padded-section">
+@php
+	$femaleImagesDirections = ['left', 'top', 'right', 'bottom'];
+@endphp
+
+@pushOnce('styles')
+	<link
+		rel="stylesheet"
+		href="{{ asset('css/legacy/home-female.css') }}"
+	>
+@endpushOnce
+
+<section class="female padded-section breakout">
 	<div class="female__wrapper main-wrap">
 		<div
-			class="female__content center-content grid"
+			class="female__content grid"
 			data-spacing="800"
 		>
 			<div>
-				<p class="section-subtitle">Imprenditoria</p>
-				<h2 class="section-title">Femminile</h2>
+				<x-subheading.section>Imprenditoria</x-subheading.section>
+				<x-heading.section>Femminile</x-heading.section>
 			</div>
 
 			<div class="female__text-wrapper">
@@ -24,10 +35,10 @@
 				</p>
 			</div>
 
-			<a
-				href="<?= client_url('/about-us#female-entrepreneurship') ?>"
+			<x-button
+				href="{{ route('about-us') . '#female-entrepreneurship' }}"
 				class="button"
-			>Leggi di più</a>
+			>Leggi di più</x-button>
 		</div>
 
 		<div
@@ -35,17 +46,15 @@
 			data-spacing="700"
 		>
 
-			<?php for ($i = 1; $i <= 4; $i++) { ?>
-
-			<img
-				class="female__image js-load load--fade-in"
-				data-direction="<?= $femaleImagesDirections[$i] ?>"
-				data-delay="<?= $i ?>"
-				src="<?= client_path('female-image-' . $i . '.webp') ?>"
-				alt=""
-			>
-
-			<?php } ?>
+			@foreach ($femaleImagesDirections as $id => $direction)
+				<img
+					class="female__image js-load load--fade-in"
+					data-direction="{{ $direction }}"
+					data-delay="{{ $id + 1 }}"
+					src="{{ Vite::image('home/female-image-' . ($id + 1) . '.webp') }}"
+					alt=""
+				>
+			@endforeach
 
 		</div>
 	</div>

@@ -149,10 +149,7 @@
 				data-direction="top"
 				data-delay="1"
 			>
-				<a
-					href="<?= client_url('/reviews') ?>"
-					class="slider__button button button--auto-width"
-				>Tutte le recensioni</a>
+				<x-button href="{{ route('reviews') }}">Tutte le recensioni</x-button>
 			</div>
 		</div>
 
@@ -171,8 +168,8 @@
 				class="relative h-full"
 			>
 			<button
-				class="hover:text-primary cursor-pointer transition-colors"
 				type="submit"
+				class="hover:text-primary cursor-pointer transition-colors"
 			>
 				{!! embed_icon('search') !!}
 			</button>

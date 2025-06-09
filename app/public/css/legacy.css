@@ -256,164 +256,10 @@
     box-shadow: var(--surface-shadow);
 }
 
-/*
-* 4. Elements
-*/
-.button {
-    --icon-size: 1.3em;
-    --_padding-block: min(2.2em, 6vw);
-    --_border-width: 0px;
-    display: inline-block;
-    width: 12.5rem;
-    min-width: 250px;
-    max-width: 100%;
-    padding: calc(var(--_padding-block) - var(--_border-width, 0px)) 2.2em;
-    background-color: var(--color-primary-400);
-    border-width: var(--_border-width, 0);
-    border-style: solid;
-    border-radius: 5px;
-    color: #fff;
-    font-family: var(--font-heading);
-    font-size: min(12px, 3vw);
-    font-weight: 500;
-    letter-spacing: 0.2em;
-    line-height: 1;
-    text-align: center;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: background-color 0.3s, border 0.3s, color 0.3s;
-}
-
-.button:where(:not(.button--secondary):not(.button--empty)):hover {
-    background-color: var(--color-primary-300);
-}
-
-.button:disabled {
-    filter: saturate(0);
-    pointer-events: none;
-}
-
-.button--secondary {
-    --_border-width: var(--border-width);
-    background-color: transparent;
-    border-color: var(--button--secondary-border-color);
-    color: var(--color-neutral-700);
-}
-
-.button--secondary:hover {
-    color: var(--color-primary-400);
-    border-color: var(--color-primary-400);
-}
-
-.button--secondary.button--bad {
-    color: var(--clr-bad-400);
-    border-color: var(--clr-bad-400);
-}
-
-.button--secondary.button--bad:hover {
-    color: var(--clr-bad-500);
-    border-color: var(--clr-bad-500);
-}
-
-.button--empty {
-    background-color: transparent;
-    color: var(--color-neutral-700);
-}
-
-.button--empty:hover {
-    color: var(--color-primary-400);
-}
-
-.button--auto-width {
-    width: max-content;
-    max-width: 100%;
-}
-
-.button--full-width {
-    width: 100%;
-    padding-inline: 0;
-}
-
-.button--small {
-    --_padding-block: 1em;
-    font-size: var(--text-300);
-}
-
-.button-without-style {
-    display: contents !important;
-}
-
 .form-field {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
     gap: 0.25rem 0.5rem;
-}
-
-input,
-select,
-textarea {
-    width: 100%;
-    padding-inline: 1em;
-    border: var(--inp-border-width) solid var(--inp-border-color);
-    border-radius: var(--inp-border-radius);
-    background-color: var(--inp-clr-bgr);
-    font-family: var(--ff-default);
-    font-size: var(--inp-fs);
-    transition: border-color 0.2s;
-}
-
-[data-theme="dark"] input::placeholder,
-[data-theme="dark"] select::placeholder,
-[data-theme="dark"] textarea::placeholder {
-    color: var(--fc-400);
-}
-
-input:-webkit-autofill,
-select:-webkit-autofill,
-textarea:-webkit-autofill {
-    background-color: var(--inp-clr-bgr);
-    border: var(--inp-border-width) solid var(--inp-clr-bgr);
-    box-shadow: 0 0 0 1000px var(--inp-clr-bgr) inset !important;
-    -webkit-box-shadow: 0 0 0 1000px var(--inp-clr-bgr) inset;
-}
-
-input {
-    line-height: var(--inp-height);
-}
-
-input:focus {
-    border-color: var(--inp-clr-accent);
-    box-shadow: var(--inp-shadow);
-}
-
-select {
-    height: var(--inp-height);
-}
-
-select optgroup {
-    font-family: var(--font-text);
-}
-
-textarea {
-    min-height: 8em;
-    resize: none;
-    padding: 0.5em 1em;
-    line-height: 1.25;
-}
-
-textarea:focus {
-    border-color: var(--inp-clr-accent);
-    box-shadow: var(--inp-shadow);
-}
-
-input[type="number"]:not(.number-input-with-arrows)::-webkit-outer-spin-button,
-input[type="number"]:not(.number-input-with-arrows)::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-}
-
-input[type="number"]:not(.number-input-with-arrows) {
-    -moz-appearance: textfield;
 }
 
 .price-input {
@@ -433,12 +279,6 @@ input[type="number"]:not(.number-input-with-arrows) {
     font-weight: var(--fw-semibold);
 }
 
-/**
-* Special input structure
-*	label.special-input[data-label="Placeholder"]
-*		input[placeholder=""]
-*		(.input-error)
-*/
 .special-input {
     --_padding: 1rem;
     --_background: var(--clr-background);
@@ -1495,7 +1335,6 @@ h1,
 h2,
 h3,
 .heading-like {
-    color: var(--color-neutral-700);
     font-family: var(--font-heading);
     text-wrap: balance;
 }
