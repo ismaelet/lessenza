@@ -2,6 +2,7 @@
 
 use App\Legacy\Ecommerce\Customer;
 use App\Legacy\User;
+use Illuminate\Support\Facades\Vite;
 
 global $customer, $user, $con;
 

@@ -94,15 +94,3 @@ function favicon() {
 <link rel="icon" type="image/png" href="' . CLIENT_ROOT . '/app/assets/favicon/favicon-16x16.png" sizes="16x16" />
 <link rel="icon" type="image/png" href="' . CLIENT_ROOT . '/app/assets/favicon/favicon-128.png" sizes="128x128" />';
 }
-
-// page head section
-function snippet_page_head(string $title = null, bool $contrastingBackground = true) { ?>
-
-	<section class="page-head grid stack-content center-content <?= $contrastingBackground ? 'contrasting-background' : '' ?>">
-		<div class="page-head__background fill-all background-fill" <?= background_image('head-background') ?>></div>
-		<div class="page-head__content main-wrap">
-			<h1 class="page-head__title section-title"><?= $title ?: \Legacy\System\Classes\View::$title ?></h1>
-		</div>
-	</section>
-
-<?php }
