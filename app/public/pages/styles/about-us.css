@@ -2,132 +2,137 @@
 * Layout
 */
 .page-head {
-	background-color: hsla(0, 0%, 50%);
+    background-color: hsla(0, 0%, 50%);
 }
 
 .page-head__background {
-	opacity: 0.75;
+    opacity: 0.75;
 }
 
 .section__text-block {
-	gap: 3rem;
+    gap: 3rem;
 }
 
 .page__content {
-	--offset: 5rem;
-	gap: var(--offset);
+    --offset: 5rem;
+    gap: var(--offset);
 }
 
 .section__content {
-	justify-items: center;
+    justify-items: center;
 }
 
 .section1__content {
-	grid-template-columns: repeat(2, minmax(0, 1fr));
-	gap: 4rem min(10rem, 10vw);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 4rem min(10rem, 10vw);
 }
 
 .section2__content {
-	grid-template-columns: minmax(0, 0.7fr) minmax(0, 1fr);
+    grid-template-columns: minmax(0, 0.7fr) minmax(0, 1fr);
 }
 
 .section__image-block {
-	width: 100%;
-	height: 100%;
-	min-height: 40rem;
+    width: 100%;
+    height: 100%;
+    min-height: 40rem;
 }
 
 .section2__image-block {
-	min-height: 30rem;
+    min-height: 30rem;
 }
 
 /**
 * Section 1
 */
 .section1 {
-	padding-top: var(--offset);
-	padding-bottom: calc(var(--offset) + min(var(--offset), 10vw));
-	background-color: var(--clr-surface-200);
-	clip-path: polygon(0 0, 100% 0, 100% calc(100% - min(var(--offset), 10vw)), 0 100%);
+    padding-top: var(--offset);
+    padding-bottom: calc(var(--offset) + min(var(--offset), 10vw));
+    background-color: var(--color-background-500);
+    clip-path: polygon(
+        0 0,
+        100% 0,
+        100% calc(100% - min(var(--offset), 10vw)),
+        0 100%
+    );
 }
 
 .section1__text-block {
-	padding-block: 8rem;
+    padding-block: 8rem;
 }
 
 .section1__background {
-	width: 70%;
-	height: 100%;
-	background-color: var(--clr-primary-400);
-	border-radius: var(--border-radius-400);
+    width: 70%;
+    height: 100%;
+    background-color: var(--color-primary-400);
+    border-radius: var(--radius-md);
 }
 
 .section1__image {
-	height: 85%;
-	margin-block: auto;
-	object-position: 50% 20%;
-	border-radius: var(--border-radius-400);
-	box-shadow: 0 2rem 5rem rgba(0, 0, 0, 0.3);
+    height: 85%;
+    margin-block: auto;
+    object-position: 50% 20%;
+    border-radius: var(--radius-md);
+    box-shadow: 0 2rem 5rem rgba(0, 0, 0, 0.3);
 }
 
 /**
 * Section 2
 */
 .section2 {
-	padding-bottom: 7rem;
+    padding-bottom: 7rem;
 }
 
 .section2__content {
-	gap: 0;
+    gap: 0;
 }
 
 .section2__text-block {
-	padding-block: 3rem;
-	padding-inline: 6rem;
-	margin-block: 3rem;
-	background-color: var(--clr-surface-200);
+    padding-block: 3rem;
+    padding-inline: 6rem;
+    margin-block: 3rem;
+    background-color: var(--color-background-500);
 }
 
 .section2__background {
-	width: 70%;
-	height: 100%;
-	background-color: var(--clr-secondary-300);
-	border-radius: var(--border-radius-400);
-	justify-self: right;
+    width: 70%;
+    height: 100%;
+    background-color: var(--clr-secondary-300);
+    border-radius: var(--radius-md);
+    justify-self: right;
 }
 
 .section2__image {
-	justify-self: left;
-	width: 90%;
-	height: 85%;
-	margin-block: auto;
-	object-position: 50% 20%;
-	border-radius: var(--border-radius-400);
-	box-shadow: 0 2rem 5rem rgba(0, 0, 0, 0.3);
+    justify-self: left;
+    width: 90%;
+    height: 85%;
+    margin-block: auto;
+    object-position: 50% 20%;
+    border-radius: var(--radius-md);
+    box-shadow: 0 2rem 5rem rgba(0, 0, 0, 0.3);
 }
 
 /**
 * Responsive
 */
 @media (max-width: 1024px) {
-	.section__content {
-		grid-template-columns: minmax(0, 1fr);
-	}
+    .section__content {
+        grid-template-columns: minmax(0, 1fr);
+    }
 
-	.section__content {
-		gap: 4rem;
-	}
+    .section__content {
+        gap: 4rem;
+    }
 
-	.section1__text-block {
-		padding-block: 0;
-	}
+    .section1__text-block {
+        padding-block: 0;
+    }
 
-	.section2__text-block {
-		padding: 3rem min(3rem, 7vw);
-		margin-block: 0;
-	}
+    .section2__text-block {
+        padding: 3rem min(3rem, 7vw);
+        margin-block: 0;
+    }
 
-	.section__image-block {
-		max-width: 500px;
-	}
+    .section__image-block {
+        max-width: 500px;
+    }
 }

@@ -1,6 +1,6 @@
 {% block main %}
 
-<div class="main-wrap self-align-center grid-flow center-content pad-v-5" data-spacing="700">
+<div class="main-wrap self-align-center grid center-content pad-v-5" data-spacing="700">
 	<div class="empty-cart__icon">
 		<?= embed_svg('empty-cart') ?>
 	</div>

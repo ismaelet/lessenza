@@ -2,57 +2,57 @@
 * Layout
 */
 .page-block {
-	display: grid;
-	gap: 3rem;
+    display: grid;
+    gap: 3rem;
 }
 
 .page-block section {
-	display: grid;
-	gap: 1rem;
+    display: grid;
+    gap: 1rem;
 }
 
 .show-more {
-	width: max-content;
-	padding-inline: 0.5em;
-	margin-inline: auto;
-	border-bottom: 1px solid;
+    width: max-content;
+    padding-inline: 0.5em;
+    margin-inline: auto;
+    border-bottom: 1px solid;
 }
 
 /*
 * Addresses
 */
 .address {
-	padding: 1.5rem;
-	border: var(--border);
-	border-radius: var(--border-radius-400);
+    padding: 1.5rem;
+    border: var(--border);
+    border-radius: var(--radius-md);
 }
 
 /*
 * Favorites
 */
 .favorites {
-	padding: 3rem;
-	margin-block: -1rem -2rem;
-	margin-inline: -3rem;
-	overflow-x: auto;
-	scroll-snap-type: inline mandatory;
+    padding: 3rem;
+    margin-block: -1rem -2rem;
+    margin-inline: -3rem;
+    overflow-x: auto;
+    scroll-snap-type: inline mandatory;
 }
 
 .favorites-wrap {
-	min-width: 768px;
+    min-width: 768px;
 }
 
 .favorites .item-card {
-	scroll-snap-align: start;
+    scroll-snap-align: start;
 }
 
 /*
 * Responsive
 */
 @media (max-width: 1024px) {
-	.favorites {
-		padding: unset;
-		margin: unset;
-		margin-top: 2rem;
-	}
+    .favorites {
+        padding: unset;
+        margin: unset;
+        margin-top: 2rem;
+    }
 }

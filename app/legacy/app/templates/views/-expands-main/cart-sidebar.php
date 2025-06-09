@@ -29,7 +29,7 @@ use function Ecommerce\cart;
 					<p>Subtotale:</p>
 					<p class="cart-sidebar__price fw-semibold js-cart-product-price-string"><?= cart()->productPriceString ?></p>
 				</div>
-				<div class="grid-flow" data-spacing="200">
+				<div class="grid" data-spacing="200">
 					<div class="button button--secondary button--full-width button--small js-close-cart-sidebar">Chiudi</div>
 					<a class="button button--full-width button--small" href="<?= client_url('/cart') ?>">Aquista ora</a>
 				</div>

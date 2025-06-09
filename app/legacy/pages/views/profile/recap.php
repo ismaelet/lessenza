@@ -17,8 +17,8 @@ use function Ecommerce\product_card;
 			Account
 		</h2>
 
-		<div class="grid-flow" data-spacing="400">
-			<div class="grid-flow" data-spacing="0">
+		<div class="grid" data-spacing="400">
+			<div class="grid" data-spacing="0">
 
 				<?php if (!user()->emailIsUsername) { ?>
 
@@ -46,11 +46,11 @@ use function Ecommerce\product_card;
 			Indirizzi registrati
 		</h2>
 
-		<div class="grid-flow" data-spacing="400">
+		<div class="grid" data-spacing="400">
 
 			<?php if (customer()->hasAddress) { ?>
 
-				<div class="addresses grid-flow" data-columns="25rem" data-spacing="700">
+				<div class="addresses grid" data-columns="25rem" data-spacing="700">
 					<div class="address">
 						<h3 class="subsection-subtitle">Indirizzo di spedizione predefinito</h3>
 						<p class="">

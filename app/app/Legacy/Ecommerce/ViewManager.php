@@ -4,105 +4,12 @@ namespace App\Legacy\Ecommerce;
 
 class ViewManager {
 
-	/*
-	* Render methods
-	*/
-	public static function renderProductCard(object $product) {
-		ob_start();
-?>
 
-		<div class="product-card">
-			<div class="product-card__image-wrapper grid-flow stack-content">
-
-				<!-- Image -->
-				<a href="<?= $product->clientUrl ?>" class="stack-content">
-					<img class="product-card__image image-fill" src="<?= $product->clientImage ?>" alt="<?= $product->name ?>" loading="lazy">
-				</a>
-
-				<?php if (ecommerce_config('product-card')['functionalities']) { ?>
-
-					<!-- Functionalities -->
-					<div class="product-functionalities">
-
-						<?php if ($product->inStock) { ?>
-
-							<!-- Add to cart -->
-							<div class="product-functionality">
-								<div class="product-functionality-icon" data-functionality="add-to-cart" data-product-id="<?= $product->id ?>" data-quantity="1">
-									<?= embed_svg('bag-stroke') ?>
-								</div>
-								<h3 class="product-functionality-name txt-c3">Aggiungi al carrello</h3>
-							</div>
-
-						<?php } ?>
-
-						<!-- View -->
-						<a href="<?= $product->clientUrl ?>" class="product-functionality">
-							<div class="product-functionality-icon">
-								<?= embed_svg('view') ?>
-							</div>
-							<h3 class="product-functionality-name txt-c3">Visualizzare</h3>
-						</a>
-
-						<!-- Wishlist -->
-						<div class="product-functionality wishlist_box js-wishlist-module <?= $product->isLiked ? 'added' : '' ?>">
-							<div class="product-functionality-icon js-add-to-wishlist" data-product-id="<?= $product->id ?>" data-added="<?= $product->isLiked ? 1 : 0 ?>" data-logged="<?= logged() ?>">
-								<span class="wishlist_svg wishlist_svg--to-add"><?= embed_svg('star') ?></span>
-								<span class="wishlist_svg wishlist_svg--added"><?= embed_svg('star-full') ?></span>
-							</div>
-							<h3 class="product-functionality-name txt-c3 wishlist_text wishlist_text--to-add"><?= __('Add to wishlist') ?></h3>
-							<h3 class="product-functionality-name txt-c3 wishlist_text wishlist_text--added"><?= __('In wishlist') ?></h3>
-						</div>
-					</div>
-
-				<?php } ?>
-
-			</div>
-
-			<!-- Content -->
-			<div class="product-card__body">
-				<h3 class="product-card__name"><?= $product->name ?></h3>
-				<h3 class="product-card__description limit-lines"><?= $product->description ?></h3>
-				<div class="product-card__footer">
-					<h3 class="product-card__price">
-
-						<?php if (!$product->inStock) { ?>
-
-							<span class="fc-warning">Esaurito</span>
-
-						<?php } else if ($product->onSale) { ?>
-
-							<span class="product-price--base"><?= $product->basePriceString ?></span>
-							<span class="product-price--promo"><?= $product->priceString ?></span>
-
-						<?php } else { ?>
-							<?= $product->priceString ?>
-						<?php } ?>
-
-					</h3>
-
-					<?php if ($product->inStock) { ?>
-
-						<div class="product-card__cta" data-product-id="<?= $product->id ?>" data-quantity="1">
-							<?= embed_svg('bag') ?>
-						</div>
-
-					<?php } ?>
-
-				</div>
-			</div>
-
-		</div>
-
-	<?php
-
-		return ob_get_clean();
-	}
 
 	// Like button
 	public static function renderLikeButton($product) {
 		ob_start();
-	?>
+?>
 
 		<div class="wishlist-icon mar-t-2 wishlist_box js-wishlist-module <?= $product->isLiked ? 'added' : '' ?>">
 			<div class="flex-line gap05 js-add-to-wishlist" data-product-id="<?= $product->id ?>" data-added="<?= $product->isLiked ? 1 : 0 ?>" data-logged="<?= logged() ?>">
@@ -138,7 +45,7 @@ class ViewManager {
 				</div>
 			</div>
 
-			<div class="shipping-method__content grid-flow" data-spacing="100">
+			<div class="shipping-method__content grid" data-spacing="100">
 				<h3 class="shipping-method__name"><?= $shippingMethod->name ?></h3>
 
 				<?php if (manager() && $shippingMethod->hasApi) { ?>

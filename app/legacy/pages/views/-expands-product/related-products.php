@@ -10,7 +10,7 @@ if ($relatedProducts) { ?>
 				<h2 class="section-title section-title--small">Potrebbero <span class="fy-italic fw-medium">interessarti</span></h2>
 			</div>
 
-			<div class="grid-flow mar-t-3" data-columns="15rem" data-spacing="400">
+			<div class="grid mar-t-3" data-columns="15rem" data-spacing="400">
 
 				<?php foreach ($relatedProducts as $relatedProduct) {
 					echo ViewManager::renderProductCard($relatedProduct);

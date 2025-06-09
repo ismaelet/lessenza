@@ -1,16 +1,16 @@
 {% block main %}
 
-<div class="page__header grid-flow center-content pad-v-3">
+<div class="page__header grid center-content pad-v-3">
 	<h1 class="title">
 		Ordine<br>
 		<span class="fw-bold"><?= $cart->idCode ?></span>
 	</h1>
 </div>
 
-<div class="page__wrapper grid-flow main-wrap" data-spacing="800">
+<div class="page__wrapper grid main-wrap" data-spacing="800">
 
-	<div class="page__body grid-flow">
-		<div class="page__content grid-flow" data-spacing="800">
+	<div class="page__body grid">
+		<div class="page__content grid" data-spacing="800">
 			<!-- Page header -->
 			<section class="confirmation">
 				<div class="confirmation-icon status-color--<?= $cart->statusCode ?>">
@@ -26,16 +26,16 @@
 			<section class="client-data page__section">
 				<h3 class="subsection-title">Dati dell'ordine</h3>
 
-				<div class="grid-flow" data-columns="15rem" data-spacing="700">
-					<div class="grid-flow" data-spacing="700">
-						<div class="grid-flow" data-spacing="400">
+				<div class="grid" data-columns="15rem" data-spacing="700">
+					<div class="grid" data-spacing="700">
+						<div class="grid" data-spacing="400">
 							<h3 class="subsection-subtitle">Informazioni di contatto</h3>
 							<p class="text">
 								<?= $cart->address->email ?><br>
 								<?= $cart->address->phone ?>
 							</p>
 						</div>
-						<div class="grid-flow" data-spacing="400">
+						<div class="grid" data-spacing="400">
 							<h3 class="subsection-subtitle">Indirizzo di spedizione</h3>
 							<p class="text">
 								<?= $cart->address->fullAddress ?>
@@ -43,12 +43,12 @@
 						</div>
 					</div>
 
-					<div class="grid-flow" data-spacing="700">
-						<div class="grid-flow" data-spacing="400">
+					<div class="grid" data-spacing="700">
+						<div class="grid" data-spacing="400">
 							<h3 class="subsection-subtitle">Forma di pagamento</h3>
 							<p><?= $cart->paymentMethod->name ?: '-' ?></p>
 						</div>
-						<div class="grid-flow" data-spacing="400">
+						<div class="grid" data-spacing="400">
 							<h3 class="subsection-subtitle">Tipo di spedizione</h3>
 							<div>
 								<p><?= $cart->shippingMethod->name ?></p>

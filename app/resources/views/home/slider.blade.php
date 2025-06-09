@@ -4,36 +4,53 @@
 	$reviews = Review::latest()->get();
 @endphp
 
-<section class="slider grid-flow stack-content">
+@pushOnce('styles')
+	<link
+		rel="stylesheet"
+		href="{{ asset('css/legacy/home-slider.css') }}"
+	>
+
+	<style>
+		.slider__contacts {
+			grid-row: 2;
+
+			@media (min-width: 1024px) {
+				grid-row: unset;
+			}
+		}
+	</style>
+@endpushOnce
+
+<section class="slider stack-content span-full-width grid">
 	<!-- Background -->
 	<div
-		class="slider__background fill-all background-fill responsive-max-1024"
+		class="slider__background fill-all background-fill lg:hidden"
 		<?= background_image('home/slider-background-mobile.webp') ?>
 	>
 		<div class="slider__overlay fill-all"></div>
 	</div>
 
 	<div
-		class="slider__background fill-all background-fill responsive-min-1024"
+		class="slider__background fill-all background-fill hidden lg:block"
 		<?= background_image('home/slider-background.webp') ?>
 	>
 		<div class="slider__overlay fill-all"></div>
 	</div>
 
 	<!-- Content -->
-	<div class="slider__content">
+	<div class="slider__content gap-8 lg:gap-0">
 		<!-- Contacts -->
-		<div class="slider__contacts contrasting-background responsive-min-1024">
+		<div class="slider__contacts contrasting-background dark hidden lg:block">
 			<div
 				class="js-load load--fade-in"
 				data-direction="left"
 				data-delay="0"
 			>
 				<a
-					class="slider__contact"
+					class="slider__contact transition-colors"
 					href="<?= sys_config('contact-facebook-link') ?>"
 				>
-					{!! embed_icon('facebook') !!}
+					<x-icon-facebook />
 				</a>
 			</div>
 			<div
@@ -42,10 +59,10 @@
 				data-delay="1"
 			>
 				<a
-					class="slider__contact"
+					class="slider__contact transition-colors"
 					href="<?= sys_config('contact-instagram-link') ?>"
 				>
-					{!! embed_icon('instagram') !!}
+					<x-icon-instagram />
 				</a>
 			</div>
 			<div
@@ -54,10 +71,10 @@
 				data-delay="2"
 			>
 				<a
-					class="slider__contact"
+					class="slider__contact transition-colors"
 					href="<?= sys_config('contact-phone-link') ?>"
 				>
-					{!! embed_icon('phone') !!}
+					<x-icon-phone />
 				</a>
 			</div>
 			<div
@@ -66,22 +83,22 @@
 				data-delay="3"
 			>
 				<a
-					class="slider__contact"
+					class="slider__contact transition-colors"
 					href="<?= sys_config('contact-email-link') ?>"
 				>
-					{!! embed_icon('email') !!}
+					<x-icon-email />
 				</a>
 			</div>
 		</div>
 
 		<!-- Body -->
-		<div class="slider__body grid-flow contrasting-background">
+		<div class="slider__body contrasting-background dark grid">
 			<div
-				class="grid-flow"
+				class="grid"
 				data-spacing="700"
 			>
 				<div
-					class="slider__title-wrapper grid-flow center-content"
+					class="slider__title-wrapper grid justify-items-center lg:justify-items-start"
 					data-spacing="200"
 				>
 					<!-- <h1 class="slider__title js-load load--fade-in" data-direction="bottom">L<span class="fc-primary">’</span>Essenza</h1> -->
@@ -109,7 +126,7 @@
 				</div>
 
 				<div
-					class="slider__reviews grid-flow stack-content js-load load--fade-in"
+					class="slider__reviews stack-content js-load load--fade-in grid"
 					data-direction="bottom"
 					data-delay="2"
 				>
@@ -141,7 +158,7 @@
 
 		<!-- Search bar -->
 		<form
-			class="big-search-bar js-load load--fade-in"
+			class="big-search-bar js-load load--fade-in items-center"
 			data-direction="bottom"
 			data-delay="1"
 			action="shop"
@@ -151,9 +168,10 @@
 				type="text"
 				name="search"
 				placeholder="Cerca una fragranza"
+				class="relative h-full"
 			>
 			<button
-				class="button-without-style"
+				class="hover:text-primary cursor-pointer transition-colors"
 				type="submit"
 			>
 				{!! embed_icon('search') !!}

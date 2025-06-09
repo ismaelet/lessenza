@@ -1,7 +1,7 @@
 {% block main %}
 
 <!-- Welcome panel -->
-<section class="welcome grid-flow stack-content center-content contrasting-background">
+<section class="welcome grid stack-content center-content contrasting-background">
 	<div class="welcome_bgr fill-all background-fill" <?= background_image('background') ?>></div>
 </section>
 
@@ -21,7 +21,7 @@
 	</div>
 
 	<!-- Footer -->
-	<div class="form-footer grid-flow center-content">
+	<div class="form-footer grid center-content">
 		<!-- Register -->
 		<div class="load--fade-in js-load" data-direction="bottom" data-delay="2">
 			<button type="submit" class="button" name="submit">Registrati</button>

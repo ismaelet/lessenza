@@ -6,7 +6,7 @@
 	<div class="main-wrap py-20">
 
 		<?php if ($records) { ?>
-			<div class="grid-flow gap-8" data-columns='25rem'>
+			<div class="grid gap-8" data-columns='25rem'>
 
 				<?php foreach ($records as $key => $record) { ?>
 

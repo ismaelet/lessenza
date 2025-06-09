@@ -98,7 +98,7 @@ function favicon() {
 // page head section
 function snippet_page_head(string $title = null, bool $contrastingBackground = true) { ?>
 
-	<section class="page-head grid-flow stack-content center-content <?= $contrastingBackground ? 'contrasting-background' : '' ?>">
+	<section class="page-head grid stack-content center-content <?= $contrastingBackground ? 'contrasting-background' : '' ?>">
 		<div class="page-head__background fill-all background-fill" <?= background_image('head-background') ?>></div>
 		<div class="page-head__content main-wrap">
 			<h1 class="page-head__title section-title"><?= $title ?: \Legacy\System\Classes\View::$title ?></h1>

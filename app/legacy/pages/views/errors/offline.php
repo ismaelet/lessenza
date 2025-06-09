@@ -1,7 +1,7 @@
 {% block main %}
 
 <!-- Body -->
-<div class="grid-flow center-content" data-spacing="400">
+<div class="grid center-content" data-spacing="400">
 	<img class="logo" src="<?= client_path(LOGO_DIR . 'logo.png') ?>" alt="">
 	<h1 class="title"><?= __('Website Offline') ?></h1>
 	<p class="section-subtitle">

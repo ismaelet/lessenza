@@ -15,7 +15,7 @@ use function Ecommerce\ecommerce_config;
 <input type="hidden" data-cart-page="true">
 
 <!-- Header -->
-<div class="page-header grid-flow stack-content center-content">
+<div class="page-header grid stack-content center-content">
 	<?php if (ecommerce_config('cart-page')['header-background']) { ?>
 		<div class="page-header__background fill-all background-fill" <?= background_image('/app/templates/assets/cart/header-background') ?>></div>
 	<?php } ?>

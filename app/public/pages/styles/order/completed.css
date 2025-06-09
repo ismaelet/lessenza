@@ -6,7 +6,7 @@ main {
 }
 
 .page__header {
-    background-color: var(--clr-surface-200);
+    background-color: var(--color-background-500);
 }
 
 .subsection-title {

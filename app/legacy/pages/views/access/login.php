@@ -1,7 +1,7 @@
 {% block main %}
 
 <!-- Welcome panel -->
-<section class="welcome grid-flow stack-content center-content contrasting-background">
+<section class="welcome grid stack-content center-content contrasting-background">
 	<div class="welcome_bgr fill-all background-fill" <?= background_image('background') ?>></div>
 
 	<?php if ($loginConfig['welcome-text']) { ?>

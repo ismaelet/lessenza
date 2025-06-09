@@ -1,12 +1,12 @@
 {% block content %}
 
 <form method="POST">
-	<div class="grid-flow" data-spacing="700">
+	<div class="grid" data-spacing="700">
 		<!-- Shipping address -->
 		<section class="address">
 			<h2 class="subsection-title">Indirizzo</h2>
 
-			<div class="form-panel grid-flow" data-spacing="400">
+			<div class="form-panel grid" data-spacing="400">
 				<?php
 
 				use Ecommerce\ViewManager;

@@ -3,14 +3,9 @@
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
-/**
- * Home
- */
+// Home
 Route::get('/', [HomeController::class, 'index'])
 	->name('home');
 
-/**
- * Shop
- */
-Route::get('/shop', [HomeController::class, 'index'])
-	->name('shop');
+// Include the shop routes
+include __DIR__ . '/shop.php';

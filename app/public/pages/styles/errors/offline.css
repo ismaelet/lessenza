@@ -2,21 +2,21 @@
 * Layout
 */
 main {
-	grid-template-rows: 1fr max-content;
+    grid-template-rows: 1fr max-content;
 }
 
 /*
 * Main content
 */
 .logo {
-	--box-height: 10rem;
-	height: var(--box-height);
-	margin-top: calc(var(--box-height) / -2);
+    --box-height: 10rem;
+    height: var(--box-height);
+    margin-top: calc(var(--box-height) / -2);
 }
 
 /*
 * Login bar
 */
 .login-btn {
-	color: var(--clr-primary-400);
+    color: var(--color-primary-400);
 }

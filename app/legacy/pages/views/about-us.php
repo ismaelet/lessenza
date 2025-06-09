@@ -2,12 +2,12 @@
 
 <?= snippet_page_head() ?>
 
-<div class="page__content grid-flow">
+<div class="page__content grid">
 
 	<section class="section1">
 		<div class="main-wrap">
-			<div class="section1__content section__content grid-flow" data-spacing="800" data-align="center" id="female-entrepreneurship">
-				<div class="section1__text-block section__text-block grid-flow">
+			<div class="section1__content section__content grid" data-spacing="800" data-align="center" id="female-entrepreneurship">
+				<div class="section1__text-block section__text-block grid">
 					<div>
 						<p class="section-subtitle load--fade-in js-load" data-delay="1" data-direction="top">Imprenditoria</p>
 						<h2 class="section-title load--fade-in js-load" data-delay="0" data-direction="top">Femminile</h2>
@@ -23,7 +23,7 @@
 					</p>
 				</div>
 
-				<div class="section1__image-block section__image-block grid-flow center-content stack-content">
+				<div class="section1__image-block section__image-block grid center-content stack-content">
 					<div class="section1__background load--fade-in js-load" data-delay="4" data-direction="right"></div>
 					<img class="section1__image section__image image-cover load--fade-in js-load" data-delay="1" data-direction="right" src="<?= client_path('stefania') ?>" alt="">
 				</div>
@@ -33,14 +33,14 @@
 
 	<section class="section2">
 		<div class="main-wrap">
-			<div class="section2__content section__content grid-flow" data-spacing="800" data-align="center">
+			<div class="section2__content section__content grid" data-spacing="800" data-align="center">
 
-				<div class="section2__image-block section__image-block grid-flow center-content stack-content">
+				<div class="section2__image-block section__image-block grid center-content stack-content">
 					<div class="section2__background load--fade-in js-load" data-delay="0" data-direction="top"></div>
 					<img class="section2__image section__image image-cover load--fade-in js-load" data-delay="1" data-direction="right" src="<?= client_path('lucio') ?>" alt="">
 				</div>
 
-				<div class="section2__text-block section__text-block grid-flow">
+				<div class="section2__text-block section__text-block grid">
 					<div>
 						<p class="section-subtitle load--fade-in js-load" data-delay="1" data-direction="top">La nostra</p>
 						<h2 class="section-title load--fade-in js-load" data-delay="0" data-direction="top">Storia</h2>

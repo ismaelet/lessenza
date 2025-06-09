@@ -8,11 +8,11 @@ use function Ecommerce\format_price;
 ?>
 
 <section class="product-data">
-	<form class="product-wrap grid-flow" data-spacing="800" method="POST">
+	<form class="product-wrap grid" data-spacing="800" method="POST">
 
-		<div class="grid-flow" data-spacing="400">
+		<div class="grid" data-spacing="400">
 			<!-- Basic data -->
-			<div class="grid-flow" data-spacing="200">
+			<div class="grid" data-spacing="200">
 				<h1 class="product-name section-title"><?= $product->name ?></h1>
 				<p class="product-type section-subtitle"><?= $product->type->name ?></p>
 			</div>
@@ -55,7 +55,7 @@ use function Ecommerce\format_price;
 		</div>
 
 		<!-- Description -->
-		<div class="grid-flow" data-spacing="400">
+		<div class="grid" data-spacing="400">
 			<p class="product-desc"><?= $product->description ?></p>
 
 			<?php if ($product->ingredients) { ?>
@@ -151,7 +151,7 @@ use function Ecommerce\format_price;
 
 			<?php } else { ?>
 
-				<label class="quantity grid-flow center-content" data-columns="3">
+				<label class="quantity grid center-content" data-columns="3">
 					<span class="quantity__edit quantity__edit--remove disabled js-quantity-remove">-</span>
 					<input type="number" name="quantity" value="1" min="1" max="99" step="1">
 					<span class="quantity__edit quantity__edit--add js-quantity-add">+</span>

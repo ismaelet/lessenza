@@ -39,7 +39,7 @@ class ViewManager {
 								<h3 class="sidebar__subtitle">Cerca</h3>
 
 								<!-- Module: searcher -->
-								<div class="searcher grid-flow" data-spacing="200">
+								<div class="searcher grid" data-spacing="200">
 									<div class="searcher__body">
 										<input type="text" class="searcher__input js-seacher" name="search" value="<?= $this->shopSettings->search ?>" placeholder="Cerca un prodotto" maxlength="30" autocomplete="off">
 
@@ -179,8 +179,8 @@ class ViewManager {
 				<!-- products -->
 				<?php if ($this->shopSettings->products) { ?>
 
-					<section class="shop__body grid-flow stack-content">
-						<div class="shop__products grid-flow" data-columns="15rem" data-spacing="700">
+					<section class="shop__body grid stack-content">
+						<div class="shop__products grid" data-columns="15rem" data-spacing="700">
 
 							<?php foreach ($this->shopSettings->products as $product) {
 								echo EcommerceViewManager::renderProductCard($product);
@@ -195,7 +195,7 @@ class ViewManager {
 
 				<?php } else { ?>
 
-					<div class="empty-warning grid-flow center-content">
+					<div class="empty-warning grid center-content">
 						<div>
 							<?= embed_svg('warning') ?>
 						</div>

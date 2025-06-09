@@ -3,17 +3,17 @@
 <?= snippet_page_head() ?>
 
 <!-- Content -->
-<div class="main-wrap grid-flow pad-v-7" data-align="top" data-columns="25rem" data-row-spacing="600" data-column-spacing="900">
+<div class="main-wrap grid pad-v-7" data-align="top" data-columns="25rem" data-row-spacing="600" data-column-spacing="900">
 
 	<!-- Contacts data -->
-	<section class="grid-flow" data-spacing="800">
+	<section class="grid" data-spacing="800">
 		<h2 class="section-title"><?= $websiteName ?></h2>
 
 		<p class="fa-justify">
 			Se hai dubbi, domande o vuoi richiedere un'informazione, compila il modulo di contatto che trovi in questa pagina oppure usando uno dei link di contatto qui sotto, ti risponderemo nel più breve tempo possibile.
 		</p>
 
-		<div class="contacts grid-flow" data-spacing="400">
+		<div class="contacts grid" data-spacing="400">
 
 			<?php foreach ($contacts as $contactSlug => $contact) { ?>
 
@@ -38,8 +38,8 @@
 	<!-- Contact form -->
 	<section class="contact-form">
 		<form method="POST" autocomplete="off">
-			<div class="grid-flow" data-spacing="700">
-				<div class="grid-flow" data-spacing="400">
+			<div class="grid" data-spacing="700">
+				<div class="grid" data-spacing="400">
 					<?php if ($sent) { ?>
 						<p class="confirmation">Messaggio inviato, ti risponderemo il più presto possibile.</p>
 					<?php } ?>

@@ -18,7 +18,7 @@
 
 					<?php } ?>
 
-					<div class="review__content grid-flow" data-spacing="400">
+					<div class="review__content grid" data-spacing="400">
 
 						<?php if ($review->hasIcon) { ?>
 

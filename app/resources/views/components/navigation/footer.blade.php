@@ -32,58 +32,53 @@
 
 @pushOnce('styles')
 	<style>
-		/*
-						* Layout
-						*/
 		.f__content {
 			padding-block: 3rem;
-			background-color: var(--clr-secondary-400);
+			background-color: var(--color-secondary-400);
 		}
 
 		.f__contact {
 			--icon-size: 50%;
 			width: 2.5rem;
 			aspect-ratio: 1;
-			background-color: var(--clr-secondary-700);
+			background-color: var(--color-secondary-500);
 			border-radius: 50%;
-			color: var(--color-neutral-700);
 			transition: background-color 0.2s, color 0.2s;
 		}
 
 		.f__contact:hover {
-			background-color: var(--clr-primary-400);
-			color: var(--color-neutral-50);
+			background-color: var(--color-primary-400);
 		}
 
 		.f__link {
-			font-size: var(--fs-300);
+			font-size: var(--text-300);
 			font-weight: var(--fw-medium);
 			text-transform: uppercase;
 			transition: color 0.2s;
 		}
 
 		.f__link:hover {
-			color: var(--clr-primary-400);
+			color: var(--color-primary-400);
 		}
 
 		.f__notes {
 			padding-block: 1rem;
-			background-color: var(--clr-secondary-500);
+			background-color: var(--color-secondary-500);
 			color: var(--clr-secondary-200);
-			font-size: var(--fs-300);
+			font-size: var(--text-300);
 			text-align: center;
 		}
 	</style>
 @endpushOnce
 
-<footer class="contrasting-background">
+<footer class="contrasting-background dark">
 	<div class="f__content">
 		<div
-			class="grid-flow center-content main-wrap"
+			class="center-content main-wrap grid"
 			data-spacing="800"
 		>
 			<div
-				class="grid-flow center-content"
+				class="center-content grid"
 				data-spacing="700"
 			>
 
@@ -93,18 +88,17 @@
 					data-spacing="400"
 				>
 
-					<?php foreach ($footer['contacts'] as $f_contact) { ?>
-
-					<a
-						class="f__contact"
-						href="<?= $f_contact['link'] ?>"
-					>
-						<x-icon-{{ $f_contact['slug'] }}
-							/
-							</a
+					@foreach ($footer['contacts'] as $f_contact)
+						<a
+							class="f__contact grid place-items-center"
+							href="<?= $f_contact['link'] ?>"
 						>
-
-							<?php } ?>
+							<x-dynamic-component
+								:component="'icon-' . $f_contact['slug']"
+								class="h-1/2 w-1/2"
+							/>
+						</a>
+					@endforeach
 
 				</div>
 
@@ -130,7 +124,7 @@
 	<!-- Notes -->
 	<div class="f__notes">
 		<div class="main-wrap">
-			<p><?= $footer['notes'] ?></p>
+			<p class="opacity-50"><?= $footer['notes'] ?></p>
 		</div>
 	</div>
 </footer>
