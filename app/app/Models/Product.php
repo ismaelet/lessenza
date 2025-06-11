@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Product extends Model {
 
@@ -16,6 +17,15 @@ class Product extends Model {
 	 */
 	public function getRouteKeyName(): string {
 		return 'slug';
+	}
+
+	/**
+	 * Get the product type associated with this product.
+	 * 
+	 * @return BelongsTo
+	 */
+	public function product_type(): BelongsTo {
+		return $this->belongsTo(Product\ProductType::class);
 	}
 
 	/**

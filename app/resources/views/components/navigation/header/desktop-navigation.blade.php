@@ -1,17 +1,17 @@
-@props(['links'])
+@props(['links', 'location'])
 
 @php
 	$items = [];
 	$navigationItemList = header_filter_navigation_items((array) $links, false);
 
 	foreach ($navigationItemList as $item) {
-	    $items[] = generate_nav_item($item);
+	    $items[] = generate_nav_item($item, $location);
 	}
 
 	$items = implode('', $items);
 
 	// nav item
-	function generate_nav_item($item)
+	function generate_nav_item($item, $location)
 	{
 	    $link = isset($item['url']) ? 'href="' . $item['url'] . '"' : '';
 	    $title = $item['label'];
@@ -23,7 +23,7 @@
 
 	    // classes
 	    $classActive = isset($item['url']) ? 'h__link--active' : 'h__link--inactive';
-	    $classHighlighted = $item['location'] == 'home' ? 'h__link--highlighted' : '';
+	    $classHighlighted = $item['location'] == $location ? 'h__link--highlighted' : '';
 	    $classes = array_filter(['h__link', $classActive, $classHighlighted]);
 	    $classes = implode(' ', $classes);
 

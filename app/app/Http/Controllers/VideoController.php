@@ -19,7 +19,7 @@ class VideoController extends Controller {
 
 		return view('videos', [
 			'title' => 'Video',
-			'locationTag' => 'videos',
+			'location' => 'videos',
 			'videos' => $videos,
 		]);
 	}

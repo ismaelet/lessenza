@@ -1,6 +1,6 @@
 <x-layouts.legacy-main
 	:$title
-	:$locationTag
+	:$location
 	:headerConfig="['floating' => true]"
 >
 	<x-page-header

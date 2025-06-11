@@ -13,7 +13,7 @@
 @endpushOnce
 
 <x-layouts.legacy-main
-	:$locationTag
+	:$location
 	:headerConfig="['floating' => true]"
 >
 	<div class="full-width">

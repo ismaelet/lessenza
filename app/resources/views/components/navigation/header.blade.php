@@ -1,4 +1,4 @@
-@props(['config' => []])
+@props(['location' => null, 'config' => []])
 
 @php
 
@@ -38,7 +38,7 @@
 	    ['label' => 'Chi Siamo', 'location' => 'about-us', 'url' => client_url('/about-us')],
 	    ['label' => 'Recensioni', 'location' => 'reviews', 'url' => client_url('/reviews')],
 	    ['label' => 'Blog', 'location' => 'blog', 'url' => client_url('/blog')],
-	    ['label' => 'Video', 'location' => 'video', 'url' => client_url('/videos')],
+	    ['label' => 'Video', 'location' => 'videos', 'url' => client_url('/videos')],
 	    ['label' => 'Contatti', 'location' => 'contacts', 'url' => client_url('/contacts')],
 	    ['label' => 'Gestione', 'location' => 'admin', 'url' => client_url('/admin'), 'admin' => true],
 	];
@@ -366,7 +366,10 @@ if (isset($header['megamenus'])) {
 						<x-navigation.header.search />
 					</div>
 					<div class="h__bar h-bar--desktop">
-						<x-navigation.header.desktop-navigation :links="$header['links']" />
+						<x-navigation.header.desktop-navigation
+							:links="$header['links']"
+							:$location
+						/>
 					</div>
 					<div class="h__bar h-bar--desktop">
 						<x-navigation.header.profile-icon />
