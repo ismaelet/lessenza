@@ -25,7 +25,7 @@
 .page-block {
     padding: 2rem;
     border-radius: 1rem;
-    box-shadow: var(--shadow);
+    box-shadow: var(--shadow-400);
 }
 
 .section-title {
@@ -45,7 +45,7 @@
 */
 .profile-nav {
     border-radius: 1rem;
-    box-shadow: var(--shadow);
+    box-shadow: var(--shadow-400);
     overflow: hidden;
 }
 
@@ -57,7 +57,7 @@
     --icon-size: 0.9em;
     padding: 1rem;
     font-size: var(--fs-500);
-    font-weight: var(--fw-semibold);
+    font-weight: var(--font-weight-semibold);
 }
 
 .profile-nav-link {

@@ -22,7 +22,7 @@ main {
 
 .status-name {
     font-size: var(--text-600);
-    font-weight: var(--fw-semibold);
+    font-weight: var(--font-weight-semibold);
     color: var(--color-neutral-700);
     line-height: 1;
 }

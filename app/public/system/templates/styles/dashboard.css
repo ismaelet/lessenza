@@ -235,7 +235,7 @@ main {
     padding: var(--_padding);
     background-color: var(--surface);
     border-radius: var(--border-radius);
-    box-shadow: 0 0.5rem 1.5rem 0.5px var(--shadow);
+    box-shadow: 0 0.5rem 1.5rem 0.5px var(--shadow-400);
 }
 
 /*

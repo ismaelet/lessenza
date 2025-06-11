@@ -69,7 +69,7 @@ html {
     grid-template-columns: minmax(0, 1fr) 1rem;
     padding-block: 1em;
     color: var(--color-neutral-700);
-    font-weight: var(--fw-semibold);
+    font-weight: var(--font-weight-semibold);
     cursor: pointer;
 }
 
@@ -254,7 +254,7 @@ html {
 
 input:checked + .filter-item__name {
     color: var(--color-neutral-700);
-    font-weight: var(--fw-semibold);
+    font-weight: var(--font-weight-semibold);
 }
 
 /*
@@ -304,7 +304,7 @@ input:checked + .sort-bar__text {
 }
 
 .shop__loading {
-    background-color: var(--clr-background);
+    background-color: var(--color-background-400);
 }
 
 .shop__loading .icon-embed {

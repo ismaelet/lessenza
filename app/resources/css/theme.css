@@ -17,20 +17,20 @@
 }
 
 @font-face {
-    font-family: "Raleway";
+    font-family: "Montserrat";
     font-weight: 300 700;
     font-display: auto;
-    src: local("Raleway"),
-        url("../../public/fonts/Raleway.ttf") format("truetype");
+    src: local("Montserrat"),
+        url("../../public/fonts/Montserrat.ttf") format("truetype");
 }
 
 @font-face {
-    font-family: "Raleway";
+    font-family: "Montserrat";
     font-weight: 300 400;
     font-display: auto;
     font-style: italic;
-    src: local("Raleway"),
-        url("../../public/fonts/Raleway-Italic.ttf") format("truetype");
+    src: local("Montserrat"),
+        url("../../public/fonts/Montserrat-Italic.ttf") format("truetype");
 }
 
 /* Theme */
@@ -54,19 +54,22 @@
     --color-primary-400: hsl(var(--color-primary-hue) 93% 74%);
     --color-primary: var(--color-primary-400);
 
+    --color-secondary-300: hsl(12deg 20% 35%);
     --color-secondary-400: hsl(12deg 30% 13%);
     --color-secondary-500: hsl(12deg 25% 10%);
 
     /* Theme: Fonts */
-    --font-heading: "Raleway", system-ui, sans-serif;
+    --font-heading: "Montserrat", system-ui, sans-serif;
     --font-sans: "Open Sans", system-ui, sans-serif;
 
     --font-weight-light: 300;
+    --font-weight-semibold: 700;
     --font-weight-bold: 700;
 
     --text-200: 0.75rem;
     --text-300: 0.875rem;
     --text-600: min(1.5rem, 6vw);
+    --text-700: min(2.5rem, 10vw);
     --text-800: min(3.5rem, 13vw);
     --text-900: min(4.5rem, 15vw);
 
@@ -78,6 +81,9 @@
     /* Borders */
     --border-width: 1px;
     --border: var(--border-width) solid var(--color-neutral-200);
+
+    /* Shadows */
+    --shadow-400: 0 1rem 4rem -0.5rem hsl(180, 20%, 10%, 0.15);
 }
 
 /* Dark mode */

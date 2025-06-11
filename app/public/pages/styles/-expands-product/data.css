@@ -16,7 +16,7 @@
 */
 .product-price {
     font-size: var(--text-600);
-    font-weight: var(--fw-semibold);
+    font-weight: var(--font-weight-semibold);
 }
 
 /*

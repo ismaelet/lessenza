@@ -24,15 +24,9 @@
     position: relative;
     padding: min(3.5rem, 10vw);
     margin-block: 3rem;
-    background-color: var(--clr-background);
+    background-color: var(--color-background-400);
     border-radius: var(--radius-md);
-    box-shadow: var(--shadow);
-}
-
-.post__title {
-    font-size: var(--fs-650);
-    font-weight: var(--fw-semibold);
-    line-height: 1.4;
+    box-shadow: var(--shadow-400);
 }
 
 .post__subtitle {

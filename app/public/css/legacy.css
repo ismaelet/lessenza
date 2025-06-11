@@ -276,12 +276,12 @@
     top: 50%;
     right: 1rem;
     translate: 0 -50%;
-    font-weight: var(--fw-semibold);
+    font-weight: var(--font-weight-semibold);
 }
 
 .special-input {
     --_padding: 1rem;
-    --_background: var(--clr-background);
+    --_background: var(--color-background-400);
     display: block;
     position: relative;
     padding-inline: var(--_padding);
@@ -347,7 +347,7 @@
 .label {
     margin-bottom: 0.25em;
     color: var(--color-neutral-700);
-    font-weight: var(--fw-semibold);
+    font-weight: var(--font-weight-semibold);
 }
 
 .label--required::after {
@@ -394,7 +394,7 @@
     background-color: var(--clr-surface-400);
     border: var(--border);
     border-radius: var(--radius-md);
-    box-shadow: var(--shadow);
+    box-shadow: var(--shadow-400);
     text-align: left;
 }
 
@@ -756,7 +756,7 @@ p .icon-embed,
 
 .text-link {
     color: var(--color-neutral-700);
-    font-weight: var(--fw-semibold);
+    font-weight: var(--font-weight-semibold);
     cursor: pointer;
     transition: color 0.2s;
 }
@@ -1383,7 +1383,7 @@ h3,
     font-weight: var(--fw-medium);
 }
 .fw-semibold {
-    font-weight: var(--fw-semibold);
+    font-weight: var(--font-weight-semibold);
 }
 .fw-bold {
     font-weight: var(--font-weight-bold);
@@ -1865,7 +1865,7 @@ h3,
 .shipping-method__name,
 .shipping-method__price {
     color: var(--color-neutral-700);
-    font-weight: var(--fw-semibold);
+    font-weight: var(--font-weight-semibold);
 }
 
 .shipping-method__name {

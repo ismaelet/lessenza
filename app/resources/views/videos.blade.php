@@ -5,8 +5,8 @@
 >
 	<x-page-header
 		class="dark"
-		:$title
 		image="videos-background.webp"
+		:$title
 	/>
 
 	<div class="page-body">
@@ -18,17 +18,15 @@
 					data-columns='25rem'
 				>
 
-					<?php foreach ($videos as $key => $record) { ?>
-
-					<iframe
-						class="w-100 aspect-video"
-						src="<?= $record->embeddedVideoUrl() . '?controls=0' ?>"
-						frameborder="0"
-						allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-						allowfullscreen
-					></iframe>
-
-					<?php } ?>
+					@foreach ($videos as $key => $record)
+						<iframe
+							class="w-100 aspect-video"
+							src="{{ $record->embeddedVideoUrl() . '?controls=0' }}"
+							frameborder="0"
+							allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+							allowfullscreen
+						></iframe>
+					@endforeach
 
 				</div>
 			@else

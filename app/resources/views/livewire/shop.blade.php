@@ -140,7 +140,7 @@
 		<!-- products -->
 		@if ($products)
 
-			<section class="shop__body stack-content grid">
+			<section class="shop__body stack-content relative grid items-start">
 				<div
 					class="shop__products grid"
 					data-columns="15rem"
@@ -153,12 +153,10 @@
 
 				</div>
 
-				{{-- <div
-							class="shop__loading fill-all js-load load--fade-out"
-							data-load-type="always"
-						>
-							<x-icon-loading />
-						</div> --}}
+				<x-icon-loading
+					class="absolute left-1/2 top-1/2 w-16 -translate-x-1/2 -translate-y-1/2"
+					wire:loading
+				/>
 			</section>
 		@else
 			<div class="empty-warning center-content grid">
