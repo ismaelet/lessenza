@@ -61,10 +61,9 @@ return [
     */
 
 	'contacts' => [
-		// 'instagram' => ['url' => 'https://www.instagram.com/tag/', 'label' => '@tag',],
-		// 'facebook' => ['url' => 'https://www.facebook.com/tag/', 'label' => '@tag',],
-		// 'email' => ['url' => 'mailto:mail@mail.com', 'label' => 'mail@mail.com',],
-		// 'whatsapp' => ['url' => 'https://wa.me/000000000', 'label' => '000 000000',],
-		// 'phone' => ['url' => 'tel:0000 000000', 'label' => '0000 000000',],
+		'phone' => ['url' => 'tel:3487852808', 'label' => '348 7852808', 'title' => 'Tel.'],
+		'email' => ['url' => 'mailto:commerciale@lessenza.net', 'label' => 'commerciale@lessenza.net', 'title' => 'E-mail'],
+		'instagram' => ['url' => 'https://www.instagram.com/lessenza80/', 'label' => '@lessenza80', 'title' => 'Instagram'],
+		'facebook' => ['url' => 'https://www.facebook.com/lessenza.net/', 'label' => '@lessenza.net', 'title' => 'Facebook'],
 	],
 ];

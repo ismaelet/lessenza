@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AboutUsController;
+use App\Http\Controllers\ContactsController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\VideoController;
@@ -21,6 +22,10 @@ Route::get('/reviews', [ReviewController::class, 'index'])
 // Videos
 Route::get('/videos', [VideoController::class, 'index'])
 	->name('videos');
+
+// Contacts
+Route::get('/contacts', [ContactsController::class, 'index'])
+	->name('contacts');
 
 // Include the shop routes
 include __DIR__ . '/shop.php';

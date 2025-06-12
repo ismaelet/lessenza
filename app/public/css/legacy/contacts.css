@@ -10,7 +10,6 @@
 
 .contact__icon {
     border-radius: 50%;
-    padding: 0.9rem;
     background-color: var(--color-primary-400);
     transition: background-color 0.2s;
 }
@@ -51,10 +50,11 @@
 }
 
 .animated-field__input {
+    width: 100%;
     background-color: transparent;
     padding: 0;
     border: none;
-    border-bottom: 1px solid var(--border-clr-700);
+    border-bottom: 1px solid currentColor;
     border-radius: 0;
     outline: none;
     transition: border-color 0.2s;

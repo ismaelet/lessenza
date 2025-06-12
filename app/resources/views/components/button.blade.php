@@ -22,6 +22,7 @@
 			letter-spacing: 0.2em;
 			text-align: center;
 			text-transform: uppercase;
+			cursor: pointer;
 
 			/* Primary button */
 			&[data-variant="primary"] {
