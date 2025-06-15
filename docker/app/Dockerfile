@@ -2,14 +2,13 @@
 FROM php:8.4-fpm AS base
 
 # Base: Install MySQLi
-RUN docker-php-ext-install pdo pdo_mysql mysqli && \
-	docker-php-ext-enable mysqli
-
-# Base: Install the zip extension
-RUN apt-get update && \
-	apt-get install -y zlib1g-dev libzip-dev && \
-	docker-php-ext-configure zip && \
-	docker-php-ext-install zip
+RUN apt-get update && apt-get install -y \
+        zlib1g-dev \
+        libzip-dev \
+        libicu-dev \
+    && docker-php-ext-configure zip \
+    && docker-php-ext-install zip pdo pdo_mysql mysqli intl \
+    && docker-php-ext-enable mysqli
 
 # Base: Set working directory
 WORKDIR /var/www/html

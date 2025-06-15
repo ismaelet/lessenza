@@ -4,6 +4,7 @@
     'variant' => 'primary',
     'size' => 'regular',
     'color' => 'default',
+    'disabled' => false,
 ])
 
 @php
@@ -78,6 +79,7 @@
 			:where(&:has(svg)) {
 				display: flex;
 				align-items: center;
+				justify-content: center;
 				gap: 0.5em;
 			}
 		}
@@ -87,17 +89,19 @@
 @if ($href)
 	<a
 		href="{{ $href }}"
-		{{ $attributes->class($classes) }}"
+		{{ $attributes->merge(['class' => $classes]) }}
 		data-variant="{{ $variant }}"
 		data-size="{{ $size }}"
 		data-color="{{ $color }}"
+		@disabled($disabled)
 	>{{ $slot }}</a>
 @else
 	<button
 		type="{{ $type }}"
-		{{ $attributes->class($classes) }}"
+		{{ $attributes->merge(['class' => $classes]) }}
 		data-variant="{{ $variant }}"
 		data-size="{{ $size }}"
 		data-color="{{ $color }}"
+		@disabled($disabled)
 	>{{ $slot }}</button>
 @endif

@@ -56,8 +56,14 @@ class Post extends Model {
 		return $this->text;
 	}
 
+	/**
+	 * Get the related posts.
+	 * This method retrieves the latest 5 posts excluding the current one.
+	 * 
+	 * @return Collection
+	 */
 	public function relatedPosts(): Collection {
-		return Post::where('id', '!=', $this->id)
+		return self::where('id', '!=', $this->id)
 			->latest()
 			->take(5)
 			->get();
