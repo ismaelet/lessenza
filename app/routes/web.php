@@ -32,3 +32,9 @@ include __DIR__ . '/shop.php';
 
 // Include the shop routes
 include __DIR__ . '/blog.php';
+
+// Include the auth routes
+include __DIR__ . '/auth.php';
+
+// Include the user dashboard routes
+include __DIR__ . '/user-dashboard.php';

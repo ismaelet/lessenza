@@ -15,6 +15,7 @@
 	<style>
 		.button {
 			--_padding-block: min(2.2em, 6vw);
+			--_border-width: 1px;
 			min-width: 16rem;
 			padding-block: 2rem;
 			border-radius: var(--radius-md);
@@ -40,8 +41,9 @@
 
 			/* Secondary button */
 			&[data-variant="secondary"] {
-				padding-block: calc(1em - var(--border-width));
-				border: var(--border-width) solid var(--color-neutral-400);
+				padding-block: calc(var(--_padding-block) - var(--_border-width));
+				padding-inline: calc(var(--_padding-block) * 1.5 - var(--_border-width));
+				border: var(--_border-width) solid var(--color-neutral-400);
 				color: var(--color-neutral-700);
 
 				/* Secondary button: Dark color scheme */
@@ -71,8 +73,8 @@
 
 			/* Sizes */
 			&[data-size="small"] {
-				min-width: 8rem;
-				font-size: var(--font-size-300);
+				--_padding-block: min(2em, 6vw);
+				min-width: 14rem;
 			}
 
 			/* If contains icons */
