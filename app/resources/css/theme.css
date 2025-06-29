@@ -45,6 +45,8 @@
     --color-background: var(--color-background-400);
 
     --color-neutral-50: hsl(var(--color-background-hue) 0% 100%);
+    --color-neutral-100: hsl(var(--color-background-hue) 0% 98%);
+    --color-neutral-150: hsl(var(--color-background-hue) 0% 95%);
     --color-neutral-200: hsl(var(--color-background-hue) 0% 92%);
     --color-neutral-400: hsl(var(--color-background-hue) 0% 47%);
     --color-neutral-700: hsl(var(--color-background-hue) 0% 13%);
@@ -107,4 +109,10 @@ h4,
 h5,
 h6 {
     font-family: var(--font-heading);
+}
+
+/* Utilities */
+:where(.text-strong) {
+    color: var(--color-neutral-700);
+    font-weight: var(--font-weight-semibold);
 }

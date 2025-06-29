@@ -130,28 +130,6 @@ $headerComponent['mobile-menu'] = function () {
 <?php };
 
 /*
-* Logo
-*/
-$headerComponent['logo'] = function () {
-	$svgLogo = true;
-	$logo = LOGO_DIR . 'logo.svg';
-
-	if (!file_exists(SERVER_ROOT . $logo)) {
-		$svgLogo = false;
-		$logo = LOGO_DIR . 'logo-header.webp';
-	}
-?>
-
-<a
-	class="h__logo"
-	href="<?= client_url('/') ?>"
->
-	<?= $svgLogo ? embed_icon(LOGO_DIR . 'logo') : '<img src="' . client_path($logo) . '" alt="logo">' ?>
-</a>
-
-<?php };
-
-/*
 * title
 */
 $headerComponent['title'] = function () {
@@ -174,78 +152,6 @@ $headerComponent['search-bar'] = function () { ?>
 $headerComponent['search-icon'] = function () { ?>
 <!--  -->
 <?php };
-
-/*
-* Languages
-*/
-/*$headerComponent['language-icon'] = '
-
-	<div class="h__languages load ld-bot ld-del2">
-
-			<div class="h__language-icon h__language-icon_active background-fill" <?= icon_css('languages/' . $_SESSION['language']) ?>></div>
-
-<div class="h__languages-ddown">
-
-	<?php foreach ($header['languages'] as $h_lang) { ?>
-
-	<a
-		href="?lang=<?= $h_lang[1] ?>"
-		class="h__language <?= $_SESSION['language'] == $h_lang[1] ? 'active' : '' ?>"
-	>
-
-		<div
-			class="h__language-icon background-fill"
-			<?= icon_css('languages/' . $h_lang[1]) ?>
-		></div>
-
-		<p class="h__language-name"><?= $h_lang[0] ?></p>
-
-	</a>
-
-	<?php } ?>
-
-</div>
-
-</div>
-';*/
-
-/*
-* Theme switch
-*/
-/*$headerComponent['theme-switch'] = '
-<!-- Theme switch -->
-<div class="h__theme-switch h__nav-icon">
-	<div
-		class="light-icon icon-box"
-		data-theme="light"
-	>
-		<?= embed_icon('sun') ?>
-	</div>
-	<div
-		class="dark-icon icon-box"
-		data-theme="dark"
-	>
-		<?= embed_icon('moon') ?>
-	</div>
-</div>
-
-*/
-
-/*
-* Profile icon
-*/
-$headerComponent['profile-button'] = '
-<a
-	class="h__profile h__nav-icon"
-	href="' . client_url('/profile') . '"
->
-	<div class="icon-box">
-		' . embed_icon('profile-circle') . '
-	</div>
-
-	<p>' . ($user?->firstName ?: 'Profilo') . '</p>
-</a>
-';
 
 /*
 * Megamenus

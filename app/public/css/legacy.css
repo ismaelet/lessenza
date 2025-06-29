@@ -1828,7 +1828,7 @@ h3,
     display: grid;
     padding-block: 0.75rem;
     padding-left: 2rem;
-    background-color: var(--clr-surface-400);
+    background-color: inherit;
     align-items: center;
 }
 
@@ -1838,10 +1838,6 @@ h3,
 
 .cart-list__field:last-child {
     padding-right: 1rem;
-}
-
-.cart-list__cart:nth-child(2n) .cart-list__field {
-    background-color: var(--color-background-500);
 }
 
 .cart-list__field--header {
@@ -1854,7 +1850,6 @@ h3,
     padding-inline: 1em;
     padding-block: 0.5em;
     border-radius: 1rem;
-    color: var(--color-neutral-700);
     font-weight: var(--fw-medium);
     line-height: 1;
     text-align: center;

@@ -1,17 +1,18 @@
 <?php
 
+use App\Http\Controllers\UserDashboardController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('/profile')->name('user-dashboard.')->middleware('auth')->group(function () {
-	Route::get('/', [\App\Http\Controllers\UserDashboardController::class, 'index'])
-		->name('user-dashboard.index');
+	// User dashboard index
+	Route::get('/', [UserDashboardController::class, 'index'])
+		->name('index');
 
-	Route::get('/profile', [\App\Http\Controllers\UserProfileController::class, 'edit'])
-		->name('user-dashboard.profile.edit');
+	// User dashboard orders
+	Route::get('/orders', [UserDashboardController::class, 'orders'])
+		->name('orders');
 
-	Route::put('/profile', [\App\Http\Controllers\UserProfileController::class, 'update'])
-		->name('user-dashboard.profile.update');
-
-	Route::get('/orders', [\App\Http\Controllers\UserOrderController::class, 'index'])
-		->name('user-dashboard.orders.index');
+	// User dashboard settings
+	Route::get('/settings', [UserDashboardController::class, 'settings'])
+		->name('settings');
 });

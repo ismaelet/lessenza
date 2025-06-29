@@ -12,13 +12,11 @@
 	$thumbnail = $thumbnail ?: Vite::image('thumbnail.jpg');
 
 	$title = $title ? $title . ' | ' . $appName : $appName . ' | ' . config('custom.meta_data.short_description');
-
-	$colorScheme = $colorScheme ?: get_color_scheme();
 @endphp
 
 <!DOCTYPE html>
 <html
-	class="{{ $colorScheme }}"
+	class=""
 	lang="{{ str_replace('_', '-', app()->getLocale()) }}"
 >
 

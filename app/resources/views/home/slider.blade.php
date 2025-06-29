@@ -171,16 +171,16 @@
 				type="submit"
 				class="hover:text-primary cursor-pointer transition-colors"
 			>
-				{!! embed_icon('search') !!}
+				<x-icon-search />
 			</button>
 		</form>
 
 		<!-- Highlight slider -->
 		<div class="highlighted-product__slider hidden">
-			<div class="highlighted-product__arrow">{!! embed_icon('arrow1-left') !!}</div>
+			<div class="highlighted-product__arrow"><x-icon-arrow1-left /></div>
 			<h3 class="highlighted-product__title">Novità</h3>
 			<h3 class="highlighted-product__name">nome prodotto</h3>
-			<div class="highlighted-product__arrow">{!! embed_icon('arrow1-right') !!}</div>
+			<div class="highlighted-product__arrow"><x-icon-arrow1-right /></div>
 		</div>
 	</div>
 </section>

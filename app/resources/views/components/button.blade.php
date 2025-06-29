@@ -66,14 +66,15 @@
 
 				/* Secondary button: Hover state */
 				&:hover {
-					color: var(--color-neutral-700);
-					border-color: var(--color-neutral-700);
+					color: white;
+					border-color: var(--color-secondary-300);
+					background-color: var(--color-secondary-300);
 				}
 			}
 
 			/* Sizes */
 			&[data-size="small"] {
-				--_padding-block: min(2em, 6vw);
+				--_padding-block: min(1.5em, 6vw);
 				min-width: 14rem;
 			}
 

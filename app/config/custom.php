@@ -66,4 +66,42 @@ return [
 		'instagram' => ['url' => 'https://www.instagram.com/lessenza80/', 'label' => '@lessenza80', 'title' => 'Instagram'],
 		'facebook' => ['url' => 'https://www.facebook.com/lessenza.net/', 'label' => '@lessenza.net', 'title' => 'Facebook'],
 	],
+
+	/*
+    |--------------------------------------------------------------------------
+    | Order Status
+    |--------------------------------------------------------------------------
+    */
+	'order_statuses' => [
+		'-1' => [
+			'tag' => 'canceled',
+			'label' => 'Cancellato',
+			'icon' => 'close'
+		],
+		'0' => [
+			'tag' => 'open',
+			'label' => 'Non completato',
+			'icon' => 'pause'
+		],
+		'1' => [
+			'tag' => 'waiting-payment',
+			'label' => 'In attesa del pagamento',
+			'icon' => 'waiting'
+		],
+		'2' => [
+			'tag' => 'confirmed-payment',
+			'label' => 'Pagamento confermato',
+			'icon' => 'correct'
+		],
+		'3' => [
+			'tag' => 'shipped',
+			'label' => 'Spedito',
+			'icon' => 'shipping'
+		],
+		'4' => [
+			'tag' => 'delivered',
+			'label' => 'Consegnato',
+			'icon' => 'delivered'
+		],
+	],
 ];

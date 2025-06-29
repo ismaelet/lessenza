@@ -80,10 +80,6 @@ function client_url(string $parcialUrl = '') {
 	return $parcialUrl;
 }
 
-function cart() {
-	return customer()->cart;
-}
-
 function customer() {
 	global $customer;
 

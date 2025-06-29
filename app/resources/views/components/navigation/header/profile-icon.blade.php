@@ -1,6 +1,6 @@
 <a
 	class="h__nav-icon transition-colors"
-	href="<?= client_url('/profile') ?>"
+	href="{{ route('user-dashboard.index') }}"
 >
-	<?= embed_icon('profile-full') ?>
+	<x-icon-profile-full />
 </a>

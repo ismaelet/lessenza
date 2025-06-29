@@ -107,60 +107,7 @@ class ViewManager {
 	}
 
 	// Cart list
-	public static function renderCartList() {
-		ob_start();
 
-		if (customer()->confirmedCartsCount) { ?>
-
-			<section class="cart-list">
-				<div class="cart-list__wrapper">
-					<div class="cart-list__header">
-						<p class="cart-list__field cart-list__field--header">Ordine</p>
-						<p class="cart-list__field cart-list__field--header">Prodotto</p>
-						<p class="cart-list__field cart-list__field--header">Totale</p>
-						<p class="cart-list__field cart-list__field--header">Stato</p>
-						<p class="cart-list__field cart-list__field--header">Data</p>
-						<div class="cart-list__field cart-list__field--header"></div>
-					</div>
-
-					<?php foreach (customer()->confirmedCarts as $cart) { ?>
-
-						<div class="cart-list__cart">
-							<p class=" cart-list__field"><?= $cart->idCode ?></p>
-							<p class="cart-list__field">
-
-								<?php foreach ($cart->orders as $order) {
-									echo $order->name . '<br>';
-								} ?>
-
-							</p>
-							<p class="cart-list__field"><?= $cart->priceString ?></p>
-							<p class="cart-list__field">
-								<span class="cart-list__status background-status-color--<?= $cart->statusCode ?>">
-									<?= $cart->statusName ?>
-								</span>
-							</p>
-							<p class="cart-list__field"><?= $cart->dateString ?></p>
-							<p class="cart-list__field">
-								<a class="cart-list__link text-link" href="<?= $cart->url ?>">
-									visualizza
-								</a>
-							</p>
-						</div>
-
-					<?php } ?>
-
-				</div>
-			</section>
-
-		<?php } else { ?>
-
-			<p class="">Nessun ordine effetuato</p>
-
-		<?php }
-
-		return ob_get_clean();
-	}
 
 	// Cart recap panel
 	public static function renderCartRecap(object $cart = null) {
