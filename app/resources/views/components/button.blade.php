@@ -67,8 +67,8 @@
 				/* Secondary button: Hover state */
 				&:hover {
 					color: white;
-					border-color: var(--color-secondary-300);
-					background-color: var(--color-secondary-300);
+					border-color: var(--color-secondary-400);
+					background-color: var(--color-secondary-400);
 				}
 			}
 

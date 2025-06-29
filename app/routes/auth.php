@@ -18,7 +18,7 @@ Route::get('/logout', [LogoutController::class, 'index'])
 	->middleware('auth')
 	->name('logout');
 
-Route::post('/logout', [LogoutController::class, 'logout'])
+Route::post('/logout', [LogoutController::class, 'attempt'])
 	->middleware('auth')
 	->name('logout.attempt');
 
