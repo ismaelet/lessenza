@@ -28,7 +28,8 @@ class OrderItemList extends Component {
 	/**
 	 * Lifecycle hook: Initialize the component
 	 */
-	public function mount(): void {
+	public function boot(): void {
+		$this->orderItems = $this->orderItems->load(['order', 'product']);
 		$this->cart = $this->orderItems->first()->order ?? cart();
 		$this->editable = !((bool) $this->cart->status);
 	}

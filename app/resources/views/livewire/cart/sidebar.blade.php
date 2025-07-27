@@ -114,7 +114,7 @@
 				@else
 					<livewire:cart.order-item-list
 						:$orderItems
-						:editable="$cart->status"
+						:editable="(bool) $cart->status"
 						:key="'order-items:' . $orderItems->pluck('id')->implode('-') . ',q:' . $cart->quantity()"
 					/>
 				@endif

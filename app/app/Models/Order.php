@@ -166,7 +166,7 @@ class Order extends Model {
 	 * Confirm the order
 	 */
 	public function confirm($sendNotification = true): void {
-		if ($this->status !== 0) {
+		if ($this->status) {
 			return;
 		}
 

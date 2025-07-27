@@ -31,7 +31,10 @@
 			<!-- Page content -->
 			<div class="page-content">
 
-				<form method="POST">
+				<form
+					method="POST"
+					action="{{ route('cart.update') }}"
+				>
 					@csrf
 					<div class="grid gap-8">
 						<!-- Shipping address -->

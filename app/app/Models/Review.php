@@ -32,7 +32,7 @@ class Review extends Model {
 			return null;
 		}
 
-		return public_asset($imagePath);
+		return '/storage/app/public/' . $imagePath;
 	}
 
 	/**
@@ -56,7 +56,7 @@ class Review extends Model {
 			return null;
 		}
 
-		return public_asset($imagePath);
+		return '/storage/app/public/' . $imagePath;
 	}
 
 	/**

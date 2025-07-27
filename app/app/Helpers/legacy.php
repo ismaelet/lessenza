@@ -86,12 +86,6 @@ function customer() {
 	return $customer ?: initializeCustomer();
 }
 
-function user() {
-	global $user;
-
-	return $user ?: initializeUser();
-}
-
 function userId() {
 	return user()->id;
 }

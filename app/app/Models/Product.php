@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Facades\Auth;
 use NumberFormatter;
 
 class Product extends Model {
@@ -22,45 +23,35 @@ class Product extends Model {
 	}
 
 	/**
-	 * Get the product type associated with this product.
-	 * 
-	 * @return BelongsTo
+	 * Get the product type associated with this product
 	 */
 	public function product_type(): BelongsTo {
 		return $this->belongsTo(Product\ProductType::class);
 	}
 
 	/**
-	 * Get the URL for the product.
-	 * 
-	 * @return string
+	 * Get the URL for the product
 	 */
 	public function url(): string {
 		return route('product.show', ['product' => $this->slug]);
 	}
 
 	/**
-	 * Get the image URL for the product.
-	 * 
-	 * @param int $resolution The resolution of the image.
-	 * @return string
+	 * Get the image URL for the product
 	 */
 	public function image(int $resolution = self::DEFAULT_IMAGE_RESOLUTION): string {
 		if (!in_array($resolution, self::ALLOWED_IMAGE_RESOLUTIONS)) {
 			$resolution = self::DEFAULT_IMAGE_RESOLUTION;
 		}
 
-		return public_asset('products/' . $this->id . '-' . $resolution . '.webp');
+		return ('/storage/app/public/products/' . $this->id . '-' . $resolution . '.webp');
 	}
 
 	/**
-	 * Get the product price based on the quantity.
-	 * 
-	 * @param int $quantity The quantity of the product.
-	 * @return float
+	 * Get the product price based on the quantity
 	 */
 	public function price(int $quantity = 1): float {
-		if (user()->groupId != 2) {
+		if (Auth::user()?->groupId != 2) {
 			switch (true) {
 				case $quantity > 20:
 					$price = 34.9;

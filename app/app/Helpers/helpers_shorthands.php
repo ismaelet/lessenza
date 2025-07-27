@@ -41,11 +41,11 @@ function price(?float $value): string {
  */
 function cart(): Order {
 	if (Auth::check() && Auth::user()->cart) {
-		return Auth::user()->cart;
+		return Auth::user()->cart->load(['order_items']);
 	}
 
 	if (session()->has('cart')) {
-		return session('cart');
+		return session('cart')->load(['order_items']);
 	}
 
 	// If no cart is found, create a new one

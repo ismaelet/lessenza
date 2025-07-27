@@ -46,7 +46,7 @@
 								<p class="post__subtitle">{{ $post->date() }}</p>
 								<h3 class="post__title text-3xl font-medium text-neutral-700">{{ $post->title }}</h3>
 							</div>
-							<p class="post__text">{{ $post->snippet(250) }}</p>
+							<p class="post__text line-clamp-4">{!! $post->text !!}</p>
 							<p class="post__read-more">continua a leggere</p>
 						</a>
 					</div>
