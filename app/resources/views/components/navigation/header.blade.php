@@ -279,7 +279,7 @@ if (isset($header['megamenus'])) {
 					</div>
 					<div class="h__bar h-bar--desktop">
 						<x-navigation.header.profile-icon />
-						<x-navigation.header.cart-icon />
+						<livewire:header.cart-icon />
 					</div>
 				</section>
 			</div>
@@ -294,7 +294,7 @@ if (isset($header['megamenus'])) {
 					</div>
 					<div class="h__bar h-bar--mob">
 						<x-navigation.header.profile-icon />
-						<x-navigation.header.cart-icon />
+						<livewire:header.cart-icon />
 						<x-navigation.header.mobile-icon />
 					</div>
 				</div>

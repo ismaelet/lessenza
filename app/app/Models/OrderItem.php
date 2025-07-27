@@ -29,6 +29,13 @@ class OrderItem extends Model {
 	}
 
 	/**
+	 * Relationship: Get the order associated with the order item
+	 */
+	public function order(): BelongsTo {
+		return $this->belongsTo(Order::class);
+	}
+
+	/**
 	 * Relationship: Get the product associated with the order item
 	 */
 	public function product(): BelongsTo {
@@ -54,5 +61,14 @@ class OrderItem extends Model {
 	 */
 	public function dynamicProductPrice(): float {
 		return $this->product->price();
+	}
+
+	/**
+	 * Update the price of the order item based on the current product price
+	 */
+	public function updatePrice(): void {
+		$this->price = $this->dynamicPrice();
+		$this->product_price = $this->dynamicProductPrice();
+		$this->save();
 	}
 }

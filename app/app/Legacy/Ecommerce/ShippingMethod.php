@@ -89,7 +89,7 @@ class ShippingMethod {
 			$dateMonthDay = date('d', $date);
 			$dateMonth = date('m', $date);
 
-			$deliveryDate[] = '<span class="fw-semibold">' . strtolower(self::DAY_NAMES[$dateWeekDay - 1]) . ' ' . $dateMonthDay . ' ' . strtolower(self::MONTH_NAMES[$dateMonth - 1]) . '</span> ';
+			$deliveryDate[] = '<span class="">' . strtolower(self::DAY_NAMES[$dateWeekDay - 1]) . ' ' . $dateMonthDay . ' ' . strtolower(self::MONTH_NAMES[$dateMonth - 1]) . '</span> ';
 		}
 
 		return implode(' - ', $deliveryDate);

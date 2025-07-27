@@ -332,7 +332,7 @@ main > * {
     transition: color 0.2s;
 }
 
-.quantity__edit.disabled {
+.quantity__edit:disabled {
     color: var(--color-neutral-400);
     cursor: default;
 }

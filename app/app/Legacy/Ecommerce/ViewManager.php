@@ -61,50 +61,13 @@ class ViewManager {
 
 		</label>
 
-		<?php
+	<?php
 
 		return ob_get_clean();
 	}
 
 	// Order list
-	public static function renderOrderList(object $cart = null) {
 
-		$cart = self::getCart($cart);
-
-		ob_start();
-
-		foreach ($cart->orders as $order) { ?>
-
-			<div class="cart-order js-cart-order">
-
-				<?php if (!$cart->statusId) { ?>
-
-					<div class="cart-order__remove js-remove-from-cart" data-order-id="<?= $order->id ?>">
-						<?= embed_svg('close') ?>
-					</div>
-
-				<?php } ?>
-
-				<div class="cart-order__data">
-					<h3 class="cart-order__title">
-						<a href="<?= $order->product->url ?>">
-							<?= $order->product->name ?><br><span class="fc-300"><?= $order->quantity == 1 ? 'tanica' : 'taniche' ?> da 5L</span>
-						</a>
-					</h3>
-					<p>
-						<?= $order->quantity ?> x <?= $order->discount ? '<span class="promo-price">' . $order->priceString . '</span>' . ' <span class="original-price">' . $order->originalPriceString . '</span>' : $order->priceString ?>
-					</p>
-				</div>
-
-				<div class="cart-order__image">
-					<img class="image-fit" src="<?= $order->product->clientImage ?>" alt="">
-				</div>
-			</div>
-
-		<?php }
-
-		return ob_get_clean();
-	}
 
 	// Cart list
 
@@ -116,7 +79,7 @@ class ViewManager {
 
 		ob_start();
 
-		?>
+	?>
 
 		<section class="recap">
 			<div class="recap-row">

@@ -62,31 +62,6 @@
 		</div>
 
 		<!-- Quantity and add to cart -->
-		<div class="flex flex-wrap gap-4">
-			<label class="quantity center-content border-1 grid grow grid-cols-3 rounded border-neutral-300 sm:grow-0">
-				<span class="quantity__edit quantity__edit--remove disabled js-quantity-remove">-</span>
-				<input
-					type="number"
-					name="quantity"
-					value="1"
-					min="1"
-					max="99"
-					step="1"
-				>
-				<span class="quantity__edit quantity__edit--add js-quantity-add">+</span>
-			</label>
-
-			<x-button
-				type="button"
-				class="grow"
-				data-product-id="{{ $product->id }}"
-				data-quantity="1"
-				value="{{ $product->id }}"
-				:disabled="!$product->inStock"
-			>
-				<x-icon-cart class="w-[1.25em]" />
-				Aggiungi al carrello
-			</x-button>
-		</div>
+		<livewire:product.add-to-cart :product="$product" />
 	</form>
 </section>

@@ -4,71 +4,28 @@
  * @param {object} [data] the data to post
  */
 async function postData(endpoint, data = {}) {
-	const root = document.querySelector('html').getAttribute('data-client-root')
-	const clientEndpoint = root + endpoint
+    const root = document
+        .querySelector("html")
+        .getAttribute("data-client-root");
+    const clientEndpoint = root + endpoint;
 
-	const response = await fetch(clientEndpoint, {
-		method: 'POST',
-		headers: {
-			'Content-Type': 'application/json',
-		},
-		body: JSON.stringify(data),
-	})
+    const response = await fetch(clientEndpoint, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+    });
 
-	const responseData = await response.text()
+    const responseData = await response.text();
 
-	try {
-		return JSON.parse(responseData)
-	} catch (err) {
-		console.log('Error: ' + responseData)
+    try {
+        return JSON.parse(responseData);
+    } catch (err) {
+        console.log("Error: " + responseData);
 
-		return null
-	}
-}
-
-/*
- * Ajax call
- */
-async function AJAX(parcialEndpoint, parameters = {}, contentType = 'json', debug = false) {
-	let responseData
-
-	// generate endpoint
-	const root = document.querySelector('html').getAttribute('data-client-root')
-
-	let endpoint = parcialEndpoint[0] == '/' ? root + parcialEndpoint : root + '/ajax/' + parcialEndpoint
-
-	if (parameters) endpoint += '?' + new URLSearchParams(parameters)
-
-	// send the request
-	const response = await fetch(endpoint)
-
-	// debugger
-	if (debug) {
-		const debugResponse = response.clone()
-		console.log(await debugResponse.text())
-	}
-
-	// parse the response
-	responseData = await response.text()
-
-	switch (contentType) {
-		case 'json':
-			try {
-				responseData = JSON.parse(responseData)
-			} catch (err) {
-				console.log('Error: ' + responseData)
-				responseData = null
-			}
-			break
-		case 'text':
-			responseData = responseData
-			break
-		default:
-			responseData = null
-	}
-
-	// return the response
-	return responseData
+        return null;
+    }
 }
 
 /**
@@ -78,13 +35,18 @@ async function AJAX(parcialEndpoint, parameters = {}, contentType = 'json', debu
  * @param {boolean} [debug] the debug option
  */
 async function call_function(functionName, arguments = null, debug = false) {
-	let parameters = {}
+    let parameters = {};
 
-	if (arguments) {
-		parameters.arguments = arguments
-	}
+    if (arguments) {
+        parameters.arguments = arguments;
+    }
 
-	return await AJAX('/api/call-function/' + functionName, parameters, 'json', debug)
+    return await AJAX(
+        "/api/call-function/" + functionName,
+        parameters,
+        "json",
+        debug
+    );
 }
 
 /**
@@ -97,32 +59,46 @@ async function call_function(functionName, arguments = null, debug = false) {
  * @param {string} [orderField] the field to use to order the results
  * @param {boolean} [debug] the debug option
  */
-async function search_table(tableName, responseFields, searchFields = null, search = null, orderField = null, orderDirection = null, count = null, debug = false) {
-	let parameters = {
-		responseFields: responseFields,
-	}
+async function search_table(
+    tableName,
+    responseFields,
+    searchFields = null,
+    search = null,
+    orderField = null,
+    orderDirection = null,
+    count = null,
+    debug = false
+) {
+    let parameters = {
+        responseFields: responseFields,
+    };
 
-	if (searchFields) {
-		parameters.searchFields = searchFields
-	}
+    if (searchFields) {
+        parameters.searchFields = searchFields;
+    }
 
-	if (search) {
-		parameters.search = search
-	}
+    if (search) {
+        parameters.search = search;
+    }
 
-	if (orderField) {
-		parameters.orderField = orderField
-	}
+    if (orderField) {
+        parameters.orderField = orderField;
+    }
 
-	if (orderDirection) {
-		parameters.orderDirection = orderDirection
-	}
+    if (orderDirection) {
+        parameters.orderDirection = orderDirection;
+    }
 
-	if (count) {
-		parameters.count = count
-	}
+    if (count) {
+        parameters.count = count;
+    }
 
-	return await AJAX('/api/search-table/' + tableName, parameters, 'json', debug)
+    return await AJAX(
+        "/api/search-table/" + tableName,
+        parameters,
+        "json",
+        debug
+    );
 }
 
 /**
@@ -133,20 +109,31 @@ async function search_table(tableName, responseFields, searchFields = null, sear
  * @param {object} [setProperties] the properties to set
  * @param {boolean} [debug] the debug option
  */
-async function get_class_properties(className, propertyNames, objectId = null, setProperties = null, debug = false) {
-	let parameters = {
-		scope: propertyNames,
-	}
+async function get_class_properties(
+    className,
+    propertyNames,
+    objectId = null,
+    setProperties = null,
+    debug = false
+) {
+    let parameters = {
+        scope: propertyNames,
+    };
 
-	if (objectId !== null) {
-		parameters.objectId = objectId
-	}
+    if (objectId !== null) {
+        parameters.objectId = objectId;
+    }
 
-	if (setProperties) {
-		parameters.setProperties = format_set_request(setProperties)
-	}
+    if (setProperties) {
+        parameters.setProperties = format_set_request(setProperties);
+    }
 
-	return await AJAX('/api/old-get-class-properties/' + className, parameters, 'json', debug)
+    return await AJAX(
+        "/api/old-get-class-properties/" + className,
+        parameters,
+        "json",
+        debug
+    );
 }
 
 /**
@@ -157,24 +144,30 @@ async function get_class_properties(className, propertyNames, objectId = null, s
  * @param {number} [objectId] the id of the object, if not set, the class will be used statically
  * @param {object} [setProperties] the properties to set
  */
-async function call_class_method(className, methodName, arguments = null, objectId = null, setProperties = null) {
-	let parameters = {
-		scope: methodName,
-	}
+async function call_class_method(
+    className,
+    methodName,
+    arguments = null,
+    objectId = null,
+    setProperties = null
+) {
+    let parameters = {
+        scope: methodName,
+    };
 
-	if (arguments) {
-		parameters.arguments = arguments
-	}
+    if (arguments) {
+        parameters.arguments = arguments;
+    }
 
-	if (objectId !== null) {
-		parameters.objectId = objectId
-	}
+    if (objectId !== null) {
+        parameters.objectId = objectId;
+    }
 
-	if (setProperties) {
-		parameters.setProperties = format_set_request(setProperties)
-	}
+    if (setProperties) {
+        parameters.setProperties = format_set_request(setProperties);
+    }
 
-	return await postData('/api/call-class-method/' + className, parameters)
+    return await postData("/api/call-class-method/" + className, parameters);
 }
 
 /**
@@ -186,43 +179,55 @@ async function call_class_method(className, methodName, arguments = null, object
  * @param {object} [setProperties] the properties to set
  * @param {boolean} [debug] the debug option
  */
-async function old_call_class_method(className, methodName, arguments = null, objectId = null, setProperties = null, debug = false) {
-	let parameters = {
-		scope: methodName,
-	}
+async function old_call_class_method(
+    className,
+    methodName,
+    arguments = null,
+    objectId = null,
+    setProperties = null,
+    debug = false
+) {
+    let parameters = {
+        scope: methodName,
+    };
 
-	if (arguments) {
-		parameters.arguments = arguments
-	}
+    if (arguments) {
+        parameters.arguments = arguments;
+    }
 
-	if (objectId !== null) {
-		parameters.objectId = objectId
-	}
+    if (objectId !== null) {
+        parameters.objectId = objectId;
+    }
 
-	if (setProperties) {
-		parameters.setProperties = format_set_request(setProperties)
-	}
+    if (setProperties) {
+        parameters.setProperties = format_set_request(setProperties);
+    }
 
-	return await AJAX('/api/old-call-class-method/' + className, parameters, 'json', debug)
+    return await AJAX(
+        "/api/old-call-class-method/" + className,
+        parameters,
+        "json",
+        debug
+    );
 }
 
 /*
  * Function
  */
 function format_set_request(setProperties) {
-	let setRequest = []
+    let setRequest = [];
 
-	if (setProperties) {
-		for (const key in setProperties) {
-			setRequest.push(key + '=' + setProperties[key])
-		}
-	}
+    if (setProperties) {
+        for (const key in setProperties) {
+            setRequest.push(key + "=" + setProperties[key]);
+        }
+    }
 
-	if (setRequest.length) {
-		setRequest.join(',')
-	} else {
-		setRequest = null
-	}
+    if (setRequest.length) {
+        setRequest.join(",");
+    } else {
+        setRequest = null;
+    }
 
-	return setRequest
+    return setRequest;
 }

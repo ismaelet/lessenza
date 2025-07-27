@@ -30,7 +30,7 @@ function public_asset(string $path): string {
 /**
  * Format a price value according to the current currency
  */
-function price(float $value): string {
+function price(?float $value): string {
 	$formatter = new NumberFormatter(config('app.locale'), NumberFormatter::CURRENCY);
 
 	return $formatter->formatCurrency($value, config('custom.currency', 'EUR'));
@@ -39,8 +39,8 @@ function price(float $value): string {
 /**
  * Get the current customer's cart
  */
-function cart(): Order|null {
-	if (Auth::check()) {
+function cart(): Order {
+	if (Auth::check() && Auth::user()->cart) {
 		return Auth::user()->cart;
 	}
 
@@ -48,5 +48,14 @@ function cart(): Order|null {
 		return session('cart');
 	}
 
-	return null;
+	// If no cart is found, create a new one
+	$cart = Order::create([
+		'user_id' => Auth::id() ?? null,
+	]);
+
+	if (!Auth::check()) {
+		session(['cart' => $cart]);
+	}
+
+	return $cart;
 }

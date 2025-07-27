@@ -38,7 +38,7 @@ class ContactMail extends Mailable {
 	 */
 	public function content(): Content {
 		return new Content(
-			view: 'emails.default-email',
+			view: 'emails.contact-email',
 			with: $this->parameters ?? [],
 		);
 	}

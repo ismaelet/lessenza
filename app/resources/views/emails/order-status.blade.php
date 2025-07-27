@@ -1,0 +1,150 @@
+@php
+	$title = 'Aggiornamento dell\'ordine ' . $order->idCode();
+	$showRecap = in_array($order->status, [0, 1, 2]);
+
+	switch ($order->status) {
+	    case -1:
+	        $info = '<span style="text-align: center;">Il suo ordine è stato cancellato.</span>';
+	        break;
+	    case 0:
+	    case 1:
+	        $info =
+	            'Grazie per l\'acquisto su ' .
+	            config('app.name') .
+	            '. L\'ordine è stato ricevuto e sarà processato al più presto.';
+	        break;
+	    case 2:
+	        $info =
+	            'Abbiamo aggiornato lo stato dell\'ordine. Il nuovo stato è:<br><span style="display: block; font-size: 25px; font-weight: bold; letter-spacing: .05em; text-align: center;">CONFERMATO</span>';
+	        break;
+	    case 3:
+	        $info =
+	            'Abbiamo aggiornato lo stato dell\'ordine. Il nuovo stato è:<br><span style="display: block; font-size: 25px; font-weight: bold; letter-spacing: .05em; text-align: center;">SPEDITO</span>';
+	        break;
+	    case 4:
+	        $info =
+	            'Abbiamo aggiornato lo stato dell\'ordine. Il nuovo stato è:<br><span style="display: block; font-size: 25px; font-weight: bold; letter-spacing: .05em; text-align: center;">CONSEGNATO</span>';
+	        break;
+	    default:
+	        $info = false;
+	}
+@endphp
+
+<x-layouts.email>
+	<table width="100%">
+
+		<tr>
+			<td>
+				<h2 style="font-size: 20px; font-weight: 600; color: hsl(0, 0%, 13%)">{{ $title }}</h2>
+			</td>
+		</tr>
+
+		<tr>
+			<td style="padding: 32px; background-color: #f4f4f4; text-align: center">
+				<p>{!! $info !!}</p>
+			</td>
+		</tr>
+
+		<tr>
+			<td style="padding-top: 32px">
+				<center>
+					<a href="{{ $order->recapUrlWithToken() }}">
+						<p
+							style="
+							display: inline-block;
+							padding: 0 32px;
+							background-color: hsl(358deg, 93%, 74%);
+							border-radius: 32px;
+							color: #fff;
+							font-size: 18px;
+							font-weight: 500;
+							line-height: 2.6;
+							text-decoration: none;
+						"
+						>
+							Visualizza l'ordine
+						</p>
+					</a>
+				</center>
+			</td>
+		</tr>
+
+		@if ($showRecap)
+			<tr>
+				<td style="padding-top: 32px">
+					<h2 style="padding-top: 16px; border-top: 1px solid #ebebeb; line-height: 2">Riepilogo dell'ordine</h2>
+					<table
+						width="100%"
+						style="border: 1px solid #ebebeb; padding: 2rem"
+					>
+						<tr>
+							<td
+								width="50%"
+								style="padding-right: 32px; vertical-align: top"
+							>
+								<p style="font-weight: 600; margin-bottom: 8px">Informazioni di contatto</p>
+								<p style="margin-bottom: 16px">{!! $order->address->email . '<br>' . $order->address->phone !!}</p>
+							</td>
+							<td style="padding-left: 32px; vertical-align: top">
+								<p style="font-weight: 600; margin-bottom: 8px">Forma di pagamento</p>
+								<p style="margin-bottom: 16px">{{ $order->payment_method->name ?? '-' }}</p>
+							</td>
+						</tr>
+
+						<tr>
+							<td
+								width="50%"
+								style="padding-right: 32px; vertical-align: top"
+							>
+								<p style="font-weight: 600; margin-bottom: 8px">Indirizzo di spedizione</p>
+								<p>{!! implode('<br>', $order->address->full_address) !!}</p>
+							</td>
+							<td style="padding-left: 32px; vertical-align: top">
+								<p style="font-weight: 600; margin-bottom: 8px">Tipo di spedizione</p>
+								<p>{!! $order->shipping_method->name !!}</p>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<h2 style="padding-top: 32px; border-bottom: 1px solid #ebebeb; line-height: 2">Prodotti</h2>
+					<table
+						width="100%"
+						style="border-collapse: collapse"
+					>
+
+						@foreach ($order->order_items as $orderItem)
+							<tr style="border-bottom: 1px solid #f4f4f4">
+								<td>
+									<p style="line-height: 3">{{ $orderItem->name() }}</p>
+								</td>
+								<td>
+									<p style="text-align: right">{{ $orderItem->priceString() }}</p>
+								</td>
+							</tr>
+						@endforeach
+
+						<tr>
+							<td>
+								<p style="">Spedizione:</p>
+							</td>
+							<td>
+								<p style="text-align: right">{{ $order->shippingFeeString() }}</p>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<p><strong>Totale dell'ordine:</strong></p>
+							</td>
+							<td>
+								<p style="text-align: right"><strong>{{ $order->priceString() }}</strong></p>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		@endif
+	</table>
+</x-layouts.email>
