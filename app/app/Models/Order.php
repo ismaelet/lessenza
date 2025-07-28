@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Mail\OrderStatusMail;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -28,6 +29,15 @@ class Order extends Model {
 	];
 
 	/**
+	 * Attribute: Get the order ID code
+	 */
+	public function idCode(): Attribute {
+		return new Attribute(
+			get: fn() => '#' . str_pad($this->id, 6, '0', STR_PAD_LEFT)
+		);
+	}
+
+	/**
 	 * Relationship: Get the address associated with the order
 	 */
 	public function address(): BelongsTo {
@@ -39,13 +49,6 @@ class Order extends Model {
 	 */
 	public function order_items(): HasMany {
 		return $this->hasMany(OrderItem::class);
-	}
-
-	/**
-	 * Get the name of the order item
-	 */
-	public function idCode(): string {
-		return '#' . str_pad($this->id, 6, '0', STR_PAD_LEFT);
 	}
 
 	/**

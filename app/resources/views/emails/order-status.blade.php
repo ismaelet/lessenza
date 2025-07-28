@@ -1,5 +1,5 @@
 @php
-	$title = 'Aggiornamento dell\'ordine ' . $order->idCode();
+	$title = 'Aggiornamento dell\'ordine ' . $order->id_code;
 	$showRecap = in_array($order->status, [0, 1, 2]);
 
 	switch ($order->status) {

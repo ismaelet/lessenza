@@ -49,7 +49,7 @@
 						<div class="address rounded border border-neutral-300 p-4 sm:p-8">
 							<p class="font-heading mb-2 text-lg font-medium text-neutral-700">Indirizzo di spedizione:</p>
 							<p class="">
-								<?= $address->fullAddress() ?><br>
+								<?= implode('<br>', $address->full_address) ?><br>
 								-<br>
 								<?= $address->email ?><br>
 								<?= $address->phone ?>
@@ -59,7 +59,7 @@
 						<div class="address rounded border border-neutral-300 p-4 sm:p-8">
 							<h3 class="font-heading mb-2 text-lg font-medium text-neutral-700">Indirizzo di fatturazione:</h3>
 							<p class="">
-								<?= $address->fullAddress() ?><br>
+								<?= implode('<br>', $address->full_address) ?><br>
 								-<br>
 								<?= $address->email ?><br>
 								<?= $address->phone ?>

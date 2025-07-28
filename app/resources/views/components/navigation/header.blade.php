@@ -77,7 +77,7 @@ function header_filter_navigation_items(array $items, bool $isMobileMenu = null)
 			case (isset($item['logged']) && $item['logged'] && !logged()):
 
 				// check admin filter
-			case (isset($item['admin']) && !is_admin());
+			case (isset($item['admin']) && !Auth::user()?->is_admin):;
 
 				// check manager filter
 			case (isset($item['manager']) && !manager()):

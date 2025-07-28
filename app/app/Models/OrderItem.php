@@ -20,11 +20,29 @@ class OrderItem extends Model {
 	];
 
 	/**
+	 * Attribute: Get the order ID code
+	 */
+	public function idCode(): Attribute {
+		return new Attribute(
+			get: fn() => '#' . str_pad($this->id, 6, '0', STR_PAD_LEFT)
+		);
+	}
+
+	/**
 	 * Attribute: Get the name of the order item
 	 */
 	public function name(): Attribute {
 		return Attribute::make(
 			get: fn(): string => $this->product?->name ?? '-'
+		);
+	}
+
+	/**
+	 * Attribute: Get the name of the order item
+	 */
+	public function fullName(): Attribute {
+		return Attribute::make(
+			get: fn(): string => $this->quantity . ' x ' . $this->name
 		);
 	}
 
@@ -40,13 +58,6 @@ class OrderItem extends Model {
 	 */
 	public function product(): BelongsTo {
 		return $this->belongsTo(Product::class);
-	}
-
-	/**
-	 * Get the name of the order item
-	 */
-	public function fullName(): string {
-		return $this->quantity . ' x ' . $this->product?->name ?? '-';
 	}
 
 	/**

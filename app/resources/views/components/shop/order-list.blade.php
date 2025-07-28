@@ -14,11 +14,11 @@
 
 			@foreach ($orders as $key => $order)
 				<div class="cart-list__cart {{ $key % 2 ? 'bg-neutral-100' : 'bg-neutral-150' }}">
-					<p class="cart-list__field">{{ $order->idCode() }}</p>
+					<p class="cart-list__field">{{ $order->id_code }}</p>
 					<p class="cart-list__field">
 
 						@foreach ($order->order_items as $orderItem)
-							{{ $orderItem->fullName() }}<br>
+							{{ $orderItem->full_name }}<br>
 						@endforeach
 
 					</p>
