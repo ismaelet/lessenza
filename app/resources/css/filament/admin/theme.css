@@ -1,0 +1,46 @@
+@import "../../../../vendor/filament/filament/resources/css/theme.css";
+
+@source '../../../../app/Filament/**/*';
+@source '../../../../resources/views/filament/**/*';
+
+.select-order-status select {
+    &:has(option[value="-1"]:checked) {
+        color: var(--color-red-500);
+    }
+
+    &:has(option[value="1"]:checked) {
+        color: var(--color-blue-500);
+    }
+
+    &:has(option[value="2"]:checked) {
+        color: var(--color-green-500);
+    }
+
+    &:has(option[value="3"]:checked) {
+        color: var(--color-amber-500);
+    }
+
+    &:has(option[value="4"]:checked) {
+        color: var(--color-gray-500);
+    }
+
+    option[value="-1"] {
+        color: var(--color-red-500);
+    }
+
+    option[value="1"] {
+        color: var(--color-blue-500);
+    }
+
+    option[value="2"] {
+        color: var(--color-green-500);
+    }
+
+    option[value="3"] {
+        color: var(--color-amber-500);
+    }
+
+    option[value="4"] {
+        color: var(--color-gray-500);
+    }
+}

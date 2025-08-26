@@ -83,13 +83,15 @@ class OrdersTable {
 					->label('Stato')
 					->options(
 						[
-							-1 => 'Annullato',
-							1 => 'In attesa di pagamento',
-							2 => 'Confermato',
-							3 => 'Spedito',
-							4 => 'Consegnato',
+							-1 => '<span class="text-red-500">Annullato</span>',
+							1 => '<span class="text-blue-500">In attesa di pagamento</span>',
+							2 => '<span class="text-green-500">Confermato</span>',
+							3 => '<span class="text-amber-500">Spedito</span>',
+							4 => '<span class="text-gray-500">Consegnato</span>',
 						]
 					)
+					->extraAttributes(['class' => 'select-order-status'])
+					->allowOptionsHtml(true)
 					->selectablePlaceholder(false),
 
 				// Created at
