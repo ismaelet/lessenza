@@ -83,13 +83,7 @@
 										:value="$address->zip ?? ''"
 										required
 									/>
-									<x-input
-										name="region"
-										placeholder="Provincia"
-										class="md:col-span-2"
-										:value="$address->region ?? ''"
-										required
-									/>
+									<livewire:cart.region-selector />
 								</div>
 								<div class="form-row">
 									<x-label label="Contatti:" />
@@ -124,7 +118,7 @@
 							<div class="shipping-method__list">
 
 								@foreach ($shippingMethods as $shippingMethod)
-									<x-cart.shipping-method
+									<livewire:cart.shipping-method
 										:shippingMethod="$shippingMethod"
 										:cart="$cart"
 									/>
@@ -172,25 +166,7 @@
 
 						<!-- Recap -->
 						<div class="sidebar__wrapper">
-							<section class="recap">
-								<div class="recap-row">
-									<p class="recap-text">Prodotti</p>
-									<p class="recap-price js-cart-product-price-string">{{ price($cart->item_price) }}</p>
-								</div>
-
-								<div class="recap-row">
-									<p class="recap-text">Spedizione</p>
-									<p
-										class="recap-price js-recap-shipping-field js-cart-shipping-price-string"
-										data-shipping-method-id="{{ $cart->shippingMethodId }}"
-									>{{ price($cart->shipping_fee) }}</p>
-								</div>
-
-								<div class="recap-row recap-row_total">
-									<p class="recap-text">Totale</p>
-									<p class="recap-price js-cart-price-string">{{ price($cart->price) }}</p>
-								</div>
-							</section>
+							<livewire:cart.recap :$cart />
 						</div>
 					</div>
 				</div>

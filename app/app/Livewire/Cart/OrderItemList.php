@@ -47,6 +47,8 @@ class OrderItemList extends Component {
 	public function removeOrderItem(int $orderItemId): void {
 		$this->cart->removeItem($this->orderItems->find($orderItemId));
 
+		$this->orderItems = $this->cart->order_items;
+
 		$this->dispatch('updateCart');
 	}
 }

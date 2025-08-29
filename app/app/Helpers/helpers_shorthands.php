@@ -24,7 +24,11 @@ function is_superadmin(): bool {
  * Get the path to a public asset
  */
 function public_asset(string $path): string {
-	return asset('storage/' . $path);
+	if (env('APP_ENV') === 'local') {
+		return asset('storage/' . $path);
+	}
+
+	return '/public/storage/' . $path;
 }
 
 /**

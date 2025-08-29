@@ -56,6 +56,7 @@
     --color-primary-400: hsl(var(--color-primary-hue) 93% 74%);
     --color-primary: var(--color-primary-400);
 
+    --color-secondary-200: hsl(12deg 20% 55%);
     --color-secondary-300: hsl(12deg 20% 35%);
     --color-secondary-400: hsl(12deg 30% 13%);
     --color-secondary-500: hsl(12deg 25% 10%);

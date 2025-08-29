@@ -5,6 +5,7 @@ use App\Http\Controllers\ContactsController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\VideoController;
+use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
@@ -39,3 +40,22 @@ include __DIR__ . '/auth.php';
 
 // Include the user dashboard routes
 include __DIR__ . '/user-dashboard.php';
+
+
+Route::get('/genlink', function () {
+	$link = public_path('storage');
+	$target = storage_path('app/public');
+
+	$filesystem = new Filesystem();
+
+	try {
+		if ($filesystem->exists($link)) {
+			echo "Link already exists: {$link}";
+		} else {
+			$filesystem->link($target, $link);
+			echo "Symlink created: {$link} → {$target}";
+		}
+	} catch (Exception $e) {
+		echo "Error: " . $e->getMessage();
+	}
+});

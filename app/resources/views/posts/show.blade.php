@@ -39,7 +39,7 @@
 				<p class="main-post__date">{{ $post->date() }}</p>
 			</div>
 
-			<p class="main-post__text">{!! $post->text !!}</p>
+			<p class="main-post__text">{!! nl2br($post->text) !!}</p>
 		</section>
 
 		<aside

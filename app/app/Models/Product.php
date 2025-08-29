@@ -44,7 +44,7 @@ class Product extends Model {
 			$resolution = self::DEFAULT_IMAGE_RESOLUTION;
 		}
 
-		return ('/storage/app/public/products/' . $this->id . '-' . $resolution . '.webp');
+		return public_asset('products/' . $this->id . '-' . $resolution . '.webp');
 	}
 
 	/**

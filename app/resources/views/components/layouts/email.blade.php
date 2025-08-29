@@ -67,7 +67,7 @@
 								<center>
 									<img
 										style="max-width: 40%; max-height: 80px;"
-										src="{{ Vite::image('email-logo.png') }}"
+										src="{{ Vite::image('logo/email-logo.png') }}"
 										alt=""
 									/>
 								</center>
@@ -97,7 +97,7 @@
 								</table>
 							</td>
 						</tr>
-						<tr>
+						{{-- <tr>
 							<td>
 								<table style="width: 100%; padding: 20px 0">
 									<tr>
@@ -121,7 +121,7 @@
 									</tr>
 								</table>
 							</td>
-						</tr>
+						</tr> --}}
 					</table>
 				</center>
 			</td>

@@ -143,6 +143,7 @@
 						class=""
 						href="{{ route('cart') }}"
 						size="small"
+						:disabled="$cart->isEmpty()"
 					>Aquista ora</x-button>
 				</div>
 			</div>

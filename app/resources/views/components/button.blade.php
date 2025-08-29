@@ -85,6 +85,13 @@
 				justify-content: center;
 				gap: 0.5em;
 			}
+
+			&:disabled,
+			&[data-disabled="true"] {
+				pointer-events: none;
+				opacity: 0.5;
+				background-color: var(--color-neutral-400);
+			}
 		}
 	</style>
 @endPushOnce
@@ -96,7 +103,7 @@
 		data-variant="{{ $variant }}"
 		data-size="{{ $size }}"
 		data-color="{{ $color }}"
-		@disabled($disabled)
+		data-disabled="{{ $disabled ? 'true' : 'false' }}"
 	>{{ $slot }}</a>
 @else
 	<button

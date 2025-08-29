@@ -18,7 +18,7 @@ class CartController extends Controller {
 	public function index(Request $request) {
 		$title = 'Carrello';
 		$location = 'cart';
-		$cart = cart();
+		$cart = Order::find(cart()->id);
 		$orderItems = $cart->order_items;
 		$shippingMethods = ShippingMethod::all();
 
@@ -110,5 +110,15 @@ class CartController extends Controller {
 		}
 
 		return view('emails.order-status', compact('order', 'user'));
+	}
+
+	/**
+	 * Display the empty cart page
+	 */
+	public function empty(): View {
+		$title = 'Carrello';
+		$location = 'cart';
+
+		return view('cart.empty', compact('title', 'location'));
 	}
 }

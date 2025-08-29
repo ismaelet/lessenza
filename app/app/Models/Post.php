@@ -3,34 +3,40 @@
 namespace App\Models;
 
 use App\Helpers\FileHelper;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model {
 
+	protected $fillable = [
+		'title',
+		'text',
+		'video_url',
+	];
+
+	public function hasVideo(): Attribute {
+		return Attribute::make(
+			get: fn(): bool => !empty($this->video_url)
+		);
+	}
+
 	/**
-	 * Get the date the post was created in a human-readable format.
-	 * 
-	 * @return string
+	 * Get the date the post was created in a human-readable format
 	 */
 	public function date(): string {
 		return $this->created_at->translatedFormat('j F Y');
 	}
 
 	/**
-	 * Get the URL of the post.
-	 * 
-	 * @return string
+	 * Get the URL of the post
 	 */
 	public function url(): string {
 		return route('posts.show', ['post' => $this->id]);
 	}
 
 	/**
-	 * Get the URL for the post image.
-	 * 
-	 * @param string $size The size of the image ['full', 'thumbnail'].
-	 * @return string 
+	 * Get the URL for the post image
 	 */
 	public function image(string $size = 'full'): ?string {
 		$imagePath = 'blog/' . $this->id . '-' . $size . '.webp';
@@ -43,10 +49,7 @@ class Post extends Model {
 	}
 
 	/**
-	 * Get a short version of the post text.
-	 * 
-	 * @param int $charLimit The character limit for the text.
-	 * @return string
+	 * Get a short version of the post text
 	 */
 	public function snippet(int $charLimit = 100): string {
 		if (strlen($this->text) > $charLimit + 3) {

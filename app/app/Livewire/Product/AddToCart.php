@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Product;
 
+use App\Models\Order;
 use App\Models\Product;
 use Illuminate\View\View;
 use Livewire\Component;
@@ -53,7 +54,8 @@ class AddToCart extends Component {
 		]);
 
 		// Add the product to the cart
-		cart()->add($this->product, $this->quantity);
+		$cart = Order::find(cart()->id);
+		$cart->add($this->product, $this->quantity);
 
 		// Reset the quantity to 1 after adding to cart
 		$this->quantity = 1;

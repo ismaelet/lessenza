@@ -7,7 +7,7 @@ RUN apt-get update && apt-get install -y \
         libzip-dev \
         libicu-dev \
     && docker-php-ext-configure zip \
-    && docker-php-ext-install zip pdo pdo_mysql mysqli intl \
+    && docker-php-ext-install zip pdo pdo_mysql mysqli intl fileinfo \
     && docker-php-ext-enable mysqli
 
 # Base: Set working directory

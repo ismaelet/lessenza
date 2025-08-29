@@ -118,10 +118,10 @@
 						@foreach ($order->order_items as $orderItem)
 							<tr style="border-bottom: 1px solid #f4f4f4">
 								<td>
-									<p style="line-height: 3">{{ $orderItem->name() }}</p>
+									<p style="line-height: 3">{{ $orderItem->name }}</p>
 								</td>
 								<td>
-									<p style="text-align: right">{{ $orderItem->priceString() }}</p>
+									<p style="text-align: right">{{ price($orderItem->price) }}</p>
 								</td>
 							</tr>
 						@endforeach
@@ -131,7 +131,7 @@
 								<p style="">Spedizione:</p>
 							</td>
 							<td>
-								<p style="text-align: right">{{ $order->shippingFeeString() }}</p>
+								<p style="text-align: right">{{ price($order->shipping_fee) }}</p>
 							</td>
 						</tr>
 						<tr>
@@ -139,7 +139,7 @@
 								<p><strong>Totale dell'ordine:</strong></p>
 							</td>
 							<td>
-								<p style="text-align: right"><strong>{{ $order->priceString() }}</strong></p>
+								<p style="text-align: right"><strong>{{ price($order->price) }}</strong></p>
 							</td>
 						</tr>
 					</table>

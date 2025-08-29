@@ -8,9 +8,7 @@ use Illuminate\Http\Request;
 class PostController extends Controller {
 
 	/**
-	 * Display the post page.
-	 *
-	 * @return \Illuminate\View\View
+	 * Display the post page
 	 */
 	public function index(): \Illuminate\View\View {
 		$posts = Post::latest()->get();
@@ -23,10 +21,7 @@ class PostController extends Controller {
 	}
 
 	/**
-	 * Display the specified post.
-	 *
-	 * @param  \App\Models\Post  $post
-	 * @return \Illuminate\View\View
+	 * Display the specified post
 	 */
 	public function show(Post $post): \Illuminate\View\View {
 		return view('posts.show', [
