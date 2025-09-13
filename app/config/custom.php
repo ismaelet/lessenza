@@ -76,32 +76,38 @@ return [
 		'-1' => [
 			'tag' => 'canceled',
 			'label' => 'Cancellato',
-			'icon' => 'close'
+			'icon' => 'close',
+			'color' => 'red'
 		],
 		'0' => [
 			'tag' => 'open',
 			'label' => 'Non completato',
-			'icon' => 'pause'
+			'icon' => 'pause',
+			'color' => 'gray'
 		],
 		'1' => [
 			'tag' => 'waiting-payment',
 			'label' => 'In attesa del pagamento',
-			'icon' => 'waiting'
+			'icon' => 'hourglass',
+			'color' => 'sky'
 		],
 		'2' => [
 			'tag' => 'confirmed-payment',
 			'label' => 'Pagamento confermato',
-			'icon' => 'correct'
+			'icon' => 'correct',
+			'color' => 'green'
 		],
 		'3' => [
 			'tag' => 'shipped',
 			'label' => 'Spedito',
-			'icon' => 'shipping'
+			'icon' => 'shipping',
+			'color' => 'amber'
 		],
 		'4' => [
 			'tag' => 'delivered',
 			'label' => 'Consegnato',
-			'icon' => 'delivered'
+			'icon' => 'delivered',
+			'color' => 'orange'
 		],
 	],
 ];

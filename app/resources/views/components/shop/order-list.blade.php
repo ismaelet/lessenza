@@ -32,7 +32,7 @@
 					<p class="cart-list__field">
 						<a
 							class="text-primary underline"
-							href="{{ $order->url }}"
+							href="{{ $order->recapUrlWithToken() }}"
 						>
 							visualizza
 						</a>

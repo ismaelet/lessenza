@@ -12,7 +12,7 @@
 			</p>
 
 			<div
-				class="center-content full-width max-width--480 grid"
+				class="center-content max-width--480 grid"
 				data-spacing="400"
 			>
 				@if (auth()->check())

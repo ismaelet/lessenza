@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Address;
 use App\Models\Order;
+use App\Models\PaymentMethod;
 use App\Models\ShippingMethod;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -15,24 +16,24 @@ class CartController extends Controller {
 	/**
 	 * Display the cart page
 	 */
-	public function index(Request $request) {
+	public function addressIndex(Request $request) {
 		$title = 'Carrello';
 		$location = 'cart';
 		$cart = Order::find(cart()->id);
-		$orderItems = $cart->order_items;
+
 		$shippingMethods = ShippingMethod::all();
 
 		// Get the address from the cart
 		$address = $cart->address;
 		$address = $address ? $address : Auth::user()?->main_address;
 
-		return view('cart.index', compact('cart', 'orderItems', 'address', 'shippingMethods', 'title', 'location'));
+		return view('cart.address', compact('cart', 'address', 'shippingMethods', 'title', 'location'));
 	}
 
 	/**
 	 * Update the cart address and confirm the order
 	 */
-	public function update(Request $request): RedirectResponse {
+	public function addressStore(Request $request): RedirectResponse {
 		$cart = cart();
 
 		$request->validate([
@@ -80,7 +81,39 @@ class CartController extends Controller {
 			'address_id' => $address->id,
 		]);
 
-		$cart->load('address');
+		return redirect()->route('cart.payment');
+	}
+
+	/**
+	 * Display the cart payment page
+	 */
+	public function paymentIndex(Request $request): View {
+		$location = 'cart.payment';
+		$cart = cart();
+		$paymentMethods = PaymentMethod::all();
+
+		return view('cart.payment', compact('cart', 'location', 'paymentMethods'));
+	}
+
+	/**
+	 * Update the cart payment method and confirm the order
+	 */
+	public function paymentStore(Request $request): RedirectResponse {
+		$cart = cart();
+
+		$request->validate([
+			'payment_method_id' => 'required|exists:payment_methods,id',
+		]);
+
+		$cart->update([
+			'payment_method_id' => $request->payment_method_id,
+		]);
+
+		$paymentMethod = PaymentMethod::find($request->payment_method_id);
+
+		if ($paymentMethod->slug === 'paypal') {
+			return redirect()->route('paypal.orders.create', ['order_id' => $cart->id]);
+		}
 
 		$cart->confirm();
 

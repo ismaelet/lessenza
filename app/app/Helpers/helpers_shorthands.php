@@ -48,8 +48,8 @@ function cart(): Order {
 		return Auth::user()->cart->load(['order_items']);
 	}
 
-	if (session()->has('cart')) {
-		return session('cart')->load(['order_items']);
+	if (session()->has('cartId')) {
+		return Order::find(session('cartId'))->load(['order_items']);
 	}
 
 	// If no cart is found, create a new one
@@ -58,7 +58,7 @@ function cart(): Order {
 	]);
 
 	if (!Auth::check()) {
-		session(['cart' => $cart]);
+		session(['cartId' => $cart->id]);
 	}
 
 	return $cart;

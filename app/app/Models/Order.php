@@ -29,6 +29,7 @@ class Order extends Model {
 		'item_price',
 		'shipping_fee',
 		'status',
+		'token',
 	];
 
 	/**
@@ -59,6 +60,13 @@ class Order extends Model {
 	 */
 	public function shipping_method(): BelongsTo {
 		return $this->belongsTo(ShippingMethod::class);
+	}
+
+	/**
+	 * Relationship: Get the payment method associated with the order
+	 */
+	public function payment_method(): BelongsTo {
+		return $this->belongsTo(PaymentMethod::class);
 	}
 
 	/**
@@ -187,12 +195,11 @@ class Order extends Model {
 	 * Confirm the order
 	 */
 	public function confirm($sendNotification = true): void {
+		session()->forget('cartId');
+
 		if ($this->status) {
 			return;
 		}
-
-		// Forget the order ID
-		session()->forget('cart');
 
 		// Update the order status and timestamps
 		$this->update([
@@ -211,6 +218,10 @@ class Order extends Model {
 	 * Send the order status email
 	 */
 	public function sendStatusEmail(): void {
+		if (app()->environment('local')) {
+			return;
+		}
+
 		$email = $this->address->email;
 
 		try {
