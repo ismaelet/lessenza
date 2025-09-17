@@ -2,31 +2,54 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Auth;
 use NumberFormatter;
 
 class Product extends Model {
 
+	use SoftDeletes;
+
 	private const DEFAULT_IMAGE_RESOLUTION = 1024;
 	private const ALLOWED_IMAGE_RESOLUTIONS = [100, 400, 1024];
 
 	/**
-	 * Get the route key for the model.
-	 * 
-	 * @return string
+	 * The attributes that are mass assignable
 	 */
-	public function getRouteKeyName(): string {
-		return 'slug';
+	protected $fillable = [
+		'name',
+		'slug',
+		'description',
+		'uses',
+		'warnings',
+		'product_type_id',
+	];
+
+	/**
+	 * Attribute: The image URL for the product
+	 */
+	public function image(): Attribute {
+		return Attribute::make(
+			get: fn(): string => $this->getImage(),
+		);
 	}
 
 	/**
-	 * Get the product type associated with this product
+	 * Relationship: The product type associated with this product
 	 */
 	public function product_type(): BelongsTo {
 		return $this->belongsTo(Product\ProductType::class);
+	}
+
+	/**
+	 * Get the route key for the model.
+	 */
+	public function getRouteKeyName(): string {
+		return 'slug';
 	}
 
 	/**
@@ -39,7 +62,7 @@ class Product extends Model {
 	/**
 	 * Get the image URL for the product
 	 */
-	public function image(int $resolution = self::DEFAULT_IMAGE_RESOLUTION): string {
+	public function getImage(int $resolution = self::DEFAULT_IMAGE_RESOLUTION): string {
 		if (!in_array($resolution, self::ALLOWED_IMAGE_RESOLUTIONS)) {
 			$resolution = self::DEFAULT_IMAGE_RESOLUTION;
 		}

@@ -28,7 +28,7 @@
 			<div class="cart-order__image">
 				<img
 					class="image-fit"
-					src="<?= $orderItem->product->image() ?>"
+					src="<?= $orderItem->product->image ?>"
 					alt=""
 				>
 			</div>

@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Posts\Schemas;
 
+use App\Models\Post;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
@@ -24,6 +25,7 @@ class PostForm {
 					->columnSpanFull(),
 				FileUpload::make('image')
 					->label('Immagine')
+					->placeholder('Carica l\'immagine del post')
 					->image()
 					->imageEditor()
 					->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
@@ -31,7 +33,7 @@ class PostForm {
 					->disk('public')
 					->directory('blog')
 					->getUploadedFileNameForStorageUsing(
-						fn($record): string => $record ? $record->id . '-full.webp' : 'temp-full.webp',
+						fn(?Post $record): string => $record ? $record->id . '-full.webp' : 'temp-full.webp',
 					)
 					->columnSpanFull(),
 

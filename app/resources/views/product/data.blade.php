@@ -50,14 +50,28 @@
 		</div>
 
 		<!-- Description -->
-		<div
-			class="grid"
-			data-spacing="400"
-		>
-			<p class="product-desc">{{ $product->description }}</p>
+		<div class="grid gap-4">
+			<p class="product-desc">{!! $product->description !!}</p>
 
 			@if ($product->ingredients)
-				<p class="product-desc">Ingredienti: <span class="fy-italic">{{ $product->ingredients }}</span></p>
+				<div class="grid grid-cols-1 gap-2">
+					<p class="product-desc font-medium italic tracking-wide text-neutral-700">Ingredienti:</p>
+					<div class="italic">{{ $product->ingredients }}</div>
+				</div>
+			@endif
+
+			@if ($product->uses)
+				<div class="grid grid-cols-1 gap-2">
+					<p class="font-medium italic tracking-wide text-neutral-700">Modalità d'uso:</p>
+					<div class="italic">{!! $product->uses !!}</div>
+				</div>
+			@endif
+
+			@if ($product->warnings)
+				<div class="grid grid-cols-1 gap-2">
+					<p class="font-medium italic tracking-wide text-neutral-700">Avvertenze:</p>
+					<div class="italic">{!! $product->warnings !!}</div>
+				</div>
 			@endif
 		</div>
 

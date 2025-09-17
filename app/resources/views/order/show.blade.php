@@ -104,7 +104,7 @@
 								class="img_cont"
 							>
 								<img
-									src="{{ $orderItem->product->image() }}"
+									src="{{ $orderItem->product->image }}"
 									class="rounded"
 								>
 							</a>

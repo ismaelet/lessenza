@@ -8,7 +8,7 @@
 		>
 			<img
 				class="product-card__image image-fill"
-				src="{{ $product->image() }}"
+				src="{{ $product->image }}"
 				alt="{{ $product->name }}"
 				loading="lazy"
 			>
