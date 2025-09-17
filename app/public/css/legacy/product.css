@@ -36,7 +36,7 @@ main > * {
     margin-bottom: min(7rem, 20vw);
     grid-template-columns: repeat(2, 1fr);
     gap: 4rem;
-    align-items: center;
+    align-items: flex-start;
 }
 
 @media (max-width: 1200px) {
@@ -71,10 +71,6 @@ main > * {
     .product-name {
         grid-row: 1;
     }
-}
-
-.product-images {
-    position: relative;
 }
 
 .product-images-content {

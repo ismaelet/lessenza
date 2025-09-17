@@ -18,11 +18,20 @@ class ProductForm {
 					->label('Nome')
 					->required()
 					->placeholder('Nome del prodotto')
-					->maxLength(255),
+					->maxLength(255)
+					->columnSpanFull(),
 				Select::make('product_type_id')
 					->label('Tipo')
 					->relationship('product_type', 'name')
 					->required(),
+				TextInput::make('price')
+					->label('Prezzo (senza IVA)')
+					->placeholder('Prezzo del prodotto in Euro')
+					->numeric()
+					->minValue(0)
+					->step(0.01)
+					->suffix('€')
+					->helperText('Questo campo è da usare solo se il prezzo è uguale per qualsiasi quantità venduta. Altrimenti, è da lasciare vuoto e il prezzo verrà calcolato in automatico'),
 				RichEditor::make('description')
 					->label('Descrizione')
 					->placeholder('Inserisci la descrizione del prodotto')
@@ -73,7 +82,7 @@ class ProductForm {
 					->directory('products')
 					->imageResizeTargetWidth('1024')
 					->getUploadedFileNameForStorageUsing(
-						fn(Product $record): string => $record ? $record->id . '-1024.webp' : 'temp-1024.webp',
+						fn(?Product $record): string => $record ? $record->id . '-1024.webp' : 'temp-1024.webp',
 					)
 					->columnSpanFull(),
 			]);

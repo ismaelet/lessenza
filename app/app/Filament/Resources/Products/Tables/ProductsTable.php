@@ -16,9 +16,11 @@ class ProductsTable {
 		return $table
 			->defaultSort('id', 'desc')
 			->columns([
-				ImageColumn::make('image')
+				ImageColumn::make('storage_image_path')
 					->label('')
 					->imageSize(64)
+					->checkFileExistence(false)
+					->disk('public')
 					->toggleable(),
 				TextColumn::make('id')
 					->label('ID')

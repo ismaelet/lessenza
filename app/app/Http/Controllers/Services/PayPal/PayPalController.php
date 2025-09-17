@@ -251,13 +251,14 @@ class PayPalController extends Controller {
 	 */
 	private function purchaseUnits(Order $order): array {
 		$address = $order->address;
+		$vat = $order->item_price * 0.22;
 
 		return [
 			[
 				'reference_id' => $order->id,
 				'amount' => [
 					'currency_code' => 'EUR',
-					'value' => number_format($order->price, 2),
+					'value' => number_format($order->price + $vat, 2),
 					'breakdown' => [
 						'item_total' => [
 							'currency_code' => 'EUR',
@@ -266,7 +267,11 @@ class PayPalController extends Controller {
 						'shipping' => [
 							'currency_code' => 'EUR',
 							'value' => number_format($order->shipping_fee, 2),
-						]
+						],
+						'tax_total' => [
+							'currency_code' => 'EUR',
+							'value' => number_format($vat, 2),
+						],
 					]
 				],
 				'shipping' => [

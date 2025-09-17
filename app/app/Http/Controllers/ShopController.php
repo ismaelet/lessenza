@@ -10,10 +10,7 @@ use Illuminate\View\View;
 class ShopController extends Controller {
 
 	/**
-	 * Display the shop page.
-	 *
-	 * @param \Illuminate\Http\Request $request
-	 * @return \Illuminate\View\View
+	 * Display the shop page
 	 */
 	public function index(Request $request): View {
 		return view('shop', [

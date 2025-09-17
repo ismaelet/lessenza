@@ -11,6 +11,6 @@
 
 	<div class="recap-row recap-row_total">
 		<p class="recap-text">Totale</p>
-		<p class="recap-price js-cart-price-string">{{ price($cart->price) }}</p>
+		<p class="recap-price js-cart-price-string">{{ price($cart->price) }} (+ IVA)</p>
 	</div>
 </section>

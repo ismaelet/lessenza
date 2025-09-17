@@ -10,6 +10,26 @@
 		src="{{ asset('js/legacy/product.js') }}"
 		defer
 	></script>
+
+	@if (app()->environment('production'))
+		<!-- Google Tag Manager -->
+		<script defer>
+			window.dataLayer = window.dataLayer || [];
+			window.dataLayer.push({
+				event: "view_item",
+				ecommerce: {
+					items: [{
+						item_name: "{{ $product->name }}",
+						item_id: "{{ $product->sku() }}",
+						price: "{{ number_format($product->price(), 2) }}",
+						item_category: "{{ $product->product_type->name ?? '' }}",
+						quantity: 1
+					}]
+				}
+			});
+		</script>
+		<!-- End Google Tag Manager -->
+	@endif
 @endpushOnce
 
 <x-layouts.legacy-main

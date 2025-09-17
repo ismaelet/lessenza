@@ -1,6 +1,32 @@
 @props(['product'])
 
-<section class="product-data">
+@pushOnce('styles')
+	<style>
+		.product-data ol {
+			list-style: inside decimal;
+		}
+
+		.product-data ol li::marker {
+			color: var(--color-neutral-700);
+			font-weight: bold;
+		}
+
+		.product-data ul {
+			list-style: inside disc;
+		}
+
+		.product-data ul li::marker {
+			color: var(--color-primary-400);
+		}
+
+		.product-data ol p,
+		.product-data ul p {
+			display: inline;
+		}
+	</style>
+@endpushOnce
+
+<section class="product-data self-center">
 	<form
 		class="product-wrap grid"
 		data-spacing="800"
@@ -53,21 +79,21 @@
 		<div class="grid gap-4">
 			<p class="product-desc">{!! $product->description !!}</p>
 
-			@if ($product->ingredients)
+			@if ($product->ingredients && strip_tags($product->ingredients) !== '')
 				<div class="grid grid-cols-1 gap-2">
 					<p class="product-desc font-medium italic tracking-wide text-neutral-700">Ingredienti:</p>
 					<div class="italic">{{ $product->ingredients }}</div>
 				</div>
 			@endif
 
-			@if ($product->uses)
+			@if ($product->uses && strip_tags($product->uses) !== '')
 				<div class="grid grid-cols-1 gap-2">
 					<p class="font-medium italic tracking-wide text-neutral-700">Modalità d'uso:</p>
 					<div class="italic">{!! $product->uses !!}</div>
 				</div>
 			@endif
 
-			@if ($product->warnings)
+			@if ($product->warnings && strip_tags($product->warnings) !== '')
 				<div class="grid grid-cols-1 gap-2">
 					<p class="font-medium italic tracking-wide text-neutral-700">Avvertenze:</p>
 					<div class="italic">{!! $product->warnings !!}</div>

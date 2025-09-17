@@ -27,6 +27,7 @@ class Product extends Model {
 		'uses',
 		'warnings',
 		'product_type_id',
+		'price',
 	];
 
 	/**
@@ -35,6 +36,12 @@ class Product extends Model {
 	public function image(): Attribute {
 		return Attribute::make(
 			get: fn(): string => $this->getImage(),
+		);
+	}
+
+	public function storageImagePath(): Attribute {
+		return Attribute::make(
+			get: fn(): string => app()->environment() == 'local' ? $this->image : 'app/public/products/' . $this->id . '-' . self::DEFAULT_IMAGE_RESOLUTION . '.webp',
 		);
 	}
 
@@ -74,6 +81,10 @@ class Product extends Model {
 	 * Get the product price based on the quantity
 	 */
 	public function price(int $quantity = 1): float {
+		if ($this->price) {
+			return $this->price;
+		}
+
 		if (Auth::user()?->groupId != 2) {
 			switch (true) {
 				case $quantity > 20:
@@ -116,5 +127,12 @@ class Product extends Model {
 			->latest()
 			->take(5)
 			->get();
+	}
+
+	/**
+	 * Generate the SKU for the product
+	 */
+	public function sku(): string {
+		return 'LES-' . str_pad($this->id, 5, '0', STR_PAD_LEFT);
 	}
 }
