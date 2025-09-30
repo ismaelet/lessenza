@@ -4,6 +4,7 @@ use App\Http\Controllers\AboutUsController;
 use App\Http\Controllers\ContactsController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\TechnologiesController;
 use App\Http\Controllers\VideoController;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Facades\Artisan;
@@ -12,6 +13,10 @@ use Illuminate\Support\Facades\Route;
 // Home
 Route::get('/', [HomeController::class, 'index'])
 	->name('home');
+
+// Technologies
+Route::get('/technologies', [TechnologiesController::class, 'index'])
+	->name('technologies');
 
 // About us
 Route::get('/about-us', [AboutUsController::class, 'index'])

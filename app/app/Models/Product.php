@@ -24,6 +24,7 @@ class Product extends Model {
 		'name',
 		'slug',
 		'description',
+		'description_short',
 		'uses',
 		'warnings',
 		'product_type_id',

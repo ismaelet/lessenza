@@ -35,6 +35,7 @@
 	$header['links'] = [
 	    ['label' => 'Home', 'location' => 'home', 'url' => client_url('/')],
 	    ['label' => 'Le Fragranze', 'location' => 'shop', 'url' => client_url('/shop')],
+	    ['label' => 'Tecnologie', 'location' => 'technologies', 'url' => route('technologies')],
 	    ['label' => 'Chi Siamo', 'location' => 'about-us', 'url' => client_url('/about-us')],
 	    ['label' => 'Recensioni', 'location' => 'reviews', 'url' => client_url('/reviews')],
 	    ['label' => 'Blog', 'location' => 'blog', 'url' => client_url('/blog')],

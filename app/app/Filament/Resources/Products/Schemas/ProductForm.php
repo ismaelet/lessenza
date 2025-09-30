@@ -45,6 +45,19 @@ class ProductForm {
 						'link',
 					])
 					->maxLength(65535),
+				RichEditor::make('description_short')
+					->label('Descrizione breve')
+					->placeholder('Inserisci la descrizione breve del prodotto')
+					->toolbarButtons([
+						'bold',
+						'italic',
+						'underline',
+						'strike',
+						'bulletList',
+						'orderedList',
+						'link',
+					])
+					->maxLength(65535),
 				RichEditor::make('uses')
 					->label('Modalità d\'uso')
 					->placeholder('Inserisci le modalità d\'uso del prodotto')

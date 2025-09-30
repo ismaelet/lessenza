@@ -10,6 +10,21 @@
 		src="{{ asset('js/legacy/product.js') }}"
 		defer
 	></script>
+@endpushOnce
+
+<x-layouts.legacy-main
+	:$title
+	:$location
+>
+
+	<div class="product-area main-wrap pad-t-4">
+
+		@include('product/images')
+		@include('product/data', ['product' => $product])
+
+	</div>
+
+	@include('product/related-products')
 
 	@if (app()->environment('production'))
 		<!-- Google Tag Manager -->
@@ -30,20 +45,5 @@
 		</script>
 		<!-- End Google Tag Manager -->
 	@endif
-@endpushOnce
-
-<x-layouts.legacy-main
-	:$title
-	:$location
->
-
-	<div class="product-area main-wrap pad-t-4">
-
-		@include('product/images')
-		@include('product/data', ['product' => $product])
-
-	</div>
-
-	@include('product/related-products')
 
 </x-layouts.legacy-main>

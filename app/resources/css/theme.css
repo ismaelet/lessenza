@@ -52,6 +52,8 @@
     --color-neutral-700: hsl(var(--color-background-hue) 0% 13%);
     --color-neutral-950: hsl(var(--color-background-hue) 0% 0%);
 
+    --color-neutral-border: hsl(var(--color-background-hue) 0% 85%);
+
     --color-primary-300: hsl(var(--color-primary-hue) 93% 80%);
     --color-primary-400: hsl(var(--color-primary-hue) 93% 74%);
     --color-primary: var(--color-primary-400);
