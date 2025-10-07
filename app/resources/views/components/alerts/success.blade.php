@@ -1,3 +1,5 @@
+@props(['message' => null])
+
 @pushOnce('styles')
 	<style>
 		.success-message {
@@ -7,5 +9,11 @@
 @endpushOnce
 
 <p
-	{{ $attributes->merge(['class' => 'success-message text-success-400 px-4 py-2 border border-success-400 bg-success-400/10 text-center rounded']) }}
->{{ $slot }}</p>
+	{{ $attributes->merge(['class' => 'success-message text-green-400 px-4 py-2 border border-green-400 bg-green-400/10 text-center rounded']) }}
+>
+	@if (isset($message))
+		{{ $message }}
+	@else
+		{{ $slot }}
+	@endif
+</p>

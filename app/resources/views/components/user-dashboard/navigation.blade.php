@@ -8,9 +8,24 @@
 	        'location' => 'index',
 	        'icon' => 'user-circle',
 	    ],
-	    2 => ['title' => 'Ordini', 'url' => '/profile/orders', 'location' => 'orders', 'icon' => 'orders'],
-	    4 => ['title' => 'I miei dati', 'url' => '/profile/data', 'location' => 'data', 'icon' => 'settings'],
-	    5 => ['title' => 'Logout', 'url' => '/logout', 'location' => 'logout', 'icon' => 'logout'],
+	    2 => [
+	        'title' => 'Ordini',
+	        'url' => '/profile/orders',
+	        'location' => 'orders',
+	        'icon' => 'orders',
+	    ],
+	    4 => [
+	        'title' => 'I miei dati',
+	        'url' => route('user-dashboard.settings'),
+	        'location' => 'settings',
+	        'icon' => 'settings',
+	    ],
+	    5 => [
+	        'title' => 'Logout',
+	        'url' => '/logout',
+	        'location' => 'logout',
+	        'icon' => 'logout',
+	    ],
 	];
 
 	$profileLocation = explode('user-dashboard.', Route::currentRouteName())[1];

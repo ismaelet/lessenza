@@ -9,7 +9,7 @@
 	:$location
 	:$title
 >
-	<div class="page-content span-full-width">
+	<div class="page-content span-full-width login-page">
 		<!-- Welcome panel -->
 		<section class="welcome stack-content center-content contrasting-background grid">
 			<div
