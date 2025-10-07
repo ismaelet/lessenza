@@ -19,6 +19,7 @@
 	<div class="full-width">
 		@include('home/slider')
 		@include('home/products')
+		@include('home/technologies')
 		@include('home/history')
 		@include('home/female')
 		@include('home/ethics')

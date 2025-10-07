@@ -20,7 +20,7 @@
 				<x-heading.section>Storia</x-heading.section>
 			</div>
 
-			<p class="page-text">
+			<p class="page-text tracking-wider">
 				Mi chiamo Lucio e sono il compagno di vita di Stefania con la quale nel 2019 ho fondato l’azienda l’Essenza
 				S.r.l.s..<br>
 				Ho iniziato a lavorare nel 2005 per aziende che si occupano della costruzione di ambienti wellness, piscine ed aree

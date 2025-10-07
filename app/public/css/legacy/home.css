@@ -2,6 +2,10 @@
     padding-block: min(8rem, 25vw);
 }
 
+.padded-section-t {
+    padding-top: min(8rem, 25vw);
+}
+
 .split-section {
     display: grid;
 }

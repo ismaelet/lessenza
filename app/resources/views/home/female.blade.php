@@ -21,7 +21,7 @@
 			</div>
 
 			<div class="female__text-wrapper">
-				<p class="female__text page-text">
+				<p class="female__text page-text leading-[1.8] tracking-wider">
 					Il settore delle SPA e dei Centri Benessere è un mondo quasi esclusivamente seguito degli uomini. L’Essenza va
 					contro tendenza dando ampio spazio al lavoro femminile.<br>
 					Sono Stefania e sono madre di tre figli: Veronica, Marilena e Giacomo.<br>

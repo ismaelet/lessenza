@@ -316,6 +316,10 @@ if (isset($header['megamenus'])) {
 						<a href="/shop">Le Fragranze</a>
 					</li>
 
+					<li class="h__mobile-navigation__link">
+						<a href="/technologies">Tecnologie</a>
+					</li>
+
 
 					<li class="h__mobile-navigation__link">
 						<a href="/about-us">Chi Siamo</a>
