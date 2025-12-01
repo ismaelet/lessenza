@@ -18,6 +18,9 @@
 >
 	<div class="full-width">
 		@include('home/slider')
+		<div class="breakout mt-12 sm:mt-20">
+			<x-banners.discount />
+		</div>
 		@include('home/products')
 		@include('home/technologies')
 		@include('home/history')

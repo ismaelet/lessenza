@@ -27,7 +27,7 @@
 @endpushOnce
 
 <section class="product-data self-center">
-	<form
+	<div
 		class="product-wrap grid"
 		data-spacing="800"
 		method="POST"
@@ -69,9 +69,10 @@
 						<x-icon-close-border />
 					@endif
 
-					<p class="product-availability__text text-good-400">{{ $product->inStock ? 'Disponibile' : 'Non disponibile' }}</p>
+					<p class="product-availability__text text-good-400">
+						{{ $product->inStock ? ($product->longDelivery() ? 'Disponibile su ordinazione' : 'Disponibile') : 'Non disponibile' }}
+					</p>
 				</div>
-
 			</div>
 		</div>
 
@@ -101,7 +102,20 @@
 			@endif
 		</div>
 
-		<!-- Quantity and add to cart -->
-		<livewire:product.add-to-cart :product="$product" />
-	</form>
+		@if ($product->hasPromotion())
+			<x-banners.discount
+				class="mt-6"
+				size="sm"
+			/>
+		@endif
+
+		<div class="grid grid-cols-1 gap-4">
+			@if ($product->canBeExtraConcentrated())
+				<livewire:product.extra-concentrated-check />
+			@endif
+
+			<!-- Quantity and add to cart -->
+			<livewire:product.add-to-cart :product="$product" />
+		</div>
+	</div>
 </section>

@@ -83,47 +83,64 @@ class Product extends Model {
     /**
      * Get the product price based on the quantity
      */
-    public function price(int $quantity = 1): float {
+    public function price(int $totalOrderQuantity = 1, bool $extraConcentrated = false): float {
         if ($this->price) {
-            return $this->price;
-        }
-
-        if (Auth::user()?->groupId != 2) {
-            switch (true) {
-                case $quantity > 20:
-                    $price = 34.9;
-                    break;
-                case $quantity > 10:
-                    $price = 39.9;
-                    break;
-                case $quantity > 5:
-                    $price = 44.9;
-                    break;
-                default:
-                    $price = 49.9;
-                    break;
-            }
+            $price = $this->price;
         } else {
-            $price = 23;
+            if (Auth::user()?->groupId != 2) {
+                switch (true) {
+                    case $totalOrderQuantity >= 22:
+                        $price = 34.9;
+                        break;
+                    case $totalOrderQuantity >= 12:
+                        $price = 39.9;
+                        break;
+                    case $totalOrderQuantity >= 6:
+                        $price = 44.9;
+                        break;
+                    default:
+                        $price = 49.9;
+                        break;
+                }
+            } else {
+                $price = 23;
+            }
         }
 
-        return $price;
+        return $extraConcentrated ? $price + 5 : $price;
     }
 
     /**
      * Get the product price in a human-readable format.
-     * 
-     * @return string
      */
     public function priceString(): string {
         return (new NumberFormatter('it_IT', NumberFormatter::CURRENCY))->formatCurrency($this->price(), 'EUR');
     }
 
     /**
+     * Determine if the product can be extra concentrated
+     */
+    public function canBeExtraConcentrated(): bool {
+        return in_array($this->product_type->name, ['Doccce Emozionali Fredde', 'Doccce Emozionali Calde', 'Bagno Turco', 'Concentrato profumato per sauna']);
+    }
+
+    /**
+     * Determine if the product has a promotion
+     */
+    public function hasPromotion(): bool {
+        return in_array($this->product_type->name, ['Doccce Emozionali Fredde', 'Doccce Emozionali Calde', 'Bagno Turco', 'Concentrato profumato per sauna']);
+    }
+
+    /**
+     * Determine if the product has a long delivery time
+     */
+    public function longDelivery(): bool {
+        return in_array($this->product_type->name, ['Kit']);
+    }
+
+    /**
      * Get the related products.
      * This method retrieves the latest 5 products excluding the current one.
-     * 
-     * @return Collection
      */
     public function relatedProducts(): Collection {
         return self::where('id', '!=', $this->id)

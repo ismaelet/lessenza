@@ -17,7 +17,7 @@
 
 			<div class="cart-order__data">
 				<p class="font-heading text-lg font-medium leading-none text-neutral-700"><a
-						href="<?= $orderItem->product->url() ?>"><?= $orderItem->product->name ?></a></p>
+						href="<?= $orderItem->product->url() ?>"><?= $orderItem->name ?></a></p>
 
 				<p class=""><?= $orderItem->quantity == 1 ? 'tanica' : 'taniche' ?> da 5L</p>
 
