@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Helpers\FileHelper;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
@@ -70,14 +71,20 @@ class Product extends Model {
     /**
      * Get the image URL for the product
      */
-    public function getImage(int $resolution = self::DEFAULT_IMAGE_RESOLUTION): string {
+    public function getImage(int $resolution = self::DEFAULT_IMAGE_RESOLUTION): ?string {
         if (!in_array($resolution, self::ALLOWED_IMAGE_RESOLUTIONS)) {
             $resolution = self::DEFAULT_IMAGE_RESOLUTION;
         }
 
-        $fileTime = @filemtime(storage_path('app/public/products/' . $this->id . '-' . $resolution . '.webp'));
+        $imagePath = 'products/' . $this->id . '-' . $resolution . '.webp';
 
-        return public_asset('products/' . $this->id . '-' . $resolution . '.webp' . ($fileTime ? '?v=' . $fileTime : ''));
+        if (!FileHelper::exists($imagePath)) {
+            return null;
+        }
+
+        $fileTime = @filemtime(storage_path('app/public/' . $imagePath));
+
+        return public_asset($imagePath . ($fileTime ? '?v=' . $fileTime : ''));
     }
 
     /**

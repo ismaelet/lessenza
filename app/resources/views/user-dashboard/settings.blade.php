@@ -3,7 +3,6 @@
 	:$location
 >
 
-
 	<div class="page-block grid grid-cols-1 gap-12">
 		<section>
 			<x-user-dashboard.heading icon="settings">
