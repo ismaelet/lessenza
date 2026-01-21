@@ -1,7 +1,7 @@
 @props(['product'])
 
 <div class="product-card">
-	<div class="product-card__image-wrapper stack-content grid">
+	<div class="product-card__image-wrapper stack-content grid bg-neutral-200">
 		<a
 			href="{{ $product->url() }}"
 			class="stack-content"

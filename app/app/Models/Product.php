@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Vite;
 use NumberFormatter;
 
 class Product extends Model {
@@ -71,7 +72,7 @@ class Product extends Model {
     /**
      * Get the image URL for the product
      */
-    public function getImage(int $resolution = self::DEFAULT_IMAGE_RESOLUTION): ?string {
+    public function getImage(int $resolution = self::DEFAULT_IMAGE_RESOLUTION): string {
         if (!in_array($resolution, self::ALLOWED_IMAGE_RESOLUTIONS)) {
             $resolution = self::DEFAULT_IMAGE_RESOLUTION;
         }
@@ -79,7 +80,7 @@ class Product extends Model {
         $imagePath = 'products/' . $this->id . '-' . $resolution . '.webp';
 
         if (!FileHelper::exists($imagePath)) {
-            return null;
+            return Vite::image('no-image.webp');
         }
 
         $fileTime = @filemtime(storage_path('app/public/' . $imagePath));

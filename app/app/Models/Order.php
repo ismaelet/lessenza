@@ -30,6 +30,7 @@ class Order extends Model {
         'shipping_fee',
         'status',
         'token',
+        'created_at'
     ];
 
     /**
