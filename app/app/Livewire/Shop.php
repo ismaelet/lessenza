@@ -12,169 +12,152 @@ use Livewire\Component;
 
 class Shop extends Component {
 
-	/**
-	 * The search query for products.
-	 * 
-	 * @var string|null
-	 */
-	#[Url(history: true)]
-	public ?string $search = null;
+    /**
+     * The search query for products
+     */
+    #[Url(history: true)]
+    public ?string $search = null;
 
-	/**
-	 * The ID of the product type to filter by.
-	 * 
-	 * @var int|null
-	 */
-	#[Url(history: true)]
-	public ?int $typeId = null;
+    /**
+     * The ID of the product type to filter by
+     */
+    #[Url(history: true)]
+    public $typeId = null;
 
-	/**
-	 * The sorting method for products.
-	 * 
-	 * @var string
-	 */
-	#[Url(history: true)]
-	public string $sort = 'popular';
+    /**
+     * The sorting method for products
+     */
+    #[Url(history: true)]
+    public string $sort = 'popular';
 
-	/**
-	 * The current page number for pagination.
-	 * 
-	 * @var int
-	 */
-	#[Url(history: true)]
-	public int $page = 1;
+    /**
+     * The current page number for pagination
+     */
+    #[Url(history: true)]
+    public int $page = 1;
 
-	/**
-	 * The collection of products to display.
-	 * 
-	 * @var Collection
-	 */
-	public Collection $products;
+    /**
+     * The collection of products to display
+     */
+    public Collection $products;
 
-	/**
-	 * The total number of products matched by the filters.
-	 * 
-	 * @var int
-	 */
-	public int $productCount;
+    /**
+     * The total number of products matched by the filters
+     */
+    public int $productCount;
 
-	/**
-	 * The number of products to display per page.
-	 * 
-	 * @var int
-	 */
-	public int $size = 35;
+    /**
+     * The number of products to display per page
+     */
+    public int $size = 35;
 
-	/**
-	 * The total number of pages for pagination.
-	 * 
-	 * @var int
-	 */
-	public int $pageCount;
+    /**
+     * The total number of pages for pagination
+     */
+    public int $pageCount;
 
-	public array $filters = [];
+    public array $filters = [];
 
-	/**
-	 * Mount the component with initial data.
-	 * 
-	 * @param Request $request
-	 * @return void
-	 */
-	public function mount(Request $request): void {
-		$this->filters = [
-			[
-				'title' => 'Collezioni',
-				'slug' => 'product_type_id',
-				'opened-by-default' => true,
-				'list' => ProductType::orderBy('names')
-					->orderBy('name')
-					->get(),
-			],
-		];
+    /**
+     * Mount the component with initial data
+     */
+    public function mount(Request $request): void {
+        $this->typeId = is_numeric($request->typeId) ? (int) $request->typeId : null;
 
-		$this->getProducts();
-	}
+        $this->filters = [
+            [
+                'title' => 'Collezioni',
+                'slug' => 'product_type_id',
+                'opened-by-default' => true,
+                'list' => ProductType::orderBy('names')
+                    ->orderBy('name')
+                    ->get(),
+            ],
+        ];
 
-	/**
-	 * Update the search query and refresh the product list.
-	 * 
-	 * return void
-	 */
-	public function updatedSearch(): void {
-		$this->getProducts();
-	}
+        $this->getProducts();
+    }
 
-	/**
-	 * Update the sorting method and refresh the product list.
-	 * 
-	 * @return void
-	 */
-	public function updatedSort(): void {
-		$this->getProducts();
-	}
+    /**
+     * Update the search query and refresh the product list.
+     * 
+     * return void
+     */
+    public function updatedSearch(): void {
+        $this->getProducts();
+    }
 
-	/**
-	 * Update the type ID and refresh the product list.
-	 * 
-	 * @return void
-	 */
-	public function updatedTypeId(): void {
-		$this->getProducts();
-	}
+    /**
+     * Update the sorting method and refresh the product list.
+     * 
+     * @return void
+     */
+    public function updatedSort(): void {
+        $this->getProducts();
+    }
 
-	/**
-	 * Get the products based on the current filters and sorting.
-	 * 
-	 * @return void
-	 */
-	private function getProducts(): void {
-		// Get the products
-		$products = Product::where('statusId', 1);
+    /**
+     * Update the type ID and refresh the product list.
+     * 
+     * @return void
+     */
+    public function updatedTypeId(): void {
+        $this->getProducts();
+    }
 
-		// Filter by keywords
-		if ($this->search) {
-			$products = $products->where(function ($query) {
-				$query->where('name', 'LIKE', '%' . $this->search . '%')
-					->orWhereHas('product_type', function ($query) {
-						$query->where('name', 'LIKE', '%' . $this->search . '%');
-					});
-			});
-		}
+    /**
+     * Get the products based on the current filters and sorting.
+     * 
+     * @return void
+     */
+    private function getProducts(): void {
+        // Get the products
+        $products = Product::where('statusId', 1);
 
-		// Filter by type
-		if ($this->typeId) {
-			$products = $products->where('product_type_id', $this->typeId);
-		}
+        // Filter by keywords
+        if ($this->search) {
+            $products = $products->where(function ($query) {
+                $query->where('name', 'LIKE', '%' . $this->search . '%')
+                    ->orWhereHas('product_type', function ($query) {
+                        $query->where('name', 'LIKE', '%' . $this->search . '%');
+                    });
+            });
+        }
 
-		// Sort products
-		$products = $this->sort == 'popular' ?
-			$products->orderByDesc('inStock')
-			->orderBy('product_type_id')
-			->orderByDesc('recentSales')
-			->orderByDesc('sales')
-			->orderBy('id') :
+        // Filter by type
+        if ($this->typeId) {
+            $products = $products->where('product_type_id', $this->typeId);
+        }
 
-			$products->orderByDesc('inStock')
-			->orderBy('product_type_id')
-			->orderByDesc('created_at')
-			->orderByDesc('id');
+        // Sort products
+        $products = $this->sort == 'popular' ?
+            $products->orderByDesc('inStock')
+            ->orderBy('product_type_id')
+            ->orderByDesc('recentSales')
+            ->orderByDesc('sales')
+            ->orderBy('id') :
 
-		// Get the total number of products
-		$this->productCount = $products->count();
+            $products->orderByDesc('inStock')
+            ->orderBy('product_type_id')
+            ->orderByDesc('created_at')
+            ->orderByDesc('id');
 
-		// Get the products for the current page
-		$this->products = $products->get();
+        // Get the total number of products
+        $this->productCount = $products->count();
 
-		$start = $this->page ? $this->size * ($this->page - 1) : 1;
-		$this->pageCount = ceil($this->productCount / $this->size);
-	}
+        // Get the products for the current page
+        $this->products = $products->get();
 
-	/**
-	 * Render the component view.
-	 * 
-	 * @return \Illuminate\View\View
-	 */
-	public function render(): View {
-		return view('livewire.shop');
-	}
+        $start = $this->page ? $this->size * ($this->page - 1) : 1;
+        $this->pageCount = ceil($this->productCount / $this->size);
+    }
+
+    /**
+     * Render the component view.
+     * 
+     * @return \Illuminate\View\View
+     */
+    public function render(): View {
+        return view('livewire.shop');
+    }
 }
