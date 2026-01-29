@@ -45,16 +45,21 @@
 
 	<div class="order-item col-span-full flex">
 		<p class="">Articoli</p>
-		<p class="font-semibold">{{ price($getRecord()->item_price) }}</p>
+		<p class="font-semibold">{{ price($getRecord()->items_price_net) }}</p>
 	</div>
 
 	<div class="order-item col-span-full flex">
 		<p class="">Spedizione</p>
-		<p class="font-semibold">{{ price($getRecord()->shipping_fee) }}</p>
+		<p class="font-semibold">{{ price($getRecord()->shipping_fee_net) }}</p>
+	</div>
+
+	<div class="order-item col-span-full flex">
+		<p class="">IVA</p>
+		<p class="font-semibold">{{ price($getRecord()->vat) }}</p>
 	</div>
 
 	<div class="order-item col-span-full flex">
 		<p class="">Totale</p>
-		<p class="font-semibold">{{ price($getRecord()->price) }}</p>
+		<p class="font-semibold">{{ price($getRecord()->total_price_gross) }}</p>
 	</div>
 </div>

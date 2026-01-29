@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Helpers\EcommerceHelper;
 use App\Mail\ContactMail;
 use App\Mail\OrderConfirmationCCMail;
 use App\Mail\OrderStatusMail;
@@ -17,6 +18,8 @@ use Symfony\Component\Mailer\Exception\UnexpectedResponseException;
 
 class Order extends Model {
 
+    public const VAT = 0.22;
+
     /**
      * The attributes that are mass assignable
      */
@@ -25,9 +28,11 @@ class Order extends Model {
         'address_id',
         'shipping_method_id',
         'payment_method_id',
-        'price',
-        'item_price',
-        'shipping_fee',
+        'items_price_net',
+        'shipping_fee_net',
+        'total_price_gross',
+        'vat',
+        'quantity',
         'status',
         'token',
         'created_at'
@@ -71,64 +76,84 @@ class Order extends Model {
     }
 
     /**
-     * Get the date of the order item
-     */
-    public function date(): string {
-        return $this->created_at->format('d/m/Y');
-    }
-
-    /**
      * Get the label for the order status
      */
     public function statusTag(): string {
-        return config('custom.order_statuses.' . $this->status . '.tag', 'unknown');
+        return config('ecommerce.order_statuses.' . $this->status . '.tag', 'unknown');
     }
 
     /**
      * Get the tag for the order status
      */
     public function statusLabel(): string {
-        return config('custom.order_statuses.' . $this->status . '.label', 'Unknown Status');
+        return config('ecommerce.order_statuses.' . $this->status . '.label', 'Unknown Status');
     }
 
     /**
-     * Calculate the current price of the order, based on the currrent product prices and shipping fees
+     * Get the icon for the order status
      */
-    public function dynamicPrice(): float {
-        return $this->dynamicItemPrice() + $this->dynamicShippingFee();
+    public function statusIcon(): string {
+        return config('ecommerce.order_statuses.' . $this->status . '.icon', 'Unknown Status');
     }
 
     /**
      * Calculate the total price of the items in the order
      */
-    public function dynamicItemPrice(): float {
-        $price = 0;
-
-        foreach ($this->order_items as $orderItem) {
-            $price += $orderItem->price;
-        }
-
-        return $price;
+    private function calcItemsPriceNet(): float {
+        return $this->order_items()->sum('total_price_net');
     }
 
     /**
      * Calculate the shipping fee of the order
      */
-    public function dynamicShippingFee(): float {
-        return $this->shipping_method->price($this) ?? 0.0;
+    private function calcShippingFeeNet(): float {
+        return $this->shipping_method->price($this) ?? 0;
+    }
+
+    /**
+     * Calculate the VAT of the order
+     */
+    private function calcVat(): float {
+        return $this->calcTotalPriceNet() * self::VAT;
+    }
+
+    /**
+     * Calculate the total net price of the order
+     */
+    private function calcTotalPriceNet(): float {
+        return $this->calcItemsPriceNet() + $this->calcShippingFeeNet();
+    }
+
+    /**
+     * Calculate the total gross price of the order
+     */
+    private function calcTotalPriceGross(): float {
+        return $this->calcTotalPriceNet() + $this->calcVat();
     }
 
     /**
      * Get the total quantity of items in the order
      */
-    public function quantity(): int {
-        $quantity = 0;
+    private function calcQuantity(): int {
+        return $this->order_items()->sum('quantity');
+    }
 
-        foreach ($this->order_items as $orderItem) {
-            $quantity += $orderItem->quantity;
-        }
+    /**
+     * Update the order prices based on the current product prices and shipping fees
+     */
+    public function recalculatePrices(): void {
+        $this->quantity = $this->calcQuantity();
 
-        return $quantity;
+        $this->order_items()->each(function (OrderItem $orderItem) {
+            $orderItem->load('product');
+            $orderItem->recalculatePrices($this->quantity);
+        });
+
+        $this->items_price_net = $this->calcItemsPriceNet();
+        $this->shipping_fee_net = $this->calcShippingFeeNet();
+        $this->vat = $this->calcVat();
+        $this->total_price_gross = $this->calcTotalPriceGross();
+        $this->save();
     }
 
     /**
@@ -139,6 +164,13 @@ class Order extends Model {
     }
 
     /**
+     * Get the date of the order item
+     */
+    public function date(): string {
+        return $this->created_at->format('d/m/Y');
+    }
+
+    /**
      * Get the recap URL with token
      */
     public function recapUrlWithToken(): string {
@@ -146,19 +178,18 @@ class Order extends Model {
     }
 
     /**
-     * Update the order prices based on the current product prices and shipping fees
+     * Create a new cart order
      */
-    public function updatePrice(): void {
-        $this->load('order_items', 'order_items.product');
+    public static function createCart(): Order {
+        $order = self::create([
+            'user_id' => Auth::id(),
+            'shipping_method_id' => ShippingMethod::default()?->id,
+            'payment_method_id' => PaymentMethod::default()?->id,
+        ]);
 
-        $this->order_items->each(function (OrderItem $orderItem) {
-            $orderItem->updatePrice($this->quantity());
-        });
+        session(['cart_id' => $order->id]);
 
-        $this->price = $this->dynamicPrice();
-        $this->item_price = $this->dynamicItemPrice();
-        $this->shipping_fee = $this->dynamicShippingFee();
-        $this->save();
+        return $order;
     }
 
     /**
@@ -167,31 +198,22 @@ class Order extends Model {
     public function add(Product $product, int $quantity = 1, bool $extraConcentrated = false): void {
         $orderItem = $this->order_items()->where('product_id', $product->id)->first();
 
-        $newOrderQuantity = $this->quantity() + $quantity;
-
         if ($orderItem) {
             // If the order item already exists, update the quantity
             $orderItem->update([
                 'quantity' => $orderItem->quantity + $quantity,
                 'extra_concentrated' => $extraConcentrated,
             ]);
-
-            $orderItem->updatePrice($newOrderQuantity);
         } else {
             // Otherwise, create a new order item
             $orderItem = $this->order_items()->create([
                 'product_id' => $product->id,
-                'user_id' => Auth::id(),
                 'quantity' => $quantity,
-                'price' => 0,
-                'product_price' => 0,
                 'extra_concentrated' => $extraConcentrated,
             ]);
-
-            $orderItem->updatePrice($newOrderQuantity);
         }
 
-        $this->updatePrice();
+        $this->recalculatePrices();
     }
 
     /**
@@ -200,14 +222,14 @@ class Order extends Model {
     public function removeItem(OrderItem $orderItem): void {
         $orderItem->delete();
 
-        $this->updatePrice();
+        $this->recalculatePrices();
     }
 
     /**
      * Confirm the order
      */
     public function confirm($sendNotification = true): void {
-        session()->forget('cartId');
+        session()->forget('cart_id');
 
         if ($this->status) {
             return;
@@ -216,24 +238,35 @@ class Order extends Model {
         // Update the order status and timestamps
         $this->update([
             'created_at' => now(),
-            'status' => 1,
+            'status' => EcommerceHelper::status('payment_pending'),
         ]);
 
         // Send the confirmation email
         if ($sendNotification) {
+            $this->load('order_items.product');
             $this->sendStatusEmail();
             $this->sendCCMail();
         }
     }
 
     /**
+     * Update the order status
+     */
+    public function updateStatus(int $newStatusId, bool $sendNotification = true): void {
+        $this->update([
+            'status' => $newStatusId,
+        ]);
+
+        if ($sendNotification) {
+            $this->load('order_items.product');
+            $this->sendStatusEmail();
+        }
+    }
+
+    /**
      * Send the order status email
      */
-    public function sendStatusEmail(): void {
-        if (app()->environment('local')) {
-            return;
-        }
-
+    private function sendStatusEmail(): void {
         $email = $this->address->email;
 
         try {
@@ -246,19 +279,18 @@ class Order extends Model {
     /**
      * Send a copy of the order status email to a specific address
      */
-    public function sendCCMail(): void {
-        $email = 'commerciale@lessenza.net';
+    private function sendCCMail(): void {
         $name = $this->address->full_name;
         $clientEmail = $this->address->email;
 
         try {
-            Mail::to($email)
+            Mail::to(config('custom.notification_emails'))
                 ->send(new OrderConfirmationCCMail(
                     email: $clientEmail,
                     name: $name
                 ));
         } catch (TransportExceptionInterface $e) {
-            Log::info("Email sending failed for {$email}: " . $e->getMessage());
+            Log::info("Email sending failed for " . implode(', ', config('custom.notification_emails')) . ": " . $e->getMessage());
         }
     }
 }

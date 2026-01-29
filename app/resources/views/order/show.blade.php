@@ -31,27 +31,24 @@
 	</div>
 
 	<div class="mb-20 mt-12 grid gap-12">
-		<div @class([
-			'status-bar flex items-center justify-center gap-4',
-			'text-red-400' => EcommerceHelper::statusColor($order->status) == 'red',
-			'text-gray-400' => EcommerceHelper::statusColor($order->status) == 'gray',
-			'text-sky-400' => EcommerceHelper::statusColor($order->status) == 'sky',
-			'text-green-400' => EcommerceHelper::statusColor($order->status) == 'green',
-			'text-amber-400' => EcommerceHelper::statusColor($order->status) == 'amber',
-			'text-orange-400' =>
-				EcommerceHelper::statusColor($order->status) == 'orange',
-		])>
+		<div class="status-bar text-status-{{ $order->status }} flex items-center justify-center gap-4">
 			<span class="status-icon grid aspect-square w-12 place-items-center rounded-full border">
 				<x-dynamic-component
-					:component="'icon-' . EcommerceHelper::statusIcon($order->status)"
+					:component="'icon-' . $order->statusIcon()"
 					class="w-1/2"
 				/>
 			</span>
 
 			<x-heading.small-component>
-				{{ EcommerceHelper::statusLabel($order->status) }}
+				{{ $order->statusLabel() }}
 			</x-heading.small-component>
 		</div>
+
+		@if ($order->statusTag() == 'payment_pending')
+			<div class="flex justify-center">
+				<x-button href="{{ route('paypal.orders.create', ['order_id' => $order->id]) }}">Procedi al pagamento</x-button>
+			</div>
+		@endif
 
 		<div class="grid items-start gap-6 sm:gap-8 lg:grid-cols-2 lg:gap-12">
 			<div class="grid gap-6 sm:gap-8">
@@ -112,7 +109,7 @@
 							<!--Data-->
 							<div class="md:col-span-3">
 								<a href="{{ $orderItem->product ? $orderItem->product->url() : null }}">
-									<h3 class="art_name">{{ $orderItem->name }}</h3>
+									<h3 class="art_name">{{ $orderItem->full_name }}</h3>
 								</a>
 
 								<p class="font-semibold">
@@ -127,22 +124,27 @@
 				<article class="grid grid-cols-1 gap-2 rounded border border-neutral-200 p-4">
 					<x-heading.small-component>Riepilogo</x-heading.small-component>
 
-					<div>
-						<div class="flex justify-between gap-4 py-3">
+					<ul class="divide-neutral-border divide-y">
+						<li class="flex justify-between gap-4 py-3">
 							<p class="">Articoli</p>
-							<p class="font-medium text-neutral-700">{{ $order->item_price }}</p>
-						</div>
+							<p class="font-medium text-neutral-700">{{ price($order->items_price_net) }}</p>
+						</li>
 
-						<div class="border-border flex justify-between gap-4 border-t py-3">
+						<li class="flex justify-between gap-4 py-3">
 							<p class="">Spedizione</p>
-							<p class="font-medium text-neutral-700">{{ $order->shipping_fee }}</p>
-						</div>
+							<p class="font-medium text-neutral-700">{{ price($order->shipping_fee_net) }}</p>
+						</li>
 
-						<div class="border-border flex justify-between gap-4 border-t py-3 text-lg">
+						<li class="flex justify-between gap-4 py-3">
+							<p class="">IVA</p>
+							<p class="font-medium text-neutral-700">{{ price($order->vat) }}</p>
+						</li>
+
+						<li class="flex justify-between gap-4 py-3 text-lg">
 							<p class="">Totale</p>
-							<p class="font-medium text-neutral-700">{{ $order->price }}</p>
-						</div>
-					</div>
+							<p class="font-medium text-neutral-700">{{ price($order->total_price_gross) }}</p>
+						</li>
+					</ul>
 				</article>
 			</div>
 		</div>

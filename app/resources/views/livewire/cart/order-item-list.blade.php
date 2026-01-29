@@ -21,7 +21,7 @@
 
 				<p class=""><?= $orderItem->quantity == 1 ? 'tanica' : 'taniche' ?> da 5L</p>
 
-				<p><?= $orderItem->quantity ?> x {{ price($orderItem->product_price) }}
+				<p><?= $orderItem->quantity ?> x {{ price($orderItem->unit_price_net) }}
 				</p>
 			</div>
 

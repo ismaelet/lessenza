@@ -47,7 +47,7 @@ class AddToCart extends Component {
         ]);
 
         // Add the product to the cart
-        $cart = Order::find(cart()->id);
+        $cart = cart() ?? Order::createCart();
         $cart->add($this->product, $this->quantity, $this->extraConcentrated);
 
         // Reset the quantity to 1 after adding to cart

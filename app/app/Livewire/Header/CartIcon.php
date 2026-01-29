@@ -17,7 +17,7 @@ class CartIcon extends Component {
      * Lifecycle hook: Initialize the component
      */
     public function mount(): void {
-        $this->quantity = cart()?->quantity() ?? 0;
+        $this->quantity = cart()?->quantity ?? 0;
     }
 
     /**
@@ -32,6 +32,6 @@ class CartIcon extends Component {
      */
     #[On('updateCart')]
     public function updateCart(): void {
-        $this->quantity = cart()?->quantity() ?? 0;
+        $this->quantity = cart()?->quantity ?? 0;
     }
 }

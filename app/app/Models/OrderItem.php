@@ -14,8 +14,8 @@ class OrderItem extends Model {
     protected $fillable = [
         'order_id',
         'product_id',
-        'price',
-        'product_price',
+        'unit_price_net',
+        'total_price_net',
         'extra_concentrated',
         'quantity',
     ];
@@ -50,7 +50,7 @@ class OrderItem extends Model {
     /**
      * Relationship: Get the order associated with the order item
      */
-    public function order(): BelongsTo {
+    private function order(): BelongsTo {
         return $this->belongsTo(Order::class);
     }
 
@@ -64,23 +64,23 @@ class OrderItem extends Model {
     /**
      * Calculate the current price of the order item, based on the current product price
      */
-    public function dynamicPrice(int $totalOrderQuantity): float {
-        return $this->quantity * ($this->dynamicProductPrice($totalOrderQuantity));
+    private function calcTotalPriceNet(int $totalOrderQuantity): float {
+        return $this->quantity * ($this->calcUnitPriceNet($totalOrderQuantity));
     }
 
     /**
      * Get the dynamic product price based on the current product price
      */
-    public function dynamicProductPrice(int $totalOrderQuantity): float {
+    private function calcUnitPriceNet(int $totalOrderQuantity): float {
         return $this->product->price($totalOrderQuantity, $this->extra_concentrated);
     }
 
     /**
      * Update the price of the order item based on the current product price
      */
-    public function updatePrice(int $totalOrderQuantity): void {
-        $this->product_price = $this->dynamicProductPrice($totalOrderQuantity);
-        $this->price = $this->dynamicPrice($totalOrderQuantity);
+    public function recalculatePrices(int $totalOrderQuantity): void {
+        $this->unit_price_net = $this->calcUnitPriceNet($totalOrderQuantity);
+        $this->total_price_net = $this->calcTotalPriceNet($totalOrderQuantity);
         $this->save();
     }
 }

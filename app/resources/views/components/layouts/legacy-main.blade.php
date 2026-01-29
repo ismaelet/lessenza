@@ -35,7 +35,7 @@
 		integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
 		crossorigin="anonymous"
 	></script>
-	<script src="{{ asset('js/legacy.js') }}"></script>
+	<script src="{{ asset('js/legacy.js') }}?v={{ filemtime(public_path('js/legacy.js')) }}"></script>
 @endpushOnce
 
 <x-layouts.app

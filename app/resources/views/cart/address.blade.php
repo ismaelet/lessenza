@@ -7,17 +7,65 @@
 
 		<div class="grid gap-8">
 			<!-- Shipping address -->
-			<section class="address">
+			<section
+				class="address"
+				x-data="{ is_company: {{ old('is_company', $address->is_company ?? true) ? 'true' : 'false' }} }"
+			>
 				<x-heading.small-component class="mb-4">Indirizzo</x-heading.small-component>
 
-				<div class="form-panel grid gap-4">
+				<div class="form-panel mt-8 grid gap-4">
+					<div class="flex flex-wrap gap-4">
+						<x-checkbox
+							type="radio"
+							name="is_company"
+							label="Azienda"
+							value="1"
+							:checked="$address->is_company ?? true"
+							x-on:click="is_company = true"
+						/>
+
+						<x-checkbox
+							type="radio"
+							name="is_company"
+							label="Privato"
+							value="0"
+							:checked="!$address->is_company ?? true"
+							x-on:click="is_company = false"
+						/>
+					</div>
+
 					<div class="form-row">
-						<x-label label="Nominativo:" />
+						<x-label><span x-text="is_company ? 'Dati aziendali:' : 'Dati personali:'"></span></x-label>
 						<x-input
 							name="full_name"
 							placeholder="Nominativo di spedizione"
 							:value="$address->full_name ?? ''"
 							required
+						/>
+						<x-input
+							name="vat_number"
+							placeholder="Partita IVA"
+							maxlength="11"
+							:value="$address->vat_number ?? ''"
+							x-bind:required="is_company"
+							x-show="is_company"
+						/>
+						<x-input
+							name="cu"
+							placeholder="Codice Univoco"
+							maxlength="6"
+							:value="$address->cu ?? ''"
+							x-bind:required="is_company"
+							x-show="is_company"
+						/>
+						<x-input
+							name="cf"
+							placeholder="Codice Fiscale"
+							maxlength="16"
+							:value="$address->cf ?? ''"
+							x-bind:required="!is_company"
+							x-show="!is_company"
+							x-cloak
 						/>
 					</div>
 					<div class="form-row md:grid-cols-4">
@@ -55,19 +103,29 @@
 						<livewire:cart.region-selector />
 					</div>
 					<div class="form-row">
-						<x-label label="Contatti:" />
+						<x-label label="Email:" />
 						<x-input
 							name="email"
-							placeholder="Email"
+							placeholder="Indirizzo Email"
 							type="email"
 							:value="$address->email ?? ''"
 							required
 						/>
 						<x-input
+							name="pec"
+							placeholder="Indirizzo PEC"
+							type="email"
+							:value="$address->pec ?? ''"
+							x-bind:required="is_company"
+							x-bind:placeholder="is_company ? 'Indirizzo PEC' : 'Indirizzo PEC (opzionale)'"
+						/>
+					</div>
+					<div class="form-row">
+						<x-label label="Telefono:" />
+						<x-input
 							name="phone"
 							placeholder="Telefono"
 							:value="$address->phone ?? ''"
-							required
 						/>
 					</div>
 					<div class="form-row">
@@ -78,6 +136,7 @@
 							:value="$address->notes ?? ''"
 						/>
 					</div>
+				</div>
 			</section>
 
 			<!-- Shipping method -->

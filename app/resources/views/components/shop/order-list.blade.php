@@ -22,9 +22,9 @@
 						@endforeach
 
 					</p>
-					<p class="cart-list__field">{{ price($order->price) }}</p>
+					<p class="cart-list__field">{{ price($order->total_price_gross) }}</p>
 					<p class="cart-list__field">
-						<span class="cart-list__status background-status-color--{{ $order->statusTag() }} text-white">
+						<span class="cart-list__status bg-status-{{ $order->status }} text-white">
 							{{ $order->statusLabel() }}
 						</span>
 					</p>

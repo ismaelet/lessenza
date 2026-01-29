@@ -2,7 +2,7 @@
 
 return [
 
-	/*
+    /*
     |--------------------------------------------------------------------------
     | Meta Data
     |--------------------------------------------------------------------------
@@ -10,14 +10,14 @@ return [
     |
     */
 
-	'meta_data' => [
-		'full_name' => env('APP_FULL_NAME', ''),
-		'description' => env('APP_DESCRIPTION', 'Scopri le nostre essenze professionali per SPA, sauna, bagno turco, docce emozionali.'),
-		'short_description' => env('APP_SHORT_DESCRIPTION', 'Essenze professionali per SPA, sauna, bagno turco, docce emozionali'),
-		'default_color_scheme' => env('APP_DEFAULT_COLOR_SCHEME', 'light'),
-	],
+    'meta_data' => [
+        'full_name' => env('APP_FULL_NAME', ''),
+        'description' => env('APP_DESCRIPTION', 'Scopri le nostre essenze professionali per SPA, sauna, bagno turco, docce emozionali.'),
+        'short_description' => env('APP_SHORT_DESCRIPTION', 'Essenze professionali per SPA, sauna, bagno turco, docce emozionali'),
+        'default_color_scheme' => env('APP_DEFAULT_COLOR_SCHEME', 'light'),
+    ],
 
-	/*
+    /*
     |--------------------------------------------------------------------------
     | Header navigation Links
     |--------------------------------------------------------------------------
@@ -25,17 +25,17 @@ return [
     |
     */
 
-	'navigation' => [
-		'header' => [
-			['label' => 'Home', 'route' => 'home', 'main_route' => 'home'],
-		],
+    'navigation' => [
+        'header' => [
+            ['label' => 'Home', 'route' => 'home', 'main_route' => 'home'],
+        ],
 
-		'footer' => [
-			['label' => 'Home', 'route' => 'home', 'main_route' => 'home'],
-		],
-	],
+        'footer' => [
+            ['label' => 'Home', 'route' => 'home', 'main_route' => 'home'],
+        ],
+    ],
 
-	/*
+    /*
     |--------------------------------------------------------------------------
     | Footer navigation Links
     |--------------------------------------------------------------------------
@@ -54,60 +54,29 @@ return [
     |
     */
 
-	/*
+    /*
     |--------------------------------------------------------------------------
     | Contacts
     |--------------------------------------------------------------------------
     */
 
-	'contacts' => [
-		'phone' => ['url' => 'tel:3487852808', 'label' => '348 7852808', 'title' => 'Tel.'],
-		'email' => ['url' => 'mailto:commerciale@lessenza.net', 'label' => 'commerciale@lessenza.net', 'title' => 'E-mail'],
-		'instagram' => ['url' => 'https://www.instagram.com/lessenza80/', 'label' => '@lessenza80', 'title' => 'Instagram'],
-		'facebook' => ['url' => 'https://www.facebook.com/lessenza.net/', 'label' => '@lessenza.net', 'title' => 'Facebook'],
-	],
+    'contacts' => [
+        'phone' => ['url' => 'tel:3487852808', 'label' => '348 7852808', 'title' => 'Tel.'],
+        'email' => ['url' => 'mailto:commerciale@lessenza.net', 'label' => 'commerciale@lessenza.net', 'title' => 'E-mail'],
+        'instagram' => ['url' => 'https://www.instagram.com/lessenza80/', 'label' => '@lessenza80', 'title' => 'Instagram'],
+        'facebook' => ['url' => 'https://www.facebook.com/lessenza.net/', 'label' => '@lessenza.net', 'title' => 'Facebook'],
+    ],
 
-	/*
+
+    /*
     |--------------------------------------------------------------------------
-    | Order Status
+    | Notification Emails
     |--------------------------------------------------------------------------
-    */
-	'order_statuses' => [
-		'-1' => [
-			'tag' => 'canceled',
-			'label' => 'Cancellato',
-			'icon' => 'close',
-			'color' => 'red'
-		],
-		'0' => [
-			'tag' => 'open',
-			'label' => 'Non completato',
-			'icon' => 'pause',
-			'color' => 'gray'
-		],
-		'1' => [
-			'tag' => 'waiting-payment',
-			'label' => 'In attesa del pagamento',
-			'icon' => 'hourglass',
-			'color' => 'sky'
-		],
-		'2' => [
-			'tag' => 'confirmed-payment',
-			'label' => 'Pagamento confermato',
-			'icon' => 'correct',
-			'color' => 'green'
-		],
-		'3' => [
-			'tag' => 'shipped',
-			'label' => 'Spedito',
-			'icon' => 'shipping',
-			'color' => 'amber'
-		],
-		'4' => [
-			'tag' => 'delivered',
-			'label' => 'Consegnato',
-			'icon' => 'delivered',
-			'color' => 'orange'
-		],
-	],
+    |
+    | The email addresses to be notified on certain events.
+    | E.g., when a new user registers, a new newsletter subscription is made, etc.
+    |
+	*/
+    'notification_emails' => config('app.env') === 'production'
+        ? ['commerciale@lessenza.net'] : ['ismaele.tuffanelli@gmail.com'],
 ];

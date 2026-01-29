@@ -115,7 +115,7 @@
 					<livewire:cart.order-item-list
 						:$orderItems
 						:editable="(bool) $cart->status"
-						:key="'order-items:' . $orderItems->pluck('id')->implode('-') . ',q:' . $cart->quantity()"
+						:key="'order-items:' . $orderItems->pluck('id')->implode('-') . ',q:' . $cart->quantity"
 					/>
 				@endif
 			</div>
@@ -125,7 +125,7 @@
 				<div class="cart-sidebar__recap flex-group">
 					<p>Subtotale:</p>
 					<p class="font-semibold text-neutral-700">
-						{{ price($cart->item_price ?: 0) }}</p>
+						{{ price($cart?->items_price_net ?: 0) }}</p>
 				</div>
 
 				<div
@@ -143,7 +143,7 @@
 						class=""
 						href="{{ route('cart') }}"
 						size="small"
-						:disabled="$cart->isEmpty()"
+						:disabled="$cart?->isEmpty()"
 					>Aquista ora</x-button>
 				</div>
 			</div>
