@@ -9,7 +9,7 @@
 			<!-- Shipping address -->
 			<section
 				class="address"
-				x-data="{ is_company: {{ old('is_company', $address->is_company ?? true) ? 'true' : 'false' }} }"
+				x-data="{ is_company: {{ old('is_company', $address?->is_company ?? true) ? 'true' : 'false' }} }"
 			>
 				<x-heading.small-component class="mb-4">Indirizzo</x-heading.small-component>
 
@@ -20,7 +20,7 @@
 							name="is_company"
 							label="Azienda"
 							value="1"
-							:checked="$address->is_company ?? true"
+							:checked="$address?->is_company ?? true"
 							x-on:click="is_company = true"
 						/>
 
@@ -29,7 +29,7 @@
 							name="is_company"
 							label="Privato"
 							value="0"
-							:checked="!$address->is_company ?? true"
+							:checked="!($address?->is_company ?? true)"
 							x-on:click="is_company = false"
 						/>
 					</div>
@@ -39,14 +39,14 @@
 						<x-input
 							name="full_name"
 							placeholder="Nominativo di spedizione"
-							:value="$address->full_name ?? ''"
+							:value="$address?->full_name ?? ''"
 							required
 						/>
 						<x-input
 							name="vat_number"
 							placeholder="Partita IVA"
 							maxlength="11"
-							:value="$address->vat_number ?? ''"
+							:value="$address?->vat_number ?? ''"
 							x-bind:required="is_company"
 							x-show="is_company"
 						/>
@@ -54,7 +54,7 @@
 							name="cu"
 							placeholder="Codice Univoco"
 							maxlength="6"
-							:value="$address->cu ?? ''"
+							:value="$address?->cu ?? ''"
 							x-bind:required="is_company"
 							x-show="is_company"
 						/>
@@ -62,7 +62,7 @@
 							name="cf"
 							placeholder="Codice Fiscale"
 							maxlength="16"
-							:value="$address->cf ?? ''"
+							:value="$address?->cf ?? ''"
 							x-bind:required="!is_company"
 							x-show="!is_company"
 							x-cloak
@@ -77,27 +77,27 @@
 							name="street"
 							placeholder="Indirizzo"
 							class="md:col-span-3"
-							:value="$address->street ?? ''"
+							:value="$address?->street ?? ''"
 							required
 						/>
 						<x-input
 							name="number"
 							placeholder="Numero civico"
 							class="md:col-span-1"
-							:value="$address->number ?? ''"
+							:value="$address?->number ?? ''"
 						/>
 						<x-input
 							name="city"
 							placeholder="Città"
 							class="md:col-span-4"
-							:value="$address->city ?? ''"
+							:value="$address?->city ?? ''"
 							required
 						/>
 						<x-input
 							name="zip"
 							placeholder="CAP"
 							class="md:col-span-2"
-							:value="$address->zip ?? ''"
+							:value="$address?->zip ?? ''"
 							required
 						/>
 						<livewire:cart.region-selector />
@@ -108,14 +108,14 @@
 							name="email"
 							placeholder="Indirizzo Email"
 							type="email"
-							:value="$address->email ?? ''"
+							:value="$address?->email ?? ''"
 							required
 						/>
 						<x-input
 							name="pec"
 							placeholder="Indirizzo PEC"
 							type="email"
-							:value="$address->pec ?? ''"
+							:value="$address?->pec ?? ''"
 							x-bind:required="is_company"
 							x-bind:placeholder="is_company ? 'Indirizzo PEC' : 'Indirizzo PEC (opzionale)'"
 						/>
@@ -125,7 +125,7 @@
 						<x-input
 							name="phone"
 							placeholder="Telefono"
-							:value="$address->phone ?? ''"
+							:value="$address?->phone ?? ''"
 						/>
 					</div>
 					<div class="form-row">
@@ -133,7 +133,7 @@
 						<x-textarea
 							name="notes"
 							placeholder="Note aggiuntive"
-							:value="$address->notes ?? ''"
+							:value="$address?->notes ?? ''"
 						/>
 					</div>
 				</div>
