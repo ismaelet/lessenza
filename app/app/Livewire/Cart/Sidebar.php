@@ -47,8 +47,6 @@ class Sidebar extends Component {
     public function updateCart($showSidebar = true): void {
         if ($this->cart->quantity > 0 && $showSidebar) {
             $this->show = true;
-        } else {
-            $this->show = false;
         }
     }
 }

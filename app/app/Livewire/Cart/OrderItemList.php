@@ -45,10 +45,16 @@ class OrderItemList extends Component {
      * Event: Remove an order item
      */
     public function removeOrderItem(int $orderItemId): void {
-        $this->cart->removeItem($this->orderItems->find($orderItemId));
+        $orderItem = $this->cart->order_items->find($orderItemId);
 
-        $this->orderItems = $this->cart->order_items;
+        if (!$orderItem) {
+            return;
+        }
 
-        $this->dispatch('updateCart');
+        $this->cart->removeItem($orderItem);
+
+        $this->orderItems = $this->cart->order_items()->with('product')->get();
+
+        $this->dispatch('updateCart', false);
     }
 }
