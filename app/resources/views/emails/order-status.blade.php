@@ -121,7 +121,7 @@
 									<p style="line-height: 3">{{ $orderItem->name }}</p>
 								</td>
 								<td>
-									<p style="text-align: right">{{ price($orderItem->price) }}</p>
+									<p style="text-align: right">{{ price($orderItem->total_price_net) }}</p>
 								</td>
 							</tr>
 						@endforeach
@@ -131,7 +131,16 @@
 								<p style="">Spedizione:</p>
 							</td>
 							<td>
-								<p style="text-align: right">{{ price($order->shipping_fee) }}</p>
+								<p style="text-align: right">{{ price($order->shipping_fee_net) }}</p>
+							</td>
+						</tr>
+
+						<tr>
+							<td>
+								<p style="">IVA:</p>
+							</td>
+							<td>
+								<p style="text-align: right">{{ price($order->vat) }}</p>
 							</td>
 						</tr>
 						<tr>
@@ -139,7 +148,7 @@
 								<p><strong>Totale dell'ordine:</strong></p>
 							</td>
 							<td>
-								<p style="text-align: right"><strong>{{ price($order->price) }}</strong></p>
+								<p style="text-align: right"><strong>{{ price($order->total_price_gross) }}</strong></p>
 							</td>
 						</tr>
 					</table>

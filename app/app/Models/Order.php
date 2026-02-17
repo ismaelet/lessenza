@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use App\Helpers\EcommerceHelper;
-use App\Mail\ContactMail;
 use App\Mail\OrderConfirmationCCMail;
 use App\Mail\OrderStatusMail;
 use Illuminate\Database\Eloquent\Casts\Attribute;
@@ -14,7 +13,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
-use Symfony\Component\Mailer\Exception\UnexpectedResponseException;
 
 class Order extends Model {
 
@@ -271,8 +269,10 @@ class Order extends Model {
 
         try {
             Mail::to($email)->send(new OrderStatusMail($this));
-        } catch (UnexpectedResponseException $e) {
-            Log::info("Email sending failed for {$email}: " . $e->getMessage());
+        } catch (TransportExceptionInterface $e) {
+            Log::warning("SMTP error for {$email}: " . $e->getMessage());
+        } catch (\Throwable $e) {
+            Log::error("Unexpected mail error for {$email}: " . $e->getMessage());
         }
     }
 
@@ -290,7 +290,9 @@ class Order extends Model {
                     name: $name
                 ));
         } catch (TransportExceptionInterface $e) {
-            Log::info("Email sending failed for " . implode(', ', config('custom.notification_emails')) . ": " . $e->getMessage());
+            Log::warning("SMTP error for " . implode(', ', config('custom.notification_emails')) . ": " . $e->getMessage());
+        } catch (\Throwable $e) {
+            Log::error("Unexpected mail error for " . implode(', ', config('custom.notification_emails')) . ": " . $e->getMessage());
         }
     }
 }
