@@ -39,6 +39,7 @@
 						<x-input
 							name="full_name"
 							placeholder="Nominativo di spedizione"
+							maxlength="255"
 							:value="$address?->full_name ?? ''"
 							required
 						/>
@@ -77,6 +78,7 @@
 							name="street"
 							placeholder="Indirizzo"
 							class="md:col-span-3"
+							maxlength="255"
 							:value="$address?->street ?? ''"
 							required
 						/>
@@ -84,12 +86,14 @@
 							name="number"
 							placeholder="Numero civico"
 							class="md:col-span-1"
+							maxlength="255"
 							:value="$address?->number ?? ''"
 						/>
 						<x-input
 							name="city"
 							placeholder="Città"
 							class="md:col-span-4"
+							maxlength="255"
 							:value="$address?->city ?? ''"
 							required
 						/>
@@ -97,6 +101,7 @@
 							name="zip"
 							placeholder="CAP"
 							class="md:col-span-2"
+							maxlength="5"
 							:value="$address?->zip ?? ''"
 							required
 						/>
@@ -108,6 +113,7 @@
 							name="email"
 							placeholder="Indirizzo Email"
 							type="email"
+							maxlength="255"
 							:value="$address?->email ?? ''"
 							required
 						/>
@@ -115,6 +121,7 @@
 							name="pec"
 							placeholder="Indirizzo PEC"
 							type="email"
+							maxlength="255"
 							:value="$address?->pec ?? ''"
 							x-bind:required="is_company"
 							x-bind:placeholder="is_company ? 'Indirizzo PEC' : 'Indirizzo PEC (opzionale)'"
@@ -125,6 +132,7 @@
 						<x-input
 							name="phone"
 							placeholder="Telefono"
+							maxlength="255"
 							:value="$address?->phone ?? ''"
 						/>
 					</div>
