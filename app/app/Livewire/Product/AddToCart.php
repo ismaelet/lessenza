@@ -47,14 +47,29 @@ class AddToCart extends Component {
         ]);
 
         // Add the product to the cart
+        $newCart = cart() === null;
         $cart = cart() ?? Order::createCart();
         $cart->add($this->product, $this->quantity, $this->extraConcentrated);
 
-        // Reset the quantity to 1 after adding to cart
-        $this->quantity = 1;
-
         // Dispatch an event to update the cart
         $this->dispatch('updateCart');
+
+        // Dispatch an event for analytics tracking
+        if ($newCart) {
+            $this->dispatch('meta-initiate-checkout', [
+                'cart_id' => $cart->id,
+            ]);
+        }
+
+        $this->dispatch('meta-add-to-cart', [
+            'product_id' => $this->product->id,
+            'quantity' => $this->quantity,
+            'name' => $this->product->name,
+            'price' => $this->product->price($this->quantity, $this->extraConcentrated),
+        ]);
+
+        // Reset the quantity to 1 after adding to cart
+        $this->quantity = 1;
     }
 
     /**

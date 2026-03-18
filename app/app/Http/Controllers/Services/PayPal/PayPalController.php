@@ -141,7 +141,14 @@ class PayPalController extends Controller {
 
         $order->updateStatus(EcommerceHelper::status('payment_confirmed'));
 
-        return redirect($order->recapUrlWithToken());
+        return redirect($order->recapUrlWithToken())
+            ->with('meta_purchase', [
+                'value' => round((float) $order->total_price_gross, 2),
+                'currency' => 'EUR',
+                'order_id' => $order->id,
+                'content_ids' => $order->order_items->pluck('product_id')->values()->all(),
+                'num_items' => (int) $order->order_items->sum('quantity'),
+            ]);;
     }
 
     /**

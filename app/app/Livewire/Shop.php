@@ -85,6 +85,10 @@ class Shop extends Component {
      */
     public function updatedSearch(): void {
         $this->getProducts();
+
+        if ($this->search && strlen($this->search) > 2) {
+            $this->dispatch('meta-search', query: $this->search);
+        }
     }
 
     /**

@@ -96,13 +96,26 @@ class CartController extends Controller {
         $paymentMethod = PaymentMethod::find($request->payment_method_id);
 
         if ($paymentMethod->slug === 'paypal') {
-            return redirect()->route('paypal.orders.create', ['order_id' => $cart->id]);
+            return redirect()->route('paypal.orders.create', ['order_id' => $cart->id])
+                ->with('meta_add_payment_info', [
+                    'payment_type' => $paymentMethod->name,
+                ]);
         }
 
         $cart->load('order_items.product');
         $cart->confirm();
 
-        return redirect()->route('cart.success');
+        return redirect()->route('cart.success')
+            ->with('meta_add_payment_info', [
+                'payment_type' => $paymentMethod->name,
+            ])
+            ->with('meta_purchase', [
+                'value' => round((float) $cart->total_price_gross, 2),
+                'currency' => 'EUR',
+                'order_id' => $cart->id,
+                'content_ids' => $cart->order_items->pluck('product_id')->values()->all(),
+                'num_items' => (int) $cart->order_items->sum('quantity'),
+            ]);
     }
 
     /**

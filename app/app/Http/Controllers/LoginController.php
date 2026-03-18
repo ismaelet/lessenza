@@ -71,6 +71,7 @@ class LoginController extends Controller {
         // Log the user in
         Auth::login($user);
 
-        return redirect()->intended(route('user-dashboard.index'));
+        return redirect()->intended(route('user-dashboard.index'))
+            ->with('meta_complete_registration', true);
     }
 }
