@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Helpers\EcommerceHelper;
 use App\Models\Address;
+use App\Models\Newsletter\NewsletterSubscriber;
 use App\Models\Order;
 use App\Models\PaymentMethod;
 use App\Models\ShippingMethod;
@@ -92,6 +93,13 @@ class CartController extends Controller {
         $cart->update([
             'payment_method_id' => $request->payment_method_id,
         ]);
+
+        // Subscribe the user to the newsletter if they opted in
+        if ($request->boolean('marketing_opt_in') && !NewsletterSubscriber::where('email', $cart->email)->exists()) {
+            NewsletterSubscriber::create([
+                'email' => $cart->address->email,
+            ]);
+        }
 
         $paymentMethod = PaymentMethod::find($request->payment_method_id);
 

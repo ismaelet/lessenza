@@ -71,6 +71,8 @@
 					/>
 				@enderror
 
+				<x-marketing-consent />
+
 				<div class="">
 					<p class="hover:text-primary transition-colors"><a href="{{ route('login') }}">Hai già un account?</a></p>
 				</div>

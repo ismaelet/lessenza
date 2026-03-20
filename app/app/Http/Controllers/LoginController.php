@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Newsletter\NewsletterSubscriber;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -59,7 +60,8 @@ class LoginController extends Controller {
         // Validate the form data
         $request->validate([
             'email' => 'required|email|unique:users,email',
-            'password' => 'required|min:6|confirmed'
+            'password' => 'required|min:6|confirmed',
+            'marketing_opt_in' => 'boolean'
         ]);
 
         // Create the user
@@ -67,6 +69,13 @@ class LoginController extends Controller {
             'email' => $request->input('email'),
             'password' => Hash::make($request->input('password'))
         ]);
+
+        // Subscribe the user to the newsletter if they opted in
+        if ($request->boolean('marketing_opt_in') && !NewsletterSubscriber::where('email', $request->input('email'))->exists()) {
+            NewsletterSubscriber::create([
+                'email' => $request->input('email'),
+            ]);
+        }
 
         // Log the user in
         Auth::login($user);

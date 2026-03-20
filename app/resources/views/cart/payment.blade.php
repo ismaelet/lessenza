@@ -34,6 +34,10 @@
 				@endforeach
 			</div>
 
+			<div class="mb-8 mt-4">
+				<x-marketing-consent />
+			</div>
+
 			<div class="flex justify-end">
 				<x-button
 					type="submit"

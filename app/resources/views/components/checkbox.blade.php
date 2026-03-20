@@ -18,12 +18,12 @@
 	>
 
 	<span
-		class="group/icon flex h-5 w-5 cursor-pointer rounded-full border border-neutral-300 transition-colors group-has-[:checked]:border-neutral-700"
+		class="group/icon flex h-5 w-5 shrink-0 cursor-pointer rounded-full border border-neutral-300 transition-colors group-has-[:checked]:border-neutral-700"
 	>
 		<span
 			class="bg-primary-400 m-auto h-2 w-2 rounded-full opacity-0 transition-opacity group-hover/icon:opacity-100 group-has-[:checked]:opacity-100"
 		></span>
 	</span>
 
-	<p class="cursor-pointer leading-none">{!! $label !!}</p>
+	<p class="cursor-pointer leading-[1.2]">{!! $label !!}</p>
 </label>
