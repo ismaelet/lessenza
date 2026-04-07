@@ -23,10 +23,7 @@
 	    ' | Copyright © ' .
 	    getdate()['year'] .
 	    ' ' .
-	    sys_config('full-name') .
-	    '<br>
-	Web designer: <a class="" href="mailto:ismaele.tuffanelli@gmail.com">Ismaele Tuffanelli</a>
-';
+	    sys_config('full-name');
 
 @endphp
 
@@ -123,6 +120,24 @@
 
 	<!-- Notes -->
 	<div class="f__notes">
+		<div class="flex items-center justify-center gap-2 px-8">
+			<a
+				href="https://www.iubenda.com/privacy-policy/11710974"
+				class="opacity-50 transition-opacity hover:opacity-100"
+				title="Privacy Policy "
+			>Privacy Policy</a>
+
+			<span class="opacity-50">
+				&middot;
+			</span>
+
+			<a
+				href="https://www.iubenda.com/privacy-policy/11710974/cookie-policy"
+				class="opacity-50 transition-opacity hover:opacity-100"
+				title="Cookie Policy "
+			>Cookie Policy</a>
+		</div>
+
 		<div class="main-wrap">
 			<p class="opacity-50"><?= $footer['notes'] ?></p>
 		</div>
