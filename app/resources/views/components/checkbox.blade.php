@@ -11,7 +11,7 @@
 	<input
 		type="{{ $type }}"
 		name="{{ $name }}"
-		class="hidden"
+		class="absolute opacity-0"
 		@if ($value !== null) value="{{ $value }}" @endif
 		@checked($checked)
 		@required($required)

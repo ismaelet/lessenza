@@ -163,6 +163,15 @@
 				</div>
 			</section>
 
+			<div class="">
+				<x-checkbox
+					name="accept_terms"
+					label="Dichiaro di aver letto ed accettato i termini e le condizioni di vendita indicate <a class='text-link' href='{{ route('terms') }}' target='_blank'>qui</a>"
+					:checked="old('accept_terms', $address?->accept_terms ?? false)"
+					:required="true"
+				/>
+			</div>
+
 			<div class="flex justify-end">
 				<x-button
 					type="submit"

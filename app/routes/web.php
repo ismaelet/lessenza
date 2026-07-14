@@ -12,27 +12,32 @@ use Illuminate\Support\Facades\Route;
 
 // Home
 Route::get('/', [HomeController::class, 'index'])
-	->name('home');
+    ->name('home');
 
 // Technologies
 Route::get('/technologies', [TechnologiesController::class, 'index'])
-	->name('technologies');
+    ->name('technologies');
 
 // About us
 Route::get('/about-us', [AboutUsController::class, 'index'])
-	->name('about-us');
+    ->name('about-us');
 
 // Reviews
 Route::get('/reviews', [ReviewController::class, 'index'])
-	->name('reviews');
+    ->name('reviews');
 
 // Videos
 Route::get('/videos', [VideoController::class, 'index'])
-	->name('videos');
+    ->name('videos');
 
 // Contacts
 Route::get('/contacts', [ContactsController::class, 'index'])
-	->name('contacts');
+    ->name('contacts');
+
+// Terms and Conditions
+Route::get('/terms', function () {
+    return view('terms');
+})->name('terms');
 
 // Include the shop routes
 include __DIR__ . '/shop.php';
@@ -48,19 +53,19 @@ include __DIR__ . '/user-dashboard.php';
 
 
 Route::get('/genlink', function () {
-	$link = public_path('storage');
-	$target = storage_path('app/public');
+    $link = public_path('storage');
+    $target = storage_path('app/public');
 
-	$filesystem = new Filesystem();
+    $filesystem = new Filesystem();
 
-	try {
-		if ($filesystem->exists($link)) {
-			echo "Link already exists: {$link}";
-		} else {
-			$filesystem->link($target, $link);
-			echo "Symlink created: {$link} → {$target}";
-		}
-	} catch (Exception $e) {
-		echo "Error: " . $e->getMessage();
-	}
+    try {
+        if ($filesystem->exists($link)) {
+            echo "Link already exists: {$link}";
+        } else {
+            $filesystem->link($target, $link);
+            echo "Symlink created: {$link} → {$target}";
+        }
+    } catch (Exception $e) {
+        echo "Error: " . $e->getMessage();
+    }
 });
