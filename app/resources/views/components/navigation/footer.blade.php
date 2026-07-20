@@ -136,6 +136,16 @@
 				class="opacity-50 transition-opacity hover:opacity-100"
 				title="Cookie Policy "
 			>Cookie Policy</a>
+
+			<span class="opacity-50">
+				&middot;
+			</span>
+
+			<a
+				href="{{ route('terms') }}"
+				class="opacity-50 transition-opacity hover:opacity-100"
+				title="Termini e Condizioni"
+			>Termini e Condizioni</a>
 		</div>
 
 		<div class="main-wrap">
