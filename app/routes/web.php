@@ -32,6 +32,8 @@ Route::get('/videos', [VideoController::class, 'index'])
 // Contacts
 Route::get('/contacts', [ContactsController::class, 'index'])
     ->name('contacts');
+Route::post('/contacts', [ContactsController::class, 'store'])
+    ->name('contacts.store');
 
 // Terms and Conditions
 Route::get('/terms', function () {

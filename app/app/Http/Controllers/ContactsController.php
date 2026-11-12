@@ -25,7 +25,7 @@ class ContactsController extends Controller
     /**
      * Handle the contact form submission.
      */
-    public function submit(Request $request): RedirectResponse
+    public function store(Request $request): RedirectResponse
     {
         $request->validate([
             'name' => 'required|string|max:255',
@@ -38,15 +38,11 @@ class ContactsController extends Controller
         $mailText = trim($request->text);
 
         try {
-            // Send message
-            $content = '<h1 style="text-align: center; padding-bottom: 16px; font-weight: 600;">Richiesta informazioni</h1>
-		<p>Hai ricevuto una richiesta di informazioni da parte di <strong>'.$name.'</strong> (<a href="mailto:'.$clientEmail.'">'.$clientEmail.'</a>) con la seguente domanda:<br><br>"'.$mailText.'"</p>';
-
-            Mail::to(config('custom.contacts.email.label'))
+            Mail::to(config('custom.notification_emails'))
                 ->send(new ContactMail(
                     email: $clientEmail,
                     name: $name,
-                    text: $content
+                    text: $mailText
                 ));
 
             return redirect()->back()->with([

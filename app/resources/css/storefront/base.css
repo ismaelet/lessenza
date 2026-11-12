@@ -517,7 +517,6 @@
   width: 3rem;
   aspect-ratio: 1;
   opacity: 0;
-  background-image: url(/assets/icons/upload.svg);
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
@@ -662,7 +661,6 @@ p .icon-embed,
 
 .modal__close {
   opacity: 1;
-  background-image: url(/assets/icons/close.svg);
   background-position: center;
   background-size: contain;
   width: 1.5rem;

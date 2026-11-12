@@ -19,7 +19,6 @@ class ContactMail extends Mailable
      */
     public function __construct(public string $email, public string $name, public string $text, public ?array $parameters = null)
     {
-        $this->text = 'Richiesta informazioni da <strong>'.$this->name.'</strong> ('.$this->email.'):<br><br>"'.$this->text.'"';
     }
 
     /**
