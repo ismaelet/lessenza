@@ -2,80 +2,103 @@
 
 namespace Payments\Pix;
 
-class Payload {
+class Payload
+{
+    const ID_PAYLOAD_FORMAT_INDICATOR = '00';
 
-	const ID_PAYLOAD_FORMAT_INDICATOR = '00';
-	const ID_MERCHANT_ACCOUNT_INFORMATION = '26';
-	const ID_MERCHANT_ACCOUNT_INFORMATION_GUI = '00';
-	const ID_MERCHANT_ACCOUNT_INFORMATION_KEY = '01';
-	const ID_MERCHANT_ACCOUNT_INFORMATION_DESCRIPTION = '02';
-	const ID_MERCHANT_CATEGORY_CODE = '52';
-	const ID_TRANSACTION_CURRENCY = '53';
-	const ID_TRANSACTION_AMOUNT = '54';
-	const ID_COUNTRY_CODE = '58';
-	const ID_MERCHANT_NAME = '59';
-	const ID_MERCHANT_CITY = '60';
-	const ID_ADDITIONAL_DATA_FIELD_TEMPLATE = '62';
-	const ID_ADDITIONAL_DATA_FIELD_TEMPLATE_TXID = '05';
-	const ID_CRC16 = '63';
+    const ID_MERCHANT_ACCOUNT_INFORMATION = '26';
 
-	public $pixKey;
-	public $description;
-	public $txId;
-	public $amount;
+    const ID_MERCHANT_ACCOUNT_INFORMATION_GUI = '00';
 
-	public function getQrCode() {
-		$payloadCode =
-			$this->getValue(self::ID_PAYLOAD_FORMAT_INDICATOR, '01') .
-			$this->getMerchant() .
-			$this->getValue(self::ID_MERCHANT_CATEGORY_CODE, '8999') .
-			$this->getValue(self::ID_TRANSACTION_CURRENCY, '986') .
-			$this->getValue(self::ID_TRANSACTION_AMOUNT, $this->amount) .
-			$this->getValue(self::ID_COUNTRY_CODE, 'BR') .
-			$this->getValue(self::ID_MERCHANT_NAME, 'Pagseguro Internet SA') .
-			$this->getValue(self::ID_MERCHANT_CITY, 'SAO PAULO') .
-			$this->getTxId();
+    const ID_MERCHANT_ACCOUNT_INFORMATION_KEY = '01';
 
-		return $payloadCode . $this->getCRC16($payloadCode);
-	}
+    const ID_MERCHANT_ACCOUNT_INFORMATION_DESCRIPTION = '02';
 
-	private function getValue($id, $value) {
-		$size = str_pad(strlen($value), 2, '0', STR_PAD_LEFT);
+    const ID_MERCHANT_CATEGORY_CODE = '52';
 
-		return $id . $size . $value;
-	}
+    const ID_TRANSACTION_CURRENCY = '53';
 
-	private function getMerchant() {
-		$gui = $this->getValue(self::ID_MERCHANT_ACCOUNT_INFORMATION_GUI, 'br.gov.bcb.pix');
-		$key = $this->getValue(self::ID_MERCHANT_ACCOUNT_INFORMATION_KEY, $this->pixKey);
-		$description = $this->getValue(self::ID_MERCHANT_ACCOUNT_INFORMATION_DESCRIPTION, $this->description);
+    const ID_TRANSACTION_AMOUNT = '54';
 
-		return $this->getValue(self::ID_MERCHANT_ACCOUNT_INFORMATION, $gui . $key . $description);
-	}
+    const ID_COUNTRY_CODE = '58';
 
-	private function getTxId() {
-		$txId = $this->getValue(self::ID_ADDITIONAL_DATA_FIELD_TEMPLATE_TXID, $this->txId);
+    const ID_MERCHANT_NAME = '59';
 
-		return $this->getValue(self::ID_ADDITIONAL_DATA_FIELD_TEMPLATE, $txId);
-	}
+    const ID_MERCHANT_CITY = '60';
 
-	private function getCRC16($payloadCode) {
+    const ID_ADDITIONAL_DATA_FIELD_TEMPLATE = '62';
 
-		$payloadCode .= self::ID_CRC16 . '04';
+    const ID_ADDITIONAL_DATA_FIELD_TEMPLATE_TXID = '05';
 
-		$polinomio = 0x1021;
-		$resultado = 0xFFFF;
+    const ID_CRC16 = '63';
 
-		if (($length = strlen($payloadCode)) > 0) {
-			for ($offset = 0; $offset < $length; $offset++) {
-				$resultado ^= (ord($payloadCode[$offset]) << 8);
-				for ($bitwise = 0; $bitwise < 8; $bitwise++) {
-					if (($resultado <<= 1) & 0x10000) $resultado ^= $polinomio;
-					$resultado &= 0xFFFF;
-				}
-			}
-		}
+    public $pixKey;
 
-		return self::ID_CRC16 . '04' . strtoupper(dechex($resultado));
-	}
+    public $description;
+
+    public $txId;
+
+    public $amount;
+
+    public function getQrCode()
+    {
+        $payloadCode =
+            $this->getValue(self::ID_PAYLOAD_FORMAT_INDICATOR, '01').
+            $this->getMerchant().
+            $this->getValue(self::ID_MERCHANT_CATEGORY_CODE, '8999').
+            $this->getValue(self::ID_TRANSACTION_CURRENCY, '986').
+            $this->getValue(self::ID_TRANSACTION_AMOUNT, $this->amount).
+            $this->getValue(self::ID_COUNTRY_CODE, 'BR').
+            $this->getValue(self::ID_MERCHANT_NAME, 'Pagseguro Internet SA').
+            $this->getValue(self::ID_MERCHANT_CITY, 'SAO PAULO').
+            $this->getTxId();
+
+        return $payloadCode.$this->getCRC16($payloadCode);
+    }
+
+    private function getValue($id, $value)
+    {
+        $size = str_pad(strlen($value), 2, '0', STR_PAD_LEFT);
+
+        return $id.$size.$value;
+    }
+
+    private function getMerchant()
+    {
+        $gui = $this->getValue(self::ID_MERCHANT_ACCOUNT_INFORMATION_GUI, 'br.gov.bcb.pix');
+        $key = $this->getValue(self::ID_MERCHANT_ACCOUNT_INFORMATION_KEY, $this->pixKey);
+        $description = $this->getValue(self::ID_MERCHANT_ACCOUNT_INFORMATION_DESCRIPTION, $this->description);
+
+        return $this->getValue(self::ID_MERCHANT_ACCOUNT_INFORMATION, $gui.$key.$description);
+    }
+
+    private function getTxId()
+    {
+        $txId = $this->getValue(self::ID_ADDITIONAL_DATA_FIELD_TEMPLATE_TXID, $this->txId);
+
+        return $this->getValue(self::ID_ADDITIONAL_DATA_FIELD_TEMPLATE, $txId);
+    }
+
+    private function getCRC16($payloadCode)
+    {
+
+        $payloadCode .= self::ID_CRC16.'04';
+
+        $polinomio = 0x1021;
+        $resultado = 0xFFFF;
+
+        if (($length = strlen($payloadCode)) > 0) {
+            for ($offset = 0; $offset < $length; $offset++) {
+                $resultado ^= (ord($payloadCode[$offset]) << 8);
+                for ($bitwise = 0; $bitwise < 8; $bitwise++) {
+                    if (($resultado <<= 1) & 0x10000) {
+                        $resultado ^= $polinomio;
+                    }
+                    $resultado &= 0xFFFF;
+                }
+            }
+        }
+
+        return self::ID_CRC16.'04'.strtoupper(dechex($resultado));
+    }
 }

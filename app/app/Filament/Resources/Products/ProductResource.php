@@ -15,58 +15,61 @@ use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 use UnitEnum;
 
-class ProductResource extends Resource {
+class ProductResource extends Resource
+{
+    /**
+     * Property: The model associated with the resource
+     */
+    protected static ?string $model = Product::class;
 
-	/**
-	 * Property: The model associated with the resource
-	 */
-	protected static ?string $model = Product::class;
+    /**
+     * Property: The icon for the resource in the navigation
+     */
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedSquare3Stack3d;
 
-	/**
-	 * Property: The icon for the resource in the navigation
-	 */
-	protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedSquare3Stack3d;
+    /**
+     * Property: The label of a singular resource
+     */
+    protected static ?string $label = 'Prodotto';
 
-	/**
-	 * Property: The label of a singular resource
-	 */
-	protected static ?string $label = 'Prodotto';
+    /**
+     * Property: The label of a plural resource
+     */
+    protected static ?string $pluralLabel = 'Prodotti';
 
-	/**
-	 * Property: The label of a plural resource
-	 */
-	protected static ?string $pluralLabel = 'Prodotti';
+    /**
+     * Property: The group the resource should be displayed in the navigation
+     */
+    protected static string|UnitEnum|null $navigationGroup = 'Negozio';
 
-	/**
-	 * Property: The group the resource should be displayed in the navigation
-	 */
-	protected static string|UnitEnum|null $navigationGroup = 'Negozio';
+    /**
+     * Property: The position of the resource in the navigation
+     */
+    protected static ?int $navigationSort = 1;
 
-	/**
-	 * Property: The position of the resource in the navigation
-	 */
-	protected static ?int $navigationSort = 1;
+    public static function form(Schema $schema): Schema
+    {
+        return ProductForm::configure($schema);
+    }
 
+    public static function table(Table $table): Table
+    {
+        return ProductsTable::configure($table);
+    }
 
-	public static function form(Schema $schema): Schema {
-		return ProductForm::configure($schema);
-	}
+    public static function getRelations(): array
+    {
+        return [
+            //
+        ];
+    }
 
-	public static function table(Table $table): Table {
-		return ProductsTable::configure($table);
-	}
-
-	public static function getRelations(): array {
-		return [
-			//
-		];
-	}
-
-	public static function getPages(): array {
-		return [
-			'index' => ListProducts::route('/'),
-			'create' => CreateProduct::route('/create'),
-			'edit' => EditProduct::route('/{record}/edit'),
-		];
-	}
+    public static function getPages(): array
+    {
+        return [
+            'index' => ListProducts::route('/'),
+            'create' => CreateProduct::route('/create'),
+            'edit' => EditProduct::route('/{record}/edit'),
+        ];
+    }
 }

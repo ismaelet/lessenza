@@ -10,8 +10,8 @@ use Illuminate\View\View;
 use Livewire\Attributes\Url;
 use Livewire\Component;
 
-class Shop extends Component {
-
+class Shop extends Component
+{
     /**
      * The search query for products
      */
@@ -61,7 +61,8 @@ class Shop extends Component {
     /**
      * Mount the component with initial data
      */
-    public function mount(Request $request): void {
+    public function mount(Request $request): void
+    {
         $this->typeId = is_numeric($request->typeId) ? (int) $request->typeId : null;
 
         $this->filters = [
@@ -80,10 +81,11 @@ class Shop extends Component {
 
     /**
      * Update the search query and refresh the product list.
-     * 
+     *
      * return void
      */
-    public function updatedSearch(): void {
+    public function updatedSearch(): void
+    {
         $this->getProducts();
 
         if ($this->search && strlen($this->search) > 2) {
@@ -93,37 +95,34 @@ class Shop extends Component {
 
     /**
      * Update the sorting method and refresh the product list.
-     * 
-     * @return void
      */
-    public function updatedSort(): void {
+    public function updatedSort(): void
+    {
         $this->getProducts();
     }
 
     /**
      * Update the type ID and refresh the product list.
-     * 
-     * @return void
      */
-    public function updatedTypeId(): void {
+    public function updatedTypeId(): void
+    {
         $this->getProducts();
     }
 
     /**
      * Get the products based on the current filters and sorting.
-     * 
-     * @return void
      */
-    private function getProducts(): void {
+    private function getProducts(): void
+    {
         // Get the products
         $products = Product::where('statusId', 1);
 
         // Filter by keywords
         if ($this->search) {
             $products = $products->where(function ($query) {
-                $query->where('name', 'LIKE', '%' . $this->search . '%')
+                $query->where('name', 'LIKE', '%'.$this->search.'%')
                     ->orWhereHas('product_type', function ($query) {
-                        $query->where('name', 'LIKE', '%' . $this->search . '%');
+                        $query->where('name', 'LIKE', '%'.$this->search.'%');
                     });
             });
         }
@@ -136,15 +135,15 @@ class Shop extends Component {
         // Sort products
         $products = $this->sort == 'popular' ?
             $products->orderByDesc('inStock')
-            ->orderBy('product_type_id')
-            ->orderByDesc('recentSales')
-            ->orderByDesc('sales')
-            ->orderBy('id') :
+                ->orderBy('product_type_id')
+                ->orderByDesc('recentSales')
+                ->orderByDesc('sales')
+                ->orderBy('id') :
 
             $products->orderByDesc('inStock')
-            ->orderBy('product_type_id')
-            ->orderByDesc('created_at')
-            ->orderByDesc('id');
+                ->orderBy('product_type_id')
+                ->orderByDesc('created_at')
+                ->orderByDesc('id');
 
         // Get the total number of products
         $this->productCount = $products->count();
@@ -158,10 +157,9 @@ class Shop extends Component {
 
     /**
      * Render the component view.
-     * 
-     * @return \Illuminate\View\View
      */
-    public function render(): View {
+    public function render(): View
+    {
         return view('livewire.shop');
     }
 }

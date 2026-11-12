@@ -2,128 +2,137 @@
 
 namespace App\Legacy\Ecommerce;
 
-use DB;
+class Coupon
+{
+    private $percentageDiscount;
 
-class Coupon {
+    private $percentageDiscountMultiple;
 
-	private $percentageDiscount;
-	private $percentageDiscountMultiple;
-	private $fixedDiscount;
-	private $fixedDiscountMultiple;
-	private $minPrice;
-	private $types;
-	private $onePerUser;
-	private $freeShipping;
-	private $timeStart;
-	private $timeEnd;
+    private $fixedDiscount;
 
-	public $id = null;
-	public $code;
+    private $fixedDiscountMultiple;
 
-	function __construct($id) {
-		if ($row = \Legacy\System\Classes\DB::row('* FROM ecommerce_coupons WHERE id=?', [$id])) {
-			$this->id = $id;
-			$this->code = $row['code'];
-			$this->percentageDiscount = $row['percentage-discount'];
-			$this->percentageDiscountMultiple = $row['percentageDiscountMultiple'];
-			$this->fixedDiscount = $row['fixedDiscount'];
-			$this->fixedDiscountMultiple = $row['fixedDiscountMultiple'];
-			$this->minPrice = $row['minPrice'];
-			$this->types = !empty($row['types']) ? explode(',', $row['types']) : false;
-			$this->onePerUser = $row['onePerUser'];
-			$this->freeShipping = $row['freeShipping'];
-			$this->timeStart = $row['timeStart'];
-			$this->timeEnd = $row['timeEnd'];
-		}
-	}
+    private $minPrice;
 
-	/*
-	private function applyFreeShipping() {
-		global $customer;
+    private $types;
 
-		$customer->cart->shippingDiscount = $customer->cart->originalShippingPrice;
-		$customer->cart->freeShipping = true;
+    private $onePerUser;
 
-		\Legacy\System\Classes\DB::update('ecommerce_carts SET freeShipping=1 WHERE id=?', [$customer->cart->id]);
-	}
+    private $freeShipping;
 
-	private function calculateCode() {
-		global $customer;
+    private $timeStart;
 
-		// update orders
-		$orders = $customer->cart->orders;
+    private $timeEnd;
 
-		foreach ($orders as $order) {
+    public $id = null;
 
-			// check matches
-			$matchType = !$this->types || in_array($order->item->type->id, $this->types) ? true : false;
+    public $code;
 
-			// calculate discount amount
-			if ($matchType) {
+    public function __construct($id)
+    {
+        if ($row = \Legacy\System\Classes\DB::row('* FROM ecommerce_coupons WHERE id=?', [$id])) {
+            $this->id = $id;
+            $this->code = $row['code'];
+            $this->percentageDiscount = $row['percentage-discount'];
+            $this->percentageDiscountMultiple = $row['percentageDiscountMultiple'];
+            $this->fixedDiscount = $row['fixedDiscount'];
+            $this->fixedDiscountMultiple = $row['fixedDiscountMultiple'];
+            $this->minPrice = $row['minPrice'];
+            $this->types = ! empty($row['types']) ? explode(',', $row['types']) : false;
+            $this->onePerUser = $row['onePerUser'];
+            $this->freeShipping = $row['freeShipping'];
+            $this->timeStart = $row['timeStart'];
+            $this->timeEnd = $row['timeEnd'];
+        }
+    }
 
-				$percentage = $flat = 0;
+    /*
+    private function applyFreeShipping() {
+        global $customer;
 
-				// discount percentage
-				if ($this->percentageMore && $customer->cart->quantity > 2) $percentage = $this->percentageMore;
-				else if ($this->percentage2 && $customer->cart->quantity > 1) $percentage = $this->percentage2;
-				else $percentage = $this->percentage;
+        $customer->cart->shippingDiscount = $customer->cart->originalShippingPrice;
+        $customer->cart->freeShipping = true;
 
-				// flat discount
-				if ($this->flatMore && $customer->cart->quantity > 2) $flat = $this->flatMore;
-				else if ($this->flat2 && $customer->cart->quantity > 1) $flat = $this->flat2;
-				else $flat = $this->flat;
+        \Legacy\System\Classes\DB::update('ecommerce_carts SET freeShipping=1 WHERE id=?', [$customer->cart->id]);
+    }
 
-				// total
-				$discount = round(($order->originalPrice * $percentage / 100) + $flat, 2);
+    private function calculateCode() {
+        global $customer;
 
-				// update the order price
-				\Legacy\System\Classes\DB::update('ecommerce_orders SET discount=? WHERE id=?', [$discount, $order->id]);
-			}
-		}
-	}
+        // update orders
+        $orders = $customer->cart->orders;
 
-	public function add() {
-		global $customer;
+        foreach ($orders as $order) {
 
-		$error = false;
+            // check matches
+            $matchType = !$this->types || in_array($order->item->type->id, $this->types) ? true : false;
 
-		if ($this->id) {
-			if (strtotime($this->timeStart) > strtotime('now'))
-				$error = 'coupon-not-started';
-			else if (strtotime($this->timeEnd . ' +1 day') < strtotime('now'))
-				$error = 'coupon-expired';
-			else if ($this->onePerUser && !logged())
-				$error = 'coupon-not-logged';
-			else if ($this->onePerUser && \Legacy\System\Classes\DB::exists('ecommerce_carts WHERE couponId=? AND customerId=?', [$this->id, $customer->cart->customerId]))
-				$error = 'coupon-used';
-			else if ($this->minPrice && $customer->cart->originalItemsPrice < $this->minPrice)
-				$error = 'coupon-min-price';
-			else {
-				\Legacy\System\Classes\DB::update('ecommerce_carts SET couponId=? WHERE id=?', [$this->id, $customer->cart->id]);
+            // calculate discount amount
+            if ($matchType) {
 
-				if ($this->freeShipping) {
-					$this->applyFreeShipping($customer->cart->id);
-				}
+                $percentage = $flat = 0;
 
-				$this->calculateCode($customer->cart->id);
+                // discount percentage
+                if ($this->percentageMore && $customer->cart->quantity > 2) $percentage = $this->percentageMore;
+                else if ($this->percentage2 && $customer->cart->quantity > 1) $percentage = $this->percentage2;
+                else $percentage = $this->percentage;
 
-				$customer->cart->updateItemPrices();
-			}
-		} else $error = 'coupon-invalid';
+                // flat discount
+                if ($this->flatMore && $customer->cart->quantity > 2) $flat = $this->flatMore;
+                else if ($this->flat2 && $customer->cart->quantity > 1) $flat = $this->flat2;
+                else $flat = $this->flat;
 
-		return $error;
-	}
+                // total
+                $discount = round(($order->originalPrice * $percentage / 100) + $flat, 2);
 
-	public function remove() {
-		global $customer;
+                // update the order price
+                \Legacy\System\Classes\DB::update('ecommerce_orders SET discount=? WHERE id=?', [$discount, $order->id]);
+            }
+        }
+    }
 
-		$customer->cart->couponId = 0;
-		unset($customer->cart->coupon);
+    public function add() {
+        global $customer;
 
-		\Legacy\System\Classes\DB::update('ecommerce_carts SET couponId=0, shippingDiscount=0 WHERE id=?', [$customer->cart->id]);
-		\Legacy\System\Classes\DB::update('ecommerce_orders SET discount=0 WHERE cartId=?', [$customer->cart->id]);
+        $error = false;
 
-		$customer->cart->updateItemPrices();
-	}
-	*/
+        if ($this->id) {
+            if (strtotime($this->timeStart) > strtotime('now'))
+                $error = 'coupon-not-started';
+            else if (strtotime($this->timeEnd . ' +1 day') < strtotime('now'))
+                $error = 'coupon-expired';
+            else if ($this->onePerUser && !logged())
+                $error = 'coupon-not-logged';
+            else if ($this->onePerUser && \Legacy\System\Classes\DB::exists('ecommerce_carts WHERE couponId=? AND customerId=?', [$this->id, $customer->cart->customerId]))
+                $error = 'coupon-used';
+            else if ($this->minPrice && $customer->cart->originalItemsPrice < $this->minPrice)
+                $error = 'coupon-min-price';
+            else {
+                \Legacy\System\Classes\DB::update('ecommerce_carts SET couponId=? WHERE id=?', [$this->id, $customer->cart->id]);
+
+                if ($this->freeShipping) {
+                    $this->applyFreeShipping($customer->cart->id);
+                }
+
+                $this->calculateCode($customer->cart->id);
+
+                $customer->cart->updateItemPrices();
+            }
+        } else $error = 'coupon-invalid';
+
+        return $error;
+    }
+
+    public function remove() {
+        global $customer;
+
+        $customer->cart->couponId = 0;
+        unset($customer->cart->coupon);
+
+        \Legacy\System\Classes\DB::update('ecommerce_carts SET couponId=0, shippingDiscount=0 WHERE id=?', [$customer->cart->id]);
+        \Legacy\System\Classes\DB::update('ecommerce_orders SET discount=0 WHERE cartId=?', [$customer->cart->id]);
+
+        $customer->cart->updateItemPrices();
+    }
+    */
 }

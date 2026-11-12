@@ -8,12 +8,14 @@ use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
-class OrderItemsRelationManager extends RelationManager {
+class OrderItemsRelationManager extends RelationManager
+{
     protected static string $relationship = 'order_items';
 
     protected static ?string $title = 'Articoli dell\'ordine';
 
-    public function table(Table $table): Table {
+    public function table(Table $table): Table
+    {
         return $table
             ->columns([
                 // ID

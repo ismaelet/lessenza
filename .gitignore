@@ -1,10 +1,19 @@
+# Ignore environment and configuration files
+.env
+.s3cfg
+
+# Ignore IDE settings
+/.vscode/settings.json
+
+# Ignore dependencies
+/app/node_modules
+/app/vendor
+
+# Ignore build artifacts
+/app/public/build
+/app/public/hot
+
+# Ignore storage files except for directories and .gitignore files
 /app/storage/*
 !/app/storage/**/
 !/app/storage/**/.gitignore
-
-/app/vendor/
-/app/node_modules/
-
-.env
-*.sql
-.cache_ggshield

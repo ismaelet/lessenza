@@ -8,12 +8,13 @@ use App\Models\User\PasswordResetToken;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
-class ResetController extends Controller {
-
+class ResetController extends Controller
+{
     /**
      * Render the reset page
      */
-    public function index() {
+    public function index()
+    {
 
         $email = $_GET['email'] ?? null;
         $token = $_GET['token'] ?? null;
@@ -29,7 +30,8 @@ class ResetController extends Controller {
     /**
      * Process the request
      */
-    public function update(Request $request) {
+    public function update(Request $request)
+    {
 
         // Validation
         $request->validate([
@@ -43,7 +45,7 @@ class ResetController extends Controller {
         $token = $request->token;
         $user = User::where('email', $email)->first();
         $passwordReset = PasswordResetToken::where('email', $email)->first();
-        $error = !$user || !$passwordReset || $user->email != $email || $token != $passwordReset->token;
+        $error = ! $user || ! $passwordReset || $user->email != $email || $token != $passwordReset->token;
 
         if ($error) {
             return back()->with('error', 'Il link di rest non è valido o è scaduto');

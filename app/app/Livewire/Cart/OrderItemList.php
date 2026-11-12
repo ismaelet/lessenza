@@ -5,11 +5,10 @@ namespace App\Livewire\Cart;
 use App\Models\Order;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\View\View;
-use Livewire\Attributes\Reactive;
 use Livewire\Component;
 
-class OrderItemList extends Component {
-
+class OrderItemList extends Component
+{
     /**
      * Property: The order items to display
      */
@@ -28,26 +27,29 @@ class OrderItemList extends Component {
     /**
      * Lifecycle hook: Initialize the component
      */
-    public function boot(): void {
+    public function boot(): void
+    {
         $this->cart = cart();
         $this->orderItems = $this->orderItems->load(['product']);
-        $this->editable = !((bool) $this->cart->status);
+        $this->editable = ! ((bool) $this->cart->status);
     }
 
     /**
      * Lifecycle hook: Render the component view
      */
-    public function render(): View {
+    public function render(): View
+    {
         return view('livewire.cart.order-item-list');
     }
 
     /**
      * Event: Remove an order item
      */
-    public function removeOrderItem(int $orderItemId): void {
+    public function removeOrderItem(int $orderItemId): void
+    {
         $orderItem = $this->cart->order_items->find($orderItemId);
 
-        if (!$orderItem) {
+        if (! $orderItem) {
             return;
         }
 

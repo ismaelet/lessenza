@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Helpers\EcommerceHelper;
 use App\Models\Address;
 use App\Models\Newsletter\NewsletterSubscriber;
 use App\Models\Order;
@@ -13,12 +12,13 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 
-class CartController extends Controller {
-
+class CartController extends Controller
+{
     /**
      * Display the cart page
      */
-    public function addressIndex(Request $request) {
+    public function addressIndex(Request $request)
+    {
         $title = 'Carrello';
         $location = 'cart';
         $cart = Order::find(cart()->id);
@@ -35,7 +35,8 @@ class CartController extends Controller {
     /**
      * Update the cart address and confirm the order
      */
-    public function addressStore(Request $request): RedirectResponse {
+    public function addressStore(Request $request): RedirectResponse
+    {
         $cart = cart();
 
         $data = $request->validate([
@@ -72,7 +73,8 @@ class CartController extends Controller {
     /**
      * Display the cart payment page
      */
-    public function paymentIndex(Request $request): View {
+    public function paymentIndex(Request $request): View
+    {
         $location = 'cart.payment';
         $cart = cart();
         $paymentMethods = PaymentMethod::all();
@@ -83,7 +85,8 @@ class CartController extends Controller {
     /**
      * Update the cart payment method and confirm the order
      */
-    public function paymentStore(Request $request): RedirectResponse {
+    public function paymentStore(Request $request): RedirectResponse
+    {
         $cart = cart();
 
         $request->validate([
@@ -95,7 +98,7 @@ class CartController extends Controller {
         ]);
 
         // Subscribe the user to the newsletter if they opted in
-        if ($request->boolean('marketing_opt_in') && !NewsletterSubscriber::where('email', $cart->email)->exists()) {
+        if ($request->boolean('marketing_opt_in') && ! NewsletterSubscriber::where('email', $cart->email)->exists()) {
             NewsletterSubscriber::create([
                 'email' => $cart->address->email,
             ]);
@@ -129,7 +132,8 @@ class CartController extends Controller {
     /**
      * Display the cart success page
      */
-    public function success(Request $request) {
+    public function success(Request $request)
+    {
         $title = 'Ordine completato';
         $location = 'cart.success';
         $cart = cart();
@@ -140,11 +144,12 @@ class CartController extends Controller {
     /**
      * Display the order's email
      */
-    public static function displayEmail(int $cartId): View {
+    public static function displayEmail(int $cartId): View
+    {
         $order = Order::find($cartId);
         $user = Auth::user();
 
-        if (!$order) {
+        if (! $order) {
             abort(404);
         }
 
@@ -154,7 +159,8 @@ class CartController extends Controller {
     /**
      * Display the empty cart page
      */
-    public function empty(): View {
+    public function empty(): View
+    {
         $title = 'Carrello';
         $location = 'cart';
 

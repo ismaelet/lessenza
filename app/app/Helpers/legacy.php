@@ -6,154 +6,170 @@ use Illuminate\Support\Facades\Vite;
 
 global $customer, $user, $con;
 
-function sys_config($field) {
-	$sysConfig = [
-		// general settings
-		'migrate' => true,
-		'static' => false,
-		'timezone' => 'Europe/Rome',
-		'logged-redirect' => '/profile',
-		'domain' => 'developing.ismaeletuffanelli.com',
+function sys_config($field)
+{
+    $sysConfig = [
+        // general settings
+        'migrate' => true,
+        'static' => false,
+        'timezone' => 'Europe/Rome',
+        'logged-redirect' => '/profile',
+        'domain' => 'developing.ismaeletuffanelli.com',
 
-		// e-mail
-		'email-host' => 'authsmtp.securemail.pro',
-		'email-username' => 'no-reply@lessenza.net',
-		'email-passsword' => 'd*96KFZBsgMQULu',
+        // e-mail
+        'email-host' => 'authsmtp.securemail.pro',
+        'email-username' => 'no-reply@lessenza.net',
+        'email-passsword' => 'd*96KFZBsgMQULu',
 
-		// name
-		'name' => 'L\'Essenza',
-		'full-name' => 'L\'Essenza S.r.l.s',
-		'description' => 'Scopri le nostre essenze professionali per SPA, sauna, bagno turco, docce emozionali. ',
-		'short-description' => 'Scopri le nostre essenze professionali per SPA, sauna, bagno turco, docce emozionali. ',
+        // name
+        'name' => 'L\'Essenza',
+        'full-name' => 'L\'Essenza S.r.l.s',
+        'description' => 'Scopri le nostre essenze professionali per SPA, sauna, bagno turco, docce emozionali. ',
+        'short-description' => 'Scopri le nostre essenze professionali per SPA, sauna, bagno turco, docce emozionali. ',
 
-		// language
-		'languages' => [
-			'it' => 'Italiano',
-			// 'en' => 'English',
-			// 'de' => 'Deutsch',
-			// 'pt' => 'Português',
-			// 'es' => 'Español',
-		],
-		'default-language' => 'it',
+        // language
+        'languages' => [
+            'it' => 'Italiano',
+            // 'en' => 'English',
+            // 'de' => 'Deutsch',
+            // 'pt' => 'Português',
+            // 'es' => 'Español',
+        ],
+        'default-language' => 'it',
 
-		// logo
-		'logo' => '/app/assets/logo/logo.png',
+        // logo
+        'logo' => '/app/assets/logo/logo.png',
 
-		// business data
-		'VAT' => '02555680228',
+        // business data
+        'VAT' => '02555680228',
 
-		// contacts
-		'contact-facebook' => '@lessenza.net',
-		'contact-facebook-link' => 'https://www.facebook.com/lessenza.net',
-		'contact-instagram' => '@lessenza80',
-		'contact-instagram-link' => 'https://www.instagram.com/lessenza80/',
-		'contact-youtube-link' => '',
-		'contact-spotify' => '',
-		'contact-twitter' => '',
-		'contact-twitter-link' => '',
-		'contact-email' => 'commerciale@lessenza.net',
-		'contact-email-link' => 'mailto:commerciale@lessenza.net',
-		'contact-phone' => '3487852808',
-		'contact-phone-link' => 'tel:3487852808',
-		'contact-whatsapp' => '',
-		'contact-whatsapp-link' => '',
-		'contact-telegram-link' => '',
-		'contact-pinterest' => '',
-		'contact-pinterest-link' => '',
-		'contact-tiktok' => '',
-		'contact-tiktok-link' => '',
-		'contact-web-link' => '',
+        // contacts
+        'contact-facebook' => '@lessenza.net',
+        'contact-facebook-link' => 'https://www.facebook.com/lessenza.net',
+        'contact-instagram' => '@lessenza80',
+        'contact-instagram-link' => 'https://www.instagram.com/lessenza80/',
+        'contact-youtube-link' => '',
+        'contact-spotify' => '',
+        'contact-twitter' => '',
+        'contact-twitter-link' => '',
+        'contact-email' => 'commerciale@lessenza.net',
+        'contact-email-link' => 'mailto:commerciale@lessenza.net',
+        'contact-phone' => '3487852808',
+        'contact-phone-link' => 'tel:3487852808',
+        'contact-whatsapp' => '',
+        'contact-whatsapp-link' => '',
+        'contact-telegram-link' => '',
+        'contact-pinterest' => '',
+        'contact-pinterest-link' => '',
+        'contact-tiktok' => '',
+        'contact-tiktok-link' => '',
+        'contact-web-link' => '',
 
-		// theme
-		'theme-color' => 'light',
+        // theme
+        'theme-color' => 'light',
 
-		'hostname' => env('DB_HOST'),
-		'database' => env('DB_DATABASE'),
-		'username' => env('DB_USERNAME'),
-		'password' => env('DB_PASSWORD'),
-	];;
+        'hostname' => env('DB_HOST'),
+        'database' => env('DB_DATABASE'),
+        'username' => env('DB_USERNAME'),
+        'password' => env('DB_PASSWORD'),
+    ];
 
-	return $sysConfig[$field] ?? null;
+    return $sysConfig[$field] ?? null;
 }
 
-function client_url(string $parcialUrl = '') {
-	return $parcialUrl;
+function client_url(string $parcialUrl = '')
+{
+    return $parcialUrl;
 }
 
-function customer() {
-	global $customer;
+function customer()
+{
+    global $customer;
 
-	return $customer ?: initializeCustomer();
+    return $customer ?: initializeCustomer();
 }
 
-function userId() {
-	return user()->id;
+function userId()
+{
+    return user()->id;
 }
 
-function connection() {
-	global $con;
+function connection()
+{
+    global $con;
 
-	return $con ?: initializeConnection();
+    return $con ?: initializeConnection();
 }
 
-function background_image($img) {
-	return 'style="background-image: url(' . Vite::image($img) . ');"';
+function background_image($img)
+{
+    return 'style="background-image: url('.Vite::image($img).');"';
 }
 
-function client_path(string $file = '') {
-	$url = asset('' . file_time(generate_base_url($file)));
-	return $url;
+function client_path(string $file = '')
+{
+    $url = asset(''.file_time(generate_base_url($file)));
+
+    return $url;
 }
 
-function generate_base_url(string $file = '') {
-	if (!strpos($file, '.')) {
-		$file .= '.webp';
-	}
+function generate_base_url(string $file = '')
+{
+    if (! strpos($file, '.')) {
+        $file .= '.webp';
+    }
 
-	if ($file[0] == '/') {
-		$url = $file;
-	} else {
-		$url = 'images/' . $file;
-	}
+    if ($file[0] == '/') {
+        $url = $file;
+    } else {
+        $url = 'images/'.$file;
+    }
 
-	return $url;
+    return $url;
 }
 
-function file_time($file) {
-	if (!strpos($file, '?=') && file_exists($url = base_path() . '/legacy' . $file)) $file .= '?=' . filemtime($url);
+function file_time($file)
+{
+    if (! strpos($file, '?=') && file_exists($url = base_path().'/legacy'.$file)) {
+        $file .= '?='.filemtime($url);
+    }
 
-	return $file;
+    return $file;
 }
 
-function initializeCustomer() {
-	global $customer;
+function initializeCustomer()
+{
+    global $customer;
 
-	$customerId = userId() ?: $_SESSION['customerId'] ?? null;
+    $customerId = userId() ?: $_SESSION['customerId'] ?? null;
 
-	return $customer = new Customer($customerId);
+    return $customer = new Customer($customerId);
 }
 
-function initializeUser() {
-	global $user;
+function initializeUser()
+{
+    global $user;
 
-	if (!isset($_SESSION['userId']) && isset($_COOKIE['auth_token'])) {
-		login_direct($_COOKIE['auth_token']);
-	}
+    if (! isset($_SESSION['userId']) && isset($_COOKIE['auth_token'])) {
+        login_direct($_COOKIE['auth_token']);
+    }
 
-	$userId = $_SESSION['userId'] ?? 0;
-	return $user = new User($userId);
+    $userId = $_SESSION['userId'] ?? 0;
+
+    return $user = new User($userId);
 }
 
-function initializeConnection() {
+function initializeConnection()
+{
 
-	try {
-		$con = new mysqli(sys_config('hostname'), sys_config('username'), sys_config('password'), sys_config('database'));
-		$con->query('SET NAMES utf8');
-	} catch (Exception $e) {
-		$error = $e->getMessage();
+    try {
+        $con = new mysqli(sys_config('hostname'), sys_config('username'), sys_config('password'), sys_config('database'));
+        $con->query('SET NAMES utf8');
+    } catch (Exception $e) {
+        $error = $e->getMessage();
 
-		dd('Connection error: ' . $error);
-	}
+        dd('Connection error: '.$error);
+    }
 
-	return $con;
+    return $con;
 }

@@ -2,162 +2,199 @@
 
 namespace App\Legacy\Ecommerce;
 
-use DB;
 use Ecommerce\Product\PriceData;
 use Ecommerce\Product\Type;
 use Structure\DatabaseObject;
 
-class Product {
+class Product
+{
+    use DatabaseObject;
 
-	use DatabaseObject;
+    private const BRAND_SKU = '';
 
-	private const BRAND_SKU = '';
-	private const DEFAULT_IMAGE_RESOLUTION = 1024;
-	private const ALLOWED_IMAGE_RESOLUTIONS = [100, 400, 1024];
+    private const DEFAULT_IMAGE_RESOLUTION = 1024;
 
-	public const TABLE = 'ecommerce_products';
-	public const INDEX = 'id';
-	public const TYPE_INDEX = 'typeId';
-	public const STATUS_INDEX = 'statusId';
+    private const ALLOWED_IMAGE_RESOLUTIONS = [100, 400, 1024];
 
-	public $id;
-	public $typeId;
-	public $description;
-	public $details;
-	public $variations;
-	public $slug;
-	public $time;
-	public $name;
-	public $ingredients;
-	public $resellerPrice;
-	public $inStock;
-	public $highlighted;
-	public $sales;
-	public $recentSales;
-	public $statusId;
-	public $processed;
+    public const TABLE = 'ecommerce_products';
 
-	/**
-	 * Get methods
-	 */
-	// data
-	private function getSlug() {
-		$slug = $this->slug;
+    public const INDEX = 'id';
 
-		if (!$slug) {
-			$slug = generate_product_slug($this->name);
+    public const TYPE_INDEX = 'typeId';
 
-			\Legacy\System\Classes\DB::update(self::TABLE . ' SET slug = ? WHERE ' . self::INDEX . ' = ?', [$slug, $this->id]);
-		}
+    public const STATUS_INDEX = 'statusId';
 
-		return $slug;
-	}
+    public $id;
 
-	private function getSku() {
-		$brandSku = self::BRAND_SKU;
-		$typeSku = str_pad($this->type->id, 3, '0', STR_PAD_LEFT);
-		$productSku = $this->id;
+    public $typeId;
 
-		$sku = implode('-', [$brandSku, $typeSku, $productSku]);
+    public $description;
 
-		return $sku;
-	}
+    public $details;
 
-	private function getStaticUrl() {
-		return public_client_url($this->url);
-	}
+    public $variations;
 
-	private function getIsLiked() {
-		return \Legacy\System\Classes\DB::exists('ecommerce_product_likes WHERE productId = ? AND userId = ?', [$this->id, userId()]);
-	}
+    public $slug;
 
-	// Prices
-	private function getPriceData() {
-		return new PriceData($this->id);
-	}
+    public $time;
 
-	private function getPrice() {
-		return $this->priceData->price;
-	}
+    public $name;
 
-	private function getPriceString() {
-		return format_price($this->price);
-	}
+    public $ingredients;
 
-	private function getFullPrice() {
-		return $this->priceData->fullPrice;
-	}
+    public $resellerPrice;
 
-	private function getFullPriceString() {
-		return format_price($this->fullPrice);
-	}
+    public $inStock;
 
-	private function getFormattedFullPrice() {
-		return format($this->price);
-	}
+    public $highlighted;
 
-	private function getDiscountedPrice() {
-		return $this->price;
-	}
+    public $sales;
 
-	private function getOnSale() {
-		return $this->discountedPrice < $this->price;
-	}
+    public $recentSales;
 
-	// Related classes
-	private function getType() {
-		return new Type($this->typeId);
-	}
+    public $statusId;
 
-	private function getServerImage() {
-		return public_server_path($this->image);
-	}
+    public $processed;
 
-	private function getAllImage() {
-		$images = [];
+    /**
+     * Get methods
+     */
+    // data
+    private function getSlug()
+    {
+        $slug = $this->slug;
 
-		foreach (self::ALLOWED_IMAGE_RESOLUTIONS as $resolution) {
-			$images[] = '/uploads/products/' . $this->id . '-' . $resolution;
-		}
+        if (! $slug) {
+            $slug = generate_product_slug($this->name);
 
-		return $images;
-	}
+            \Legacy\System\Classes\DB::update(self::TABLE.' SET slug = ? WHERE '.self::INDEX.' = ?', [$slug, $this->id]);
+        }
 
-	private function getAllServerImages() {
-		$images = [];
+        return $slug;
+    }
 
-		foreach ($this->allImages as $image) {
-			if (file_exists($file = public_server_path($image))) {
-				$images[] = $image;
-			}
-		}
+    private function getSku()
+    {
+        $brandSku = self::BRAND_SKU;
+        $typeSku = str_pad($this->type->id, 3, '0', STR_PAD_LEFT);
+        $productSku = $this->id;
 
-		return $images;
-	}
+        $sku = implode('-', [$brandSku, $typeSku, $productSku]);
 
-	// related products
-	public function getRelatedProducts(int $count = 5) {
-		$products = rows_to_objects(\Legacy\System\Classes\DB::select(self::INDEX . ' FROM ' . self::TABLE . ' WHERE ' . self::INDEX . ' <> ? AND ' . self::TYPE_INDEX . ' = ? ORDER BY recentSales DESC, sales DESC, ' . self::INDEX . ' DESC LIMIT ?', [$this->id, $this->typeId, $count]), self::class);
+        return $sku;
+    }
 
-		return $products;
-	}
+    private function getStaticUrl()
+    {
+        return public_client_url($this->url);
+    }
 
-	/**
-	 * Istance methods
-	 */
-	public function delete(bool $permanently = true) {
-		if ($permanently) {
-			\Legacy\System\Classes\DB::delete(self::TABLE . ' WHERE ' . self::INDEX . ' = ?', [$this->id]);
+    private function getIsLiked()
+    {
+        return \Legacy\System\Classes\DB::exists('ecommerce_product_likes WHERE productId = ? AND userId = ?', [$this->id, userId()]);
+    }
 
-			foreach ($this->allServerImages as $image) {
-				unlink($image);
-			}
-		} else {
-			\Legacy\System\Classes\DB::update(self::TABLE . ' SET ' . self::STATUS_INDEX . ' = ? WHERE ' . self::INDEX . ' = ?', [0, $this->id]);
-		}
+    // Prices
+    private function getPriceData()
+    {
+        return new PriceData($this->id);
+    }
 
-		$this->reset();
+    private function getPrice()
+    {
+        return $this->priceData->price;
+    }
 
-		return $this;
-	}
+    private function getPriceString()
+    {
+        return format_price($this->price);
+    }
+
+    private function getFullPrice()
+    {
+        return $this->priceData->fullPrice;
+    }
+
+    private function getFullPriceString()
+    {
+        return format_price($this->fullPrice);
+    }
+
+    private function getFormattedFullPrice()
+    {
+        return format($this->price);
+    }
+
+    private function getDiscountedPrice()
+    {
+        return $this->price;
+    }
+
+    private function getOnSale()
+    {
+        return $this->discountedPrice < $this->price;
+    }
+
+    // Related classes
+    private function getType()
+    {
+        return new Type($this->typeId);
+    }
+
+    private function getServerImage()
+    {
+        return public_server_path($this->image);
+    }
+
+    private function getAllImage()
+    {
+        $images = [];
+
+        foreach (self::ALLOWED_IMAGE_RESOLUTIONS as $resolution) {
+            $images[] = '/uploads/products/'.$this->id.'-'.$resolution;
+        }
+
+        return $images;
+    }
+
+    private function getAllServerImages()
+    {
+        $images = [];
+
+        foreach ($this->allImages as $image) {
+            if (file_exists($file = public_server_path($image))) {
+                $images[] = $image;
+            }
+        }
+
+        return $images;
+    }
+
+    // related products
+    public function getRelatedProducts(int $count = 5)
+    {
+        $products = rows_to_objects(\Legacy\System\Classes\DB::select(self::INDEX.' FROM '.self::TABLE.' WHERE '.self::INDEX.' <> ? AND '.self::TYPE_INDEX.' = ? ORDER BY recentSales DESC, sales DESC, '.self::INDEX.' DESC LIMIT ?', [$this->id, $this->typeId, $count]), self::class);
+
+        return $products;
+    }
+
+    /**
+     * Istance methods
+     */
+    public function delete(bool $permanently = true)
+    {
+        if ($permanently) {
+            \Legacy\System\Classes\DB::delete(self::TABLE.' WHERE '.self::INDEX.' = ?', [$this->id]);
+
+            foreach ($this->allServerImages as $image) {
+                unlink($image);
+            }
+        } else {
+            \Legacy\System\Classes\DB::update(self::TABLE.' SET '.self::STATUS_INDEX.' = ? WHERE '.self::INDEX.' = ?', [0, $this->id]);
+        }
+
+        $this->reset();
+
+        return $this;
+    }
 }

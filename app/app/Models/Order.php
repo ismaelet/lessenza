@@ -14,8 +14,8 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 
-class Order extends Model {
-
+class Order extends Model
+{
     public const VAT = 0.22;
 
     /**
@@ -33,113 +33,128 @@ class Order extends Model {
         'quantity',
         'status',
         'token',
-        'created_at'
+        'created_at',
     ];
 
     /**
      * Attribute: Get the order ID code
      */
-    public function idCode(): Attribute {
+    public function idCode(): Attribute
+    {
         return new Attribute(
-            get: fn() => '#' . str_pad($this->id, 6, '0', STR_PAD_LEFT)
+            get: fn () => '#'.str_pad($this->id, 6, '0', STR_PAD_LEFT)
         );
     }
 
     /**
      * Relationship: Get the address associated with the order
      */
-    public function address(): BelongsTo {
+    public function address(): BelongsTo
+    {
         return $this->belongsTo(Address::class);
     }
 
     /**
      * Relationship: Get the order items associated with the order
      */
-    public function order_items(): HasMany {
+    public function order_items(): HasMany
+    {
         return $this->hasMany(OrderItem::class);
     }
 
     /**
      * Relationship: Get the shipping method associated with the order
      */
-    public function shipping_method(): BelongsTo {
+    public function shipping_method(): BelongsTo
+    {
         return $this->belongsTo(ShippingMethod::class);
     }
 
     /**
      * Relationship: Get the payment method associated with the order
      */
-    public function payment_method(): BelongsTo {
+    public function payment_method(): BelongsTo
+    {
         return $this->belongsTo(PaymentMethod::class);
     }
 
     /**
      * Get the label for the order status
      */
-    public function statusTag(): string {
-        return config('ecommerce.order_statuses.' . $this->status . '.tag', 'unknown');
+    public function statusTag(): string
+    {
+        return config('ecommerce.order_statuses.'.$this->status.'.tag', 'unknown');
     }
 
     /**
      * Get the tag for the order status
      */
-    public function statusLabel(): string {
-        return config('ecommerce.order_statuses.' . $this->status . '.label', 'Unknown Status');
+    public function statusLabel(): string
+    {
+        return config('ecommerce.order_statuses.'.$this->status.'.label', 'Unknown Status');
     }
 
     /**
      * Get the icon for the order status
      */
-    public function statusIcon(): string {
-        return config('ecommerce.order_statuses.' . $this->status . '.icon', 'Unknown Status');
+    public function statusIcon(): string
+    {
+        return config('ecommerce.order_statuses.'.$this->status.'.icon', 'Unknown Status');
     }
 
     /**
      * Calculate the total price of the items in the order
      */
-    private function calcItemsPriceNet(): float {
+    private function calcItemsPriceNet(): float
+    {
         return $this->order_items()->sum('total_price_net');
     }
 
     /**
      * Calculate the shipping fee of the order
      */
-    private function calcShippingFeeNet(): float {
+    private function calcShippingFeeNet(): float
+    {
         return $this->shipping_method->price($this) ?? 0;
     }
 
     /**
      * Calculate the VAT of the order
      */
-    private function calcVat(): float {
+    private function calcVat(): float
+    {
         return $this->calcTotalPriceNet() * self::VAT;
     }
 
     /**
      * Calculate the total net price of the order
      */
-    private function calcTotalPriceNet(): float {
+    private function calcTotalPriceNet(): float
+    {
         return $this->calcItemsPriceNet() + $this->calcShippingFeeNet();
     }
 
     /**
      * Calculate the total gross price of the order
      */
-    private function calcTotalPriceGross(): float {
+    private function calcTotalPriceGross(): float
+    {
         return $this->calcTotalPriceNet() + $this->calcVat();
     }
 
     /**
      * Get the total quantity of items in the order
      */
-    private function calcQuantity(): int {
+    private function calcQuantity(): int
+    {
         return $this->order_items()->sum('quantity');
     }
 
     /**
      * Update the order prices based on the current product prices and shipping fees
      */
-    public function recalculatePrices(): void {
+    public function recalculatePrices(): void
+    {
         $this->quantity = $this->calcQuantity();
 
         $this->order_items()->each(function (OrderItem $orderItem) {
@@ -157,28 +172,32 @@ class Order extends Model {
     /**
      * Check if the order is empty
      */
-    public function isEmpty(): bool {
+    public function isEmpty(): bool
+    {
         return $this->order_items->isEmpty();
     }
 
     /**
      * Get the date of the order item
      */
-    public function date(): string {
+    public function date(): string
+    {
         return $this->created_at->format('d/m/Y');
     }
 
     /**
      * Get the recap URL with token
      */
-    public function recapUrlWithToken(): string {
+    public function recapUrlWithToken(): string
+    {
         return route('order.show', ['order' => $this, 'token' => $this->token]);
     }
 
     /**
      * Create a new cart order
      */
-    public static function createCart(): Order {
+    public static function createCart(): Order
+    {
         $order = self::create([
             'user_id' => Auth::id(),
             'shipping_method_id' => ShippingMethod::default()?->id,
@@ -193,7 +212,8 @@ class Order extends Model {
     /**
      * Add a product to the order
      */
-    public function add(Product $product, int $quantity = 1, bool $extraConcentrated = false): void {
+    public function add(Product $product, int $quantity = 1, bool $extraConcentrated = false): void
+    {
         $orderItem = $this->order_items()->where('product_id', $product->id)->first();
 
         if ($orderItem) {
@@ -217,7 +237,8 @@ class Order extends Model {
     /**
      * Remove an order item from the order
      */
-    public function removeItem(OrderItem $orderItem): void {
+    public function removeItem(OrderItem $orderItem): void
+    {
         $orderItem->delete();
 
         $this->recalculatePrices();
@@ -226,7 +247,8 @@ class Order extends Model {
     /**
      * Confirm the order
      */
-    public function confirm($sendNotification = true): void {
+    public function confirm($sendNotification = true): void
+    {
         session()->forget('cart_id');
 
         if ($this->status) {
@@ -250,7 +272,8 @@ class Order extends Model {
     /**
      * Update the order status
      */
-    public function updateStatus(int $newStatusId, bool $sendNotification = true): void {
+    public function updateStatus(int $newStatusId, bool $sendNotification = true): void
+    {
         $this->update([
             'status' => $newStatusId,
         ]);
@@ -264,22 +287,24 @@ class Order extends Model {
     /**
      * Send the order status email
      */
-    private function sendStatusEmail(): void {
+    private function sendStatusEmail(): void
+    {
         $email = $this->address->email;
 
         try {
             Mail::to($email)->send(new OrderStatusMail($this));
         } catch (TransportExceptionInterface $e) {
-            Log::warning("SMTP error for {$email}: " . $e->getMessage());
+            Log::warning("SMTP error for {$email}: ".$e->getMessage());
         } catch (\Throwable $e) {
-            Log::error("Unexpected mail error for {$email}: " . $e->getMessage());
+            Log::error("Unexpected mail error for {$email}: ".$e->getMessage());
         }
     }
 
     /**
      * Send a copy of the order status email to a specific address
      */
-    private function sendCCMail(): void {
+    private function sendCCMail(): void
+    {
         $name = $this->address->full_name;
         $clientEmail = $this->address->email;
 
@@ -290,9 +315,9 @@ class Order extends Model {
                     name: $name
                 ));
         } catch (TransportExceptionInterface $e) {
-            Log::warning("SMTP error for " . implode(', ', config('custom.notification_emails')) . ": " . $e->getMessage());
+            Log::warning('SMTP error for '.implode(', ', config('custom.notification_emails')).': '.$e->getMessage());
         } catch (\Throwable $e) {
-            Log::error("Unexpected mail error for " . implode(', ', config('custom.notification_emails')) . ": " . $e->getMessage());
+            Log::error('Unexpected mail error for '.implode(', ', config('custom.notification_emails')).': '.$e->getMessage());
         }
     }
 }

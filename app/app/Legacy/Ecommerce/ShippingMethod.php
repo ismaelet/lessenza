@@ -4,126 +4,151 @@ namespace App\Legacy\Ecommerce;
 
 use Structure\DatabaseObject;
 
-class ShippingMethod {
+class ShippingMethod
+{
+    use DatabaseObject;
 
-	use DatabaseObject;
+    public const TABLE = 'ecommerce_shipping_methods';
 
-	public const TABLE = 'ecommerce_shipping_methods';
-	public const INDEX = 'id';
+    public const INDEX = 'id';
 
-	private const MONTH_NAMES = ['Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno', 'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre'];
-	private const DAY_NAMES = ['Lunedì', 'Martedì', 'Mercoledì', 'Giovedì', 'Venerdì', 'Sabato', 'Domenica'];
+    private const MONTH_NAMES = ['Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno', 'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre'];
 
-	public $id;
-	public $name;
-	public $description;
-	public $processingDays;
-	public $minimumDeliveryDays;
-	public $maximumDeliveryDays;
+    private const DAY_NAMES = ['Lunedì', 'Martedì', 'Mercoledì', 'Giovedì', 'Venerdì', 'Sabato', 'Domenica'];
 
-	private $api;
-	private $minimumPrice;
-	private $maximumPrice;
-	private $additionalPrice;
-	private $freeShippingAbove;
+    public $id;
 
-	/*
-	* Get methods
-	*/
-	// price
-	private function getPrice() {
-		if ($this->apiResults) {
-			$price = $this->apiResults['price'];
-		} else {
-			$price = $this->minimumPrice + $this->additionalPrice * ($this->associatedCart->quantity - 1);
-			$price = $price > $this->maximumPrice ? $this->maximumPrice : $price;
-		}
+    public $name;
 
-		if ($this->freeShippingAbove && $this->associatedCart->productPrice > $this->freeShippingAbove) {
-			$price = 0;
-		}
+    public $description;
 
-		return $price;
-	}
+    public $processingDays;
 
-	private function getPriceString() {
-		return format_price($this->price);
-	}
+    public $minimumDeliveryDays;
 
-	// delivery time
-	private function getDeliveryDate() {
-		$deliveryDate = [];
-		$totDays = $totWorkDays = 0;
+    public $maximumDeliveryDays;
 
-		$today = date('Y/m/d/', time());
-		$weekDay = date('N', strtotime($today));
-		$holidays = ['25-12', '26-12',];
-		$minimumDeliveryDays = $this->apiResults ? $this->apiResults['minimumDeliveryDays'] : $this->minimumDeliveryDays;
-		$maximumDeliveryDays = $this->apiResults ? $this->apiResults['maximumDeliveryDays'] : $this->maximumDeliveryDays;
-		$extimateDays = $minimumDeliveryDays == $maximumDeliveryDays ? [$minimumDeliveryDays] : [$minimumDeliveryDays, $maximumDeliveryDays];
+    private $api;
 
-		foreach ($extimateDays as $deliveryDays) {
-			while ($totWorkDays < $deliveryDays) {
+    private $minimumPrice;
 
-				$totDays++;
-				$weekDay++;
+    private $maximumPrice;
 
-				if ($weekDay > 7) $weekDay = 1;
+    private $additionalPrice;
 
-				$day = date('d-m', strtotime($today . ' +' . $totDays . ' days'));
+    private $freeShippingAbove;
 
-				if (!in_array($weekDay, [6, 7]) && !in_array($day, $holidays)) $totWorkDays++;
-			}
+    /*
+    * Get methods
+    */
+    // price
+    private function getPrice()
+    {
+        if ($this->apiResults) {
+            $price = $this->apiResults['price'];
+        } else {
+            $price = $this->minimumPrice + $this->additionalPrice * ($this->associatedCart->quantity - 1);
+            $price = $price > $this->maximumPrice ? $this->maximumPrice : $price;
+        }
 
-			$deliveryDate[] = strtotime($today . ' + ' . $totDays . ' days');
-		}
+        if ($this->freeShippingAbove && $this->associatedCart->productPrice > $this->freeShippingAbove) {
+            $price = 0;
+        }
 
-		return $deliveryDate;
-	}
+        return $price;
+    }
 
-	private function getDeliveryDateString() {
-		$deliveryDate = [];
+    private function getPriceString()
+    {
+        return format_price($this->price);
+    }
 
-		foreach ($this->deliveryDate as $date) {
-			$dateWeekDay = date('N', $date);
-			$dateMonthDay = date('d', $date);
-			$dateMonth = date('m', $date);
+    // delivery time
+    private function getDeliveryDate()
+    {
+        $deliveryDate = [];
+        $totDays = $totWorkDays = 0;
 
-			$deliveryDate[] = '<span class="">' . strtolower(self::DAY_NAMES[$dateWeekDay - 1]) . ' ' . $dateMonthDay . ' ' . strtolower(self::MONTH_NAMES[$dateMonth - 1]) . '</span> ';
-		}
+        $today = date('Y/m/d/', time());
+        $weekDay = date('N', strtotime($today));
+        $holidays = ['25-12', '26-12'];
+        $minimumDeliveryDays = $this->apiResults ? $this->apiResults['minimumDeliveryDays'] : $this->minimumDeliveryDays;
+        $maximumDeliveryDays = $this->apiResults ? $this->apiResults['maximumDeliveryDays'] : $this->maximumDeliveryDays;
+        $extimateDays = $minimumDeliveryDays == $maximumDeliveryDays ? [$minimumDeliveryDays] : [$minimumDeliveryDays, $maximumDeliveryDays];
 
-		return implode(' - ', $deliveryDate);
-	}
+        foreach ($extimateDays as $deliveryDays) {
+            while ($totWorkDays < $deliveryDays) {
 
-	// APIs
-	private function getHasApi() {
-		return (bool) $this->api;
-	}
+                $totDays++;
+                $weekDay++;
 
-	private function getApiResults() {
-		return $this->hasApi ? $this->{$this->api . 'Results'}() : null;
-	}
+                if ($weekDay > 7) {
+                    $weekDay = 1;
+                }
 
-	private function getActiveApi() {
-		return (bool) $this->apiResults;
-	}
+                $day = date('d-m', strtotime($today.' +'.$totDays.' days'));
 
-	// cart
-	private function getAssociatedCartId() {
-		return cart()->id;
-	}
+                if (! in_array($weekDay, [6, 7]) && ! in_array($day, $holidays)) {
+                    $totWorkDays++;
+                }
+            }
 
-	private function getAssociatedCart() {
-		return $this->associatedCartId == cart()->id ? cart() : new Cart($this->associatedCartId);
-	}
+            $deliveryDate[] = strtotime($today.' + '.$totDays.' days');
+        }
 
-	/*
-	* Set methods
-	*/
-	public function setAssociatedCartId(int $cartId = null) {
-		$this->data = [];
-		$this->data['associatedCartId'] = $cartId;
+        return $deliveryDate;
+    }
 
-		return $this;
-	}
+    private function getDeliveryDateString()
+    {
+        $deliveryDate = [];
+
+        foreach ($this->deliveryDate as $date) {
+            $dateWeekDay = date('N', $date);
+            $dateMonthDay = date('d', $date);
+            $dateMonth = date('m', $date);
+
+            $deliveryDate[] = '<span class="">'.strtolower(self::DAY_NAMES[$dateWeekDay - 1]).' '.$dateMonthDay.' '.strtolower(self::MONTH_NAMES[$dateMonth - 1]).'</span> ';
+        }
+
+        return implode(' - ', $deliveryDate);
+    }
+
+    // APIs
+    private function getHasApi()
+    {
+        return (bool) $this->api;
+    }
+
+    private function getApiResults()
+    {
+        return $this->hasApi ? $this->{$this->api.'Results'}() : null;
+    }
+
+    private function getActiveApi()
+    {
+        return (bool) $this->apiResults;
+    }
+
+    // cart
+    private function getAssociatedCartId()
+    {
+        return cart()->id;
+    }
+
+    private function getAssociatedCart()
+    {
+        return $this->associatedCartId == cart()->id ? cart() : new Cart($this->associatedCartId);
+    }
+
+    /*
+    * Set methods
+    */
+    public function setAssociatedCartId(?int $cartId = null)
+    {
+        $this->data = [];
+        $this->data['associatedCartId'] = $cartId;
+
+        return $this;
+    }
 }

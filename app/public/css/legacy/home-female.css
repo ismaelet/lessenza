@@ -2,87 +2,87 @@
 * Layout
 */
 .female__wrapper {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr);
-    align-items: center;
-    justify-items: center;
-    gap: 4rem;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-items: center;
+  justify-items: center;
+  gap: 4rem;
 }
 
 .female__text-wrapper {
-    position: relative;
-    isolation: isolate;
-    max-width: 510px;
+  position: relative;
+  isolation: isolate;
+  max-width: 510px;
 }
 
 .female__text-wrapper::before {
-    content: "";
-    position: absolute;
-    z-index: -1;
-    inset: -2rem 2rem -2rem 2rem;
-    margin-inline: auto;
-    border: var(--border);
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: -2rem 2rem -2rem 2rem;
+  margin-inline: auto;
+  border: var(--border);
 }
 
 .female__text {
-    background-color: #fff;
+  background-color: #fff;
 }
 
 /*
 * Gallery
 */
 .female__gallery {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    max-width: 600px;
-    margin-left: -12.5%;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  max-width: 600px;
+  margin-left: -12.5%;
 }
 
 .female__image {
-    aspect-ratio: 1;
-    background-color: var(--clr-surface-400);
-    border-radius: var(--radius-md);
+  aspect-ratio: 1;
+  background-color: var(--clr-surface-400);
+  border-radius: var(--radius-md);
 }
 
 .female__image:nth-child(1) {
-    width: 75%;
-    align-self: flex-end;
-    justify-self: right;
+  width: 75%;
+  align-self: flex-end;
+  justify-self: right;
 }
 .female__image:nth-child(2) {
-    width: 100%;
+  width: 100%;
 }
 .female__image:nth-child(3) {
-    width: 50%;
-    justify-self: right;
+  width: 50%;
+  justify-self: right;
 }
 .female__image:nth-child(4) {
-    width: 75%;
+  width: 75%;
 }
 
 /*
 * Responsive
 */
 @media (min-width: 481px) {
-    .female__content {
-        justify-items: left;
-        text-align: left;
-    }
+  .female__content {
+    justify-items: left;
+    text-align: left;
+  }
 
-    .female__text-wrapper::before {
-        inset: -2rem 0 -2rem -4rem;
-        width: 70%;
-        margin-inline: unset;
-    }
+  .female__text-wrapper::before {
+    inset: -2rem 0 -2rem -4rem;
+    width: 70%;
+    margin-inline: unset;
+  }
 }
 
 @media (min-width: 1025px) {
-    .female__wrapper {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        justify-items: unset;
-    }
+  .female__wrapper {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    justify-items: unset;
+  }
 
-    .female__gallery {
-        max-width: unset;
-        margin-left: unset;
-    }
+  .female__gallery {
+    max-width: unset;
+    margin-left: unset;
+  }
 }

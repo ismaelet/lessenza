@@ -7,7 +7,6 @@ use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\TechnologiesController;
 use App\Http\Controllers\VideoController;
 use Illuminate\Filesystem\Filesystem;
-use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
 // Home
@@ -40,23 +39,22 @@ Route::get('/terms', function () {
 })->name('terms');
 
 // Include the shop routes
-include __DIR__ . '/shop.php';
+include __DIR__.'/shop.php';
 
 // Include the shop routes
-include __DIR__ . '/blog.php';
+include __DIR__.'/blog.php';
 
 // Include the auth routes
-include __DIR__ . '/auth.php';
+include __DIR__.'/auth.php';
 
 // Include the user dashboard routes
-include __DIR__ . '/user-dashboard.php';
-
+include __DIR__.'/user-dashboard.php';
 
 Route::get('/genlink', function () {
     $link = public_path('storage');
     $target = storage_path('app/public');
 
-    $filesystem = new Filesystem();
+    $filesystem = new Filesystem;
 
     try {
         if ($filesystem->exists($link)) {
@@ -66,6 +64,6 @@ Route::get('/genlink', function () {
             echo "Symlink created: {$link} → {$target}";
         }
     } catch (Exception $e) {
-        echo "Error: " . $e->getMessage();
+        echo 'Error: '.$e->getMessage();
     }
 });

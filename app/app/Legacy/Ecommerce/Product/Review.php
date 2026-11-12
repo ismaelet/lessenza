@@ -2,35 +2,38 @@
 
 namespace App\Legacy\Ecommerce;
 
-use \DB;
-use \User;
+class Review
+{
+    private $time;
 
-class Review {
+    public $userId;
 
-	private $time;
+    public $text;
 
-	public $userId;
-	public $text;
-	public $score;
-	public $scorePercent;
-	public $scoreOutOfFive;
+    public $score;
 
-	function __construct($id) {
+    public $scorePercent;
 
-		if ($row = \Legacy\System\Classes\DB::row('* FROM ecommerce_reviews WHERE id=?', [$id])) {
-			$this->userId = $row['userId'];
-			$this->text = $row['text'];
-			$this->score = $row['score'];
-			$this->scorePercent = $this->score * 10;
-			$this->scoreOutOfFive = $this->score / 2;
-			$this->time = $row['time'];
-		}
-	}
+    public $scoreOutOfFive;
 
-	function __get($name) {
-		switch ($name) {
-			case 'fullName':
-				return $this->fullName = (new \Legacy\System\Classes\User($this->userId))->fullName;
-		}
-	}
+    public function __construct($id)
+    {
+
+        if ($row = \Legacy\System\Classes\DB::row('* FROM ecommerce_reviews WHERE id=?', [$id])) {
+            $this->userId = $row['userId'];
+            $this->text = $row['text'];
+            $this->score = $row['score'];
+            $this->scorePercent = $this->score * 10;
+            $this->scoreOutOfFive = $this->score / 2;
+            $this->time = $row['time'];
+        }
+    }
+
+    public function __get($name)
+    {
+        switch ($name) {
+            case 'fullName':
+                return $this->fullName = (new \Legacy\System\Classes\User($this->userId))->fullName;
+        }
+    }
 }

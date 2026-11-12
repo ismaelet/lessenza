@@ -5,76 +5,91 @@ namespace App\Legacy\Ecommerce;
 use App\Legacy\System\DB;
 use App\Legacy\Traits\DatabaseObject;
 
-class Customer {
+class Customer
+{
+    use DatabaseObject;
 
-	use DatabaseObject;
+    public const TABLE = 'ecommerce_customers';
 
-	public const TABLE = 'ecommerce_customers';
-	public const INDEX = 'id';
-	public const USER_INDEX = 'userId';
+    public const INDEX = 'id';
 
-	public $id;
-	public $userId;
-	public $groupId;
-	public $time;
+    public const USER_INDEX = 'userId';
 
-	/*
-	* Get methods
-	*/
-	// basic data
-	private function getGuest() {
-		return (bool) $this->id;
-	}
+    public $id;
 
-	// carts
-	private function getCart() {
-		$cartId = DB::find(Cart::INDEX . ' FROM ' . Cart::TABLE . ' WHERE ' . Cart::CUSTOMER_INDEX . ' = ? AND statusId = 0', [$this->id]);
-		return new Cart($cartId);
-	}
+    public $userId;
 
-	private function getConfirmedCarts() {
-		return rows_to_objects(DB::select(Cart::INDEX . ' FROM ' . Cart::TABLE . ' WHERE ' . Cart::CUSTOMER_INDEX . ' = ? AND statusId <> 0 ORDER BY time DESC', [$this->id]), Cart::class);
-	}
+    public $groupId;
 
-	private function getConfirmedCartsCount() {
-		return count($this->confirmedCarts);
-	}
+    public $time;
 
-	// addresses
-	private function getDefaultAddressId() {
-		return DB::find(Address::INDEX . ' FROM ' . Address::TABLE . ' WHERE ' . Address::CUSTOMER_INDEX . ' = ? ORDER BY ' . Address::INDEX . ' DESC', [$this->id]);
-	}
+    /*
+    * Get methods
+    */
+    // basic data
+    private function getGuest()
+    {
+        return (bool) $this->id;
+    }
 
-	private function getDefaultAddress() {
-		return new Address($this->defaultAddressId);
-	}
+    // carts
+    private function getCart()
+    {
+        $cartId = DB::find(Cart::INDEX.' FROM '.Cart::TABLE.' WHERE '.Cart::CUSTOMER_INDEX.' = ? AND statusId = 0', [$this->id]);
 
-	private function getHasAddress() {
-		return (bool) $this->getDefaultAddressId();
-	}
+        return new Cart($cartId);
+    }
 
-	/*
-	* Set methods
-	*/
-	public function setCart(object $cart) {
-		$this->data[] = [];
-		$this->data['cart'] = $cart;
+    private function getConfirmedCarts()
+    {
+        return rows_to_objects(DB::select(Cart::INDEX.' FROM '.Cart::TABLE.' WHERE '.Cart::CUSTOMER_INDEX.' = ? AND statusId <> 0 ORDER BY time DESC', [$this->id]), Cart::class);
+    }
 
-		return $this;
-	}
+    private function getConfirmedCartsCount()
+    {
+        return count($this->confirmedCarts);
+    }
 
-	/*
-	* Istance methods
-	*/
-	public static function new() {
-		if (logged()) {
-			$customerId = DB::find(self::INDEX . ' FROM ' . self::TABLE . ' WHERE ' . self::USER_INDEX . ' = ?', [userId()]);
-		}
+    // addresses
+    private function getDefaultAddressId()
+    {
+        return DB::find(Address::INDEX.' FROM '.Address::TABLE.' WHERE '.Address::CUSTOMER_INDEX.' = ? ORDER BY '.Address::INDEX.' DESC', [$this->id]);
+    }
 
-		if (!$customerId) {
-			$customerId = DB::add(self::TABLE . ' (' . self::USER_INDEX . ')', [userId() ?: 0]);
-		}
+    private function getDefaultAddress()
+    {
+        return new Address($this->defaultAddressId);
+    }
 
-		return new self($customerId);
-	}
+    private function getHasAddress()
+    {
+        return (bool) $this->getDefaultAddressId();
+    }
+
+    /*
+    * Set methods
+    */
+    public function setCart(object $cart)
+    {
+        $this->data[] = [];
+        $this->data['cart'] = $cart;
+
+        return $this;
+    }
+
+    /*
+    * Istance methods
+    */
+    public static function new()
+    {
+        if (logged()) {
+            $customerId = DB::find(self::INDEX.' FROM '.self::TABLE.' WHERE '.self::USER_INDEX.' = ?', [userId()]);
+        }
+
+        if (! $customerId) {
+            $customerId = DB::add(self::TABLE.' ('.self::USER_INDEX.')', [userId() ?: 0]);
+        }
+
+        return new self($customerId);
+    }
 }

@@ -4,25 +4,31 @@ namespace App\Legacy\Ecommerce\Product;
 
 use Structure\DatabaseObject;
 
-class Type {
+class Type
+{
+    use DatabaseObject;
 
-	use DatabaseObject;
+    public const TABLE = 'ecommerce_product_types';
 
-	public const TABLE = 'ecommerce_product_types';
-	public const INDEX = 'id';
+    public const INDEX = 'id';
 
-	public $id = null;
-	public $name;
-	public $names;
+    public $id = null;
 
-	private $category;
-	private $status;
-	private $time;
+    public $name;
 
-	/*
-	* Get methods
-	*/
-	private function getPluralName() {
-		return $this->names ?: $this->name;
-	}
+    public $names;
+
+    private $category;
+
+    private $status;
+
+    private $time;
+
+    /*
+    * Get methods
+    */
+    private function getPluralName()
+    {
+        return $this->names ?: $this->name;
+    }
 }

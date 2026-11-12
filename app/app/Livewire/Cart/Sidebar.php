@@ -8,8 +8,8 @@ use Illuminate\View\View;
 use Livewire\Attributes\On;
 use Livewire\Component;
 
-class Sidebar extends Component {
-
+class Sidebar extends Component
+{
     /**
      * Property: The current cart
      */
@@ -28,7 +28,8 @@ class Sidebar extends Component {
     /**
      * Lifehook cycle: Boot the component
      */
-    public function boot(): void {
+    public function boot(): void
+    {
         $this->cart = cart();
         $this->orderItems = $this->cart?->order_items;
     }
@@ -36,7 +37,8 @@ class Sidebar extends Component {
     /**
      * Lifehook cycle: Render the component view
      */
-    public function render(): View {
+    public function render(): View
+    {
         return view('livewire.cart.sidebar');
     }
 
@@ -44,7 +46,8 @@ class Sidebar extends Component {
      * Event: Update the cart when an order item is added, removed, or updated
      */
     #[On('updateCart')]
-    public function updateCart($showSidebar = true): void {
+    public function updateCart($showSidebar = true): void
+    {
         if ($this->cart->quantity > 0 && $showSidebar) {
             $this->show = true;
         }

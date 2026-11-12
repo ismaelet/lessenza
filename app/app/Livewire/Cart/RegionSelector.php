@@ -8,8 +8,8 @@ use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\Modelable;
 use Livewire\Component;
 
-class RegionSelector extends Component {
-
+class RegionSelector extends Component
+{
     public Address $address;
 
     #[Modelable]
@@ -20,11 +20,12 @@ class RegionSelector extends Component {
     /**
      * Lifecycle hook: Bootstraps the component
      */
-    public function boot() {
+    public function boot()
+    {
         $this->cart = Order::find(cart()->id);
         $address = $this->cart->address ?: Auth::user()?->main_address;
 
-        if (!$address) {
+        if (! $address) {
             $address = Address::create([
                 'user_id' => Auth::id(),
             ]);
@@ -41,11 +42,13 @@ class RegionSelector extends Component {
     /**
      * Lifecycle hook: Renders the component
      */
-    public function render() {
+    public function render()
+    {
         return view('livewire.cart.region-selector');
     }
 
-    public function updatedRegion(): void {
+    public function updatedRegion(): void
+    {
         $this->address->update([
             'region' => $this->region,
         ]);

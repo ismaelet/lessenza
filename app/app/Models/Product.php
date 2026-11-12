@@ -12,11 +12,12 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Vite;
 use NumberFormatter;
 
-class Product extends Model {
-
+class Product extends Model
+{
     use SoftDeletes;
 
     private const DEFAULT_IMAGE_RESOLUTION = 1024;
+
     private const ALLOWED_IMAGE_RESOLUTIONS = [100, 400, 1024];
 
     /**
@@ -36,62 +37,69 @@ class Product extends Model {
     /**
      * Attribute: The image URL for the product
      */
-    public function image(): Attribute {
+    public function image(): Attribute
+    {
         return Attribute::make(
-            get: fn(): string => $this->getImage(),
+            get: fn (): string => $this->getImage(),
         );
     }
 
-    public function storageImagePath(): Attribute {
+    public function storageImagePath(): Attribute
+    {
         return Attribute::make(
-            get: fn(): string => app()->environment() == 'local' ? $this->image : 'app/public/products/' . $this->id . '-' . self::DEFAULT_IMAGE_RESOLUTION . '.webp',
+            get: fn (): string => app()->environment() == 'local' ? $this->image : 'app/public/products/'.$this->id.'-'.self::DEFAULT_IMAGE_RESOLUTION.'.webp',
         );
     }
 
     /**
      * Relationship: The product type associated with this product
      */
-    public function product_type(): BelongsTo {
+    public function product_type(): BelongsTo
+    {
         return $this->belongsTo(Product\ProductType::class);
     }
 
     /**
      * Get the route key for the model.
      */
-    public function getRouteKeyName(): string {
+    public function getRouteKeyName(): string
+    {
         return 'slug';
     }
 
     /**
      * Get the URL for the product
      */
-    public function url(): string {
+    public function url(): string
+    {
         return route('product.show', ['product' => $this->slug]);
     }
 
     /**
      * Get the image URL for the product
      */
-    public function getImage(int $resolution = self::DEFAULT_IMAGE_RESOLUTION): string {
-        if (!in_array($resolution, self::ALLOWED_IMAGE_RESOLUTIONS)) {
+    public function getImage(int $resolution = self::DEFAULT_IMAGE_RESOLUTION): string
+    {
+        if (! in_array($resolution, self::ALLOWED_IMAGE_RESOLUTIONS)) {
             $resolution = self::DEFAULT_IMAGE_RESOLUTION;
         }
 
-        $imagePath = 'products/' . $this->id . '-' . $resolution . '.webp';
+        $imagePath = 'products/'.$this->id.'-'.$resolution.'.webp';
 
-        if (!FileHelper::exists($imagePath)) {
+        if (! FileHelper::exists($imagePath)) {
             return Vite::image('no-image.webp');
         }
 
-        $fileTime = @filemtime(storage_path('app/public/' . $imagePath));
+        $fileTime = @filemtime(storage_path('app/public/'.$imagePath));
 
-        return public_asset($imagePath . ($fileTime ? '?v=' . $fileTime : ''));
+        return public_asset($imagePath.($fileTime ? '?v='.$fileTime : ''));
     }
 
     /**
      * Get the product price based on the quantity
      */
-    public function price(int $totalOrderQuantity = 1, bool $extraConcentrated = false): float {
+    public function price(int $totalOrderQuantity = 1, bool $extraConcentrated = false): float
+    {
         if ($this->price) {
             $price = $this->price;
         } else {
@@ -121,28 +129,32 @@ class Product extends Model {
     /**
      * Get the product price in a human-readable format.
      */
-    public function priceString(): string {
+    public function priceString(): string
+    {
         return (new NumberFormatter('it_IT', NumberFormatter::CURRENCY))->formatCurrency($this->price(), 'EUR');
     }
 
     /**
      * Determine if the product can be extra concentrated
      */
-    public function canBeExtraConcentrated(): bool {
+    public function canBeExtraConcentrated(): bool
+    {
         return in_array($this->product_type->name, ['Doccce Emozionali Fredde', 'Doccce Emozionali Calde', 'Bagno Turco', 'Concentrato profumato per sauna']);
     }
 
     /**
      * Determine if the product has a promotion
      */
-    public function hasPromotion(): bool {
+    public function hasPromotion(): bool
+    {
         return in_array($this->product_type->name, ['Doccce Emozionali Fredde', 'Doccce Emozionali Calde', 'Bagno Turco', 'Concentrato profumato per sauna']);
     }
 
     /**
      * Determine if the product has a long delivery time
      */
-    public function longDelivery(): bool {
+    public function longDelivery(): bool
+    {
         return in_array($this->product_type->name, ['Kit']);
     }
 
@@ -150,7 +162,8 @@ class Product extends Model {
      * Get the related products.
      * This method retrieves the latest 5 products excluding the current one.
      */
-    public function relatedProducts(): Collection {
+    public function relatedProducts(): Collection
+    {
         return self::where('id', '!=', $this->id)
             ->latest()
             ->take(5)
@@ -160,7 +173,8 @@ class Product extends Model {
     /**
      * Generate the SKU for the product
      */
-    public function sku(): string {
-        return 'LES-' . str_pad($this->id, 5, '0', STR_PAD_LEFT);
+    public function sku(): string
+    {
+        return 'LES-'.str_pad($this->id, 5, '0', STR_PAD_LEFT);
     }
 }

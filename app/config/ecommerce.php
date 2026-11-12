@@ -9,7 +9,7 @@ return [
     |
     | The available order statuses in the e-commerce system.
     |
-	*/
+    */
     'order_statuses' => [
         '-1' => [
             'tag' => 'canceled',

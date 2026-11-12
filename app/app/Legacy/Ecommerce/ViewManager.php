@@ -2,14 +2,13 @@
 
 namespace App\Legacy\Ecommerce;
 
-class ViewManager {
-
-
-
-	// Like button
-	public static function renderLikeButton($product) {
-		ob_start();
-?>
+class ViewManager
+{
+    // Like button
+    public static function renderLikeButton($product)
+    {
+        ob_start();
+        ?>
 
 		<div class="wishlist-icon mar-t-2 wishlist_box js-wishlist-module <?= $product->isLiked ? 'added' : '' ?>">
 			<div class="flex-line gap05 js-add-to-wishlist" data-product-id="<?= $product->id ?>" data-added="<?= $product->isLiked ? 1 : 0 ?>" data-logged="<?= logged() ?>">
@@ -25,22 +24,23 @@ class ViewManager {
 
 	<?php
 
-		return ob_get_clean();
-	}
+                return ob_get_clean();
+    }
 
-	// Shipping method
-	public static function renderShippingMethod(object $shippingMethod, object $cart = null) {
+    // Shipping method
+    public static function renderShippingMethod(object $shippingMethod, ?object $cart = null)
+    {
 
-		$cart = self::getCart($cart);
+        $cart = self::getCart($cart);
 
-		ob_start();
+        ob_start();
 
-	?>
+        ?>
 
-		<label class="shipping-method <?= !$cart->status ? 'interactive' : '' ?>">
+		<label class="shipping-method <?= ! $cart->status ? 'interactive' : '' ?>">
 			<div class="shipping-method__checkbox">
 				<div class="checkbox">
-					<input type="radio" class="<?= !$cart->status ? 'js-shipping-method-checkbox' : '' ?>" name="shippingMethodId" value="<?= $shippingMethod->id ?>" <?= $cart->shippingMethodId == $shippingMethod->id ? 'checked' : '' ?>>
+					<input type="radio" class="<?= ! $cart->status ? 'js-shipping-method-checkbox' : '' ?>" name="shippingMethodId" value="<?= $shippingMethod->id ?>" <?= $cart->shippingMethodId == $shippingMethod->id ? 'checked' : '' ?>>
 					<span></span>
 				</div>
 			</div>
@@ -63,23 +63,22 @@ class ViewManager {
 
 	<?php
 
-		return ob_get_clean();
-	}
+            return ob_get_clean();
+    }
 
-	// Order list
+    // Order list
 
+    // Cart list
 
-	// Cart list
+    // Cart recap panel
+    public static function renderCartRecap(?object $cart = null)
+    {
 
+        $cart = self::getCart($cart);
 
-	// Cart recap panel
-	public static function renderCartRecap(object $cart = null) {
+        ob_start();
 
-		$cart = self::getCart($cart);
-
-		ob_start();
-
-	?>
+        ?>
 
 		<section class="recap">
 			<div class="recap-row">
@@ -109,13 +108,14 @@ class ViewManager {
 
 <?php
 
-		return ob_get_clean();
-	}
+            return ob_get_clean();
+    }
 
-	/*
-	* Support function
-	*/
-	private static function getCart(object $cart = null) {
-		return $cart ?: cart();
-	}
+    /*
+    * Support function
+    */
+    private static function getCart(?object $cart = null)
+    {
+        return $cart ?: cart();
+    }
 }

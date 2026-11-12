@@ -21,7 +21,7 @@ return [
     |--------------------------------------------------------------------------
     | Header navigation Links
     |--------------------------------------------------------------------------
-	|	
+    |
     |
     */
 
@@ -39,18 +39,18 @@ return [
     |--------------------------------------------------------------------------
     | Footer navigation Links
     |--------------------------------------------------------------------------
-	|	
+    |
     | The footer navigation links are used to generate the footer navigation
-	| Footer Navigation Interface: [
-		'column_name':string =>
-	|		[
-	|			'label' => string,
-	|			'url' => string,
-	|			'social_media' => ?string,
-	|			'icon' => ?boolean,
-	| 		]
-	|	...
-	| ]
+    | Footer Navigation Interface: [
+        'column_name':string =>
+    |		[
+    |			'label' => string,
+    |			'url' => string,
+    |			'social_media' => ?string,
+    |			'icon' => ?boolean,
+    | 		]
+    |	...
+    | ]
     |
     */
 
@@ -67,7 +67,6 @@ return [
         'facebook' => ['url' => 'https://www.facebook.com/lessenza.net/', 'label' => '@lessenza.net', 'title' => 'Facebook'],
     ],
 
-
     /*
     |--------------------------------------------------------------------------
     | Notification Emails
@@ -76,7 +75,7 @@ return [
     | The email addresses to be notified on certain events.
     | E.g., when a new user registers, a new newsletter subscription is made, etc.
     |
-	*/
+    */
     'notification_emails' => config('app.env') === 'production'
         ? ['commerciale@lessenza.net'] : ['ismaele.tuffanelli@gmail.com'],
 ];

@@ -8,13 +8,13 @@ use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Components\Fieldset;
 use Filament\Schemas\Components\Grid;
-use Filament\Schemas\Components\Section;
 use Filament\Schemas\Components\View;
 use Filament\Schemas\Schema;
-use Filament\Tables\Columns\Layout\Split;
 
-class OrderForm {
-    public static function configure(Schema $schema): Schema {
+class OrderForm
+{
+    public static function configure(Schema $schema): Schema
+    {
         return $schema
             ->columns(['lg' => 4])
             ->components([
@@ -27,7 +27,7 @@ class OrderForm {
                             ->columnSpanFull()
                             ->schema([
                                 View::make('filament.forms.orders.order-items-recap')
-                                    ->columnSpanFull()
+                                    ->columnSpanFull(),
                             ]),
 
                         // Address
@@ -167,7 +167,7 @@ class OrderForm {
                                     ->readOnly()
                                     ->columnSpanFull(),
                             ]),
-                    ])
+                    ]),
             ]);
     }
 }

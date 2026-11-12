@@ -8,8 +8,8 @@ use Illuminate\View\View;
 use Livewire\Attributes\On;
 use Livewire\Component;
 
-class AddToCart extends Component {
-
+class AddToCart extends Component
+{
     /**
      * Property: The product associated with the component
      */
@@ -33,14 +33,16 @@ class AddToCart extends Component {
     /**
      * Lifecycle hook: Render the component view
      */
-    public function render(): View {
+    public function render(): View
+    {
         return view('livewire.product.add-to-cart');
     }
 
     /**
      * Event: Add the product to the cart
      */
-    public function addToCart(): void {
+    public function addToCart(): void
+    {
         // Validate the quantity
         $this->validate([
             'quantity' => 'required|integer|min:1',
@@ -76,7 +78,8 @@ class AddToCart extends Component {
      * Event: Handle updates to the extra concentrated option
      */
     #[On('extraConcentratedUpdated')]
-    public function extraConcentratedUpdated(bool $value): void {
+    public function extraConcentratedUpdated(bool $value): void
+    {
         $this->extraConcentrated = $value;
     }
 }
