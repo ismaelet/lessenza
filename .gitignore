@@ -1,1 +1,10 @@
+/app/storage/*
+!/app/storage/**/
+!/app/storage/**/.gitignore
+
+/app/vendor/
+/app/node_modules/
+
 .env
+*.sql
+.cache_ggshield
