@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const observer = new IntersectionObserver(observerCallback, defaultOptions);
   const observerStart = new IntersectionObserver(observerCallback, elementStartOptions);
 
-  function observerCallback(entries) {
+  function observerCallback(entries: IntersectionObserverEntry[]) {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
         entry.target.classList.remove(loadClass);
@@ -28,7 +28,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   loadableElements.forEach((element) => {
     if (element) {
-      if (element.getAttribute("data-load-threshold") == 0) {
+      const threshold = element.getAttribute("data-load-threshold");
+
+      if (threshold !== null && Number(threshold) === 0) {
         observerStart.observe(element);
       } else {
         observer.observe(element);

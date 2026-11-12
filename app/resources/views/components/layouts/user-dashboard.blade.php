@@ -4,10 +4,7 @@
 ])
 
 @pushOnce('styles')
-	<link
-		rel="stylesheet"
-		href="{{ asset('css/legacy/user-dashboard.css') }}"
-	>
+	@vite('resources/css/storefront/user-dashboard.css')
 @endpushOnce
 
 <x-layouts.legacy-main

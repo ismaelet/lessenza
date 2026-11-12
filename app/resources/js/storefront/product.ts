@@ -1,196 +1,266 @@
-$(document).ready(function () {
-  const productId = $(".js-product-data").data("product-id");
+export {};
 
-  //images
-  $(".product-other-img").click(function () {
-    const self = $(this);
-    const fileUrl = self.data("src");
-    const fileType = self.data("type");
+declare global {
+  interface Window {
+    AJAX?: (
+      action: string,
+      parameters: { itemId: string | undefined; email: string },
+      mode: string,
+    ) => Promise<unknown> | unknown;
+  }
+}
 
-    $(".product-spotlight").removeClass("active");
-    $(".product-spotlight.product-" + fileType)
-      .attr("src", fileUrl)
-      .addClass("active");
-
-    $(".product-other-img").removeClass("active");
-    self.addClass("active");
-  });
-
-  //video
-  $(".play-main-video").click(function () {
-    $(this).hide();
-    $(".product-video").trigger("play").attr("controls", true);
-  });
-
-  // out of stock
-  stock_request_filled();
-
-  $(".js-stock-request-email").keyup(function () {
-    stock_request_filled();
-  });
-
-  function stock_request_filled() {
-    if ($(".js-stock-request-email").length) {
-      if ($(".js-stock-request-email").val().trim()) {
-        $(".js-stock-request").show();
-      } else {
-        $(".js-stock-request").hide();
-      }
-    }
+function setVisible(element: HTMLElement, visible: boolean) {
+  if (!visible) {
+    element.style.display = "none";
+    return;
   }
 
-  $(".js-stock-request").click(async function () {
-    const parameters = {
-      itemId: $(this).data("item-id"),
-      email: $(".js-stock-request-email").val(),
-    };
+  element.style.display = "";
 
-    $(this).hide();
-    $(".js-stock-request-email").hide();
-    $(".js-stock-request-confirmation").show();
+  if (getComputedStyle(element).display === "none") {
+    element.style.display = element instanceof HTMLButtonElement ? "inline-block" : "block";
+  }
+}
 
-    await AJAX("ecommerce-stock-request", parameters, "none");
+function initializeProductPage() {
+  document.querySelectorAll<HTMLElement>(".product-other-img").forEach((image) => {
+    image.addEventListener("click", () => {
+      const fileUrl = image.dataset.src;
+      const fileType = image.dataset.type;
+
+      document.querySelectorAll(".product-spotlight").forEach((spotlight) => {
+        spotlight.classList.remove("active");
+
+        if (fileType && spotlight.classList.contains(`product-${fileType}`)) {
+          if (fileUrl) {
+            spotlight.setAttribute("src", fileUrl);
+          }
+
+          spotlight.classList.add("active");
+        }
+      });
+
+      document.querySelectorAll(".product-other-img").forEach((otherImage) => {
+        otherImage.classList.remove("active");
+      });
+
+      image.classList.add("active");
+    });
   });
 
-  /*
-   * Quantity
-   */
-  const maxQuantity = $('input[name="quantity"]').attr("max");
+  document.querySelectorAll<HTMLElement>(".play-main-video").forEach((button) => {
+    button.addEventListener("click", () => {
+      button.style.display = "none";
 
-  // $(".js-quantity-remove, .js-quantity-add").on("click", function () {
-  //     const self = $(this);
-  //     const input = $('input[name="quantity"]');
-
-  //     let quantity = input.val();
-
-  //     if (!self.hasClass("disabled")) {
-  //         if (self.hasClass("js-quantity-add")) {
-  //             quantity++;
-  //         } else if (self.hasClass("js-quantity-remove")) {
-  //             quantity--;
-  //         }
-  //     }
-
-  //     update_quantity(quantity);
-  // });
-
-  // $('input[name="quantity"]').on("keyup", function () {
-  //     const quantity = parseInt($(this).val());
-
-  //     update_quantity(quantity);
-  // });
-
-  // function update_quantity(quantity) {
-  //     const input = $('input[name="quantity"]');
-
-  //     if (quantity > maxQuantity) {
-  //         quantity = maxQuantity;
-  //     } else if (quantity < 1) {
-  //         quantity = 1;
-  //     }
-
-  //     if (quantity > 1) {
-  //         $(".js-quantity-remove").removeClass("disabled");
-  //     } else if (quantity < maxQuantity) {
-  //         $(".js-quantity-add").removeClass("disabled");
-  //     }
-
-  //     if (quantity == 1) {
-  //         $(".js-quantity-remove").addClass("disabled");
-  //     } else if (quantity == maxQuantity) {
-  //         $(".js-quantity-add").addClass("disabled");
-  //     }
-
-  //     input.val(quantity).trigger("input").trigger("change");
-  // }
-
-  // faq
-  $(".faq-question").click(function () {
-    const questionBox = $(this).parent();
-    const answer = questionBox.find(".faq-answer");
-    const contentHeight = answer.find("p").height();
-
-    answer.css("--_this-max-height", contentHeight + "px");
-
-    $(".faq-element").not(questionBox).removeClass("active");
-
-    questionBox.toggleClass("active");
+      document.querySelectorAll<HTMLVideoElement>(".product-video").forEach((video) => {
+        video.controls = true;
+        void video.play();
+      });
+    });
   });
 
-  // reviews
-  $(".reviews-arrow").click(function () {
-    const direction = $(this).data("direction");
-    const carousel = $(".reviews-carousel");
-    const reviewCount = $(".review").length;
+  const stockRequestEmail = document.querySelector<HTMLInputElement>(".js-stock-request-email");
+  const stockRequestButtons = document.querySelectorAll<HTMLElement>(".js-stock-request");
 
-    let pos = carousel.data("pos");
-
-    if (direction == "left") {
-      pos--;
-    } else {
-      pos++;
+  function updateStockRequestVisibility() {
+    if (!stockRequestEmail) {
+      return;
     }
 
-    if (pos < 1) {
-      pos = reviewCount;
-    }
-    if (pos > reviewCount) {
-      pos = 1;
-    }
+    stockRequestButtons.forEach((button) => {
+      setVisible(button, stockRequestEmail.value.trim().length > 0);
+    });
+  }
 
-    carousel.css("--_pos", pos).data("pos", pos);
+  updateStockRequestVisibility();
+  stockRequestEmail?.addEventListener("keyup", updateStockRequestVisibility);
+
+  stockRequestButtons.forEach((button) => {
+    button.addEventListener("click", async () => {
+      if (!stockRequestEmail) {
+        return;
+      }
+
+      const parameters = {
+        itemId: button.dataset.itemId,
+        email: stockRequestEmail.value,
+      };
+
+      setVisible(button, false);
+      setVisible(stockRequestEmail, false);
+      document
+        .querySelectorAll<HTMLElement>(".js-stock-request-confirmation")
+        .forEach((message) => {
+          setVisible(message, true);
+        });
+
+      if (!window.AJAX) {
+        throw new Error("The stock request handler is not available.");
+      }
+
+      await window.AJAX("ecommerce-stock-request", parameters, "none");
+    });
   });
 
-  $(".review-star_post").hover(
-    function () {
-      $(this).addClass("active");
-      $(this).prevAll().addClass("active");
-    },
-    function () {
-      $(".review-star_post").removeClass("active");
-    },
-  );
+  document.querySelectorAll<HTMLElement>(".faq-question").forEach((question) => {
+    question.addEventListener("click", () => {
+      const questionBox = question.parentElement;
+      const answer = questionBox?.querySelector<HTMLElement>(".faq-answer");
+      const paragraph = answer?.querySelector("p");
 
-  $(".review-stars_post").mouseleave(function () {
-    $(".post-review-cbx:checked").prevAll().addClass("active");
+      if (!questionBox || !answer || !paragraph) {
+        return;
+      }
+
+      const paragraphStyle = getComputedStyle(paragraph);
+      const contentHeight =
+        paragraph.getBoundingClientRect().height -
+        parseFloat(paragraphStyle.paddingTop) -
+        parseFloat(paragraphStyle.paddingBottom) -
+        parseFloat(paragraphStyle.borderTopWidth) -
+        parseFloat(paragraphStyle.borderBottomWidth);
+
+      answer.style.setProperty("--_this-max-height", `${contentHeight}px`);
+
+      document.querySelectorAll(".faq-element").forEach((element) => {
+        if (element !== questionBox) {
+          element.classList.remove("active");
+        }
+      });
+
+      questionBox.classList.toggle("active");
+    });
   });
 
-  $(".review-star_post").click(function () {
-    $(".post-review button").attr("disabled", false);
+  document.querySelectorAll<HTMLElement>(".reviews-arrow").forEach((arrow) => {
+    arrow.addEventListener("click", () => {
+      const carousel = document.querySelector<HTMLElement>(".reviews-carousel");
+      const reviewCount = document.querySelectorAll(".review").length;
+
+      if (!carousel || reviewCount === 0) {
+        return;
+      }
+
+      const direction = arrow.dataset.direction;
+      let position = Number(carousel.dataset.pos);
+
+      position = direction === "left" ? position - 1 : position + 1;
+
+      if (position < 1) {
+        position = reviewCount;
+      } else if (position > reviewCount) {
+        position = 1;
+      }
+
+      carousel.style.setProperty("--_pos", String(position));
+      carousel.dataset.pos = String(position);
+    });
   });
 
-  /*
-   * Gift card
-   */
-  $(".gift-value").click(function () {
-    const self = $(this);
-    const price = parseFloat(self.data("price"));
-    const priceStr = "R$ " + price.toFixed(2).replace(".", ",");
-    const priceInstallments = "ou 2x R$ " + (price / 2).toFixed(2).replace(".", ",");
+  document.querySelectorAll<HTMLElement>(".review-star_post").forEach((star) => {
+    star.addEventListener("mouseenter", () => {
+      star.classList.add("active");
 
-    $(".gift-value").removeClass("active");
-    self.addClass("active");
+      let previousStar = star.previousElementSibling;
+      while (previousStar) {
+        previousStar.classList.add("active");
+        previousStar = previousStar.previousElementSibling;
+      }
+    });
 
-    $('[name="gift-price"]').val(price);
-    $(".product-price-full").text(priceStr);
-    $(".product-price-installments").text(priceInstallments);
+    star.addEventListener("mouseleave", () => {
+      document.querySelectorAll(".review-star_post").forEach((item) => {
+        item.classList.remove("active");
+      });
+    });
+
+    star.addEventListener("click", () => {
+      document.querySelectorAll<HTMLButtonElement>(".post-review button").forEach((button) => {
+        button.disabled = false;
+      });
+    });
   });
 
-  $(".gift-type").click(function () {
-    const self = $(this);
-    const type = self.data("type");
+  document.querySelectorAll<HTMLElement>(".review-stars_post").forEach((stars) => {
+    stars.addEventListener("mouseleave", () => {
+      const checkedStar = document.querySelector<HTMLInputElement>(".post-review-cbx:checked");
+      let previousStar = checkedStar?.previousElementSibling;
 
-    $(".gift-type").removeClass("active");
-    self.addClass("active");
-
-    $('[name="gift-type"]').val(type);
-
-    if (type == 1) {
-      $(".gift-form").show();
-      self.parents("form").removeAttr("novalidate", "");
-    } else {
-      $(".gift-form").hide();
-      self.parents("form").attr("novalidate", "");
-    }
+      while (previousStar) {
+        previousStar.classList.add("active");
+        previousStar = previousStar.previousElementSibling;
+      }
+    });
   });
-});
+
+  document.querySelectorAll<HTMLElement>(".gift-value").forEach((value) => {
+    value.addEventListener("click", () => {
+      const price = Number.parseFloat(value.dataset.price ?? "");
+
+      if (!Number.isFinite(price)) {
+        return;
+      }
+
+      const priceString = `R$ ${price.toFixed(2).replace(".", ",")}`;
+      const installments = `ou 2x R$ ${(price / 2).toFixed(2).replace(".", ",")}`;
+
+      document.querySelectorAll(".gift-value").forEach((item) => {
+        item.classList.remove("active");
+      });
+
+      value.classList.add("active");
+
+      const giftPrice = document.querySelector<HTMLInputElement>('[name="gift-price"]');
+      if (giftPrice) {
+        giftPrice.value = String(price);
+      }
+
+      document.querySelectorAll<HTMLElement>(".product-price-full").forEach((element) => {
+        element.textContent = priceString;
+      });
+
+      document.querySelectorAll<HTMLElement>(".product-price-installments").forEach((element) => {
+        element.textContent = installments;
+      });
+    });
+  });
+
+  document.querySelectorAll<HTMLElement>(".gift-type").forEach((giftType) => {
+    giftType.addEventListener("click", () => {
+      const type = giftType.dataset.type;
+
+      document.querySelectorAll(".gift-type").forEach((item) => {
+        item.classList.remove("active");
+      });
+
+      giftType.classList.add("active");
+
+      const giftTypeInput = document.querySelector<HTMLInputElement>('[name="gift-type"]');
+      if (giftTypeInput && type) {
+        giftTypeInput.value = type;
+      }
+
+      const giftForm = document.querySelector<HTMLElement>(".gift-form");
+      const form = giftType.closest("form");
+
+      if (type === "1") {
+        if (giftForm) {
+          setVisible(giftForm, true);
+        }
+        form?.removeAttribute("novalidate");
+      } else {
+        if (giftForm) {
+          setVisible(giftForm, false);
+        }
+        form?.setAttribute("novalidate", "");
+      }
+    });
+  });
+}
+
+if (document.readyState === "complete") {
+  initializeProductPage();
+} else {
+  document.addEventListener("DOMContentLoaded", initializeProductPage, { once: true });
+}

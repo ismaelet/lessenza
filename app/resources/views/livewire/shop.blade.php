@@ -19,7 +19,7 @@
 			<!-- Mobile dropdonw -->
 			<p
 				class="sidebar__open"
-				onclick="$(this).toggleClass('open'); $(this).next().toggleClass('open')"
+				onclick="this.classList.toggle('open'); this.nextElementSibling.classList.toggle('open')"
 			>
 				Filtra la ricerca
 				<x-icon-arrow1-right />

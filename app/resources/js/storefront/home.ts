@@ -1,25 +1,14 @@
-document.addEventListener("DOMContentLoaded", function () {
-  const reviewSelector = ".js-review";
-  const reviews = document.querySelectorAll(reviewSelector);
-  const reviewCount = reviews.length;
+document.addEventListener("DOMContentLoaded", () => {
+  const reviews = document.querySelectorAll(".js-review");
 
-  let activeReviewKey = 1;
+  if (reviews.length > 0) {
+    let activeReviewKey = 1;
 
-  window.setInterval(cycle_reviews, 10000);
+    window.setInterval(() => {
+      activeReviewKey = activeReviewKey >= reviews.length ? 1 : activeReviewKey + 1;
 
-  function cycle_reviews() {
-    activeReviewKey++;
-
-    if (activeReviewKey > reviewCount) {
-      activeReviewKey = 1;
-    }
-
-    reviews.forEach((element) => {
-      element.classList.remove("active");
-    });
-
-    document
-      .querySelector(reviewSelector + ":nth-child(" + activeReviewKey + ")")
-      .classList.add("active");
+      reviews.forEach((review) => review.classList.remove("active"));
+      reviews[activeReviewKey - 1].classList.add("active");
+    }, 10000);
   }
 });

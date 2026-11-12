@@ -1,8 +1,5 @@
 @pushOnce('styles')
-	<link
-		rel="stylesheet"
-		href="{{ asset('css/legacy/login.css') }}"
-	>
+	@vite('resources/css/storefront/login.css')
 @endpushOnce
 
 <x-layouts.legacy-main

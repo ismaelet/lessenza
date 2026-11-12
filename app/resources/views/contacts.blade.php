@@ -1,8 +1,5 @@
 @pushOnce('styles')
-	<link
-		rel="stylesheet"
-		href="{{ asset('css/legacy/contacts.css') }}"
-	>
+	@vite('resources/css/storefront/contacts.css')
 @endpushOnce
 
 <x-layouts.legacy-main
@@ -99,8 +96,8 @@
 								type="text"
 								name="name"
 								class="animated-field__input"
-								onfocus="$(this).parents('.animated-field').addClass('is-used')"
-								onblur="if (!$(this).val().length) {$(this).parents('.animated-field').removeClass('is-used')}"
+								onfocus="this.closest('.animated-field').classList.add('is-used')"
+								onblur="if (!this.value.length) this.closest('.animated-field').classList.remove('is-used')"
 								required
 							>
 						</div>
@@ -111,8 +108,8 @@
 								type="email"
 								name="email"
 								class="animated-field__input"
-								onfocus="$(this).parents('.animated-field').addClass('is-used')"
-								onblur="if (!$(this).val().length) {$(this).parents('.animated-field').removeClass('is-used')}"
+								onfocus="this.closest('.animated-field').classList.add('is-used')"
+								onblur="if (!this.value.length) this.closest('.animated-field').classList.remove('is-used')"
 								required
 							>
 						</div>
@@ -123,8 +120,8 @@
 							 name="text"
 							 class="animated-field__input"
 							 maxlength="1000"
-							 onfocus="$(this).parents('.animated-field').addClass('is-used')"
-							 onblur="if (!$(this).val().length) {$(this).parents('.animated-field').removeClass('is-used')}"
+							 onfocus="this.closest('.animated-field').classList.add('is-used')"
+							 onblur="if (!this.value.length) this.closest('.animated-field').classList.remove('is-used')"
 							 required
 							></textarea>
 						</div>

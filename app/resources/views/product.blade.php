@@ -1,15 +1,9 @@
 @pushOnce('styles')
-	<link
-		rel="stylesheet"
-		href="{{ asset('css/legacy/product.css') }}"
-	>
+	@vite('resources/css/storefront/product.css')
 @endpushOnce
 
 @pushOnce('scripts')
-	<script
-		src="{{ asset('js/legacy/product.js') }}"
-		defer
-	></script>
+	@vite('resources/js/storefront/product.ts')
 @endpushOnce
 
 <x-layouts.legacy-main

@@ -1,8 +1,5 @@
 @pushOnce('styles')
-	<link
-		rel="stylesheet"
-		href="{{ asset('css/legacy/home-newsletter.css') }}"
-	>
+	@vite('resources/css/storefront/home-newsletter.css')
 @endpushOnce
 
 <section class="newsletter main-wrap">

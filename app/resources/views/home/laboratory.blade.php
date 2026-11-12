@@ -1,8 +1,5 @@
 @pushOnce('styles')
-	<link
-		rel="stylesheet"
-		href="{{ asset('css/legacy/home-laboratory.css') }}"
-	>
+	@vite('resources/css/storefront/home-laboratory.css')
 @endpushOnce
 
 <section class="laboratory padded-section span-full-width">

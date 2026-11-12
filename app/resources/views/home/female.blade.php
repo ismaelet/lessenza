@@ -3,10 +3,7 @@
 @endphp
 
 @pushOnce('styles')
-	<link
-		rel="stylesheet"
-		href="{{ asset('css/legacy/home-female.css') }}"
-	>
+	@vite('resources/css/storefront/home-female.css')
 @endpushOnce
 
 <section class="female padded-section breakout">

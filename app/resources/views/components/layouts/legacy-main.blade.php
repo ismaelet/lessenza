@@ -8,10 +8,7 @@
 ])
 
 @push('styles')
-	<link
-		rel="stylesheet"
-		href="{{ asset('css/legacy.css') }}?v={{ filemtime(base_path('/public/css/legacy.css')) }}"
-	>
+	@vite('resources/css/storefront/base.css')
 	<style>
 		.main-content {
 			display: grid;
@@ -30,12 +27,7 @@
 @endpush
 
 @pushOnce('scripts')
-	<script
-		src="https://code.jquery.com/jquery-3.7.1.min.js"
-		integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
-		crossorigin="anonymous"
-	></script>
-	<script src="{{ asset('js/legacy.js') }}?v={{ filemtime(public_path('js/legacy.js')) }}"></script>
+	@vite('resources/js/storefront/main.ts')
 @endpushOnce
 
 <x-layouts.app

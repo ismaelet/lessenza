@@ -5,10 +5,7 @@
 @endphp
 
 @pushOnce('styles')
-	<link
-		rel="stylesheet"
-		href="{{ asset('css/legacy/home-slider.css') }}"
-	>
+	@vite('resources/css/storefront/home-slider.css')
 
 	<style>
 		.slider__contacts {

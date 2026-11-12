@@ -3,10 +3,7 @@
 @endphp
 
 @pushOnce('styles')
-	<link
-		rel="stylesheet"
-		href="{{ asset('css/legacy/cart.css') }}"
-	>
+	@vite('resources/css/storefront/cart.css')
 
 	<style>
 		.form-row {

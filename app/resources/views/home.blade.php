@@ -1,15 +1,9 @@
 @pushOnce('styles')
-	<link
-		rel="stylesheet"
-		href="{{ asset('css/legacy/home.css') }}"
-	>
+	@vite('resources/css/storefront/home.css')
 @endpushOnce
 
 @pushOnce('scripts')
-	<script
-		defer
-		src="{{ asset('js/legacy/home.js') }}"
-	></script>
+	@vite('resources/js/storefront/home.ts')
 @endpushOnce
 
 <x-layouts.legacy-main

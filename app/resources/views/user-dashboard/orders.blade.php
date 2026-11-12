@@ -1,10 +1,3 @@
-@pushOnce('styles')
-	<link
-		rel="stylesheet"
-		href="{{ asset('css/legacy/user-dashboard-index.css') }}"
-	>
-@endpushOnce
-
 <x-layouts.user-dashboard
 	:$title
 	:$location
