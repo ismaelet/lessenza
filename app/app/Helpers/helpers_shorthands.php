@@ -23,9 +23,5 @@ function is_superadmin(): bool
  */
 function public_asset(string $path): string
 {
-    if (env('APP_ENV') === 'local') {
-        return asset('storage/'.$path);
-    }
-
-    return '/public/storage/'.$path;
+    return asset('storage/'.$path);
 }

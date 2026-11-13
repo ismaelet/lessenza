@@ -47,7 +47,7 @@ class Product extends Model
     public function storageImagePath(): Attribute
     {
         return Attribute::make(
-            get: fn (): string => app()->environment() == 'local' ? $this->image : 'app/public/products/'.$this->id.'-'.self::DEFAULT_IMAGE_RESOLUTION.'.webp',
+            get: fn (): string => 'products/'.$this->id.'-'.self::DEFAULT_IMAGE_RESOLUTION.'.webp',
         );
     }
 

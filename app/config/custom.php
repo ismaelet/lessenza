@@ -77,5 +77,5 @@ return [
     |
     */
     'notification_emails' => config('app.env') === 'production'
-        ? ['commerciale@lessenza.net'] : ['ismaele.tuffanelli@gmail.com'],
+        ? ['ismaele.tuffanelli@gmail.com'] : ['ismaele.tuffanelli@gmail.com'],
 ];
