@@ -76,6 +76,6 @@ return [
     | E.g., when a new user registers, a new newsletter subscription is made, etc.
     |
     */
-    'notification_emails' => config('app.env') === 'production'
-        ? ['ismaele.tuffanelli@gmail.com'] : ['ismaele.tuffanelli@gmail.com'],
+    'notification_emails' => env('APP_ENV') === 'production'
+        ? ['commerciale@lessenza.net'] : ['ismaele.tuffanelli@gmail.com'],
 ];

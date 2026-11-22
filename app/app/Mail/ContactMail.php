@@ -17,9 +17,7 @@ class ContactMail extends Mailable
     /**
      * Create a new message instance.
      */
-    public function __construct(public string $email, public string $name, public string $text, public ?array $parameters = null)
-    {
-    }
+    public function __construct(public string $email, public string $name, public string $text, public ?array $parameters = null) {}
 
     /**
      * Get the message envelope.
@@ -27,7 +25,10 @@ class ContactMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            from: new Address(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME')),
+            from: new Address(
+                config('mail.from.address'),
+                config('mail.from.name'),
+            ),
             replyTo: [
                 new Address($this->email, $this->name),
             ],
