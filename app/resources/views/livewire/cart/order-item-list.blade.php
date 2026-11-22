@@ -13,10 +13,10 @@
 
             <div class="cart-order__data">
                 <p class="font-heading text-heading-400 text-lg leading-none font-medium">
-                    <a href="<?= $orderItem->product->url() ?>"><?= $orderItem->name ?></a>
+                    <a href="<?= $orderItem->product->url() ?>">{{ localized_text($orderItem->name) }}</a>
                 </p>
 
-                <p class=""><?= $orderItem->quantity == 1 ? 'tanica' : 'taniche' ?> da 5L</p>
+                <p class=""><?= $orderItem->quantity == 1 ? 'tanica' : 'taniche' ?> {{ __('da 5L') }}</p>
 
                 <p><?= $orderItem->quantity ?> x {{ price($orderItem->unit_price_net) }}</p>
             </div>

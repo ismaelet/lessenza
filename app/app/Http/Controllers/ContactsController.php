@@ -21,9 +21,9 @@ class ContactsController extends Controller
         $variant = $oil ? collect($oil['varianti'])->firstWhere('formato', $request->query('formato')) : null;
 
         return view('contacts', [
-            'title' => 'Contatti',
+            'title' => __('Contatti'),
             'location' => 'contacts',
-            'message' => $variant ? 'Vorrei richiedere un preventivo per olio essenziale '.$oil['olio'].' '.$variant['formato'].' ('.$variant['codice'].').' : '',
+            'message' => $variant ? __('Vorrei richiedere un preventivo per olio essenziale :oil :size (:code).', ['oil' => $oil['olio'], 'size' => $variant['formato'], 'code' => $variant['codice']]) : '',
         ]);
     }
 
@@ -51,13 +51,13 @@ class ContactsController extends Controller
                 ));
 
             return redirect()->back()->with([
-                'success' => 'Messaggio inviato, ti risponderemo al più presto',
+                'success' => __('Messaggio inviato, ti risponderemo al più presto'),
                 'meta_contact' => true,
             ]);
         } catch (TransportExceptionInterface $e) {
             return redirect()->back()->withInput()->withErrors([
-                'spam' => '<span class="font-bold">Errore</span>: il messaggio non ha superato i nostri filtri anti-spam. Puoi comunque a scriverci direttamente a
-							<a href="'.config('custom.contacts.email.url').'" class="font-bold">'.config('custom.contacts.email.label').'</a>, invece di usare questo formulario.',
+                'spam' => '<strong>'.e(__('Errore')).'</strong>: '.e(__('Il messaggio non ha superato i nostri filtri anti-spam. Puoi scriverci direttamente a')).' <a href="'.e(config('custom.contacts.email.url')).'">'.e(config('custom.contacts.email.label')).'</a>, '.e(__('invece di usare questo formulario.')),
+
             ]);
         }
     }

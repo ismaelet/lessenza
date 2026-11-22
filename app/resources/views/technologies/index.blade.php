@@ -11,15 +11,12 @@
 	</style>
 @endpushOnce
 
-<x-layouts.legacy-main :$location>
+<x-layouts.legacy-main :$location :$title>
 
 	<div class="mt-20 grid items-center gap-y-8 text-center sm:text-left lg:grid-cols-2">
 		<x-heading.section class="sm:hidden">{{ $title }}</x-heading.section>
 		<x-heading.main class="hidden sm:block">{{ $title }}</x-heading.main>
-		<p class="text-lg leading-loose">Rendi unica la tua area wellness con docce emozionali e sistemi automatici di ultima
-			generazione.
-			Profumi, luci e
-			getti d’acqua studiati per offrire ai tuoi clienti un’esperienza indimenticabile.</p>
+		<p class="text-lg leading-loose">{{ __('Rendi unica la tua area wellness con docce emozionali e sistemi automatici di ultima generazione. Profumi, luci e getti d’acqua studiati per offrire ai tuoi clienti un’esperienza indimenticabile.') }}</p>
 	</div>
 
 
@@ -40,16 +37,16 @@
 						</a>
 
 						<div class="grid grid-cols-1 pt-8 text-center">
-							<x-heading.component>{{ $product->name }}</x-heading.component>
+							<x-heading.component>{{ localized_text($product->name) }}</x-heading.component>
 
-							<div class="mt-4 leading-loose">{!! $product->description_short !!}</div>
+							<div class="mt-4 leading-loose">{!! localized_html($product->description_short) !!}</div>
 
 							<div class="flex justify-center self-end">
 								<x-button
 									href="{{ $product->url() }}"
 									variant="secondary"
 									class="mt-8 block"
-								>Scopri di più</x-button>
+								>{{ __('Scopri di più') }}</x-button>
 							</div>
 						</div>
 					</article>

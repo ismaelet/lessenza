@@ -15,7 +15,7 @@ class LogoutController extends Controller
     public function index(Request $request): View
     {
         return view('auth.logout', [
-            'title' => 'Logout',
+            'title' => __('Logout'),
             'location' => 'logout',
         ]);
     }
@@ -35,6 +35,6 @@ class LogoutController extends Controller
         $request->session()->regenerateToken();
 
         // Redirect to the home page with a success message
-        return redirect(route('home'))->with('success', 'Sei stato disconnesso con successo.');
+        return redirect(route('home'))->with('success', __('Sei stato disconnesso con successo.'));
     }
 }

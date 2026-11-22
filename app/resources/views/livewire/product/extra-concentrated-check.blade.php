@@ -12,6 +12,6 @@
             <span class="bg-primary-400 m-auto h-2 w-2 rounded-full opacity-0 transition-opacity group-hover/icon:opacity-100 group-has-[:checked]:opacity-100"></span>
         </span>
 
-        <p class="text-heading-400 cursor-pointer text-lg leading-none">Extra concentrata (€ 5,00 in più)</p>
+        <p class="text-heading-400 cursor-pointer text-lg leading-none">{{ __('Extra concentrata (€ 5,00 in più)') }}</p>
     </label>
 </div>

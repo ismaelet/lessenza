@@ -65,7 +65,7 @@
 							</h3>
 							<p class="review__subtitle">{{ $review->location }}</p>
 						</div>
-						<p class="review__text">{{ $review->text }}</p>
+						<p class="review__text">{{ localized_text($review->text) }}</p>
 					</div>
 				</div>
 			@endforeach

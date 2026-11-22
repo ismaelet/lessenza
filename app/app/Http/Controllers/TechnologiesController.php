@@ -12,7 +12,7 @@ class TechnologiesController extends Controller
     public function index()
     {
         $location = 'technologies';
-        $title = 'Tecnologie';
+        $title = __('Tecnologie');
 
         $products = Product::whereHas('product_type', fn ($query) => $query->where('name', 'Kit'))->latest()->get();
 

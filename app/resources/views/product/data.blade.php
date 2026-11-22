@@ -31,8 +31,8 @@
         <div class="grid" data-spacing="400">
             <!-- Basic data -->
             <div class="grid" data-spacing="200">
-                <x-heading.section class="">{{ $product->name }}</x-heading.section>
-                <x-subheading.section class="">{{ $product->product_type->name }}</x-subheading.section>
+                <x-heading.section class="">{{ localized_text($product->name) }}</x-heading.section>
+                <x-subheading.section class="">{{ localized_text($product->product_type->name) }}</x-subheading.section>
             </div>
 
             <!-- Price and availability -->
@@ -53,7 +53,7 @@
                     @endif
 
                     <p class="product-availability__text text-good-400">
-                        {{ $product->inStock ? ($product->longDelivery() ? 'Disponibile su ordinazione' : 'Disponibile') : 'Non disponibile' }}
+                        {{ $product->inStock ? ($product->longDelivery() ? __('Disponibile su ordinazione') : __('Disponibile')) : __('Non disponibile') }}
                     </p>
                 </div>
             </div>
@@ -61,26 +61,26 @@
 
         <!-- Description -->
         <div class="grid gap-4">
-            <p class="product-desc">{!! $product->description !!}</p>
+            <p class="product-desc">{!! localized_html($product->description) !!}</p>
 
             @if ($product->ingredients && strip_tags($product->ingredients) !== '')
                 <div class="grid grid-cols-1 gap-2">
-                    <p class="product-desc text-heading-400 font-medium tracking-wide italic">Ingredienti:</p>
-                    <div class="italic">{{ $product->ingredients }}</div>
+                    <p class="product-desc text-heading-400 font-medium tracking-wide italic">{{ __('Ingredienti:') }}</p>
+                    <div class="italic">{{ localized_text($product->ingredients) }}</div>
                 </div>
             @endif
 
             @if ($product->uses && strip_tags($product->uses) !== '')
                 <div class="grid grid-cols-1 gap-2">
-                    <p class="text-heading-400 font-medium tracking-wide italic">Modalità d'uso:</p>
-                    <div class="italic">{!! $product->uses !!}</div>
+                    <p class="text-heading-400 font-medium tracking-wide italic">{{ __('Modalità d\'uso:') }}</p>
+                    <div class="italic">{!! localized_html($product->uses) !!}</div>
                 </div>
             @endif
 
             @if ($product->warnings && strip_tags($product->warnings) !== '')
                 <div class="grid grid-cols-1 gap-2">
-                    <p class="text-heading-400 font-medium tracking-wide italic">Avvertenze:</p>
-                    <div class="italic">{!! $product->warnings !!}</div>
+                    <p class="text-heading-400 font-medium tracking-wide italic">{{ __('Avvertenze:') }}</p>
+                    <div class="italic">{!! localized_html($product->warnings) !!}</div>
                 </div>
             @endif
         </div>

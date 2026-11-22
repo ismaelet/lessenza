@@ -30,8 +30,7 @@
 			</x-heading.section>
 
 			<p class="">
-				Se hai dubbi, domande o vuoi richiedere un'informazione, compila il modulo di contatto che trovi in questa pagina
-				oppure usando uno dei link di contatto qui sotto, ti risponderemo nel più breve tempo possibile.
+				{{ __('Se hai dubbi, domande o vuoi richiedere un\'informazione, compila il modulo di contatto che trovi in questa pagina oppure usando uno dei link di contatto qui sotto, ti risponderemo nel più breve tempo possibile.') }}
 			</p>
 
 			<div
@@ -91,7 +90,7 @@
 						@endsession
 
 						<div class="animated-field">
-							<p class="animated-field__label">Nome</p>
+							<p class="animated-field__label">{{ __('Nome') }}</p>
 							<input
 								type="text"
 								name="name"
@@ -103,7 +102,7 @@
 						</div>
 
 						<div class="animated-field">
-							<p class="animated-field__label">Indirizzo e-mail</p>
+							<p class="animated-field__label">{{ __('Indirizzo e-mail') }}</p>
 							<input
 								type="email"
 								name="email"
@@ -115,7 +114,7 @@
 						</div>
 
 						<div class="animated-field {{ old('text', $message ?? '') ? 'is-used' : '' }}">
-							<p class="animated-field__label">Testo</p>
+							<p class="animated-field__label">{{ __('Testo') }}</p>
 							<textarea
 							 name="text"
 							 class="animated-field__input"
@@ -130,7 +129,7 @@
 					<x-button
 						type="submit"
 						class="place-right"
-					>Invia</x-button>
+					>{{ __('Invia') }}</x-button>
 				</div>
 			</form>
 		</section>

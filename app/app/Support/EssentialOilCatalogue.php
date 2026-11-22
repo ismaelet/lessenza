@@ -8,6 +8,13 @@ class EssentialOilCatalogue
 {
     public function all(): Collection
     {
-        return collect(json_decode(file_get_contents(resource_path('data/oli-essenziali.json')), true, flags: JSON_THROW_ON_ERROR));
+        return collect(json_decode(file_get_contents(resource_path('data/oli-essenziali.json')), true, flags: JSON_THROW_ON_ERROR))
+            ->map(function (array $oil): array {
+                foreach (['olio', 'profumo', 'descrizione', 'consiglio_uso', 'avvertenza', 'pittogrammi', 'frasi_H'] as $field) {
+                    $oil[$field] = localized_text($oil[$field]);
+                }
+
+                return $oil;
+            });
     }
 }

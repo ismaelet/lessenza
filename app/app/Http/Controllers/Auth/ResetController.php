@@ -21,7 +21,7 @@ class ResetController extends Controller
 
         return view('auth.reset')
             ->with([
-                'title' => 'Reset accesso',
+                'title' => __('Reset accesso'),
                 'email' => $email,
                 'token' => $token,
             ]);
@@ -48,7 +48,7 @@ class ResetController extends Controller
         $error = ! $user || ! $passwordReset || $user->email != $email || $token != $passwordReset->token;
 
         if ($error) {
-            return back()->with('error', 'Il link di rest non è valido o è scaduto');
+            return back()->with('error', __('Il link di rest non è valido o è scaduto'));
         }
 
         $passwordReset->delete();

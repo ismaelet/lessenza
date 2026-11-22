@@ -17,7 +17,7 @@
 	</style>
 @endpushOnce
 
-<x-layouts.legacy-main title="Carrello">
+<x-layouts.legacy-main title="{{ __('Carrello') }}">
 	<div class="page-header stack-content center-content grid">
 		<div
 			class="page-header__background fill-all background-fill"
@@ -25,7 +25,7 @@
 		></div>
 
 		<div class="main-wrap py-28">
-			<x-heading.section>Carrello</x-heading.section>
+			<x-heading.section>{{ __('Carrello') }}</x-heading.section>
 		</div>
 	</div>
 
@@ -45,7 +45,7 @@
 						checked
 					>
 					<div class="sidebar__icon"><x-icon-arrow1-down /></div>
-					<h3 class="sidebar__menu">Dettagli dell'ordine</h3>
+					<h3 class="sidebar__menu">{{ __('Dettagli dell\'ordine') }}</h3>
 				</label>
 
 				<div class="sidebar__body">
@@ -54,7 +54,7 @@
 
 						<!-- Orders -->
 						<div class="sidebar__wrapper">
-							<x-heading.small-component class="mb-4">Articoli</x-heading.small-component>
+							<x-heading.small-component class="mb-4">{{ __('Articoli') }}</x-heading.small-component>
 							<section class="orders">
 								<livewire:cart.order-item-list :$orderItems />
 							</section>

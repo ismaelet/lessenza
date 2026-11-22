@@ -24,7 +24,7 @@ class OrderStatusMail extends Mailable
     public function __construct(Order $order)
     {
         $this->order = $order;
-        $this->subject = 'Aggiornamento dell\'ordine '.$order->id_code;
+        $this->subject = __('Aggiornamento dell’ordine :order', ['order' => $order->id_code]);
     }
 
     /**

@@ -21,7 +21,7 @@
 				class="sidebar__open"
 				onclick="this.classList.toggle('open'); this.nextElementSibling.classList.toggle('open')"
 			>
-				Filtra la ricerca
+				{{ __('Filtra la ricerca') }}
 				<x-icon-arrow1-right />
 			</p>
 
@@ -31,7 +31,7 @@
 
 					<!-- Searcher -->
 					<section class="sidebar__panel">
-						<h3 class="sidebar__subtitle">Cerca</h3>
+						<h3 class="sidebar__subtitle">{{ __('Cerca') }}</h3>
 
 						<!-- Module: searcher -->
 						<div
@@ -44,7 +44,7 @@
 									class="searcher__input js-seacher"
 									name="search"
 									value="{{ $search }}"
-									placeholder="Cerca un prodotto"
+									placeholder="{{ __('Cerca un prodotto') }}"
 									maxlength="30"
 									autocomplete="off"
 									wire:model.live.debounce.250ms="search"
@@ -65,7 +65,7 @@
 									@click="$wire.set('search', null)"
 								>
 									<strong>x</strong>
-									cancella la ricerca
+									{{ __('cancella la ricerca') }}
 								</p>
 							@endif
 
@@ -89,7 +89,7 @@
 							@click="$wire.set('typeId', null)"
 						>
 							<strong>x</strong>
-							rimuovi i filtri
+							{{ __('rimuovi i filtri') }}
 						</p>
 					@endif
 
@@ -102,9 +102,9 @@
 	<div class="shop-content pad-b-4">
 		<section class="shop__header">
 			<!-- Title -->
-			<x-heading.section>Catalogo</x-heading.section>
+			<x-heading.section>{{ __('Catalogo') }}</x-heading.section>
 			<x-subheading.section>
-				{{ $productCount . ($productCount == 1 ? ' risultato' : ' risultati') }}
+				{{ trans_choice(':count risultato|:count risultati', $productCount, ['count' => $productCount]) }}
 			</x-subheading.section>
 
 			<!-- Sort products -->
@@ -118,7 +118,7 @@
 						wire:model.live="sort"
 						@checked($sort == 'new')
 					>
-					<p class="sort-bar__text interactive">Novità</p>
+					<p class="sort-bar__text interactive">{{ __('Novità') }}</p>
 				</label>
 
 				<p class="sort-bar__text">&middot;</p>
@@ -132,7 +132,7 @@
 						wire:model.live="sort"
 						@checked($sort == 'popular')
 					>
-					<p class="sort-bar__text interactive">Popolari</p>
+					<p class="sort-bar__text interactive">{{ __('Popolari') }}</p>
 				</label>
 			</section>
 		</section>
@@ -163,14 +163,14 @@
 				<div>
 					<x-icon-warning />
 				</div>
-				<p class="">Nessun prodotto trovato.<br>Prova a cambiare i filtri di ricerca.</p>
+				<p class="">{{ __('Nessun prodotto trovato.') }}<br>{{ __('Prova a cambiare i filtri di ricerca.') }}</p>
 			</div>
 		@endif
 
 		<!-- Pages -->
 		@if ($pageCount > 1)
-			<nav aria-label="Pagine del catalogo" class="mt-12 flex flex-wrap items-center justify-center gap-2">
-				<button type="button" wire:click="setPage({{ $page - 1 }})" @disabled($page === 1) class="p-2 disabled:opacity-50">Precedente</button>
+			<nav aria-label="{{ __('Pagine del catalogo') }}" class="mt-12 flex flex-wrap items-center justify-center gap-2">
+				<button type="button" wire:click="setPage({{ $page - 1 }})" @disabled($page === 1) class="p-2 disabled:opacity-50">{{ __('Precedente') }}</button>
 				@if ($pages[0] > 1)
 					<button type="button" wire:click="setPage(1)" class="page_txt">1</button>
 					@if ($pages[0] > 2)
@@ -186,7 +186,7 @@
 					@endif
 					<button type="button" wire:click="setPage({{ $pageCount }})" class="page_txt">{{ $pageCount }}</button>
 				@endif
-				<button type="button" wire:click="setPage({{ $page + 1 }})" @disabled($page === $pageCount) class="p-2 disabled:opacity-50">Successiva</button>
+				<button type="button" wire:click="setPage({{ $page + 1 }})" @disabled($page === $pageCount) class="p-2 disabled:opacity-50">{{ __('Successiva') }}</button>
 			</nav>
 		@endif
 

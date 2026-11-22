@@ -6,6 +6,7 @@ use App\Helpers\FileHelper;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Post extends Model
 {
@@ -59,11 +60,7 @@ class Post extends Model
      */
     public function snippet(int $charLimit = 100): string
     {
-        if (strlen($this->text) > $charLimit + 3) {
-            return substr($this->text, 0, $charLimit).'...';
-        }
-
-        return $this->text;
+        return Str::limit(html_entity_decode(strip_tags(localized_html($this->text)), ENT_QUOTES, 'UTF-8'), $charLimit);
     }
 
     /**

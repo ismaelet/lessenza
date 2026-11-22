@@ -13,29 +13,24 @@
 			data-spacing="800"
 		>
 			<div>
-				<x-subheading.section>Imprenditoria</x-subheading.section>
-				<x-heading.section>Femminile</x-heading.section>
+				<x-subheading.section>{{ __('Imprenditoria') }}</x-subheading.section>
+				<x-heading.section>{{ __('Femminile') }}</x-heading.section>
 			</div>
 
 			<div class="female__text-wrapper">
 				<p class="female__text page-text leading-[1.8] tracking-wider">
-					Il settore delle SPA e dei Centri Benessere è un mondo quasi esclusivamente seguito degli uomini. L’Essenza va
-					contro tendenza dando ampio spazio al lavoro femminile.<br>
-					Sono Stefania e sono madre di tre figli: Veronica, Marilena e Giacomo.<br>
-					Le due sorelle “Grandi” si sono appassionate al progetto, e mi auguro vogliano proseguire in futuro questo
-					splendido percorso.
-					Marilena 9 anni, già appassionata di “Essenze”, chiede e ricorda gli effetti benefici delle singole piante e prova
-					a combinare le nostre profumazioni.<br>
-					Veronica, più artistica, ha voluto prendere parte all’azienda con la scelta del LOGO a Goccia e Corona che ci
-					caratterizza.<br><br>
-					LUNGA VITA ALLE DONNE!
+					{{ __('Il settore delle SPA e dei Centri Benessere è un mondo quasi esclusivamente seguito degli uomini. L’Essenza va contro tendenza dando ampio spazio al lavoro femminile.') }}<br>
+					{{ __('Sono Stefania e sono madre di tre figli: Veronica, Marilena e Giacomo.') }}<br>
+					{{ __('Le due sorelle “Grandi” si sono appassionate al progetto, e mi auguro vogliano proseguire in futuro questo splendido percorso. Marilena 9 anni, già appassionata di “Essenze”, chiede e ricorda gli effetti benefici delle singole piante e prova a combinare le nostre profumazioni.') }}<br>
+					{{ __('Veronica, più artistica, ha voluto prendere parte all’azienda con la scelta del LOGO a Goccia e Corona che ci caratterizza.') }}<br><br>
+					{{ __('LUNGA VITA ALLE DONNE!') }}
 				</p>
 			</div>
 
 			<x-button
 				href="{{ route('about-us') . '#female-entrepreneurship' }}"
 				class="button"
-			>Leggi di più</x-button>
+			>{{ __('Leggi di più') }}</x-button>
 		</div>
 
 		<div

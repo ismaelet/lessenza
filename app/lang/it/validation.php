@@ -188,6 +188,16 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'name' => 'nome',
+        'email' => 'indirizzo email',
+        'password' => 'password',
+        'text' => 'messaggio',
+        'first_name' => 'nome',
+        'last_name' => 'cognome',
+        'current_password' => 'password attuale',
+        'new_password' => 'nuova password',
+        'accept_terms' => 'accettazione delle condizioni di vendita',
+    ],
 
 ];

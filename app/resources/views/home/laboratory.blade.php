@@ -4,14 +4,12 @@
 
 <section class="laboratory padded-section span-full-width">
 	<div class="center-content main-wrap grid">
-		<x-subheading.section>il nostro</x-subheading.section>
-		<x-heading.section>Laboratorio</x-heading.section>
+		<x-subheading.section>{{ __('il nostro') }}</x-subheading.section>
+		<x-heading.section>{{ __('Laboratorio') }}</x-heading.section>
 
 		<p class="laboratory__text page-text mar-t-3">
-			E’ alla costante ricerca di un prodotto etico, senza Alcohol, che non provochi schiuma, che non intasi con i residui
-			gli impianti dosazione e quindi non produca danni alle pompe dosatrici.<br>
-			La pluriennale esperienza nel settore messa a disposizione dei nostri ricercatori ci consentono di ottenere un
-			prodotto biodegradabile mettendo un accento sulla salvaguardia dell’ambiente!
+			{{ __('E’ alla costante ricerca di un prodotto etico, senza Alcohol, che non provochi schiuma, che non intasi con i residui gli impianti dosazione e quindi non produca danni alle pompe dosatrici.') }}<br>
+			{{ __('La pluriennale esperienza nel settore messa a disposizione dei nostri ricercatori ci consentono di ottenere un prodotto biodegradabile mettendo un accento sulla salvaguardia dell’ambiente!') }}
 		</p>
 	</div>
 

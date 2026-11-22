@@ -27,7 +27,7 @@
 
 			<!-- Header -->
 			<div class="form-head mb-8 text-center">
-				<x-heading.section>Login</x-heading.section>
+				<x-heading.section>{{ __('Login') }}</x-heading.section>
 			</div>
 
 			<!-- Body -->
@@ -35,7 +35,7 @@
 				<x-input
 					type="email"
 					name="email"
-					placeholder="E-mail"
+					placeholder="{{ __('E-mail') }}"
 					required
 				/>
 				<x-input
@@ -55,12 +55,11 @@
 				<div class="flex flex-wrap items-center justify-between gap-4">
 					<x-checkbox
 						name="remember"
-						label="Ricordami"
+						label="{{ __('Ricordami') }}"
 						checked
 					/>
 
-					<p class="hover:text-primary transition-colors"><a href="<?= client_url('/recover') ?>">Hai dimenticato la
-							password?</a></p>
+					<p class="hover:text-primary transition-colors"><a href="<?= client_url('/recover') ?>">{{ __('Hai dimenticato la password?') }}</a></p>
 
 				</div>
 			</div>
@@ -71,14 +70,14 @@
 					type="submit"
 					class=""
 					size="small"
-				>Log In</x-button>
+				>{{ __('Log In') }}</x-button>
 
 				<x-button
 					href="{{ route('register') }}"
 					class=""
 					variant="secondary"
 					size="small"
-				>Registrati</x-button>
+				>{{ __('Registrati') }}</x-button>
 			</div>
 		</form>
 	</div>

@@ -9,19 +9,19 @@
             'icon' => 'user-circle',
         ],
         2 => [
-            'title' => 'Ordini',
+            'title' => __('Ordini'),
             'url' => '/profile/orders',
             'location' => 'orders',
             'icon' => 'orders',
         ],
         4 => [
-            'title' => 'I miei dati',
+            'title' => __('I miei dati'),
             'url' => route('user-dashboard.settings'),
             'location' => 'settings',
             'icon' => 'settings',
         ],
         5 => [
-            'title' => 'Logout',
+            'title' => __('Logout'),
             'url' => '/logout',
             'location' => 'logout',
             'icon' => 'logout',
@@ -38,7 +38,7 @@
     <label class="profile-nav_header" for="profile-nav-cbx">
         <h3 class="profile-nav-title text-heading-400 flex gap-4">
             <x-icon-list class="h-5 w-5" />
-            Profilo
+            {{ __('Profilo') }}
         </h3>
     </label>
 

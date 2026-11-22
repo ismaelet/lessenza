@@ -12,7 +12,7 @@ class OrderController extends Controller
      */
     public function show(Request $request, Order $order)
     {
-        $title = 'Ordine '.$order->id_code;
+        $title = __('Ordine').' '.$order->id_code;
         $location = 'order';
         $order->load(['order_items.product', 'address', 'payment_method', 'shipping_method']);
 

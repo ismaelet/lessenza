@@ -26,12 +26,12 @@
 						class="load--fade-in js-load"
 						data-delay="1"
 						data-direction="top"
-					>Imprenditoria</x-subheading.section>
+					>{{ __('Imprenditoria') }}</x-subheading.section>
 					<x-heading.section
 						class="load--fade-in js-load"
 						data-delay="0"
 						data-direction="top"
-					>Femminile</x-heading.section>
+					>{{ __('Femminile') }}</x-heading.section>
 				</div>
 
 				<p
@@ -39,16 +39,11 @@
 					data-delay="2"
 					data-direction="top"
 				>
-					Il settore delle SPA e dei Centri Benessere è un mondo quasi esclusivamente seguito degli uomini. L’Essenza va
-					contro tendenza dando ampio spazio al lavoro femminile.<br>
-					Sono Stefania e sono madre di tre figli: Veronica, Marilena e Giacomo.<br>
-					Le due sorelle “Grandi” si sono appassionate al progetto, e mi auguro vogliano proseguire in futuro questo
-					splendido percorso.
-					Marilena 9 anni, già appassionata di “Essenze”, chiede e ricorda gli effetti benefici delle singole piante e
-					prova a combinare le nostre profumazioni.<br>
-					Veronica, più artistica, ha voluto prendere parte all’azienda con la scelta del LOGO a Goccia e Corona che ci
-					caratterizza.<br><br>
-					LUNGA VITA ALLE DONNE!
+					{{ __('Il settore delle SPA e dei Centri Benessere è un mondo quasi esclusivamente seguito degli uomini. L’Essenza va contro tendenza dando ampio spazio al lavoro femminile.') }}<br>
+					{{ __('Sono Stefania e sono madre di tre figli: Veronica, Marilena e Giacomo.') }}<br>
+					{{ __('Le due sorelle “Grandi” si sono appassionate al progetto, e mi auguro vogliano proseguire in futuro questo splendido percorso. Marilena 9 anni, già appassionata di “Essenze”, chiede e ricorda gli effetti benefici delle singole piante e prova a combinare le nostre profumazioni.') }}<br>
+					{{ __('Veronica, più artistica, ha voluto prendere parte all’azienda con la scelta del LOGO a Goccia e Corona che ci caratterizza.') }}<br><br>
+					{{ __('LUNGA VITA ALLE DONNE!') }}
 				</p>
 			</div>
 
@@ -97,12 +92,12 @@
 							class="load--fade-in js-load"
 							data-delay="1"
 							data-direction="top"
-						>La nostra</x-subheading.section>
+						>{{ __('La nostra') }}</x-subheading.section>
 						<x-heading.section
 							class="load--fade-in js-load"
 							data-delay="0"
 							data-direction="top"
-						>Storia</x-heading.section>
+						>{{ __('Storia') }}</x-heading.section>
 					</div>
 
 					<p
@@ -110,21 +105,14 @@
 						data-delay="1"
 						data-direction="top"
 					>
-						Mi chiamo Lucio e sono il compagno di vita di Stefania con la quale nel 2019 ho fondato l’azienda l’Essenza
-						S.r.l.s..<br>
-						Ho iniziato a lavorare nel 2005 per aziende che si occupano della costruzione di ambienti wellness, piscine ed
-						aree termali.<br>
-						Ho partecipato alla realizzazione di decine di aree benessere con il ruolo di responsabile tecnico.<br>
-						Ho trasmesso in questi ultimi 5 anni la mia passione per il settore a Stefania che, pazientemente, ha preso in
-						mano le redini dell’azienda.<br><br>
+						{{ __('Mi chiamo Lucio e sono il compagno di vita di Stefania con la quale nel 2019 ho fondato l’azienda l’Essenza S.r.l.s..') }}<br>
+						{{ __('Ho iniziato a lavorare nel 2005 per aziende che si occupano della costruzione di ambienti wellness, piscine ed aree termali.') }}<br>
+						{{ __('Ho partecipato alla realizzazione di decine di aree benessere con il ruolo di responsabile tecnico.') }}<br>
+						{{ __('Ho trasmesso in questi ultimi 5 anni la mia passione per il settore a Stefania che, pazientemente, ha preso in mano le redini dell’azienda.') }}<br><br>
 
-						<span class="fy-italic">Come mai questa scelta?</span><br><br>
+						<span class="fy-italic">{{ __('Come mai questa scelta?') }}</span><br><br>
 
-						Nel corso di questi ultimi 20 anni quasi tutti gli hotel hanno investito in un area benessere con cabine e docce
-						“emozionali” dotate di <span class="fw-bold">impianti aromatizzanti</span>. Abbiamo pertanto ritenuto
-						interessante concentrarci su questo particolare settore, creando una linea di “Essenze” per l’aromatizzazione
-						delle cabine wellness come il <span class="fw-bold">Bagno Turco</span>, le <span class="fw-bold">Saune</span> e
-						le <span class="fw-bold">Docce emozionali</span>.
+						{{ __('Nel corso di questi ultimi 20 anni quasi tutti gli hotel hanno investito in un area benessere con cabine e docce “emozionali” dotate di') }} <span class="fw-bold">{{ __('impianti aromatizzanti') }}</span>{{ __('. Abbiamo pertanto ritenuto interessante concentrarci su questo particolare settore, creando una linea di “Essenze” per l’aromatizzazione delle cabine wellness come il') }} <span class="fw-bold">{{ __('Bagno Turco') }}</span>{{ __(', le') }} <span class="fw-bold">{{ __('Saune') }}</span> {{ __('e le') }} <span class="fw-bold">{{ __('Docce emozionali') }}</span>.
 					</p>
 				</div>
 			</div>

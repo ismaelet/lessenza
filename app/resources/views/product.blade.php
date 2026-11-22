@@ -28,7 +28,7 @@
 				event: "view_item",
 				ecommerce: {
 					items: [{
-						item_name: "{{ $product->name }}",
+						item_name: "{{ localized_text($product->name) }}",
 						item_id: "{{ $product->sku() }}",
 						price: "{{ number_format($product->price(), 2) }}",
 						item_category: "{{ $product->product_type->name ?? '' }}",

@@ -16,11 +16,11 @@
 		</div>
 
 		<div class="grid gap-6">
-			<x-heading.section>Il tuo carrello è vuoto</x-heading.section>
+			<x-heading.section>{{ __('Il tuo carrello è vuoto') }}</x-heading.section>
 
-			<p class="text--big">Puoi cercare dei prodotti da acquistare qui</p>
+			<p class="text--big">{{ __('Puoi cercare dei prodotti da acquistare qui') }}</p>
 		</div>
 
-		<x-button href="{{ route('shop') }}">Catalogo</x-button>
+		<x-button href="{{ route('shop') }}">{{ __('Catalogo') }}</x-button>
 	</div>
 </x-layouts.legacy-main>

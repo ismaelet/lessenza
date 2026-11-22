@@ -44,22 +44,22 @@
 <div class="order-list grid gap-x-4 text-lg">
 
 	<div class="order-item col-span-full flex">
-		<p class="">Articoli</p>
+		<p class="">{{ __('Articoli') }}</p>
 		<p class="font-semibold">{{ price($getRecord()->items_price_net) }}</p>
 	</div>
 
 	<div class="order-item col-span-full flex">
-		<p class="">Spedizione</p>
+		<p class="">{{ __('Spedizione') }}</p>
 		<p class="font-semibold">{{ price($getRecord()->shipping_fee_net) }}</p>
 	</div>
 
 	<div class="order-item col-span-full flex">
-		<p class="">IVA</p>
+		<p class="">{{ __('IVA') }}</p>
 		<p class="font-semibold">{{ price($getRecord()->vat) }}</p>
 	</div>
 
 	<div class="order-item col-span-full flex">
-		<p class="">Totale</p>
+		<p class="">{{ __('Totale') }}</p>
 		<p class="font-semibold">{{ price($getRecord()->total_price_gross) }}</p>
 	</div>
 </div>

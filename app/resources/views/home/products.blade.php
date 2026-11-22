@@ -101,22 +101,12 @@
 
 			<div class="grid grid-cols-1 gap-16 px-2 lg:px-0">
 				<div class="text-center lg:text-left">
-					<x-subheading.section>Scopri le</x-subheading.section>
-					<x-heading.section>Fragranze</x-heading.section>
+					<x-subheading.section>{{ __('Scopri le') }}</x-subheading.section>
+					<x-heading.section>{{ __('Fragranze') }}</x-heading.section>
 				</div>
 
 				<div class="products-text-wrapper">
-					<p class="products-text bg-background-400 leading-[2.2] tracking-wider">Le “Essenze” sono fragranze ricavate in
-						laboratorio
-						principalmente dalla
-						spremitura di olii
-						essenziali in corrente di vapore appositamente trattati ed emulsionati con acqua di fonte e pertanto PRONTI
-						ALL’USO.
-						La particolarità delle fragranze prodotte da L’Essenza rispetto agli altri produttori risiede nella totale ASSENZA
-						di ALCOHOL, la BIODEGRADABILITA’ AL 100%, l’ASSENZA DI SCHIUMA, la quasi ASSENZA DI ALLERGENI, la NON OLEOSITA’
-						che
-						EVITA DANNI ALLE POMPE DOSATRICI degli impianti aroma e quindi EVITA aggravi di COSTI ai gestori per via delle
-						manutenzioni straordinarie.
+					<p class="products-text bg-background-400 leading-[2.2] tracking-wider">{{ __('Le “Essenze” sono fragranze ricavate in laboratorio principalmente dalla spremitura di olii essenziali in corrente di vapore appositamente trattati ed emulsionati con acqua di fonte e pertanto PRONTI ALL’USO. La particolarità delle fragranze prodotte da L’Essenza rispetto agli altri produttori risiede nella totale ASSENZA di ALCOHOL, la BIODEGRADABILITA’ AL 100%, l’ASSENZA DI SCHIUMA, la quasi ASSENZA DI ALLERGENI, la NON OLEOSITA’ che EVITA DANNI ALLE POMPE DOSATRICI degli impianti aroma e quindi EVITA aggravi di COSTI ai gestori per via delle manutenzioni straordinarie.') }}
 					</p>
 				</div>
 
@@ -124,7 +114,7 @@
 					<x-button
 						href="{{ route('shop', ['typeId' => 1]) }}"
 						variant="secondary"
-					>Vedi tutte</x-button>
+					>{{ __('Vedi tutte') }}</x-button>
 				</div>
 			</div>
 
@@ -166,21 +156,12 @@
 
 				<div class="relative grid grid-cols-1 gap-16 px-2 lg:row-start-1 lg:px-0">
 					<div class="text-center lg:text-left">
-						<x-subheading.section>I nostri prodotti</x-subheading.section>
+						<x-subheading.section>{{ __('I nostri prodotti') }}</x-subheading.section>
 						<x-heading.section>Sauna</x-heading.section>
 					</div>
 
 					<div class="products-text-wrapper">
-						<p class="products-text leading-[2.2] tracking-wider">Le essenze per sauna sono concentrati aromatici
-							a base di oli essenziali naturali, studiati per un utilizzo sicuro ed efficace. Diluiti in acqua, bastano poche
-							gocce per sprigionare aromi intensi e trasformare ogni seduta in un autentico momento di benessere.
-
-							La particolarità dei prodotti L’Essenza risiede nell’ALTA RESA, nella QUALITÀ DELLE MATERIE PRIME, nella
-							COMPATIBILITÀ CON GLI IMPIANTI e nella VARIETÀ DI FRAGRANZE, che spaziano dal relax profondo alla stimolazione
-							dei sensi.
-
-							Un prodotto PRATICO, SICURO e PERFORMANTE, ideale per centri benessere e uso domestico, che rende la tua sauna
-							un’esperienza unica e coinvolgente.
+						<p class="products-text leading-[2.2] tracking-wider">{{ __('Le essenze per sauna sono concentrati aromatici a base di oli essenziali naturali, studiati per un utilizzo sicuro ed efficace. Diluiti in acqua, bastano poche gocce per sprigionare aromi intensi e trasformare ogni seduta in un autentico momento di benessere. La particolarità dei prodotti L’Essenza risiede nell’ALTA RESA, nella QUALITÀ DELLE MATERIE PRIME, nella COMPATIBILITÀ CON GLI IMPIANTI e nella VARIETÀ DI FRAGRANZE, che spaziano dal relax profondo alla stimolazione dei sensi. Un prodotto PRATICO, SICURO e PERFORMANTE, ideale per centri benessere e uso domestico, che rende la tua sauna un’esperienza unica e coinvolgente.') }}
 						</p>
 					</div>
 
@@ -188,7 +169,7 @@
 						<x-button
 							href="{{ route('shop', ['typeId' => 4]) }}"
 							variant="secondary"
-						>Vedi tutti</x-button>
+						>{{ __('Vedi tutti') }}</x-button>
 					</div>
 				</div>
 

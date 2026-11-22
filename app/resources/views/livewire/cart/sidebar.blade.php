@@ -95,7 +95,7 @@
         <div class="cart-sidebar__content">
             <!-- Header -->
             <div class="cart-sidebar__header flex-group">
-                <x-heading.small-component class="cart-sidebar__title">Carrello</x-heading.small-component>
+                <x-heading.small-component class="cart-sidebar__title">{{ __('Carrello') }}</x-heading.small-component>
                 <div class="cart-sidebar__close" @click="closeCartSidebar">
                     <x-icon-close />
                 </div>
@@ -104,7 +104,7 @@
             <!-- Order items -->
             <div class="">
                 @if (! $orderItems || $orderItems->isEmpty())
-                    <p class="mt-8 text-center">Il carrello è vuoto</p>
+                    <p class="mt-8 text-center">{{ __('Il carrello è vuoto') }}</p>
                 @else
                     <livewire:cart.order-item-list
                         :$orderItems
@@ -117,15 +117,15 @@
             <!-- Footer -->
             <div class="cart-sidebar__footer">
                 <div class="cart-sidebar__recap flex-group">
-                    <p>Subtotale:</p>
+                    <p>{{ __('Subtotale:') }}</p>
                     <p class="text-heading-400 font-semibold">{{ price($cart?->items_price_net ?: 0) }}</p>
                 </div>
 
                 <div class="grid" data-spacing="200">
-                    <x-button class="" variant="secondary" size="small" @click="closeCartSidebar">Chiudi</x-button>
+                    <x-button class="" variant="secondary" size="small" @click="closeCartSidebar">{{ __('Chiudi') }}</x-button>
 
                     <x-button class="" href="{{ route('cart') }}" size="small" :disabled="$cart?->isEmpty()"
-                        >Aquista ora</x-button>
+                        >{{ __('Aquista ora') }}</x-button>
                 </div>
             </div>
         </div>

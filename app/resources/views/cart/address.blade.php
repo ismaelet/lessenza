@@ -11,14 +11,14 @@
 				class="address"
 				x-data="{ is_company: {{ old('is_company', $address?->is_company ?? true) ? 'true' : 'false' }} }"
 			>
-				<x-heading.small-component class="mb-4">Indirizzo</x-heading.small-component>
+				<x-heading.small-component class="mb-4">{{ __('Indirizzo') }}</x-heading.small-component>
 
 				<div class="form-panel mt-8 grid gap-4">
 					<div class="flex flex-wrap gap-4">
 						<x-checkbox
 							type="radio"
 							name="is_company"
-							label="Azienda"
+							label="{{ __('Azienda') }}"
 							value="1"
 							:checked="$address?->is_company ?? true"
 							x-on:click="is_company = true"
@@ -27,7 +27,7 @@
 						<x-checkbox
 							type="radio"
 							name="is_company"
-							label="Privato"
+							label="{{ __('Privato') }}"
 							value="0"
 							:checked="!($address?->is_company ?? true)"
 							x-on:click="is_company = false"
@@ -38,14 +38,14 @@
 						<x-label><span x-text="is_company ? 'Dati aziendali:' : 'Dati personali:'"></span></x-label>
 						<x-input
 							name="full_name"
-							placeholder="Nominativo di spedizione"
+							placeholder="{{ __('Nominativo di spedizione') }}"
 							maxlength="255"
 							:value="$address?->full_name ?? ''"
 							required
 						/>
 						<x-input
 							name="vat_number"
-							placeholder="Partita IVA"
+							placeholder="{{ __('Partita IVA') }}"
 							maxlength="11"
 							:value="$address?->vat_number ?? ''"
 							x-bind:required="is_company"
@@ -53,7 +53,7 @@
 						/>
 						<x-input
 							name="cu"
-							placeholder="Codice Univoco"
+							placeholder="{{ __('Codice Univoco') }}"
 							maxlength="6"
 							:value="$address?->cu ?? ''"
 							x-bind:required="is_company"
@@ -61,7 +61,7 @@
 						/>
 						<x-input
 							name="cf"
-							placeholder="Codice Fiscale"
+							placeholder="{{ __('Codice Fiscale') }}"
 							maxlength="16"
 							:value="$address?->cf ?? ''"
 							x-bind:required="!is_company"
@@ -71,12 +71,12 @@
 					</div>
 					<div class="form-row md:grid-cols-4">
 						<x-label
-							label="Indirizzo:"
+							label="{{ __('Indirizzo:') }}"
 							class="md:col-span-full"
 						/>
 						<x-input
 							name="street"
-							placeholder="Indirizzo"
+							placeholder="{{ __('Indirizzo') }}"
 							class="md:col-span-3"
 							maxlength="255"
 							:value="$address?->street ?? ''"
@@ -84,14 +84,14 @@
 						/>
 						<x-input
 							name="number"
-							placeholder="Numero civico"
+							placeholder="{{ __('Numero civico') }}"
 							class="md:col-span-1"
 							maxlength="255"
 							:value="$address?->number ?? ''"
 						/>
 						<x-input
 							name="city"
-							placeholder="Città"
+							placeholder="{{ __('Città') }}"
 							class="md:col-span-4"
 							maxlength="255"
 							:value="$address?->city ?? ''"
@@ -99,7 +99,7 @@
 						/>
 						<x-input
 							name="zip"
-							placeholder="CAP"
+							placeholder="{{ __('CAP') }}"
 							class="md:col-span-2"
 							maxlength="5"
 							:value="$address?->zip ?? ''"
@@ -108,10 +108,10 @@
 						<livewire:cart.region-selector />
 					</div>
 					<div class="form-row">
-						<x-label label="Email:" />
+						<x-label label="{{ __('Email:') }}" />
 						<x-input
 							name="email"
-							placeholder="Indirizzo Email"
+							placeholder="{{ __('Indirizzo Email') }}"
 							type="email"
 							maxlength="255"
 							:value="$address?->email ?? ''"
@@ -119,28 +119,28 @@
 						/>
 						<x-input
 							name="pec"
-							placeholder="Indirizzo PEC"
+							placeholder="{{ __('Indirizzo PEC') }}"
 							type="email"
 							maxlength="255"
 							:value="$address?->pec ?? ''"
 							x-bind:required="is_company"
-							x-bind:placeholder="is_company ? 'Indirizzo PEC' : 'Indirizzo PEC (opzionale)'"
+							x-bind:placeholder="is_company ? '{{ __('Indirizzo PEC') }}' : '{{ __('Indirizzo PEC (opzionale)') }}'"
 						/>
 					</div>
 					<div class="form-row">
-						<x-label label="Telefono:" />
+						<x-label label="{{ __('Telefono:') }}" />
 						<x-input
 							name="phone"
-							placeholder="Telefono"
+							placeholder="{{ __('Telefono') }}"
 							maxlength="255"
 							:value="$address?->phone ?? ''"
 						/>
 					</div>
 					<div class="form-row">
-						<x-label label="Note aggiuntive:" />
+						<x-label label="{{ __('Note aggiuntive:') }}" />
 						<x-textarea
 							name="notes"
-							placeholder="Note aggiuntive"
+							placeholder="{{ __('Note aggiuntive') }}"
 							:value="$address?->notes ?? ''"
 						/>
 					</div>
@@ -149,7 +149,7 @@
 
 			<!-- Shipping method -->
 			<section class="shipping-methods">
-				<x-heading.small-component>Spedizione</x-heading.small-component>
+				<x-heading.small-component>{{ __('Spedizione') }}</x-heading.small-component>
 
 				<div class="shipping-method__list">
 
@@ -166,10 +166,13 @@
 			<div class="">
 				<x-checkbox
 					name="accept_terms"
-					label="Dichiaro di aver letto ed accettato i termini e le condizioni di vendita indicate <a class='text-link' href='{{ route('terms') }}' target='_blank'>qui</a>"
 					:checked="old('accept_terms', $address?->accept_terms ?? false)"
 					:required="true"
-				/>
+				>
+                    <x-slot:label>
+                        {{ __('Dichiaro di aver letto ed accettato i termini e le condizioni di vendita indicate') }} <a class="text-link" href="{{ route('terms') }}" target="_blank">{{ __('qui') }}</a>
+                    </x-slot:label>
+                </x-checkbox>
 			</div>
 
 			<div class="flex justify-end">
@@ -177,7 +180,7 @@
 					type="submit"
 					class="button"
 					name="advance"
-				>Procedi</x-button>
+				>{{ __('Procedi') }}</x-button>
 			</div>
 		</div>
 	</form>

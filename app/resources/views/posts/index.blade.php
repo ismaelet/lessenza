@@ -23,10 +23,10 @@
                         >
                             <div class="">
                                 <p class="post__subtitle">{{ $post->date() }}</p>
-                                <h3 class="post__title text-heading-400 text-3xl font-medium">{{ $post->title }}</h3>
+                                <h3 class="post__title text-heading-400 text-3xl font-medium">{{ localized_text($post->title) }}</h3>
                             </div>
-                            <p class="post__text line-clamp-4">{!! $post->text !!}</p>
-                            <p class="post__read-more">continua a leggere</p>
+                            <p class="post__text line-clamp-4">{!! localized_html($post->text) !!}</p>
+                            <p class="post__read-more">{{ __('continua a leggere') }}</p>
                         </a>
                     </div>
                 @endforeach

@@ -8,14 +8,12 @@
 			data-spacing="700"
 		>
 			<div>
-				<x-subheading.section>La nostra</x-subheading.section>
+				<x-subheading.section>{{ __('La nostra') }}</x-subheading.section>
 				<x-heading.section>Mission</x-heading.section>
 			</div>
 
 			<p class="page-text">
-				La nostra Mission è quella di dare all’albergatore attento al proprio cliente un prodotto naturale a base di olii
-				essenziali estratti in corrente di vapore. In questo modo abbiamo un prodotto privo di Alcohol, che sappiamo essere
-				dannoso per la salute, e possiamo certificare il centro benessere come “Alcohol Free”.
+				{{ __('La nostra Mission è quella di dare all’albergatore attento al proprio cliente un prodotto naturale a base di olii essenziali estratti in corrente di vapore. In questo modo abbiamo un prodotto privo di Alcohol, che sappiamo essere dannoso per la salute, e possiamo certificare il centro benessere come “Alcohol Free”.') }}
 			</p>
 		</div>
 	</div>

@@ -7,12 +7,12 @@
 	<x-slot name="body">
 
 		@if (session('submitted'))
-			<p class="text-green-600">Password cambiata con successo!</p>
+			<p class="text-green-600">{{ __('Password cambiata con successo!') }}</p>
 		@elseif (session('error'))
-			<p class="text-red-600">Il link di rest non è valido o è scaduto</p>
+			<p class="text-red-600">{{ __('Il link di rest non è valido o è scaduto') }}</p>
 		@else
 			<p class="">
-				Inserisci qui sotto la nuova password desiderata:
+				{{ __('Inserisci qui sotto la nuova password desiderata:') }}
 			</p>
 
 			<x-input
@@ -28,13 +28,13 @@
 			<x-input
 				type="password"
 				name="password"
-				placeholder="Nuova password"
+				placeholder="{{ __('Nuova password') }}"
 				required
 			/>
 			<x-input
 				type="password"
 				name="password_confirmation"
-				placeholder="Conferma la nuova password"
+				placeholder="{{ __('Conferma la nuova password') }}"
 				required
 			/>
 
@@ -51,16 +51,16 @@
 			<x-button
 				variant="secondary"
 				href="{{ route('auth.recover') }}"
-			>Richiedi un nuovo codice</x-button>
+			>{{ __('Richiedi un nuovo codice') }}</x-button>
 		@else
 			@if (!session('submitted'))
-				<x-button type="submit">Reimposta la password</x-button>
+				<x-button type="submit">{{ __('Reimposta la password') }}</x-button>
 			@endif
 
 			<x-button
 				variant="secondary"
 				:href="route('login')"
-			>Torna al login</x-button>
+			>{{ __('Torna al login') }}</x-button>
 		@endif
 
 	</x-slot>

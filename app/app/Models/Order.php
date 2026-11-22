@@ -91,7 +91,7 @@ class Order extends Model
      */
     public function statusLabel(): string
     {
-        return config('ecommerce.order_statuses.'.$this->status.'.label', 'Unknown Status');
+        return __(config('ecommerce.order_statuses.'.$this->status.'.label', 'Unknown Status'));
     }
 
     /**

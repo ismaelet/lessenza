@@ -6,7 +6,7 @@
 	<div class="page-block grid grid-cols-1 gap-12">
 		<section>
 			<x-user-dashboard.heading icon="orders">
-				Ordini
+				{{ __('Ordini') }}
 			</x-user-dashboard.heading>
 
 			<div class="mt-4">

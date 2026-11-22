@@ -5,10 +5,9 @@
 			class="center-content grid"
 			data-spacing="800"
 		>
-			<x-heading.section>Ordine confermato</x-heading.section>
+			<x-heading.section>{{ __('Ordine confermato') }}</x-heading.section>
 			<p class="max-width--768">
-				Vi ringraziamo per il Vostro ordine, a breve elaboreremo la richiesta e vi contatteremo per informarvi come
-				effettuare il pagamento.
+				{{ __('Vi ringraziamo per il Vostro ordine, a breve elaboreremo la richiesta e vi contatteremo per informarvi come effettuare il pagamento.') }}
 			</p>
 
 			<div
@@ -19,14 +18,14 @@
 					<x-button
 						href="{{ route('user-dashboard.orders') }}"
 						class=""
-					>I Miei Ordini</x-button>
+					>{{ __('I Miei Ordini') }}</x-button>
 				@endif
 
 				<x-button
 					href="{{ route('shop') }}"
 					class=""
 					variant="secondary"
-				>Torna al Negozio</x-button>
+				>{{ __('Torna al Negozio') }}</x-button>
 			</div>
 		</div>
 	</div>

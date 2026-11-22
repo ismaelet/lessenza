@@ -4,7 +4,7 @@
 
 <x-layouts.legacy-main :$title :$location>
     <div class="page-body main-wrap mt-16 grid pb-32">
-        <x-heading.section-small class="mb-12 xl:col-span-2" size="small">{{ $post->title }}</x-heading.section-small>
+        <x-heading.section-small class="mb-12 xl:col-span-2" size="small">{{ localized_text($post->title) }}</x-heading.section-small>
 
         <section class="main-post__content grid" data-spacing="700">
             @if ($post->video_url)
@@ -23,7 +23,7 @@
                 <p class="main-post__date">{{ $post->date() }}</p>
             </div>
 
-            <p class="main-post__text">{!! nl2br($post->text) !!}</p>
+            <p class="main-post__text">{!! nl2br(localized_html($post->text)) !!}</p>
         </section>
 
         <aside class="related-posts grid content-start" data-columns="20rem" data-spacing="700">
@@ -41,7 +41,7 @@
                     <div class="related-post__content grid" data-spacing="200">
                         <div class="">
                             <p class="related-post__subtitle">{{ $relatedPost->date() }}</p>
-                            <h3 class="related-post__title text-heading-400">{{ $relatedPost->title }}</h3>
+                            <h3 class="related-post__title text-heading-400">{{ localized_text($relatedPost->title) }}</h3>
                         </div>
                         <p class="related-post__text">{{ $relatedPost->snippet(100) }}</p>
                     </div>

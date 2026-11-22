@@ -131,7 +131,7 @@ class Product extends Model
      */
     public function priceString(): string
     {
-        return (new NumberFormatter('it_IT', NumberFormatter::CURRENCY))->formatCurrency($this->price(), 'EUR');
+        return (new NumberFormatter(app()->getLocale(), NumberFormatter::CURRENCY))->formatCurrency($this->price(), 'EUR');
     }
 
     /**

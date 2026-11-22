@@ -24,7 +24,7 @@
 
 <x-layouts.legacy-main>
     <div class="full-width justify-items-center bg-neutral-200 py-20 text-center">
-        <x-heading.section> Ordine <span class="text-primary">{{ $order->id_code }}</span> </x-heading.section>
+        <x-heading.section> {{ __('Ordine') }} <span class="text-primary">{{ $order->id_code }}</span> </x-heading.section>
     </div>
 
     <div class="mt-12 mb-20 grid gap-12">
@@ -38,7 +38,7 @@
 
         @if ($order->statusTag() == 'payment_pending')
             <div class="flex justify-center">
-                <x-button href="{{ route('paypal.orders.create', ['order_id' => $order->id]) }}">Procedi al pagamento</x-button>
+                <x-button href="{{ route('paypal.orders.create', ['order_id' => $order->id]) }}">{{ __('Procedi al pagamento') }}</x-button>
             </div>
         @endif
 
@@ -46,16 +46,16 @@
             <div class="grid gap-6 sm:gap-8">
                 {{-- Payment --}}
                 <article class="grid grid-cols-1 gap-2 rounded border border-neutral-200 p-4">
-                    <x-subheading.component> Metodo di pagamento </x-subheading.component>
+                    <x-subheading.component> {{ __('Metodo di pagamento') }} </x-subheading.component>
 
                     <x-heading.small-component>{{ $order->payment_method?->name }}</x-heading.small-component>
                 </article>
 
                 {{-- Shipping --}}
                 <article class="grid grid-cols-1 gap-2 rounded border border-neutral-200 p-4">
-                    <x-subheading.component>Metodo di spedizione</x-subheading.component>
+                    <x-subheading.component>{{ __('Metodo di spedizione') }}</x-subheading.component>
 
-                    <x-heading.small-component> {!! $order->shipping_method->name !!} </x-heading.small-component>
+                    <x-heading.small-component> {!! localized_html($order->shipping_method->name) !!} </x-heading.small-component>
 
                     <div>
                         <p>{!! $order->shipping_method->deliveryDateString() !!}</p>
@@ -64,7 +64,7 @@
 
                 {{-- Address --}}
                 <article class="grid grid-cols-1 gap-2 rounded border border-neutral-200 p-4">
-                    <x-heading.small-component>Indirizzo</x-heading.small-component>
+                    <x-heading.small-component>{{ __('Indirizzo') }}</x-heading.small-component>
 
                     <p>
                         {!! implode('<br>', $order->address?->full_address) !!}<br />
@@ -77,7 +77,7 @@
 
             <div class="grid gap-6 sm:gap-8">
                 <article class="grid grid-cols-1 gap-2 rounded border border-neutral-200 p-4">
-                    <x-heading.small-component>Articoli</x-heading.small-component>
+                    <x-heading.small-component>{{ __('Articoli') }}</x-heading.small-component>
 
                     @foreach ($order->order_items as $orderItem)
                         <div class="grid grid-cols-2 items-center gap-4 md:grid-cols-4">
@@ -98,26 +98,26 @@
                 </article>
 
                 <article class="grid grid-cols-1 gap-2 rounded border border-neutral-200 p-4">
-                    <x-heading.small-component>Riepilogo</x-heading.small-component>
+                    <x-heading.small-component>{{ __('Riepilogo') }}</x-heading.small-component>
 
                     <ul class="divide-border-400 divide-y">
                         <li class="flex justify-between gap-4 py-3">
-                            <p class="">Articoli</p>
+                            <p class="">{{ __('Articoli') }}</p>
                             <p class="text-heading-400 font-medium">{{ price($order->items_price_net) }}</p>
                         </li>
 
                         <li class="flex justify-between gap-4 py-3">
-                            <p class="">Spedizione</p>
+                            <p class="">{{ __('Spedizione') }}</p>
                             <p class="text-heading-400 font-medium">{{ price($order->shipping_fee_net) }}</p>
                         </li>
 
                         <li class="flex justify-between gap-4 py-3">
-                            <p class="">IVA</p>
+                            <p class="">{{ __('IVA') }}</p>
                             <p class="text-heading-400 font-medium">{{ price($order->vat) }}</p>
                         </li>
 
                         <li class="flex justify-between gap-4 py-3 text-lg">
-                            <p class="">Totale</p>
+                            <p class="">{{ __('Totale') }}</p>
                             <p class="text-heading-400 font-medium">{{ price($order->total_price_gross) }}</p>
                         </li>
                     </ul>

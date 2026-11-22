@@ -13,7 +13,7 @@ class ShopController extends Controller
     public function index(Request $request): View
     {
         return view('shop', [
-            'title' => 'Catalogo',
+            'title' => __('Catalogo'),
             'location' => 'shop',
         ]);
     }

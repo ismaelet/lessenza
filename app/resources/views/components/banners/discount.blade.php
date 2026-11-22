@@ -21,10 +21,9 @@
 	data-size="{{ $size }}"
 >
 	<p class="discount-banner rounded-xl border-2 border-red-600 px-8 py-4">
-		Più acquisti, meno spendi! Sconto di <span class="font-bold">5€</span> a tanica per più di 6 pezzi, <span
+		{{ __('Più acquisti, meno spendi! Sconto di') }} <span class="font-bold">5€</span> {{ __('a tanica per più di 6 pezzi,') }} <span
 			class="font-bold"
-		>10€</span> per ordini superiori a 12 pezzi e <span class="font-bold">15€</span> per ordini superiori a 22 taniche
-		anche miste.
+		>10€</span> {{ __('per ordini superiori a 12 pezzi e') }} <span class="font-bold">15€</span> {{ __('per ordini superiori a 22 taniche anche miste.') }}
 	</p>
 
 	<x-icon-discount

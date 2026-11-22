@@ -15,7 +15,7 @@ class EssentialOilController extends Controller
         $oils = $catalogue->all();
 
         return view('essential-oils.index', [
-            'title' => 'Oli essenziali Aufguss',
+            'title' => __('Oli essenziali Aufguss'),
             'location' => 'essential-oils',
             'query' => $query,
             'total' => $oils->count(),
@@ -33,7 +33,7 @@ class EssentialOilController extends Controller
         abort_unless($oil, 404);
 
         return view('essential-oils.show', [
-            'title' => $oil['olio'].' · Oli essenziali Aufguss',
+            'title' => $oil['olio'].' · '.__('Oli essenziali Aufguss'),
             'location' => 'essential-oils',
             'oil' => $oil,
             'related' => $oils->where('slug', '!=', $slug)->take(4),

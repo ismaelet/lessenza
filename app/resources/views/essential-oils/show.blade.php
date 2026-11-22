@@ -3,9 +3,9 @@
 @endpushOnce
 
 <x-layouts.legacy-main :$title :$location :description="$oil['descrizione']">
-    <nav aria-label="Percorso" class="oil-breadcrumb">
+    <nav aria-label="{{ __('Percorso') }}" class="oil-breadcrumb">
         <a href="{{ route('home') }}">Home</a><span aria-hidden="true"> / </span>
-        <a href="{{ route('essential-oils.index') }}">Oli essenziali Aufguss</a><span aria-hidden="true"> / </span>
+        <a href="{{ route('essential-oils.index') }}">{{ __('Oli essenziali Aufguss') }}</a><span aria-hidden="true"> / </span>
         <span>{{ $oil['olio'] }}</span>
     </nav>
 
@@ -16,7 +16,7 @@
                     x-show="selected === {{ $index }}"
                     @if ($index !== 0) style="display: none" @endif
                     src="{{ asset('oli-essenziali/'.$variant['immagine']) }}"
-                    alt="Etichetta {{ $oil['olio'] }} {{ $variant['formato'] }}"
+                    alt="{{ __('Etichetta :oil :size', ['oil' => $oil['olio'], 'size' => $variant['formato']]) }}"
                     class="oil-label"
                 />
             @endforeach
@@ -28,13 +28,13 @@
             />
         </div>
         <div class="oil-product__info">
-            <p class="oil-eyebrow">Oli essenziali · Linea Aufguss</p>
+            <p class="oil-eyebrow">{{ __('Oli essenziali · Linea Aufguss') }}</p>
             <x-heading.main>{{ $oil['olio'] }}</x-heading.main>
             <p class="italic">{{ $oil['nome_latino'] }}</p>
             <p class="oil-scent">{{ $oil['profumo'] }}</p>
             <p>{{ $oil['descrizione'] }}</p>
             <fieldset class="oil-formats">
-                <legend>Scegli il formato</legend>
+                <legend>{{ __('Scegli il formato') }}</legend>
                 @foreach ($oil['varianti'] as $index => $variant)
                     <label>
                         <input
@@ -48,24 +48,24 @@
                     </label>
                 @endforeach
             </fieldset>
-            <p class="text-sm">Prezzi IVA esclusa · spedizione calcolata a parte</p>
+            <p class="text-sm">{{ __('Prezzi IVA esclusa · spedizione calcolata a parte') }}</p>
             @foreach ($oil['varianti'] as $index => $variant)
                 <div
                     class="oil-enquiry"
                     x-show="selected === {{ $index }}"
                     @if ($index !== 0) style="display: none" @endif
                 >
-                    <x-button :href="route('contacts', ['olio' => $oil['slug'], 'formato' => $variant['formato']])">Richiedi preventivo</x-button>
-                    <p class="text-sm">Codice prodotto: {{ $variant['codice'] }}</p>
+                    <x-button :href="route('contacts', ['olio' => $oil['slug'], 'formato' => $variant['formato']])">{{ __('Richiedi preventivo') }}</x-button>
+                    <p class="text-sm">{{ __('Codice prodotto:') }} {{ $variant['codice'] }}</p>
                 </div>
             @endforeach
             <div class="oil-usage">
-                <strong class="text-heading-400">Consiglio d'uso</strong>
+                <strong class="text-heading-400">{{ __('Consiglio d\'uso') }}</strong>
                 <p>{{ $oil['consiglio_uso'] }}</p>
             </div>
             <dl class="oil-meta">
                 <div>
-                    <dt>Nome botanico</dt>
+                    <dt>{{ __('Nome botanico') }}</dt>
                     <dd>{{ $oil['nome_latino'] }}</dd>
                 </div>
                 <div>
@@ -73,7 +73,7 @@
                     <dd>{{ $oil['cas'] }}</dd>
                 </div>
                 <div>
-                    <dt>Formati</dt>
+                    <dt>{{ __('Formati') }}</dt>
                     <dd>30 ml · 100 ml</dd>
                 </div>
             </dl>
@@ -82,30 +82,29 @@
 
     <section class="oil-safety">
         <div class="grid gap-4">
-            <x-subheading.section>Documentazione</x-subheading.section>
-            <x-heading.section>Informazioni di sicurezza</x-heading.section>
+            <x-subheading.section>{{ __('Documentazione') }}</x-subheading.section>
+            <x-heading.section>{{ __('Informazioni di sicurezza') }}</x-heading.section>
             <p>
-                Elementi dell'etichetta secondo il Regolamento CE 1272/2008 (CLP). Consulta l'etichetta e la scheda di
-                sicurezza prima dell'uso.
+                {{ __('Elementi dell\'etichetta secondo il Regolamento CE 1272/2008 (CLP). Consulta l\'etichetta e la scheda di sicurezza prima dell\'uso.') }}
             </p>
         </div>
         <div class="oil-safety__body">
             <div class="grid content-start gap-3">
                 <x-heading.small-component>{{ $oil['avvertenza'] }}</x-heading.small-component>
                 <p>{{ $oil['pittogrammi'] }}</p>
-                <p>Consulta i pittogrammi sull'etichetta del prodotto.</p>
+                <p>{{ __('Consulta i pittogrammi sull\'etichetta del prodotto.') }}</p>
             </div>
             <p>{{ $oil['frasi_H'] }}</p>
         </div>
         <div class="oil-download">
-            <strong class="text-heading-400">Scheda di sicurezza {{ $oil['olio'] }} (PDF)</strong>
+            <strong class="text-heading-400">{{ __('Scheda di sicurezza') }} {{ $oil['olio'] }} (PDF)</strong>
             <x-button :href="asset('oli-essenziali/'.$oil['scheda_sicurezza'])" variant="secondary" size="sm" download
-                >Scarica SDS</x-button>
+                >{{ __('Scarica SDS') }}</x-button>
         </div>
     </section>
 
     <section class="oil-related">
-        <x-heading.section>Altre fragranze</x-heading.section>
+        <x-heading.section>{{ __('Altre fragranze') }}</x-heading.section>
         <div class="oil-grid">
             @foreach ($related as $oil)
                 <x-essential-oil-card :$oil />

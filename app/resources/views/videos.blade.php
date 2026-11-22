@@ -31,7 +31,7 @@
 				</div>
 			@else
 				<div class="grid min-h-80 items-center">
-					<p class="text-center text-lg">Non è ancora stato aggiunto nessun video</p>
+					<p class="text-center text-lg">{{ __('Non è ancora stato aggiunto nessun video') }}</p>
 				</div>
 			@endif
 

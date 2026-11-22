@@ -29,7 +29,7 @@
 						@checked($typeId == $filterItem->id)
 						@click="if ($event.target.value == {{ $typeId ?? 'null' }}) { $wire.set('typeId', null) }"
 					>
-					<p class="filter-item__name">{{ $filterItem->name }}</p>
+					<p class="filter-item__name">{{ localized_text($filterItem->name) }}</p>
 				</label>
 			@endforeach
 

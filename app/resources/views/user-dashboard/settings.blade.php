@@ -6,7 +6,7 @@
 	<div class="page-block grid grid-cols-1 gap-12">
 		<section>
 			<x-user-dashboard.heading icon="settings">
-				Impostazioni
+				{{ __('Impostazioni') }}
 			</x-user-dashboard.heading>
 
 			<div class="mt-8">
@@ -17,18 +17,18 @@
 				>
 					@csrf
 
-					<p>Qui puoi modificare i tuoi dati personali.</p>
+					<p>{{ __('Qui puoi modificare i tuoi dati personali.') }}</p>
 
 					@session('success')
 						<x-alerts.success :message="session('success')" />
 					@endsession
 
 					<x-form.field>
-						<x-label label="E-mail:" />
+						<x-label label="{{ __('E-mail:') }}" />
 						<x-input
 							type="email"
 							name="email"
-							placeholder="E-mail"
+							placeholder="{{ __('E-mail') }}"
 							value="{{ old('email', auth()->user()->email) }}"
 							required
 						/>
@@ -39,19 +39,19 @@
 					</x-form.field>
 
 					<x-form.field>
-						<x-label label="Nome completo:" />
+						<x-label label="{{ __('Nome completo:') }}" />
 						<div class="grid gap-x-2 gap-y-[inherit] md:grid-cols-2">
 							<x-input
 								type="text"
 								name="first_name"
-								placeholder="Nome"
+								placeholder="{{ __('Nome') }}"
 								value="{{ old('first_name', auth()->user()->first_name) }}"
 							/>
 
 							<x-input
 								type="text"
 								name="last_name"
-								placeholder="Cognome"
+								placeholder="{{ __('Cognome') }}"
 								value="{{ old('last_name', auth()->user()->last_name) }}"
 							/>
 						</div>
@@ -69,7 +69,7 @@
 						<x-button
 							type="submit"
 							size="small"
-						>Salva modifiche</x-button>
+						>{{ __('Salva modifiche') }}</x-button>
 					</div>
 				</form>
 			</div>
@@ -79,7 +79,7 @@
 					Password
 				</x-user-dashboard.heading>
 
-				<p class="mt-4">Qui puoi modificare la tua password.</p>
+				<p class="mt-4">{{ __('Qui puoi modificare la tua password.') }}</p>
 
 				@session('success_password')
 					<x-alerts.success :message="session('success_password')" />
@@ -93,11 +93,11 @@
 					@csrf
 
 					<x-form.field>
-						<x-label label="Password attuale:" />
+						<x-label label="{{ __('Password attuale:') }}" />
 						<x-input
 							type="password"
 							name="current_password"
-							placeholder="Password attuale"
+							placeholder="{{ __('Password attuale') }}"
 							required
 						/>
 
@@ -107,11 +107,11 @@
 					</x-form.field>
 
 					<x-form.field>
-						<x-label label="Nuova password:" />
+						<x-label label="{{ __('Nuova password:') }}" />
 						<x-input
 							type="password"
 							name="new_password"
-							placeholder="Nuova password"
+							placeholder="{{ __('Nuova password') }}"
 							required
 						/>
 
@@ -121,11 +121,11 @@
 					</x-form.field>
 
 					<x-form.field>
-						<x-label label="Conferma nuova password:" />
+						<x-label label="{{ __('Conferma nuova password:') }}" />
 						<x-input
 							type="password"
 							name="new_password_confirmation"
-							placeholder="Conferma nuova password"
+							placeholder="{{ __('Conferma nuova password') }}"
 							required
 						/>
 
@@ -138,7 +138,7 @@
 						<x-button
 							type="submit"
 							size="small"
-						>Cambia password</x-button>
+						>{{ __('Cambia password') }}</x-button>
 					</div>
 				</form>
 			</div>

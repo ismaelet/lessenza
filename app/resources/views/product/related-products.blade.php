@@ -1,8 +1,8 @@
 @if ($product->relatedProducts())
 	<section class="related-items">
 		<div class="main-wrap">
-			<x-heading.component class="">Potrebbero <span
-					class="font-medium italic">interessarti</span></x-heading.component>
+			<x-heading.component class="">{{ __('Potrebbero') }} <span
+					class="font-medium italic">{{ __('interessarti') }}</span></x-heading.component>
 
 			<div
 				class="mar-t-3 grid"

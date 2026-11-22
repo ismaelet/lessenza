@@ -213,7 +213,7 @@ class PayPalController extends Controller
             ]),
         ]]);
 
-        return back()->with('error', 'Errore durante il pagamento. Non è stato prevelato nessun importo.');
+        return back()->with('error', __('Errore durante il pagamento. Non è stato prevelato nessun importo.'));
     }
 
     /**

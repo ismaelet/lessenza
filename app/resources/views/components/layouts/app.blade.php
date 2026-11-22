@@ -8,10 +8,10 @@
 @php
     $appName = config('app.name');
     $appDescription = config('custom.meta_data.description');
-    $description = $description ?: $appDescription;
+    $description = localized_text($description ?: $appDescription);
     $thumbnail = $thumbnail ?: Vite::image('thumbnail.jpg');
 
-    $title = $title ? $title.' | '.$appName : $appName.' | '.config('custom.meta_data.short_description');
+    $title = $title ? localized_text($title).' | '.$appName : $appName.' | '.localized_text(config('custom.meta_data.short_description'));
 @endphp
 
 <!DOCTYPE html>
@@ -124,10 +124,10 @@
             });
 
             // Search event listener
-            Livewire.on('meta-search', (event) => {
-                if (typeof fbq !== 'undefined' && event.detail.query) {
+            Livewire.on('meta-search', (data) => {
+                if (typeof fbq !== 'undefined' && data.query) {
                     fbq('track', 'Search', {
-                        search_string: event.detail.query,
+                        search_string: data.query,
                     });
                 }
             });

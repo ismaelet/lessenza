@@ -18,7 +18,7 @@ class UserDashboardController extends Controller
         $user = Auth::user();
 
         return view('user-dashboard.index', [
-            'title' => 'Profilo',
+            'title' => __('Profilo'),
             'location' => 'user-dashboard',
             'user' => $user,
             'address' => $user->main_address,
@@ -34,7 +34,7 @@ class UserDashboardController extends Controller
         $orders = $user->orders?->load('order_items', 'order_items.product')->sortByDesc('created_at');
 
         return view('user-dashboard.orders', [
-            'title' => 'Ordini',
+            'title' => __('Ordini'),
             'location' => 'user-dashboard',
             'user' => $user,
             'orders' => $orders,
@@ -49,7 +49,7 @@ class UserDashboardController extends Controller
         $user = Auth::user();
 
         return view('user-dashboard.settings', [
-            'title' => 'Impostazioni',
+            'title' => __('Impostazioni'),
             'location' => 'user-dashboard',
             'user' => $user,
         ]);
@@ -72,7 +72,7 @@ class UserDashboardController extends Controller
         // Update user information
         $user->update($validatedData);
 
-        return redirect()->back()->with('success', 'Impostazioni aggiornate con successo.');
+        return redirect()->back()->with('success', __('Impostazioni aggiornate con successo.'));
     }
 
     /**
@@ -90,13 +90,13 @@ class UserDashboardController extends Controller
 
         // Check if the current password matches
         if (! password_verify($validatedData['current_password'], $user->password)) {
-            return redirect()->back()->withErrors(['current_password' => 'La password corrente non è corretta.']);
+            return redirect()->back()->withErrors(['current_password' => __('La password corrente non è corretta.')]);
         }
 
         // Update the user's password
         $user->password = Hash::make($validatedData['new_password']);
         $user->save();
 
-        return redirect()->back()->with('success_password', 'Password aggiornata con successo.');
+        return redirect()->back()->with('success_password', __('Password aggiornata con successo.'));
     }
 }

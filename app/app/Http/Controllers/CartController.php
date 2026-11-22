@@ -19,7 +19,7 @@ class CartController extends Controller
      */
     public function addressIndex(Request $request)
     {
-        $title = 'Carrello';
+        $title = __('Carrello');
         $location = 'cart';
         $cart = Order::find(cart()->id);
 
@@ -134,7 +134,7 @@ class CartController extends Controller
      */
     public function success(Request $request)
     {
-        $title = 'Ordine completato';
+        $title = __('Ordine completato');
         $location = 'cart.success';
         $cart = cart();
 
@@ -161,7 +161,7 @@ class CartController extends Controller
      */
     public function empty(): View
     {
-        $title = 'Carrello';
+        $title = __('Carrello');
         $location = 'cart';
 
         return view('cart.empty', compact('title', 'location'));

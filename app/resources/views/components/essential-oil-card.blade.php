@@ -11,9 +11,9 @@
             <p>{{ $oil['profumo'] }}</p>
             <div class="oil-card__price">
                 <span
-                    >da <strong class="text-heading-400">{{ $oil['varianti'][0]['prezzo_iva_esclusa'] }} €</strong>
-                    <small>+ IVA</small></span>
-                <span class="text-secondary-300">Scopri →</span>
+                    >{{ __('da') }} <strong class="text-heading-400">{{ $oil['varianti'][0]['prezzo_iva_esclusa'] }} €</strong>
+                    <small>{{ __('+ IVA') }}</small></span>
+                <span class="text-secondary-300">{{ __('Scopri →') }}</span>
             </div>
         </div>
     </a>

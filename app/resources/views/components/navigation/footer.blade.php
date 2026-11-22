@@ -17,8 +17,7 @@
 
 	// Notes
 	$footer['notes'] =
-	    '
-	P.IVA ' .
+	    __('P.IVA') . ' ' .
 	    sys_config('VAT') .
 	    ' | Copyright © ' .
 	    getdate()['year'] .
@@ -144,8 +143,8 @@
 			<a
 				href="{{ route('terms') }}"
 				class="opacity-50 transition-opacity hover:opacity-100"
-				title="Termini e Condizioni"
-			>Termini e Condizioni</a>
+				title="{{ __('Termini e Condizioni') }}"
+			>{{ __('Termini e Condizioni') }}</a>
 		</div>
 
 		<div class="main-wrap">

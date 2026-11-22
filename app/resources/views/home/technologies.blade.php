@@ -48,10 +48,8 @@
 
 <section class="padded-section full-width overflow-hidden sm:pb-6 md:pb-12">
 	<div class="text-center">
-		<x-heading.main>Le nostre tecnologie</x-heading.main>
-		<x-subheading.section class="mt-12">Rendi unica la tua area wellness con docce emozionali e sistemi automatici di
-			ultima generazione. Profumi, luci e getti d’acqua studiati per offrire ai tuoi clienti un’esperienza
-			indimenticabile.</x-subheading.section>
+		<x-heading.main>{{ __('Le nostre tecnologie') }}</x-heading.main>
+		<x-subheading.section class="mt-12">{{ __('Rendi unica la tua area wellness con docce emozionali e sistemi automatici di ultima generazione. Profumi, luci e getti d’acqua studiati per offrire ai tuoi clienti un’esperienza indimenticabile.') }}</x-subheading.section>
 	</div>
 
 	<div class="fill-width technologies mt-0 grid items-center gap-2 sm:gap-4 md:gap-8">
@@ -69,6 +67,6 @@
 			href="{{ route('technologies') }}"
 			variant="secondary"
 			class="relative z-10 mt-0 sm:-mt-6 md:-mt-12"
-		>Scopri di più</x-button>
+		>{{ __('Scopri di più') }}</x-button>
 	</div>
 </section>

@@ -4,11 +4,11 @@
 	<section class="cart-list">
 		<div class="cart-list__wrapper">
 			<div class="cart-list__header">
-				<p class="cart-list__field cart-list__field--header">Ordine</p>
-				<p class="cart-list__field cart-list__field--header">Prodotto</p>
-				<p class="cart-list__field cart-list__field--header">Totale</p>
-				<p class="cart-list__field cart-list__field--header">Stato</p>
-				<p class="cart-list__field cart-list__field--header">Data</p>
+				<p class="cart-list__field cart-list__field--header">{{ __('Ordine') }}</p>
+				<p class="cart-list__field cart-list__field--header">{{ __('Prodotto') }}</p>
+				<p class="cart-list__field cart-list__field--header">{{ __('Totale') }}</p>
+				<p class="cart-list__field cart-list__field--header">{{ __('Stato') }}</p>
+				<p class="cart-list__field cart-list__field--header">{{ __('Data') }}</p>
 				<div class="cart-list__field cart-list__field--header"></div>
 			</div>
 
@@ -34,7 +34,7 @@
 							class="text-primary underline"
 							href="{{ $order->recapUrlWithToken() }}"
 						>
-							visualizza
+							{{ __('visualizza') }}
 						</a>
 					</p>
 				</div>
@@ -42,5 +42,5 @@
 		</div>
 	</section>
 @else
-	<p class="">Nessun ordine effetuato</p>
+	<p class="">{{ __('Nessun ordine effetuato') }}</p>
 @endif

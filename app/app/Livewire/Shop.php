@@ -67,7 +67,7 @@ class Shop extends Component
 
         $this->filters = [
             [
-                'title' => 'Collezioni',
+                'title' => __('Collezioni'),
                 'slug' => 'product_type_id',
                 'opened-by-default' => true,
                 'list' => ProductType::orderBy('names')
@@ -134,10 +134,10 @@ class Shop extends Component
         // Filter by keywords
         if ($this->search) {
             $products = $products->where(function ($query) {
-                $query->where('name', 'LIKE', '%'.$this->search.'%')
-                    ->orWhereHas('product_type', function ($query) {
-                        $query->where('name', 'LIKE', '%'.$this->search.'%');
-                    });
+                foreach (localized_search_terms($this->search) as $term) {
+                    $query->orWhere('name', 'LIKE', '%'.$term.'%')
+                        ->orWhereHas('product_type', fn ($query) => $query->where('name', 'LIKE', '%'.$term.'%'));
+                }
             });
         }
 

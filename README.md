@@ -27,6 +27,15 @@ Originally developed using a custom PHP architecture, the project was subsequent
 
 ## Features
 
+The storefront supports Italian (default) and English. The flag dropdown in the desktop and mobile
+headers stores the selected language in the Laravel session and keeps the current page and filters.
+Translations are maintained in `app/lang/it.json` and `app/lang/en.json`, with framework messages in
+the corresponding locale directories. Wrap new interface text in Laravel's `__()` or `trans_choice()`.
+Existing authored product, blog, and review content is translated at display time using
+`localized_text()` / `localized_html()`; the Italian database values, product identifiers, and URLs
+remain unchanged. Add translations for new authored content to the language catalogues. Original
+product label images and downloadable safety documents remain in their supplied language.
+
 The application includes functionality for:
 
 - Product browsing and product information

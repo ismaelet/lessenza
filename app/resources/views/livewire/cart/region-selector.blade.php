@@ -7,7 +7,7 @@
 	<option
 		value=""
 		selected
-	>Seleziona la provincia</option>
+	>{{ __('Seleziona la provincia') }}</option>
 	<option
 		value="AG"
 		@selected($address?->region == 'AG')

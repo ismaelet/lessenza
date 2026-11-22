@@ -133,7 +133,7 @@
 							class="slider__text limit-lines <?= !$key ? 'active' : '' ?> js-review"
 							data-lines="4"
 						>
-							"{{ $review->text }}"
+							"{{ localized_text($review->text) }}"
 						</p>
 					@endforeach
 
@@ -146,7 +146,7 @@
 				data-direction="top"
 				data-delay="1"
 			>
-				<x-button href="{{ route('reviews') }}">Tutte le recensioni</x-button>
+				<x-button href="{{ route('reviews') }}">{{ __('Tutte le recensioni') }}</x-button>
 			</div>
 		</div>
 
@@ -161,7 +161,7 @@
 			<input
 				type="text"
 				name="search"
-				placeholder="Cerca una fragranza"
+				placeholder="{{ __('Cerca una fragranza') }}"
 				class="relative h-full"
 			>
 			<button
@@ -175,8 +175,8 @@
 		<!-- Highlight slider -->
 		<div class="highlighted-product__slider hidden">
 			<div class="highlighted-product__arrow"><x-icon-arrow1-left /></div>
-			<h3 class="highlighted-product__title">Novità</h3>
-			<h3 class="highlighted-product__name">nome prodotto</h3>
+			<h3 class="highlighted-product__title">{{ __('Novità') }}</h3>
+			<h3 class="highlighted-product__name">{{ __('nome prodotto') }}</h3>
 			<div class="highlighted-product__arrow"><x-icon-arrow1-right /></div>
 		</div>
 	</div>

@@ -6,15 +6,15 @@
 			<img
 				class="product-card__image"
 				src="{{ $product->image }}"
-				alt="{{ $product->name }}"
+				alt="{{ localized_text($product->name) }}"
 				loading="lazy"
 			>
 		</div>
 		<div class="product-card__body">
-			<x-heading.small-component class="product-card__name">{{ $product->name }}</x-heading.small-component>
+			<x-heading.small-component class="product-card__name">{{ localized_text($product->name) }}</x-heading.small-component>
 			<div class="product-card__footer">
-				<span><strong class="product-card__price">{{ $product->priceString() }}</strong> <small>+ IVA</small></span>
-				<span class="product-card__details">Scopri →</span>
+				<span><strong class="product-card__price">{{ $product->priceString() }}</strong> <small>{{ __('+ IVA') }}</small></span>
+				<span class="product-card__details">{{ __('Scopri →') }}</span>
 			</div>
 		</div>
 	</a>

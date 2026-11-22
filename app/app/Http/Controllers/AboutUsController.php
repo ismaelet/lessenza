@@ -12,7 +12,7 @@ class AboutUsController extends Controller
     public function index(): View
     {
         return view('about-us', [
-            'title' => 'Chi siamo',
+            'title' => __('Chi siamo'),
             'location' => 'about-us',
         ]);
     }

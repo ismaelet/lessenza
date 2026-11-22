@@ -10,8 +10,8 @@
 		></div>
 
 		<div class="newsletter__title-block contrasting-background">
-			<x-heading.section class="newsletter__title">Iscriviti alla<br>Newsletter</x-heading.section>
-			<p class="newsletter__text">Riceverai subito una tanica in omaggio sul tuo primo ordine online</p>
+			<x-heading.section class="newsletter__title">{{ __('Iscriviti alla') }}<br>Newsletter</x-heading.section>
+			<p class="newsletter__text">{{ __('Riceverai subito una tanica in omaggio sul tuo primo ordine online') }}</p>
 		</div>
 
 		<div class="newsletter__form-block">
@@ -20,25 +20,24 @@
 					type="text"
 					name="fullName"
 					class="newsletter__input js-newsletter-fullname transition-colors"
-					placeholder="Nome e cognome"
+					placeholder="{{ __('Nome e cognome') }}"
 					required
 				>
 				<input
 					type="email"
 					name="email"
 					class="newsletter__input js-newsletter-email transition-colors"
-					placeholder="Indirizzo e-mail"
+					placeholder="{{ __('Indirizzo e-mail') }}"
 					required
 				>
 			</div>
 		</div>
 
 		<div class="newsletter__button-block">
-			<x-button class="newsletter__button button button--full-width js-newsletter-signup w-full">Iscriviti</x-button>
+			<x-button class="newsletter__button button button--full-width js-newsletter-signup w-full">{{ __('Iscriviti') }}</x-button>
 			<x-button
 				class="newsletter__button newsletter__button--success button button--full-width js-newsletter-success w-full"
-			>Grazie
-				per esserti iscritto!</x-button>
+			>{{ __('Grazie per esserti iscritto!') }}</x-button>
 		</div>
 	</form>
 </section>

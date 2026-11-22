@@ -27,16 +27,16 @@
 
 			<!-- Header -->
 			<div class="form-head mb-8 text-center">
-				<x-heading.section>Registrazione</x-heading.section>
+				<x-heading.section>{{ __('Registrazione') }}</x-heading.section>
 			</div>
 
 			<!-- Body -->
 			<div class="form-body">
-				<x-label label="E-mail:" />
+				<x-label label="{{ __('E-mail:') }}" />
 				<x-input
 					type="email"
 					name="email"
-					placeholder="E-mail"
+					placeholder="{{ __('E-mail') }}"
 					required
 				/>
 
@@ -71,7 +71,7 @@
 				<x-marketing-consent />
 
 				<div class="">
-					<p class="hover:text-primary transition-colors"><a href="{{ route('login') }}">Hai già un account?</a></p>
+					<p class="hover:text-primary transition-colors"><a href="{{ route('login') }}">{{ __('Hai già un account?') }}</a></p>
 				</div>
 			</div>
 
@@ -81,14 +81,14 @@
 					type="submit"
 					class=""
 					size="small"
-				>Registrati</x-button>
+				>{{ __('Registrati') }}</x-button>
 
 				<x-button
 					href="{{ route('login') }}"
 					class=""
 					variant="secondary"
 					size="small"
-				>Indietro</x-button>
+				>{{ __('Indietro') }}</x-button>
 			</div>
 		</form>
 	</div>

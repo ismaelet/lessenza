@@ -18,7 +18,7 @@ class LoginController extends Controller
     public function index(): View
     {
         return view('auth.login', [
-            'title' => 'Login',
+            'title' => __('Login'),
             'location' => 'login',
         ]);
     }
@@ -41,7 +41,7 @@ class LoginController extends Controller
 
         // If the login attempt was unsuccessful, redirect back with an error
         return back()->withErrors([
-            'email' => 'Le credenziali fornite non sono corrette.',
+            'email' => __('Le credenziali fornite non sono corrette.'),
         ]);
     }
 
@@ -51,7 +51,7 @@ class LoginController extends Controller
     public function register(): View
     {
         return view('auth.register', [
-            'title' => 'Registrazione',
+            'title' => __('Registrazione'),
             'location' => 'register',
         ]);
     }

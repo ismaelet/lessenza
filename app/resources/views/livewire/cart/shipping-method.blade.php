@@ -13,10 +13,10 @@
     </div>
 
     <div class="shipping-method__content grid" data-spacing="100">
-        <h3 class="text-heading-400 font-medium"><?= $shippingMethod->name ?></h3>
+        <h3 class="text-heading-400 font-medium">{{ localized_text($shippingMethod->name) }}</h3>
         <p class="text-heading-400 font-medium"><?= $shippingMethod->deliveryDateString() ?></p>
         <p class="shipping-method__description">
-            Le spese di trasporto vengono calcolate in base alla località e alla zona di spedizione
+            {{ __('Le spese di trasporto vengono calcolate in base alla località e alla zona di spedizione') }}
         </p>
         <p class="shipping-method__price" data-shipping-method-id="<?= $shippingMethod->id ?>">
             {{ price($shippingMethod->price()) }}

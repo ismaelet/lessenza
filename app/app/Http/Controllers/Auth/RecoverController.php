@@ -20,7 +20,7 @@ class RecoverController extends Controller
 
         return view('auth.recover')
             ->with('location', 'recover')
-            ->with('title', 'Recupero accesso');
+            ->with('title', __('Recupero accesso'));
     }
 
     /**
@@ -57,13 +57,8 @@ class RecoverController extends Controller
             $resetEndpoint = route('auth.reset', ['email' => $user->email, 'token' => $token]);
 
             // Generate the email
-            $subject = 'Recupero dati di accesso';
-            $content = '
-					<h2 style="text-align: center; padding-bottom: 32px; font-weight: 600;">Recupero dati</h2>
-					<p>
-						L\'indirizzo email associato al tuo account, necessario per accedere, è:<br>'.$email.'.<br><br>
-						Per resettare la tua password puoi usare questo link:<br><a href="'.$resetEndpoint.'">'.$resetEndpoint.'</a>
-					</p>';
+            $subject = __('Recupero dati di accesso');
+            $content = view('emails.recover', compact('email', 'resetEndpoint'))->render();
 
             $mail = new GenericMail($subject, $content);
 
@@ -73,7 +68,7 @@ class RecoverController extends Controller
 
         return redirect()->route('auth.recover')
             ->with([
-                'title' => 'Recupero accesso',
+                'title' => __('Recupero accesso'),
                 'submitted' => true,
                 'email' => $email,
                 'not_found' => ! $user,

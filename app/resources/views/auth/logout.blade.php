@@ -6,7 +6,7 @@
 >
 	<x-slot:body>
 		<p class="text-center">
-			Desideri davvero disconnetterti?
+			{{ __('Desideri davvero disconnetterti?') }}
 		</p>
 	</x-slot:body>
 
@@ -14,11 +14,11 @@
 		<x-button
 			type="submit"
 			size="small"
-		>Esci</x-button>
+		>{{ __('Esci') }}</x-button>
 		<x-button
 			href="{{ route('user-dashboard.index') }}"
 			variant="secondary"
 			size="small"
-		>Indietro</x-button>
+		>{{ __('Indietro') }}</x-button>
 	</x-slot:footer>
 </x-layouts.form>

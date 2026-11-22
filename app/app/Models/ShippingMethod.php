@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class ShippingMethod extends Model
@@ -135,11 +136,8 @@ class ShippingMethod extends Model
         $deliveryDate = [];
 
         foreach ($this->deliveryDate() as $date) {
-            $dateWeekDay = date('N', $date);
-            $dateMonthDay = date('d', $date);
-            $dateMonth = date('m', $date);
+            $deliveryDate[] = '<span>'.e(Carbon::createFromTimestamp($date)->locale(app()->getLocale())->translatedFormat('l d F')).'</span>';
 
-            $deliveryDate[] = '<span class="">'.strtolower(self::DAY_NAMES[$dateWeekDay - 1]).' '.$dateMonthDay.' '.strtolower(self::MONTH_NAMES[$dateMonth - 1]).'</span> ';
         }
 
         return implode(' - ', $deliveryDate);

@@ -15,7 +15,7 @@ class ReviewController extends Controller
         $reviews = Review::latest()->get();
 
         return view('reviews', [
-            'title' => 'Recensioni',
+            'title' => __('Recensioni'),
             'location' => 'reviews',
             'reviews' => $reviews,
         ]);

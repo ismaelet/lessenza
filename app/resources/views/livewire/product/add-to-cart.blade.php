@@ -39,7 +39,7 @@
 			wire:loading.class="invisible"
 		>
 			<x-icon-cart class="w-[1.25em]" />
-			Aggiungi al carrello
+			{{ __('Aggiungi al carrello') }}
 		</span>
 
 		<x-icon-loading

@@ -103,4 +103,17 @@ class ShopPaginationTest extends TestCase
             ->assertSee('Nessun prodotto trovato.')
             ->assertDontSee('Successiva');
     }
+
+    public function test_search_matches_translated_product_names(): void
+    {
+        DB::table('products')->where('id', 43)->update(['name' => 'Limone']);
+        app()->setLocale('en');
+
+        $this->withSession(['locale' => 'en']);
+        Livewire::test(Shop::class)
+            ->set('search', 'lemon')
+            ->assertSet('productCount', 1)
+            ->assertDispatched('meta-search', query: 'lemon')
+            ->assertSee('Lemon');
+    }
 }

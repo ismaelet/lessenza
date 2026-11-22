@@ -18,7 +18,7 @@
     $header['title-mobile'] = $header['title'];
     $header['login-link'] = [
         'not-logged' => [
-            'label' => 'Login',
+            'label' => __('Login'),
             'url' => client_url('/login'),
         ],
         'logged' => [
@@ -33,15 +33,15 @@
      */
     $header['links'] = [
         ['label' => 'Home', 'location' => 'home', 'url' => client_url('/')],
-        ['label' => 'Le Fragranze', 'location' => 'shop', 'url' => client_url('/shop')],
-        ['label' => 'Oli essenziali', 'location' => 'essential-oils', 'url' => route('essential-oils.index')],
-        ['label' => 'Tecnologie', 'location' => 'technologies', 'url' => route('technologies')],
-        ['label' => 'Chi Siamo', 'location' => 'about-us', 'url' => client_url('/about-us')],
-        ['label' => 'Recensioni', 'location' => 'reviews', 'url' => client_url('/reviews')],
+        ['label' => __('Le Fragranze'), 'location' => 'shop', 'url' => client_url('/shop')],
+        ['label' => __('Oli essenziali'), 'location' => 'essential-oils', 'url' => route('essential-oils.index')],
+        ['label' => __('Tecnologie'), 'location' => 'technologies', 'url' => route('technologies')],
+        ['label' => __('Chi Siamo'), 'location' => 'about-us', 'url' => client_url('/about-us')],
+        ['label' => __('Recensioni'), 'location' => 'reviews', 'url' => client_url('/reviews')],
         ['label' => 'Blog', 'location' => 'blog', 'url' => client_url('/blog')],
-        ['label' => 'Video', 'location' => 'videos', 'url' => client_url('/videos')],
-        ['label' => 'Contatti', 'location' => 'contacts', 'url' => client_url('/contacts')],
-        ['label' => 'Gestione', 'location' => 'admin', 'url' => client_url('/admin'), 'admin' => true],
+        ['label' => __('Video'), 'location' => 'videos', 'url' => client_url('/videos')],
+        ['label' => __('Contatti'), 'location' => 'contacts', 'url' => client_url('/contacts')],
+        ['label' => __('Gestione'), 'location' => 'admin', 'url' => client_url('/admin'), 'admin' => true],
     ];
 
     // dropdowns
@@ -238,6 +238,7 @@ $headerComponent['megamenus'] = function () {
                         <x-navigation.header.desktop-navigation :links="$header['links']" :$location />
                     </div>
                     <div class="h__bar h-bar--desktop">
+                        <x-navigation.header.language />
                         <x-navigation.header.profile-icon />
                         <livewire:header.cart-icon />
                     </div>
@@ -252,6 +253,7 @@ $headerComponent['megamenus'] = function () {
                     </div>
                     <div class="h__bar h-bar--mob"></div>
                     <div class="h__bar h-bar--mob">
+                        <x-navigation.header.language />
                         <x-navigation.header.profile-icon />
                         <livewire:header.cart-icon />
                         <x-navigation.header.mobile-icon />
@@ -269,22 +271,22 @@ $headerComponent['megamenus'] = function () {
                         <a href="/">Home</a>
                     </li>
                     <li class="h__mobile-navigation__link">
-                        <a href="/shop">Le Fragranze</a>
+                        <a href="/shop">{{ __('Le Fragranze') }}</a>
                     </li>
                     <li class="h__mobile-navigation__link">
-                        <a href="{{ route('essential-oils.index') }}">Oli essenziali</a>
-                    </li>
-
-                    <li class="h__mobile-navigation__link">
-                        <a href="/technologies">Tecnologie</a>
+                        <a href="{{ route('essential-oils.index') }}">{{ __('Oli essenziali') }}</a>
                     </li>
 
                     <li class="h__mobile-navigation__link">
-                        <a href="/about-us">Chi Siamo</a>
+                        <a href="/technologies">{{ __('Tecnologie') }}</a>
                     </li>
 
                     <li class="h__mobile-navigation__link">
-                        <a href="/reviews">Recensioni</a>
+                        <a href="/about-us">{{ __('Chi Siamo') }}</a>
+                    </li>
+
+                    <li class="h__mobile-navigation__link">
+                        <a href="/reviews">{{ __('Recensioni') }}</a>
                     </li>
 
                     <li class="h__mobile-navigation__link">
@@ -292,11 +294,11 @@ $headerComponent['megamenus'] = function () {
                     </li>
 
                     <li class="h__mobile-navigation__link">
-                        <a href="/videos">Video</a>
+                        <a href="/videos">{{ __('Video') }}</a>
                     </li>
 
                     <li class="h__mobile-navigation__link">
-                        <a href="/contacts">Contatti</a>
+                        <a href="/contacts">{{ __('Contatti') }}</a>
                     </li>
                 </ul>
             </nav>
