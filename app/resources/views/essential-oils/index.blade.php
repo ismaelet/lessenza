@@ -53,17 +53,14 @@
                 <x-heading.section>{{ __('Le :count fragranze', ['count' => $total]) }}</x-heading.section>
             </div>
             <form action="{{ route('essential-oils.index') }}#oli" method="GET" role="search" class="oil-search">
-                <label for="oil-search">{{ __('Cerca un olio o un profumo') }}</label>
-                <div class="flex flex-wrap gap-2">
-                    <x-input
-                        id="oil-search"
-                        type="search"
-                        name="q"
-                        :value="$query"
-                        placeholder="{{ __('Nome, pianta o nota olfattiva…') }}"
-                    />
-                    <x-button type="submit" size="sm">{{ __('Cerca') }}</x-button>
-                </div>
+                <label for="oil-search" class="sr-only">{{ __('Cerca un olio o un profumo') }}</label>
+                <x-input
+                    id="oil-search"
+                    type="search"
+                    name="q"
+                    :value="$query"
+                    placeholder="{{ __('Cerca un olio o un profumo') }}…"
+                />
                 @if ($query !== '')
                     <a
                         href="{{ route('essential-oils.index') }}#oli"
