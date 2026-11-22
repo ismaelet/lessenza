@@ -17,3 +17,6 @@
 /app/storage/*
 !/app/storage/**/
 !/app/storage/**/.gitignore
+
+
+/.resources
