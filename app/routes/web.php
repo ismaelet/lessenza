@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AboutUsController;
 use App\Http\Controllers\ContactsController;
+use App\Http\Controllers\EssentialOilController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\TechnologiesController;
@@ -12,6 +13,10 @@ use Illuminate\Support\Facades\Route;
 // Home
 Route::get('/', [HomeController::class, 'index'])
     ->name('home');
+
+// Essential oils
+Route::get('/oli-essenziali', [EssentialOilController::class, 'index'])->name('essential-oils.index');
+Route::get('/oli-essenziali/{slug}', [EssentialOilController::class, 'show'])->name('essential-oils.show');
 
 // Technologies
 Route::get('/technologies', [TechnologiesController::class, 'index'])

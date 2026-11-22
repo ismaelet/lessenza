@@ -68,7 +68,7 @@ html {
   display: none;
   grid-template-columns: minmax(0, 1fr) 1rem;
   padding-block: 1em;
-  color: var(--color-neutral-700);
+  color: var(--color-heading-400);
   font-weight: var(--font-weight-semibold);
   cursor: pointer;
 }
@@ -104,7 +104,7 @@ html {
   outline: none;
   background-color: transparent;
   box-shadow: none !important;
-  color: var(--color-neutral-700);
+  color: var(--color-heading-400);
   line-height: 4;
 }
 
@@ -208,7 +208,7 @@ html {
 }
 
 .filter__icon svg {
-  fill: var(--color-neutral-700);
+  fill: var(--color-heading-400);
 }
 
 .filter__ddown {
@@ -236,7 +236,7 @@ html {
 }
 
 .filter-item__name:hover {
-  color: var(--color-neutral-700);
+  color: var(--color-heading-400);
 }
 
 .filter__header:has(input:checked) {
@@ -244,7 +244,7 @@ html {
     transform: scaleY(-1);
   }
   .filter__title {
-    color: var(--color-neutral-700);
+    color: var(--color-heading-400);
   }
   .filter__title::after {
     transform: none;
@@ -256,7 +256,7 @@ html {
 }
 
 input:checked + .filter-item__name {
-  color: var(--color-neutral-700);
+  color: var(--color-heading-400);
   font-weight: var(--font-weight-semibold);
 }
 
@@ -323,7 +323,7 @@ input:checked + .sort-bar__text {
   align-content: center;
   gap: 1rem;
   min-height: 50vh;
-  color: var(--color-neutral-700);
+  color: var(--color-heading-400);
 }
 
 /* Pages */

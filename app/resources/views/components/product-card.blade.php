@@ -1,17 +1,21 @@
 @props(['product'])
 
-<div class="product-card">
-	<div class="product-card__image-wrapper stack-content grid bg-neutral-200">
-		<a
-			href="{{ $product->url() }}"
-			class="stack-content"
-		>
+<article class="product-card">
+	<a href="{{ $product->url() }}" class="product-card__link">
+		<div class="product-card__image-wrapper">
 			<img
-				class="product-card__image image-fill"
+				class="product-card__image"
 				src="{{ $product->image }}"
 				alt="{{ $product->name }}"
 				loading="lazy"
 			>
-		</a>
-	</div>
-</div>
+		</div>
+		<div class="product-card__body">
+			<x-heading.small-component class="product-card__name">{{ $product->name }}</x-heading.small-component>
+			<div class="product-card__footer">
+				<span><strong class="product-card__price">{{ $product->priceString() }}</strong> <small>+ IVA</small></span>
+				<span class="product-card__details">Scopri →</span>
+			</div>
+		</div>
+	</a>
+</article>

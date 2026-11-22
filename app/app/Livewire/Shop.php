@@ -86,6 +86,7 @@ class Shop extends Component
      */
     public function updatedSearch(): void
     {
+        $this->page = 1;
         $this->getProducts();
 
         if ($this->search && strlen($this->search) > 2) {
@@ -98,6 +99,7 @@ class Shop extends Component
      */
     public function updatedSort(): void
     {
+        $this->page = 1;
         $this->getProducts();
     }
 
@@ -105,6 +107,18 @@ class Shop extends Component
      * Update the type ID and refresh the product list.
      */
     public function updatedTypeId(): void
+    {
+        $this->page = 1;
+        $this->getProducts();
+    }
+
+    public function setPage(int $page): void
+    {
+        $this->page = $page;
+        $this->getProducts();
+    }
+
+    public function updatedPage(): void
     {
         $this->getProducts();
     }
@@ -148,11 +162,9 @@ class Shop extends Component
         // Get the total number of products
         $this->productCount = $products->count();
 
-        // Get the products for the current page
-        $this->products = $products->get();
-
-        $start = $this->page ? $this->size * ($this->page - 1) : 1;
-        $this->pageCount = ceil($this->productCount / $this->size);
+        $this->pageCount = max(1, (int) ceil($this->productCount / $this->size));
+        $this->page = max(1, min($this->page, $this->pageCount));
+        $this->products = $products->forPage($this->page, $this->size)->get();
     }
 
     /**
@@ -160,6 +172,10 @@ class Shop extends Component
      */
     public function render(): View
     {
-        return view('livewire.shop');
+        $firstPage = max(1, min($this->page - 2, $this->pageCount - 4));
+
+        return view('livewire.shop', [
+            'pages' => range($firstPage, min($this->pageCount, $firstPage + 4)),
+        ]);
     }
 }

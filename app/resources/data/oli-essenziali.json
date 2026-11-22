@@ -1,0 +1,450 @@
+[
+  {
+    "olio": "Anice",
+    "nome_latino": "Pimpinella anisum",
+    "cas": "84650-59-9",
+    "profumo": "Dolce, speziato, avvolgente",
+    "descrizione": "Note dolci e calde che ricordano la liquirizia. Un profumo insolito in sauna, che sorprende gli ospiti e dà carattere a una gettata invernale.",
+    "consiglio_uso": "Ottimo nelle gettate a tema natalizio, abbinato ad Arancio Dolce o Cannella.",
+    "avvertenza": "Attenzione",
+    "pittogrammi": "GHS07 Punto esclamativo, GHS08 Pericolo per la salute",
+    "frasi_H": "H351 Sospettato di provocare il cancro. H341 Sospettato di provocare alterazioni genetiche. H317 Può provocare una reazione allergica cutanea. H412 Nocivo per gli organismi acquatici con effetti di lunga durata.",
+    "anteprima": "immagini/anteprima/Anice.jpg",
+    "scheda_sicurezza": "schede_sicurezza/SDS_Anice.pdf",
+    "slug": "anice",
+    "varianti": [
+      {
+        "codice": "AANI-30",
+        "formato": "30 ml",
+        "prezzo_iva_esclusa": "15,90",
+        "immagine": "immagini/etichetta_30ml/Anice_30ml.jpg"
+      },
+      {
+        "codice": "AANI-100",
+        "formato": "100 ml",
+        "prezzo_iva_esclusa": "35,90",
+        "immagine": "immagini/etichetta_100ml/Anice_100ml.jpg"
+      }
+    ]
+  },
+  {
+    "olio": "Arancio Dolce",
+    "nome_latino": "Citrus sinensis",
+    "cas": "94266-47-4",
+    "profumo": "Fruttato, solare, allegro",
+    "descrizione": "Il profumo più amato da tutti: fresco, dolce e luminoso. Mette di buon umore e funziona sia da solo che come base per miscele.",
+    "consiglio_uso": "Perfetto per aprire la serata Aufguss o per gettate pomeridiane. Si sposa con Cannella, Anice e Legno di Cedro.",
+    "avvertenza": "Pericolo",
+    "pittogrammi": "GHS02 Fiamma, GHS07 Punto esclamativo, GHS08 Pericolo per la salute, GHS09 Ambiente",
+    "frasi_H": "H304 Può essere letale in caso di ingestione e di penetrazione nelle vie respiratorie. H317 Può provocare una reazione allergica cutanea.",
+    "anteprima": "immagini/anteprima/Arancio_Dolce.jpg",
+    "scheda_sicurezza": "schede_sicurezza/SDS_Arancio_Dolce.pdf",
+    "slug": "arancio-dolce",
+    "varianti": [
+      {
+        "codice": "AARD-30",
+        "formato": "30 ml",
+        "prezzo_iva_esclusa": "13,90",
+        "immagine": "immagini/etichetta_30ml/Arancio_Dolce_30ml.jpg"
+      },
+      {
+        "codice": "AARD-100",
+        "formato": "100 ml",
+        "prezzo_iva_esclusa": "32,90",
+        "immagine": "immagini/etichetta_100ml/Arancio_Dolce_100ml.jpg"
+      }
+    ]
+  },
+  {
+    "olio": "Cannella",
+    "nome_latino": "Cinnamomum zeylanicum",
+    "cas": "84649-98-9",
+    "profumo": "Caldo, speziato, intenso",
+    "descrizione": "Nota calda e decisa che riempie la cabina in pochi istanti. Ideale per creare atmosfere natalizie e invernali.",
+    "consiglio_uso": "Usare con moderazione: poche gocce bastano. Abbinata ad Arancio Dolce è un classico delle gettate di dicembre.",
+    "avvertenza": "Pericolo",
+    "pittogrammi": "GHS07 Punto esclamativo, GHS08 Pericolo per la salute",
+    "frasi_H": "H350 Può provocare il cancro. H341 Sospettato di provocare alterazioni genetiche. H317 Può provocare una reazione allergica cutanea. H412 Nocivo per gli organismi acquatici con effetti di lunga durata.",
+    "anteprima": "immagini/anteprima/Cannella.jpg",
+    "scheda_sicurezza": "schede_sicurezza/SDS_Cannella.pdf",
+    "slug": "cannella",
+    "varianti": [
+      {
+        "codice": "ACAN-30",
+        "formato": "30 ml",
+        "prezzo_iva_esclusa": "14,90",
+        "immagine": "immagini/etichetta_30ml/Cannella_30ml.jpg"
+      },
+      {
+        "codice": "ACAN-100",
+        "formato": "100 ml",
+        "prezzo_iva_esclusa": "34,90",
+        "immagine": "immagini/etichetta_100ml/Cannella_100ml.jpg"
+      }
+    ]
+  },
+  {
+    "olio": "Citronella",
+    "nome_latino": "Cymbopogon winterianus",
+    "cas": "8000-29-1",
+    "profumo": "Erbaceo, agrumato, pulito",
+    "descrizione": "Fresca e pungente, con note di limone ed erba. Dà una sensazione di pulito e rinfresca l'aria della cabina.",
+    "consiglio_uso": "Indicata per gettate estive o di metà giornata. Si abbina bene a Limone e Litsea Cubeba.",
+    "avvertenza": "Pericolo",
+    "pittogrammi": "GHS05 Corrosione, GHS07 Punto esclamativo, GHS08 Pericolo per la salute, GHS09 Ambiente",
+    "frasi_H": "H304 Può essere letale in caso di ingestione e di penetrazione nelle vie respiratorie. H318 Provoca gravi lesioni oculari. H317 Può provocare una reazione allergica cutanea.",
+    "anteprima": "immagini/anteprima/Citronella.jpg",
+    "scheda_sicurezza": "schede_sicurezza/SDS_Citronella.pdf",
+    "slug": "citronella",
+    "varianti": [
+      {
+        "codice": "ACIT-30",
+        "formato": "30 ml",
+        "prezzo_iva_esclusa": "14,90",
+        "immagine": "immagini/etichetta_30ml/Citronella_30ml.jpg"
+      },
+      {
+        "codice": "ACIT-100",
+        "formato": "100 ml",
+        "prezzo_iva_esclusa": "34,90",
+        "immagine": "immagini/etichetta_100ml/Citronella_100ml.jpg"
+      }
+    ]
+  },
+  {
+    "olio": "Eucalipto",
+    "nome_latino": "Eucalyptus globulus",
+    "cas": "84625-32-1",
+    "profumo": "Fresco, balsamico, penetrante",
+    "descrizione": "Il grande classico della sauna. Fresco e intenso, dà subito la sensazione di respiro profondo che gli ospiti cercano.",
+    "consiglio_uso": "Adatto a ogni momento della giornata. Con Menta o Pino Silvestre crea gettate fresche e balsamiche.",
+    "avvertenza": "Pericolo",
+    "pittogrammi": "GHS02 Fiamma, GHS07 Punto esclamativo, GHS08 Pericolo per la salute, GHS09 Ambiente",
+    "frasi_H": "H304 Può essere letale in caso di ingestione e di penetrazione nelle vie respiratorie. H317 Può provocare una reazione allergica cutanea.",
+    "anteprima": "immagini/anteprima/Eucalipto.jpg",
+    "scheda_sicurezza": "schede_sicurezza/SDS_Eucalipto.pdf",
+    "slug": "eucalipto",
+    "varianti": [
+      {
+        "codice": "AEUC-30",
+        "formato": "30 ml",
+        "prezzo_iva_esclusa": "13,90",
+        "immagine": "immagini/etichetta_30ml/Eucalipto_30ml.jpg"
+      },
+      {
+        "codice": "AEUC-100",
+        "formato": "100 ml",
+        "prezzo_iva_esclusa": "32,90",
+        "immagine": "immagini/etichetta_100ml/Eucalipto_100ml.jpg"
+      }
+    ]
+  },
+  {
+    "olio": "Finocchio",
+    "nome_latino": "Foeniculum vulgare",
+    "cas": "84455-29-8",
+    "profumo": "Dolce, erbaceo, aromatico",
+    "descrizione": "Profumo dolce e morbido, parente dell'anice ma più verde ed erbaceo. Una nota originale per chi vuole proporre qualcosa di diverso.",
+    "consiglio_uso": "Indicato per gettate rilassanti serali. Si abbina ad Anice e Lavanda.",
+    "avvertenza": "Pericolo",
+    "pittogrammi": "GHS07 Punto esclamativo, GHS08 Pericolo per la salute, GHS09 Ambiente",
+    "frasi_H": "H304 Può essere letale in caso di ingestione e di penetrazione nelle vie respiratorie. H351 Sospettato di provocare il cancro. H341 Sospettato di provocare alterazioni genetiche. H317 Può provocare una reazione allergica cutanea.",
+    "anteprima": "immagini/anteprima/Finocchio.jpg",
+    "scheda_sicurezza": "schede_sicurezza/SDS_Finocchio.pdf",
+    "slug": "finocchio",
+    "varianti": [
+      {
+        "codice": "AFIN-30",
+        "formato": "30 ml",
+        "prezzo_iva_esclusa": "17,50",
+        "immagine": "immagini/etichetta_30ml/Finocchio_30ml.jpg"
+      },
+      {
+        "codice": "AFIN-100",
+        "formato": "100 ml",
+        "prezzo_iva_esclusa": "40,90",
+        "immagine": "immagini/etichetta_100ml/Finocchio_100ml.jpg"
+      }
+    ]
+  },
+  {
+    "olio": "Lavanda",
+    "nome_latino": "Lavandula hybrida",
+    "cas": "90063-37-9",
+    "profumo": "Floreale, morbido, rilassante",
+    "descrizione": "Profumo pulito e floreale, sinonimo di relax. Ammorbidisce il vapore e accompagna gli ospiti verso la calma.",
+    "consiglio_uso": "Ideale per l'ultima gettata della sera. Si abbina a Legno di Cedro e Palmarosa.",
+    "avvertenza": "Pericolo",
+    "pittogrammi": "GHS07 Punto esclamativo, GHS08 Pericolo per la salute",
+    "frasi_H": "H304 Può essere letale in caso di ingestione e di penetrazione nelle vie respiratorie. H317 Può provocare una reazione allergica cutanea. H412 Nocivo per gli organismi acquatici con effetti di lunga durata.",
+    "anteprima": "immagini/anteprima/Lavanda.jpg",
+    "scheda_sicurezza": "schede_sicurezza/SDS_Lavanda.pdf",
+    "slug": "lavanda",
+    "varianti": [
+      {
+        "codice": "ALAV-30",
+        "formato": "30 ml",
+        "prezzo_iva_esclusa": "18,90",
+        "immagine": "immagini/etichetta_30ml/Lavanda_30ml.jpg"
+      },
+      {
+        "codice": "ALAV-100",
+        "formato": "100 ml",
+        "prezzo_iva_esclusa": "43,90",
+        "immagine": "immagini/etichetta_100ml/Lavanda_100ml.jpg"
+      }
+    ]
+  },
+  {
+    "olio": "Legno di Cedro",
+    "nome_latino": "Cedrus atlantica",
+    "cas": "92201-55-3",
+    "profumo": "Legnoso, caldo, avvolgente",
+    "descrizione": "Nota legnosa e profonda che si sposa naturalmente con il legno della sauna. Dà calore e struttura a ogni miscela.",
+    "consiglio_uso": "Ottimo come base per miscele: con Arancio Dolce, Lavanda o Pino Cembro.",
+    "avvertenza": "Pericolo",
+    "pittogrammi": "GHS07 Punto esclamativo, GHS08 Pericolo per la salute, GHS09 Ambiente",
+    "frasi_H": "H304 Può essere letale in caso di ingestione e di penetrazione nelle vie respiratorie. H317 Può provocare una reazione allergica cutanea.",
+    "anteprima": "immagini/anteprima/Legno_di_Cedro.jpg",
+    "scheda_sicurezza": "schede_sicurezza/SDS_Legno_di_Cedro.pdf",
+    "slug": "legno-di-cedro",
+    "varianti": [
+      {
+        "codice": "ALCE-30",
+        "formato": "30 ml",
+        "prezzo_iva_esclusa": "14,90",
+        "immagine": "immagini/etichetta_30ml/Legno_di_Cedro_30ml.jpg"
+      },
+      {
+        "codice": "ALCE-100",
+        "formato": "100 ml",
+        "prezzo_iva_esclusa": "34,90",
+        "immagine": "immagini/etichetta_100ml/Legno_di_Cedro_100ml.jpg"
+      }
+    ]
+  },
+  {
+    "olio": "Limone",
+    "nome_latino": "Citrus limon",
+    "cas": "84929-31-7",
+    "profumo": "Agrumato, frizzante, energizzante",
+    "descrizione": "Fresco e brillante, porta in cabina una sensazione di energia e pulizia. Uno dei profumi più graditi dagli ospiti.",
+    "consiglio_uso": "Indicato per gettate mattutine o pomeridiane. Si abbina a Menta, Eucalipto e Citronella.",
+    "avvertenza": "Pericolo",
+    "pittogrammi": "GHS02 Fiamma, GHS07 Punto esclamativo, GHS08 Pericolo per la salute, GHS09 Ambiente",
+    "frasi_H": "H304 Può essere letale in caso di ingestione e di penetrazione nelle vie respiratorie. H361 Sospettato di nuocere alla fertilità o al feto. H317 Può provocare una reazione allergica cutanea.",
+    "anteprima": "immagini/anteprima/Limone.jpg",
+    "scheda_sicurezza": "schede_sicurezza/SDS_Limone.pdf",
+    "slug": "limone",
+    "varianti": [
+      {
+        "codice": "ALIM-30",
+        "formato": "30 ml",
+        "prezzo_iva_esclusa": "14,90",
+        "immagine": "immagini/etichetta_30ml/Limone_30ml.jpg"
+      },
+      {
+        "codice": "ALIM-100",
+        "formato": "100 ml",
+        "prezzo_iva_esclusa": "34,90",
+        "immagine": "immagini/etichetta_100ml/Limone_100ml.jpg"
+      }
+    ]
+  },
+  {
+    "olio": "Litsea Cubeba",
+    "nome_latino": "Litsea cubeba",
+    "cas": "90063-59-5",
+    "profumo": "Agrumato, dolce, vivace",
+    "descrizione": "Ricorda la citronella e il limone, ma più dolce e rotondo. Una nota agrumata originale a un prezzo accessibile.",
+    "consiglio_uso": "Ottima nelle miscele fresche con Limone o Menta.",
+    "avvertenza": "Pericolo",
+    "pittogrammi": "GHS07 Punto esclamativo, GHS08 Pericolo per la salute",
+    "frasi_H": "H304 Può essere letale in caso di ingestione e di penetrazione nelle vie respiratorie. H317 Può provocare una reazione allergica cutanea. H412 Nocivo per gli organismi acquatici con effetti di lunga durata.",
+    "anteprima": "immagini/anteprima/Litsea_Cubeba.jpg",
+    "scheda_sicurezza": "schede_sicurezza/SDS_Litsea_Cubeba.pdf",
+    "slug": "litsea-cubeba",
+    "varianti": [
+      {
+        "codice": "ALIT-30",
+        "formato": "30 ml",
+        "prezzo_iva_esclusa": "10,50",
+        "immagine": "immagini/etichetta_30ml/Litsea_Cubeba_30ml.jpg"
+      },
+      {
+        "codice": "ALIT-100",
+        "formato": "100 ml",
+        "prezzo_iva_esclusa": "25,90",
+        "immagine": "immagini/etichetta_100ml/Litsea_Cubeba_100ml.jpg"
+      }
+    ]
+  },
+  {
+    "olio": "Menta",
+    "nome_latino": "Mentha arvensis",
+    "cas": "90063-97-1",
+    "profumo": "Fresco, mentolato, rinfrescante",
+    "descrizione": "Freschezza immediata: la menta dà una sensazione di aria pulita e di respiro libero, anche nel caldo della sauna.",
+    "consiglio_uso": "Perfetta nelle gettate rinfrescanti. Con Eucalipto è la combinazione più richiesta.",
+    "avvertenza": "Attenzione",
+    "pittogrammi": "GHS07 Punto esclamativo, GHS09 Ambiente",
+    "frasi_H": "H317 Può provocare una reazione allergica cutanea.",
+    "anteprima": "immagini/anteprima/Menta.jpg",
+    "scheda_sicurezza": "schede_sicurezza/SDS_Menta.pdf",
+    "slug": "menta",
+    "varianti": [
+      {
+        "codice": "AMEN-30",
+        "formato": "30 ml",
+        "prezzo_iva_esclusa": "14,90",
+        "immagine": "immagini/etichetta_30ml/Menta_30ml.jpg"
+      },
+      {
+        "codice": "AMEN-100",
+        "formato": "100 ml",
+        "prezzo_iva_esclusa": "34,90",
+        "immagine": "immagini/etichetta_100ml/Menta_100ml.jpg"
+      }
+    ]
+  },
+  {
+    "olio": "Palmarosa",
+    "nome_latino": "Cymbopogon martinii",
+    "cas": "84649-81-0",
+    "profumo": "Floreale, rosato, delicato",
+    "descrizione": "Profumo delicato con note di rosa e geranio. Porta in sauna una nota floreale elegante e morbida.",
+    "consiglio_uso": "Ideale per gettate rilassanti. Si abbina a Lavanda e Legno di Cedro.",
+    "avvertenza": "Pericolo",
+    "pittogrammi": "GHS05 Corrosione, GHS07 Punto esclamativo",
+    "frasi_H": "H318 Provoca gravi lesioni oculari. H317 Può provocare una reazione allergica cutanea. H412 Nocivo per gli organismi acquatici con effetti di lunga durata.",
+    "anteprima": "immagini/anteprima/Palmarosa.jpg",
+    "scheda_sicurezza": "schede_sicurezza/SDS_Palmarosa.pdf",
+    "slug": "palmarosa",
+    "varianti": [
+      {
+        "codice": "APAL-30",
+        "formato": "30 ml",
+        "prezzo_iva_esclusa": "10,50",
+        "immagine": "immagini/etichetta_30ml/Palmarosa_30ml.jpg"
+      },
+      {
+        "codice": "APAL-100",
+        "formato": "100 ml",
+        "prezzo_iva_esclusa": "25,90",
+        "immagine": "immagini/etichetta_100ml/Palmarosa_100ml.jpg"
+      }
+    ]
+  },
+  {
+    "olio": "Patchouli",
+    "nome_latino": "Pogostemon cablin",
+    "cas": "84238-39-1",
+    "profumo": "Terroso, legnoso, profondo",
+    "descrizione": "Nota intensa e terrosa, molto persistente. Per chi vuole proporre gettate dal carattere orientale e avvolgente.",
+    "consiglio_uso": "Pochissime gocce bastano. Ottimo in miscela con Arancio Dolce o Legno di Cedro.",
+    "avvertenza": "Pericolo",
+    "pittogrammi": "GHS07 Punto esclamativo, GHS08 Pericolo per la salute",
+    "frasi_H": "H304 Può essere letale in caso di ingestione e di penetrazione nelle vie respiratorie. EUH208 Contiene cariofillene. Può provocare una reazione allergica.",
+    "anteprima": "immagini/anteprima/Patchouli.jpg",
+    "scheda_sicurezza": "schede_sicurezza/SDS_Patchouli.pdf",
+    "slug": "patchouli",
+    "varianti": [
+      {
+        "codice": "APAT-30",
+        "formato": "30 ml",
+        "prezzo_iva_esclusa": "24,90",
+        "immagine": "immagini/etichetta_30ml/Patchouli_30ml.jpg"
+      },
+      {
+        "codice": "APAT-100",
+        "formato": "100 ml",
+        "prezzo_iva_esclusa": "49,90",
+        "immagine": "immagini/etichetta_100ml/Patchouli_100ml.jpg"
+      }
+    ]
+  },
+  {
+    "olio": "Pino Cembro (Cirmolo)",
+    "nome_latino": "Pinus sibirica",
+    "cas": "91697-89-1",
+    "profumo": "Resinoso, balsamico, alpino",
+    "descrizione": "Il profumo delle nostre montagne: resinoso, caldo e balsamico. Porta in sauna l'atmosfera di una baita di legno.",
+    "consiglio_uso": "Ideale per gettate serali rilassanti. Si abbina a Legno di Cedro e Pino Silvestre.",
+    "avvertenza": "Pericolo",
+    "pittogrammi": "GHS02 Fiamma, GHS07 Punto esclamativo, GHS08 Pericolo per la salute, GHS09 Ambiente",
+    "frasi_H": "H304 Può essere letale in caso di ingestione e di penetrazione nelle vie respiratorie. H317 Può provocare una reazione allergica cutanea.",
+    "anteprima": "immagini/anteprima/Pino_Cembro.jpg",
+    "scheda_sicurezza": "schede_sicurezza/SDS_Pino_Cembro.pdf",
+    "slug": "pino-cembro",
+    "varianti": [
+      {
+        "codice": "ACIR-30",
+        "formato": "30 ml",
+        "prezzo_iva_esclusa": "19,90",
+        "immagine": "immagini/etichetta_30ml/Pino_Cembro_30ml.jpg"
+      },
+      {
+        "codice": "ACIR-100",
+        "formato": "100 ml",
+        "prezzo_iva_esclusa": "46,90",
+        "immagine": "immagini/etichetta_100ml/Pino_Cembro_100ml.jpg"
+      }
+    ]
+  },
+  {
+    "olio": "Pino Silvestre",
+    "nome_latino": "Pinus sylvestris",
+    "cas": "84012-35-1",
+    "profumo": "Fresco, resinoso, boschivo",
+    "descrizione": "Profumo di bosco fresco e resinoso. Dà una sensazione di aria aperta e respiro profondo.",
+    "consiglio_uso": "Adatto a ogni momento. Con Eucalipto o Menta crea gettate fresche e balsamiche.",
+    "avvertenza": "Pericolo",
+    "pittogrammi": "GHS02 Fiamma, GHS07 Punto esclamativo, GHS08 Pericolo per la salute, GHS09 Ambiente",
+    "frasi_H": "H304 Può essere letale in caso di ingestione e di penetrazione nelle vie respiratorie. H317 Può provocare una reazione allergica cutanea.",
+    "anteprima": "immagini/anteprima/Pino_Silvestre.jpg",
+    "scheda_sicurezza": "schede_sicurezza/SDS_Pino_Silvestre.pdf",
+    "slug": "pino-silvestre",
+    "varianti": [
+      {
+        "codice": "APSI-30",
+        "formato": "30 ml",
+        "prezzo_iva_esclusa": "16,90",
+        "immagine": "immagini/etichetta_30ml/Pino_Silvestre_30ml.jpg"
+      },
+      {
+        "codice": "APSI-100",
+        "formato": "100 ml",
+        "prezzo_iva_esclusa": "39,90",
+        "immagine": "immagini/etichetta_100ml/Pino_Silvestre_100ml.jpg"
+      }
+    ]
+  },
+  {
+    "olio": "Rosmarino",
+    "nome_latino": "Rosmarinus officinalis",
+    "cas": "84604-14-8",
+    "profumo": "Erbaceo, canforato, deciso",
+    "descrizione": "Profumo mediterraneo, fresco e canforato. Tonico e deciso, è perfetto per svegliare i sensi.",
+    "consiglio_uso": "Indicato per gettate mattutine o energizzanti. Si abbina a Limone ed Eucalipto.",
+    "avvertenza": "Pericolo",
+    "pittogrammi": "GHS02 Fiamma, GHS07 Punto esclamativo, GHS08 Pericolo per la salute, GHS09 Ambiente",
+    "frasi_H": "H304 Può essere letale in caso di ingestione e di penetrazione nelle vie respiratorie. H317 Può provocare una reazione allergica cutanea.",
+    "anteprima": "immagini/anteprima/Rosmarino.jpg",
+    "scheda_sicurezza": "schede_sicurezza/SDS_Rosmarino.pdf",
+    "slug": "rosmarino",
+    "varianti": [
+      {
+        "codice": "AROS-30",
+        "formato": "30 ml",
+        "prezzo_iva_esclusa": "18,90",
+        "immagine": "immagini/etichetta_30ml/Rosmarino_30ml.jpg"
+      },
+      {
+        "codice": "AROS-100",
+        "formato": "100 ml",
+        "prezzo_iva_esclusa": "43,90",
+        "immagine": "immagini/etichetta_100ml/Rosmarino_100ml.jpg"
+      }
+    ]
+  }
+]

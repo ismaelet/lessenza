@@ -1,56 +1,36 @@
 @pushOnce('styles')
-	@vite('resources/css/storefront/blog.css')
+    @vite('resources/css/storefront/blog.css')
 @endpushOnce
 
-<x-layouts.legacy-main
-	:$title
-	:$location
-	:headerConfig="['floating' => true]"
->
-	<x-page-header
-		class="dark"
-		image="blog-background.webp"
-		:$title
-	/>
+<x-layouts.legacy-main :$title :$location :headerConfig="['floating' => true]">
+    <x-page-header class="dark" image="blog-background.webp" :$title />
 
-	<section class="page-body">
-		<div class="main-wrap">
-			<div class="posts grid">
+    <section class="page-body">
+        <div class="main-wrap">
+            <div class="posts grid">
+                @foreach ($posts as $key => $post)
+                    <div class="post">
+                        <div class="post__image load--fade-in js-load" data-direction="left" data-delay="3">
+                            <img class="image-cover" src="{{ $post->image() }}" alt="" loading="lazy" />
+                        </div>
 
-				@foreach ($posts as $key => $post)
-					<div class="post">
-						<div
-							class="post__image load--fade-in js-load"
-							data-direction="left"
-							data-delay="3"
-						>
-							<img
-								class="image-cover"
-								src="{{ $post->image() }}"
-								alt=""
-								loading="lazy"
-							>
-						</div>
-
-						<a
-							class="post__content load--fade-in js-load grid"
-							data-direction="right"
-							data-delay="1"
-							data-spacing="700"
-							href="{{ $post->url() }}"
-						>
-							<div class="">
-								<p class="post__subtitle">{{ $post->date() }}</p>
-								<h3 class="post__title text-3xl font-medium text-neutral-700">{{ $post->title }}</h3>
-							</div>
-							<p class="post__text line-clamp-4">{!! $post->text !!}</p>
-							<p class="post__read-more">continua a leggere</p>
-						</a>
-					</div>
-				@endforeach
-
-			</div>
-		</div>
-	</section>
-
+                        <a
+                            class="post__content load--fade-in js-load grid"
+                            data-direction="right"
+                            data-delay="1"
+                            data-spacing="700"
+                            href="{{ $post->url() }}"
+                        >
+                            <div class="">
+                                <p class="post__subtitle">{{ $post->date() }}</p>
+                                <h3 class="post__title text-heading-400 text-3xl font-medium">{{ $post->title }}</h3>
+                            </div>
+                            <p class="post__text line-clamp-4">{!! $post->text !!}</p>
+                            <p class="post__read-more">continua a leggere</p>
+                        </a>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    </section>
 </x-layouts.legacy-main>

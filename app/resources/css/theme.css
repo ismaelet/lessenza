@@ -43,7 +43,8 @@
   --color-background-hue: 180deg;
   --color-primary-hue: 358deg;
 
-  --color-background-400: hsl(var(--color-background-hue) 0% 100%);
+  --color-background-300: #fff;
+  --color-background-400: #fdf8f5;
   --color-background-500: hsl(var(--color-background-hue) 12% 97%);
   --color-background-600: hsl(var(--color-background-hue) 72% 4%);
   --color-background: var(--color-background-400);
@@ -53,10 +54,10 @@
   --color-neutral-150: hsl(var(--color-background-hue) 0% 95%);
   --color-neutral-200: hsl(var(--color-background-hue) 0% 92%);
   --color-neutral-400: hsl(var(--color-background-hue) 0% 47%);
-  --color-neutral-700: hsl(var(--color-background-hue) 0% 13%);
   --color-neutral-950: hsl(var(--color-background-hue) 0% 0%);
 
-  --color-neutral-border: hsl(var(--color-background-hue) 0% 85%);
+  --color-heading-400: #2b1015;
+  --color-border-400: #ecdcd4;
 
   --color-primary-300: hsl(var(--color-primary-hue) 93% 80%);
   --color-primary-400: hsl(var(--color-primary-hue) 93% 74%);
@@ -127,7 +128,7 @@ h6 {
 
 /* Utilities */
 :where(.text-strong) {
-  color: var(--color-neutral-700);
+  color: var(--color-heading-400);
   font-weight: var(--font-weight-semibold);
 }
 

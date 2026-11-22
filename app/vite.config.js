@@ -14,6 +14,7 @@ export default defineConfig({
         "resources/css/storefront/blog.css",
         "resources/css/storefront/cart.css",
         "resources/css/storefront/contacts.css",
+        "resources/css/storefront/essential-oils.css",
         "resources/css/storefront/header.css",
         "resources/css/storefront/home-female.css",
         "resources/css/storefront/home-laboratory.css",

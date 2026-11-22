@@ -282,7 +282,7 @@ main > * {
 .quantity {
   min-height: 4rem;
   width: 9rem;
-  color: var(--color-neutral-700);
+  color: var(--color-heading-400);
   user-select: none;
 }
 

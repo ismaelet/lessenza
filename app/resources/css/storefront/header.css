@@ -22,7 +22,7 @@
 /* 1.1 Default state */
 header {
   --header-background: var(--color-neutral-50);
-  --header-fc: var(--color-neutral-700);
+  --header-fc: var(--color-heading-400);
   --header-padding-block: 1.5rem;
   position: relative;
   top: 0;

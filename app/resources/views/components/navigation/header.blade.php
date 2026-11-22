@@ -1,63 +1,60 @@
 @props(['location' => null, 'config' => []])
 
 @php
+    global $header;
 
-	global $header;
+    $user = auth()->user();
 
-	$user = auth()->user();
+    // theme
+    $header['theme'] = 'light';
+    $header['floating'] = $config['floating'] ?? false;
+    $header['sticky'] = false;
+    $header['mobile-threshold'] = 1280;
 
-	// theme
-	$header['theme'] = 'light';
-	$header['floating'] = $config['floating'] ?? false;
-	$header['sticky'] = false;
-	$header['mobile-threshold'] = 1024;
+    /*
+     * Elements settings
+     */
+    $header['title'] = sys_config('name');
+    $header['title-mobile'] = $header['title'];
+    $header['login-link'] = [
+        'not-logged' => [
+            'label' => 'Login',
+            'url' => client_url('/login'),
+        ],
+        'logged' => [
+            'label' => $user?->username,
+            'url' => client_url('/profile'),
+        ],
+    ];
 
-	/*
-	 * Elements settings
-	 */
-	$header['title'] = sys_config('name');
-	$header['title-mobile'] = $header['title'];
-	$header['login-link'] = [
-	    'not-logged' => [
-	        'label' => 'Login',
-	        'url' => client_url('/login'),
-	    ],
-	    'logged' => [
-	        'label' => $user?->username,
-	        'url' => client_url('/profile'),
-	    ],
-	];
+    /*
+     * Links
+     *	filters: mobile, logged, admin, manager
+     */
+    $header['links'] = [
+        ['label' => 'Home', 'location' => 'home', 'url' => client_url('/')],
+        ['label' => 'Le Fragranze', 'location' => 'shop', 'url' => client_url('/shop')],
+        ['label' => 'Oli essenziali', 'location' => 'essential-oils', 'url' => route('essential-oils.index')],
+        ['label' => 'Tecnologie', 'location' => 'technologies', 'url' => route('technologies')],
+        ['label' => 'Chi Siamo', 'location' => 'about-us', 'url' => client_url('/about-us')],
+        ['label' => 'Recensioni', 'location' => 'reviews', 'url' => client_url('/reviews')],
+        ['label' => 'Blog', 'location' => 'blog', 'url' => client_url('/blog')],
+        ['label' => 'Video', 'location' => 'videos', 'url' => client_url('/videos')],
+        ['label' => 'Contatti', 'location' => 'contacts', 'url' => client_url('/contacts')],
+        ['label' => 'Gestione', 'location' => 'admin', 'url' => client_url('/admin'), 'admin' => true],
+    ];
 
-	/*
-	 * Links
-	 *	filters: mobile, logged, admin, manager
-	 */
-	$header['links'] = [
-	    ['label' => 'Home', 'location' => 'home', 'url' => client_url('/')],
-	    ['label' => 'Le Fragranze', 'location' => 'shop', 'url' => client_url('/shop')],
-	    ['label' => 'Tecnologie', 'location' => 'technologies', 'url' => route('technologies')],
-	    ['label' => 'Chi Siamo', 'location' => 'about-us', 'url' => client_url('/about-us')],
-	    ['label' => 'Recensioni', 'location' => 'reviews', 'url' => client_url('/reviews')],
-	    ['label' => 'Blog', 'location' => 'blog', 'url' => client_url('/blog')],
-	    ['label' => 'Video', 'location' => 'videos', 'url' => client_url('/videos')],
-	    ['label' => 'Contatti', 'location' => 'contacts', 'url' => client_url('/contacts')],
-	    ['label' => 'Gestione', 'location' => 'admin', 'url' => client_url('/admin'), 'admin' => true],
-	];
+    // dropdowns
+    /*$header['dropdowns']['*dropdown-name*'] = [
+    ['Title', client_url('/link')],
+    ];*/
 
-	// dropdowns
-	/*$header['dropdowns']['*dropdown-name*'] = [
-	['Title', client_url('/link')],
-];*/
-
-	// load components
-	// include_once '-expands-header/components.php';
-
+    // load components
+    // include_once '-expands-header/components.php';
 @endphp
 
 @pushOnce('styles')
-	<style>
-
-	</style>
+    <style></style>
 @endpushOnce
 
 <?php
@@ -66,28 +63,29 @@
 * Filter navigation items
 */
 
-function header_filter_navigation_items(array $items, bool $isMobileMenu = null) {
-	foreach ($items as $key => $item) {
-		switch (true) {
-			// check mobile filters
-			case (isset($item['mobile']) && $item['mobile'] && $isMobileMenu === false):
-			case (isset($item['mobile']) && !$item['mobile'] && $isMobileMenu):
+function header_filter_navigation_items(array $items, ?bool $isMobileMenu = null)
+{
+    foreach ($items as $key => $item) {
+        switch (true) {
+            // check mobile filters
+            case isset($item['mobile']) && $item['mobile'] && $isMobileMenu === false:
+            case isset($item['mobile']) && ! $item['mobile'] && $isMobileMenu:
 
-				// check logged filter
-			case (isset($item['logged']) && $item['logged'] && !logged()):
-			case (isset($item['logged']) && $item['logged'] && !logged()):
+                // check logged filter
+            case isset($item['logged']) && $item['logged'] && ! logged():
+            case isset($item['logged']) && $item['logged'] && ! logged():
 
-				// check admin filter
-			case (isset($item['admin']) && !Auth::user()?->is_admin):;
+                // check admin filter
+            case isset($item['admin']) && ! Auth::user()?->is_admin:;
 
-				// check manager filter
-			case (isset($item['manager']) && !manager()):
-				unset($items[$key]);
-				break;
-		}
-	}
+                // check manager filter
+            case isset($item['manager']) && ! manager():
+                unset($items[$key]);
+                break;
+        }
+    }
 
-	return $items;
+    return $items;
 }
 
 /*
@@ -95,15 +93,15 @@ function header_filter_navigation_items(array $items, bool $isMobileMenu = null)
 */
 $headerComponent['mobile-icon'] = function () { ?>
 <div class="h__mobile-icon js-toggle-mobile-menu">
-	<div class="h__mobile-icon-part">
-		<div class="h__mobile-icon-line"></div>
-	</div>
-	<div class="h__mobile-icon-part">
-		<div class="h__mobile-icon-line"></div>
-	</div>
-	<div class="h__mobile-icon-part">
-		<div class="h__mobile-icon-line"></div>
-	</div>
+    <div class="h__mobile-icon-part">
+        <div class="h__mobile-icon-line"></div>
+    </div>
+    <div class="h__mobile-icon-part">
+        <div class="h__mobile-icon-line"></div>
+    </div>
+    <div class="h__mobile-icon-part">
+        <div class="h__mobile-icon-line"></div>
+    </div>
 </div>
 <?php };
 
@@ -111,21 +109,19 @@ $headerComponent['mobile-icon'] = function () { ?>
 * Mobile menu
 */
 $headerComponent['mobile-menu'] = function () {
-	global $header;
+    global $header;
 
-	$navigationItemList = header_filter_navigation_items((array) $header['links'], true);
-?>
+    $navigationItemList = header_filter_navigation_items((array) $header['links'], true);
+    ?>
 
 <nav class="h__mobile-navigation">
-	<ul class="h__mobile-navigation__links">
-
-		@foreach ($navigationItemList as $link)
-			<li class="h__mobile-navigation__link">
-				<a href="{{ $link['url'] }}">{{ $link['label'] }}</a>
-			</li>
-		@endforeach
-
-	</ul>
+    <ul class="h__mobile-navigation__links">
+        @foreach ($navigationItemList as $link)
+            <li class="h__mobile-navigation__link">
+                <a href="{{ $link['url'] }}">{{ $link['label'] }}</a>
+            </li>
+        @endforeach
+    </ul>
 </nav>
 
 <?php };
@@ -134,11 +130,11 @@ $headerComponent['mobile-menu'] = function () {
 * title
 */
 $headerComponent['title'] = function () {
-	global $header;
-?>
+    global $header;
+    ?>
 
 <p class="h__title">
-	<a href="<?= client_url('/') ?>"><?= $header['title'] ?></a>
+    <a href="<?= client_url('/') ?>"><?= $header['title'] ?></a>
 </p>
 
 <?php };
@@ -158,165 +154,152 @@ $headerComponent['search-icon'] = function () { ?>
 * Megamenus
 */
 $headerComponent['megamenus'] = function () {
-global $header;
+    global $header;
 
-if (isset($header['megamenus'])) {
-?>
+    if (isset($header['megamenus'])) {
+        ?>
 
 <section class="megamenus">
+    <div class="megamenus_backdrop"></div>
 
-	<div class="megamenus_backdrop"></div>
+    <?php foreach ((array) $header['megamenus'] as $megamenuName => $megamenu) { ?>
 
-	<?php foreach ((array) $header['megamenus'] as $megamenuName => $megamenu) { ?>
+    <div
+        class="megamenu <?= isset($megamenu['type']) ? 'megamenu--'.$megamenu['type'] : '' ?>"
+        id="megamenu-<?= $megamenuName ?>"
+    >
+        <div class="megamenu-content main-wrap pad-t-2 pad-b-2">
+            <?php if (isset($megamenu['type']) && $megamenu['type'] == 'free') {
+                foreach ($megamenu['links'] as $megamenulink) {
 
-	<div
-		class="megamenu <?= isset($megamenu['type']) ? 'megamenu--' . $megamenu['type'] : '' ?>"
-		id="megamenu-<?= $megamenuName ?>"
-	>
-		<div class="megamenu-content main-wrap pad-t-2 pad-b-2">
+                    if (! isset($megamenuSection['mobile']) || ! $megamenuSection['mobile']) { ?>
 
-			<?php if (isset($megamenu['type']) && $megamenu['type'] == 'free') {
-							foreach ($megamenu['links'] as $megamenulink) {
+            <p class="megamenu_link">
+                <a href="<?= $megamenulink[1] ?>"><?= $megamenulink[0] ?></a>
+            </p>
 
-								if (!isset($megamenuSection['mobile']) || !$megamenuSection['mobile']) { ?>
+            <?php }
+                    }
+            } else {
+                foreach ($megamenu as $megamenuSection) {
 
-			<p class="megamenu_link">
-				<a href="<?= $megamenulink[1] ?>"><?= $megamenulink[0] ?></a>
-			</p>
+                    if (! isset($megamenuSection['mobile']) || ! $megamenuSection['mobile']) { ?>
 
-			<?php }
-							}
-						} else {
-							foreach ($megamenu as $megamenuSection) {
+            <div class="megamenu-group gap1 grid">
+                <?php if ($megamenuSection['title']) { ?>
 
-								if (!isset($megamenuSection['mobile']) || !$megamenuSection['mobile']) { ?>
+                <h3 class="megamenu-title">
+                    <a href="<?= $megamenuSection['url'] ?>"><?= $megamenuSection['title'] ?></a>
+                </h3>
 
-			<div class="megamenu-group gap1 grid">
-				<?php if ($megamenuSection['title']) { ?>
+                <?php } ?>
 
-				<h3 class="megamenu-title">
-					<a href="<?= $megamenuSection['url'] ?>"><?= $megamenuSection['title'] ?></a>
-				</h3>
+                <div class="megamenu-links gap1 grid">
+                    <?php foreach ($megamenuSection['links'] as $h_megamenuLink) { ?>
+                    <p class="">
+                        <a href="<?= $h_megamenuLink[1] ?>"><?= $h_megamenuLink[0] ?></a>
+                    </p>
+                    <?php } ?>
+                </div>
+            </div>
+            <?php }
+                    }
+            } ?>
+        </div>
+    </div>
 
-				<?php } ?>
-
-				<div class="megamenu-links gap1 grid">
-					<?php foreach ($megamenuSection['links'] as $h_megamenuLink) { ?>
-					<p class=""><a href="<?= $h_megamenuLink[1] ?>"><?= $h_megamenuLink[0] ?></a></p>
-					<?php } ?>
-				</div>
-			</div>
-			<?php }
-							}
-						} ?>
-
-		</div>
-	</div>
-
-	<?php } ?>
-
+    <?php } ?>
 </section>
 
 <?php }
-};?>
-
+    }; ?>
 
 @pushOnce('styles')
-	@vite('resources/css/storefront/header.css')
+    @vite('resources/css/storefront/header.css')
 @endpushOnce
 
 <header
-	class="header"
-	data-theme="<?= $header['theme'] ?>"
-	data-floating="<?= $header['floating'] ? 'true' : 'false' ?>"
-	data-sticky="<?= $header['sticky'] ? 'true' : 'false' ?>"
-	data-mobile-threshold="<?= $header['mobile-threshold'] ?>"
+    class="header"
+    data-theme="<?= $header['theme'] ?>"
+    data-floating="<?= $header['floating'] ? 'true' : 'false' ?>"
+    data-sticky="<?= $header['sticky'] ? 'true' : 'false' ?>"
+    data-mobile-threshold="<?= $header['mobile-threshold'] ?>"
 >
-	<div class="h__wrapper">
-		<div class="h__main-content">
+    <div class="h__wrapper">
+        <div class="h__main-content border-border-400 bg-background-300 border-b">
+            <!-- Header desktop -->
+            <div class="h__desktop hidden xl:block">
+                <section class="h__bars h-bars--desktop">
+                    <!-- Top left bar -->
+                    <div class="h__bar h-bar--desktop">
+                        <x-navigation.header.search />
+                    </div>
+                    <div class="h__bar h-bar--desktop">
+                        <x-navigation.header.desktop-navigation :links="$header['links']" :$location />
+                    </div>
+                    <div class="h__bar h-bar--desktop">
+                        <x-navigation.header.profile-icon />
+                        <livewire:header.cart-icon />
+                    </div>
+                </section>
+            </div>
 
-			<!-- Header desktop -->
-			<div class="h__desktop hidden lg:block">
-				<section class="h__bars h-bars--desktop">
-					<!-- Top left bar -->
-					<div class="h__bar h-bar--desktop">
-						<x-navigation.header.search />
-					</div>
-					<div class="h__bar h-bar--desktop">
-						<x-navigation.header.desktop-navigation
-							:links="$header['links']"
-							:$location
-						/>
-					</div>
-					<div class="h__bar h-bar--desktop">
-						<x-navigation.header.profile-icon />
-						<livewire:header.cart-icon />
-					</div>
-				</section>
-			</div>
+            <!-- Mobile Header -->
+            <div class="h__mobile xl:hidden">
+                <div class="h__bars h-bars--mobile">
+                    <div class="h__bar h-bar--mob">
+                        <x-navigation.header.search />
+                    </div>
+                    <div class="h__bar h-bar--mob"></div>
+                    <div class="h__bar h-bar--mob">
+                        <x-navigation.header.profile-icon />
+                        <livewire:header.cart-icon />
+                        <x-navigation.header.mobile-icon />
+                    </div>
+                </div>
+            </div>
+        </div>
 
-			<!-- Mobile Header -->
-			<div class="h__mobile lg:hidden">
-				<div class="h__bars h-bars--mobile">
-					<div class="h__bar h-bar--mob">
-						<x-navigation.header.search />
-					</div>
-					<div class="h__bar h-bar--mob">
-					</div>
-					<div class="h__bar h-bar--mob">
-						<x-navigation.header.profile-icon />
-						<livewire:header.cart-icon />
-						<x-navigation.header.mobile-icon />
-					</div>
-				</div>
-			</div>
-		</div>
+        {{-- Hanging content --}}
+        <div class="h__hanging-content">
+            <!-- Mobile navigation -->
+            <nav class="h__mobile-navigation">
+                <ul class="h__mobile-navigation__links">
+                    <li class="h__mobile-navigation__link">
+                        <a href="/">Home</a>
+                    </li>
+                    <li class="h__mobile-navigation__link">
+                        <a href="/shop">Le Fragranze</a>
+                    </li>
+                    <li class="h__mobile-navigation__link">
+                        <a href="{{ route('essential-oils.index') }}">Oli essenziali</a>
+                    </li>
 
-		{{-- Hanging content --}}
-		<div class="h__hanging-content">
+                    <li class="h__mobile-navigation__link">
+                        <a href="/technologies">Tecnologie</a>
+                    </li>
 
-			<!-- Mobile navigation -->
-			<nav class="h__mobile-navigation">
-				<ul class="h__mobile-navigation__links">
+                    <li class="h__mobile-navigation__link">
+                        <a href="/about-us">Chi Siamo</a>
+                    </li>
 
-					<li class="h__mobile-navigation__link">
-						<a href="/">Home</a>
-					</li>
-					<li class="h__mobile-navigation__link">
-						<a href="/shop">Le Fragranze</a>
-					</li>
+                    <li class="h__mobile-navigation__link">
+                        <a href="/reviews">Recensioni</a>
+                    </li>
 
-					<li class="h__mobile-navigation__link">
-						<a href="/technologies">Tecnologie</a>
-					</li>
+                    <li class="h__mobile-navigation__link">
+                        <a href="/blog">Blog</a>
+                    </li>
 
+                    <li class="h__mobile-navigation__link">
+                        <a href="/videos">Video</a>
+                    </li>
 
-					<li class="h__mobile-navigation__link">
-						<a href="/about-us">Chi Siamo</a>
-					</li>
-
-
-					<li class="h__mobile-navigation__link">
-						<a href="/reviews">Recensioni</a>
-					</li>
-
-
-					<li class="h__mobile-navigation__link">
-						<a href="/blog">Blog</a>
-					</li>
-
-
-					<li class="h__mobile-navigation__link">
-						<a href="/videos">Video</a>
-					</li>
-
-
-					<li class="h__mobile-navigation__link">
-						<a href="/contacts">Contatti</a>
-					</li>
-
-				</ul>
-			</nav>
-		</div>
-	</div>
+                    <li class="h__mobile-navigation__link">
+                        <a href="/contacts">Contatti</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
 </header>

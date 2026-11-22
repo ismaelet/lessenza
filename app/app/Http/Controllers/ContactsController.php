@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Mail\ContactMail;
+use App\Support\EssentialOilCatalogue;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -14,11 +15,15 @@ class ContactsController extends Controller
     /**
      * Display the contacts page.
      */
-    public function index(): View
+    public function index(Request $request, EssentialOilCatalogue $catalogue): View
     {
+        $oil = $catalogue->all()->firstWhere('slug', $request->query('olio'));
+        $variant = $oil ? collect($oil['varianti'])->firstWhere('formato', $request->query('formato')) : null;
+
         return view('contacts', [
             'title' => 'Contatti',
             'location' => 'contacts',
+            'message' => $variant ? 'Vorrei richiedere un preventivo per olio essenziale '.$oil['olio'].' '.$variant['formato'].' ('.$variant['codice'].').' : '',
         ]);
     }
 

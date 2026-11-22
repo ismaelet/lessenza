@@ -114,7 +114,7 @@
 							>
 						</div>
 
-						<div class="animated-field">
+						<div class="animated-field {{ old('text', $message ?? '') ? 'is-used' : '' }}">
 							<p class="animated-field__label">Testo</p>
 							<textarea
 							 name="text"
@@ -123,7 +123,7 @@
 							 onfocus="this.closest('.animated-field').classList.add('is-used')"
 							 onblur="if (!this.value.length) this.closest('.animated-field').classList.remove('is-used')"
 							 required
-							></textarea>
+							>{{ old('text', $message ?? '') }}</textarea>
 						</div>
 					</div>
 

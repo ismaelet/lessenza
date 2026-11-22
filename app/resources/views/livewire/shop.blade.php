@@ -138,7 +138,7 @@
 		</section>
 
 		<!-- products -->
-		@if ($products)
+		@if ($products->isNotEmpty())
 
 			<section class="shop__body stack-content relative grid items-start">
 				<div
@@ -169,60 +169,25 @@
 
 		<!-- Pages -->
 		@if ($pageCount > 1)
-			$base = $this->shopSettings->page - 2;
-
-			if ($base <
-				1)
-				$base=1;
-				$top=$base
-				+
-				4;
-				if
-				($top
-			> $pageN) {
-				$top = $pageN;
-				$i = $top - 4;
-				} else $i = $base;
-
-				if ($i <
-					1)
-					$i=1
-					?
-				>
-
-					<section
-						id="page-box"
-						class="txt-cen mar-t-3"
-					>
-
-						<input
-							type="hidden"
-							id="page-inp"
-							name="page"
-							value="<?= $this->shopSettings->page ?>"
-						>
-
-						<?php if ($base > 1) { ?><p class="page_txt disabled">...</p><?php } ?>
-
-						<?php while ($i <= $top) { ?>
-						<p
-							class="page_txt clickable <?php if ($i == $this->shopSettings->page) {
-							    echo 'select disabled';
-							} ?>"
-							data-page="<?= $i ?>"
-						><?= $i ?></p>
-						<?php $i++;
-						} ?>
-
-						<?php if ($pageN > $top) { ?><p class="page_txt disabled">...</p><?php } ?>
-
-						<button
-							type="submit"
-							id="page-btn"
-							class="hidden"
-						></button>
-
-					</section>
+			<nav aria-label="Pagine del catalogo" class="mt-12 flex flex-wrap items-center justify-center gap-2">
+				<button type="button" wire:click="setPage({{ $page - 1 }})" @disabled($page === 1) class="p-2 disabled:opacity-50">Precedente</button>
+				@if ($pages[0] > 1)
+					<button type="button" wire:click="setPage(1)" class="page_txt">1</button>
+					@if ($pages[0] > 2)
+						<span aria-hidden="true">…</span>
+					@endif
+				@endif
+				@foreach ($pages as $number)
+					<button type="button" wire:click="setPage({{ $number }})" class="page_txt {{ $number === $page ? 'select' : '' }}" @if ($number === $page) aria-current="page" @endif>{{ $number }}</button>
+				@endforeach
+				@if (end($pages) < $pageCount)
+					@if (end($pages) < $pageCount - 1)
+						<span aria-hidden="true">…</span>
+					@endif
+					<button type="button" wire:click="setPage({{ $pageCount }})" class="page_txt">{{ $pageCount }}</button>
+				@endif
+				<button type="button" wire:click="setPage({{ $page + 1 }})" @disabled($page === $pageCount) class="p-2 disabled:opacity-50">Successiva</button>
+			</nav>
 		@endif
 
 	</div>

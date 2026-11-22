@@ -38,6 +38,15 @@ The application includes functionality for:
 - Content and informational pages
 - Responsive storefront layouts
 
+The Aufguss essential oil catalogue is available at `/oli-essenziali`, with searchable fragrances,
+individual product pages, 30 ml and 100 ml formats, safety sheet downloads, and quote enquiries
+through the contact form. Catalogue content is maintained in `app/resources/data/oli-essenziali.json`;
+the supplied images, labels, and PDFs are in `app/public/oli-essenziali/`. The dedicated catalogue
+uses the enquiry flow. The `2026_11_22_170000_add_aufguss_essential_oil_products` data migration also
+adds 32 shop products (16 oils in two sizes) with fixed prices excluding VAT. It contains an
+immutable snapshot of the client data, including product codes and safety sheet links. Rollback
+removes the imported products and retains the product type, which may be shared with other products.
+
 The exact availability of individual features depends on the current application configuration and enabled integrations.
 
 ## Project Structure

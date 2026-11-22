@@ -159,7 +159,7 @@
 
 .big-search-bar .icon-embed:hover,
 .big-search-bar:has(:focus) .icon-embed {
-  color: var(--color-neutral-700);
+  color: var(--color-heading-400);
 }
 
 /*
