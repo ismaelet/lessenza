@@ -59,6 +59,7 @@ html {
 
 .sidebar__subtitle {
   margin-bottom: 1rem;
+  font-family: var(--font-heading-alt);
 }
 
 /*
@@ -189,6 +190,7 @@ html {
 .filter__title {
   width: max-content;
   padding-block: 1rem;
+  font-family: var(--font-heading-alt);
 }
 
 .filter__title::after {

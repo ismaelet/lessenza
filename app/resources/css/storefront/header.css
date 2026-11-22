@@ -91,6 +91,7 @@ header[data-floating="true"]:not(.opened) {
 header[data-floating="true"]:not(.opened) .h__main-content {
   background-color: hsl(0, 0%, 0%, 0.1);
   backdrop-filter: blur(10px);
+  border-bottom: 1px solid hsl(0, 0%, 100%, 0.15);
 }
 
 /*
@@ -106,11 +107,13 @@ header[data-floating="true"]:not(.opened) .h__main-content {
   color: var(--header-fc);
   font-size: var(--fs-400);
   letter-spacing: 0.05em;
+  padding-block: 0.5rem;
   transition: border 0.3s;
 }
 
 .h__link--highlighted {
   font-weight: var(--font-weight-bold);
+  border-bottom: 2px solid var(--color-primary-400);
 }
 
 .h__link a {

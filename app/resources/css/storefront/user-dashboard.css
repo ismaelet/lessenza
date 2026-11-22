@@ -67,7 +67,7 @@
 .profile-nav-link p {
   --icon-size: 1.2em;
   padding-inline: 1rem 0.5rem;
-  font-family: var(--font-heading);
+  font-family: var(--font-heading-alt);
   font-weight: var(--fw-medium);
   line-height: 4.25;
 }

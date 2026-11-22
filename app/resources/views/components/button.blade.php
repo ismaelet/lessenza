@@ -19,7 +19,7 @@
             min-width: 16rem;
             padding-block: 2rem;
             border-radius: var(--radius-md);
-            font-family: var(--font-heading);
+            font-family: var(--font-heading-alt);
             font-size: var(--text-200);
             letter-spacing: 0.2em;
             text-align: center;

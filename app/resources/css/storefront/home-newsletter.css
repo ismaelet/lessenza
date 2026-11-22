@@ -94,7 +94,6 @@
 
   &::placeholder {
     font-size: 13px;
-    font-family: var(--font-heading);
     color: #202020;
     letter-spacing: 0.1em;
   }

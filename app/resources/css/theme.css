@@ -1,21 +1,11 @@
 /* Assets */
 @font-face {
-  font-family: "Open Sans";
+  font-family: "Manrope";
   font-weight: 300 700;
   font-display: auto;
   src:
-    local("Open Sans"),
-    url("../../public/fonts/OpenSans.ttf") format("truetype");
-}
-
-@font-face {
-  font-family: "Open Sans";
-  font-weight: 300 400;
-  font-display: auto;
-  font-style: italic;
-  src:
-    local("Open Sans"),
-    url("../../public/fonts/OpenSans-Italic.ttf") format("truetype");
+    local("Manrope"),
+    url("../../public/fonts/Manrope.ttf") format("truetype");
 }
 
 @font-face {
@@ -37,6 +27,25 @@
     url("../../public/fonts/Montserrat-Italic.ttf") format("truetype");
 }
 
+@font-face {
+  font-family: "Cormorant Garamond";
+  font-weight: 300 700;
+  font-display: auto;
+  src:
+    local("Cormorant Garamond"),
+    url("../../public/fonts/CormorantGaramond.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Cormorant Garamond";
+  font-weight: 300 400;
+  font-display: auto;
+  font-style: italic;
+  src:
+    local("Cormorant Garamond"),
+    url("../../public/fonts/CormorantGaramond-Italic.ttf") format("truetype");
+}
+
 /* Theme */
 @theme {
   /* Theme: Colors */
@@ -45,7 +54,7 @@
 
   --color-background-300: #fff;
   --color-background-400: #fdf8f5;
-  --color-background-500: hsl(var(--color-background-hue) 12% 97%);
+  --color-background-500: #f6ebe5;
   --color-background-600: hsl(var(--color-background-hue) 72% 4%);
   --color-background: var(--color-background-400);
 
@@ -65,8 +74,8 @@
 
   --color-secondary-200: hsl(12deg 20% 55%);
   --color-secondary-300: hsl(12deg 20% 35%);
-  --color-secondary-400: hsl(12deg 30% 13%);
-  --color-secondary-500: hsl(12deg 25% 10%);
+  --color-secondary-400: hsl(349, 46%, 12%);
+  --color-secondary-500: hsl(349, 46%, 9%);
 
   --color-good-400: var(--color-lime-600);
   --color-bad-400: var(--color-red-600);
@@ -79,8 +88,10 @@
   --color-status-4: var(--color-orange-600);
 
   /* Theme: Fonts */
-  --font-heading: "Montserrat", system-ui, sans-serif;
-  --font-sans: "Open Sans", system-ui, sans-serif;
+  --font-heading: "Cormorant Garamond", system-ui, sans-serif;
+  --font-heading-alt: "Montserrat", system-ui, sans-serif;
+  --font-sans: "Manrope", system-ui, sans-serif;
+  --font-serif: "Cormorant Garamond", system-ui, serif;
 
   --font-weight-light: 300;
   --font-weight-semibold: 700;
