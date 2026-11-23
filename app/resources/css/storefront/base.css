@@ -1847,3 +1847,26 @@ h3,
   grid-template-columns: repeat(auto-fill, minmax(min(16rem, 100%), 1fr));
   gap: 1.5rem;
 }
+
+/* Content types */
+@utility stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-stack, 1rem);
+}
+
+@utility prose {
+  > * + * {
+    margin-block-start: var(--spacing-prose, 1em);
+  }
+}
+
+@utility pile {
+  display: grid;
+  grid-template-areas: "pile";
+  place-items: center;
+
+  & > * {
+    grid-area: pile;
+  }
+}

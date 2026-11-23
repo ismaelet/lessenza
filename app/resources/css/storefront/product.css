@@ -99,7 +99,7 @@
 
 .item-scent {
   color: var(--color-secondary-300);
-  font-family: var(--font-heading);
+  font-family: var(--font-heading-alt);
 }
 
 .item-formats {
