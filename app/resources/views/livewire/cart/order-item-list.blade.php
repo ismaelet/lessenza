@@ -16,7 +16,9 @@
                     <a href="<?= $orderItem->product->url() ?>">{{ localized_text($orderItem->name) }}</a>
                 </p>
 
-                <p class=""><?= $orderItem->quantity == 1 ? 'tanica' : 'taniche' ?> {{ __('da 5L') }}</p>
+                @if (! $orderItem->product->isEssentialOil())
+                    <p class=""><?= $orderItem->quantity == 1 ? 'tanica' : 'taniche' ?> {{ __('da 5L') }}</p>
+                @endif
 
                 <p><?= $orderItem->quantity ?> x {{ price($orderItem->unit_price_net) }}</p>
             </div>

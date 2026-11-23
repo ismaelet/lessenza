@@ -93,7 +93,6 @@
 
 .item-enquiry {
   display: grid;
-  justify-items: start;
   gap: 1rem;
 }
 
@@ -340,6 +339,6 @@
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
   .item-safety__body {
-    grid-template-columns: 11rem minmax(0, 1fr);
+    grid-template-columns: auto minmax(0, 1fr);
   }
 }

@@ -76,6 +76,11 @@ class Product extends Model
         return route('product.show', ['product' => $this->slug]);
     }
 
+    public function isEssentialOil(): bool
+    {
+        return app(EssentialOilCatalogue::class)->forProduct($this) !== null;
+    }
+
     /**
      * Get the image URL for the product
      */

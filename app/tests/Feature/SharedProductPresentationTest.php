@@ -227,20 +227,45 @@ class SharedProductPresentationTest extends TestCase
             $product = $products['olio-essenziale-anice-'.$size];
             Livewire::test(AddToCart::class, [
                 'product' => $product,
-                'label' => "Aggiungi all'ordine",
-                'showQuantity' => false,
-            ])->assertSee("Aggiungi all'ordine")
-                ->assertDontSee('name="quantity"', false)
+            ])->assertSee(__('Aggiungi al carrello'))
+                ->assertSee('name="quantity"', false)
+                ->set('quantity', 3)
                 ->call('addToCart')
                 ->assertHasNoErrors()
                 ->assertDispatched('updateCart')
                 ->assertDispatched('meta-add-to-cart');
 
             $line = OrderItem::where('product_id', $product->id)->firstOrFail();
-            $this->assertSame(1, $line->quantity);
+            $this->assertSame(3, $line->quantity);
             $this->assertEqualsWithDelta($price, $line->unit_price_net, 0.001);
         }
         $this->assertDatabaseCount('order_items', 2);
+    }
+
+    public function test_cart_hides_five_litre_packaging_for_both_oil_sizes_only(): void
+    {
+        foreach (['1-limone', 'olio-essenziale-anice-30ml', 'olio-essenziale-anice-100ml'] as $slug) {
+            $product = new Product(['name' => 'Test product', 'slug' => $slug]);
+            $product->id = 1;
+            $line = new OrderItem;
+            $line->forceFill(['id' => 1, 'name' => 'Test product', 'quantity' => 2, 'unit_price_net' => 15.9]);
+            $line->setRelation('product', $product);
+
+            $html = view('livewire.cart.order-item-list', [
+                'orderItems' => collect([$line]),
+                'editable' => false,
+            ])->render();
+
+            if ($slug === '1-limone') {
+                $this->assertStringContainsString('taniche', $html);
+                $this->assertStringContainsString('da 5L', $html);
+            } else {
+                $this->assertStringNotContainsString('taniche', $html);
+                $this->assertStringNotContainsString('da 5L', $html);
+            }
+            $this->assertStringContainsString('2 x', $html);
+            $this->assertStringContainsString('<img', $html);
+        }
     }
 
     private function createCartTables(): void

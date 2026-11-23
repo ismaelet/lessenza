@@ -117,18 +117,17 @@
                     x-show="selected === {{ $index }}"
                     @if ($index !== $item->selectedVariant) style="display: none" @endif
                 >
-                    <div class="flex flex-wrap gap-4">
+                    <div class="grid gap-4">
                         @isset($purchaseProducts[$variant['productSlug']])
                             <livewire:product.add-to-cart
                                 :product="$purchaseProducts[$variant['productSlug']]"
-                                label="Aggiungi all'ordine"
-                                :show-quantity="$item->product !== null"
                                 :key="'oil-cart-'.$purchaseProducts[$variant['productSlug']]->id"
                             />
                         @endisset
                         <x-button
                             :href="$variant['enquiryUrl']"
                             variant="secondary"
+                            class=""
                         >{{ __('Richiedi preventivo') }}</x-button>
                     </div>
                 </div>
@@ -183,7 +182,13 @@
                     <div class="item-safety__symbols">
                         @foreach ($item->safety['symbols'] as $symbol)
                             <figure>
-                                <img src="{{ $symbol['image'] }}" alt="{{ $symbol['label'] }}" width="64" height="64" loading="lazy" />
+                                <img
+                                    src="{{ $symbol['image'] }}"
+                                    alt="{{ $symbol['label'] }}"
+                                    width="64"
+                                    height="64"
+                                    loading="lazy"
+                                />
                                 <figcaption><span>{{ $symbol['code'] }}</span>{{ $symbol['label'] }}</figcaption>
                             </figure>
                         @endforeach
@@ -192,7 +197,10 @@
                 <table class="item-safety__statements" aria-label="{{ __('Informazioni di sicurezza') }}">
                     <tbody>
                         @foreach ($item->safety['statements'] as $statement)
-                            <tr><th scope="row">{{ $statement['code'] }}</th><td>{{ $statement['text'] }}</td></tr>
+                            <tr>
+                                <th scope="row">{{ $statement['code'] }}</th>
+                                <td>{{ $statement['text'] }}</td>
+                            </tr>
                         @endforeach
                     </tbody>
                 </table>
