@@ -16,45 +16,31 @@
     </nav>
 
     <section class="item-detail" x-data="{ selected: {{ $item->selectedVariant }} }">
-        <div class="item-gallery" x-data="{ showLabel: false }">
+        <div class="item-gallery" x-data="{ selectedImage: 0 }">
             <div class="item-gallery__stage">
-                @foreach ($item->gallery as $image)
+                @foreach ($item->gallery as $index => $image)
                     <img
-                        x-show="{{ $image['variant'] === null ? '!showLabel' : 'showLabel && selected === '.$image['variant'] }}"
-                        @if ($image['variant'] !== null) style="display: none" @endif
+                        x-show="selectedImage === {{ $index }}"
+                        @if ($index !== 0) style="display: none" @endif
                         src="{{ $image['src'] }}"
                         alt="{{ $image['alt'] }}"
                         class="item-gallery__image"
                     />
                 @endforeach
             </div>
-            @if ($item->variants)
+            @if (count($item->gallery) > 1)
                 <div class="item-gallery__thumbnails" role="group" aria-label="{{ __('Immagini del prodotto') }}">
-                    <button
-                        type="button"
-                        class="item-gallery__thumbnail"
-                        @click="showLabel = false"
-                        :aria-pressed="(! showLabel).toString()"
-                        aria-label="{{ $item->name }}"
-                    >
-                        <img src="{{ $item->image }}" alt="" />
-                    </button>
-                    <button
-                        type="button"
-                        class="item-gallery__thumbnail"
-                        @click="showLabel = true"
-                        :aria-pressed="showLabel.toString()"
-                        aria-label="{{ __('Informazioni di sicurezza') }}"
-                    >
-                        @foreach ($item->variants as $index => $variant)
-                            <img
-                                x-show="selected === {{ $index }}"
-                                @if ($index !== $item->selectedVariant) style="display: none" @endif
-                                src="{{ $variant['image'] }}"
-                                alt=""
-                            />
-                        @endforeach
-                    </button>
+                    @foreach ($item->gallery as $index => $image)
+                        <button
+                            type="button"
+                            class="item-gallery__thumbnail"
+                            @click="selectedImage = {{ $index }}"
+                            :aria-pressed="(selectedImage === {{ $index }}).toString()"
+                            aria-label="{{ $image['alt'] }}"
+                        >
+                            <img src="{{ $image['src'] }}" alt="" />
+                        </button>
+                    @endforeach
                 </div>
             @endif
         </div>

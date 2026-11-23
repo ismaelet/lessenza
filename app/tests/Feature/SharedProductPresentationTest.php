@@ -76,8 +76,9 @@ class SharedProductPresentationTest extends TestCase
         $this->assertNull($oil->product);
         $this->assertCount(2, $oil->variants);
         $this->assertSame($oil->image, $oil->gallery[0]['src']);
-        $this->assertNull($oil->gallery[0]['variant']);
-        $this->assertSame([0, 1], array_column(array_slice($oil->gallery, 1), 'variant'));
+        $this->assertCount(2, $oil->gallery);
+        $this->assertSame('AANI-30', $oil->variants[0]['code']);
+        $this->assertStringContainsString('Anice_30ml.jpg', $oil->gallery[1]['src']);
         $this->assertSame('AANI-100', $oil->variants[1]['code']);
         $this->assertStringContainsString('formato=100%20ml', $oil->variants[1]['enquiryUrl']);
         $this->assertStringContainsString('SDS_Anice.pdf', $oil->safety['url']);
@@ -117,6 +118,22 @@ class SharedProductPresentationTest extends TestCase
         $this->assertSame('84650-59-9', $item->metadata['CAS']);
         $this->assertStringContainsString('anteprima/Anice.jpg', $item->image);
         $this->assertSame($product->priceString(), $item->priceLabel);
+    }
+
+    public function test_oil_sizes_share_base_gallery_images_but_keep_their_product_selection(): void
+    {
+        $product = Product::firstOrFail();
+        $product->slug = 'olio-essenziale-anice-30ml';
+        $small = new StorefrontItem($product);
+        $product->slug = 'olio-essenziale-anice-100ml';
+        $large = new StorefrontItem($product);
+
+        $this->assertSame(array_column($small->gallery, 'src'), array_column($large->gallery, 'src'));
+        $this->assertSame(0, $small->selectedVariant);
+        $this->assertSame(1, $large->selectedVariant);
+        $this->assertCount(2, $large->gallery);
+        $this->assertStringContainsString('Anice_30ml.jpg', $large->gallery[1]['src']);
+        $this->assertSame('AANI-100', $large->variants[1]['code']);
     }
 
     public function test_optional_empty_fields_are_hidden_and_availability_is_retained(): void

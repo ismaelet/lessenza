@@ -78,17 +78,16 @@ final readonly class StorefrontItem
                 'size' => $variant['formato'],
                 'priceLabel' => $product?->slug === $productSlug ? $product->priceString() : $this->oilPrice($variant['prezzo_iva_esclusa']),
                 'code' => $variant['codice'],
-                'image' => asset('oli-essenziali/'.$variant['immagine']),
-                'imageAlt' => __('Etichetta :oil :size', ['oil' => $oil['olio'], 'size' => $variant['formato']]),
                 'enquiryUrl' => route('contacts', ['olio' => $oil['slug'], 'formato' => $variant['formato']]),
                 'productUrl' => $product ? route('product.show', $productSlug) : null,
             ];
         }
         $this->variants = $variants;
         $this->selectedVariant = $selected;
-        $this->gallery = array_merge([['src' => $this->image, 'alt' => $this->name, 'variant' => null]], $oil ? array_map(fn (array $variant, int $index) => [
-            'src' => $variant['image'], 'alt' => $variant['imageAlt'], 'variant' => $index,
-        ], $variants, array_keys($variants)) : []);
+        $this->gallery = array_merge([['src' => $this->image, 'alt' => $this->name]], $oil ? [[
+            'src' => asset('oli-essenziali/'.$oil['varianti'][0]['immagine']),
+            'alt' => __('Etichetta :oil :size', ['oil' => $oil['olio'], 'size' => $oil['varianti'][0]['formato']]),
+        ]] : []);
         $this->metadata = $oil ? [
             __('Nome botanico') => $oil['nome_latino'],
             'CAS' => $oil['cas'],
