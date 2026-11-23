@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Support\EssentialOilCatalogue;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 use Illuminate\View\View;
 
 class EssentialOilController extends Controller
@@ -19,10 +18,7 @@ class EssentialOilController extends Controller
             'location' => 'essential-oils',
             'query' => $query,
             'total' => $oils->count(),
-            'oils' => $oils->filter(fn (array $oil) => $query === '' || Str::contains(
-                Str::lower($oil['olio'].' '.$oil['nome_latino'].' '.$oil['profumo']),
-                Str::lower($query),
-            )),
+            'oils' => $catalogue->search($query),
         ]);
     }
 

@@ -2,8 +2,10 @@
 
 use App\Http\Controllers\ContactsController;
 use App\Http\Controllers\EssentialOilController;
+use App\Livewire\EssentialOils;
 use App\Support\EssentialOilCatalogue;
 use Illuminate\Http\Request;
+use Livewire\Livewire;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Tests\TestCase;
 
@@ -37,6 +39,31 @@ class EssentialOilTest extends TestCase
         )->getData();
 
         expect($data['oils'])->toBeEmpty();
+    }
+
+    public function test_live_search_filters_and_clears_without_submitting(): void
+    {
+        $component = Livewire::test(EssentialOils::class)
+            ->assertSeeHtml('wire:model.live.debounce.250ms="query"')
+            ->assertViewHas('oils', fn ($oils) => $oils->count() === 16);
+
+        foreach ([' LAVANDA ', 'pinus sibirica', 'AGRUMATO'] as $query) {
+            $component->set('query', $query)
+                ->assertViewHas('oils', fn ($oils) => $oils->isNotEmpty() && $oils->count() < 16);
+        }
+
+        $component->set('query', 'non-esistente')
+            ->assertViewHas('oils', fn ($oils) => $oils->isEmpty())
+            ->set('query', '')
+            ->assertViewHas('oils', fn ($oils) => $oils->count() === 16);
+    }
+
+    public function test_live_search_reads_query_from_url(): void
+    {
+        Livewire::withQueryParams(['q' => 'pinus sibirica'])
+            ->test(EssentialOils::class)
+            ->assertSet('query', 'pinus sibirica')
+            ->assertViewHas('oils', fn ($oils) => $oils->pluck('slug')->all() === ['pino-cembro']);
     }
 
     public function test_detail_data(): void

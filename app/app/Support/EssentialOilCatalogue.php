@@ -3,6 +3,7 @@
 namespace App\Support;
 
 use Illuminate\Support\Collection;
+use Illuminate\Support\Str;
 
 class EssentialOilCatalogue
 {
@@ -16,5 +17,15 @@ class EssentialOilCatalogue
 
                 return $oil;
             });
+    }
+
+    public function search(string $query): Collection
+    {
+        $query = trim($query);
+
+        return $this->all()->filter(fn (array $oil) => $query === '' || Str::contains(
+            Str::lower($oil['olio'].' '.$oil['nome_latino'].' '.$oil['profumo']),
+            Str::lower($query),
+        ));
     }
 }
