@@ -90,7 +90,7 @@ final readonly class StorefrontItem
             'alt' => __('Etichetta :oil :size', ['oil' => $oil['olio'], 'size' => $oil['varianti'][0]['formato']]),
         ]] : []);
         $this->metadata = $oil ? [
-            __('Nome botanico') => $oil['nome_latino'],
+            __('Codice') => $variants[$selected]['code'],
             'CAS' => $oil['cas'],
             __('Formati') => implode(' · ', array_column($variants, 'size')),
         ] : [];

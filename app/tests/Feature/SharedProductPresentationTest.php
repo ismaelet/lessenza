@@ -80,6 +80,8 @@ class SharedProductPresentationTest extends TestCase
         $this->assertSame('AANI-30', $oil->variants[0]['code']);
         $this->assertStringContainsString('Anice_30ml.jpg', $oil->gallery[1]['src']);
         $this->assertSame('AANI-100', $oil->variants[1]['code']);
+        $this->assertSame('AANI-30', $oil->metadata['Codice']);
+        $this->assertArrayNotHasKey('Nome botanico', $oil->metadata);
         $this->assertStringContainsString('formato=100%20ml', $oil->variants[1]['enquiryUrl']);
         $this->assertStringContainsString('SDS_Anice.pdf', $oil->safety['url']);
     }
@@ -114,6 +116,7 @@ class SharedProductPresentationTest extends TestCase
         $this->assertSame($product, $item->product);
         $this->assertFalse($item->priceFrom);
         $this->assertSame(1, $item->selectedVariant);
+        $this->assertSame('AANI-100', $item->metadata['Codice']);
         $this->assertStringContainsString('/products/olio-essenziale-anice-30ml', $item->variants[0]['productUrl']);
         $this->assertSame('84650-59-9', $item->metadata['CAS']);
         $this->assertStringContainsString('anteprima/Anice.jpg', $item->image);

@@ -155,7 +155,7 @@
                     @foreach ($item->metadata as $label => $value)
                         <div>
                             <dt>{{ $label }}</dt>
-                            <dd>{{ $value }}</dd>
+                            <dd @if ($label === __('Codice')) x-text="@js(array_column($item->variants, 'code'))[selected]" @endif>{{ $value }}</dd>
                         </div>
                     @endforeach
                 </dl>
