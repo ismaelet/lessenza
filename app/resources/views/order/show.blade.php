@@ -24,7 +24,9 @@
 
 <x-layouts.legacy-main>
     <div class="full-width justify-items-center bg-neutral-200 py-20 text-center">
-        <x-heading.section> {{ __('Ordine') }} <span class="text-primary">{{ $order->id_code }}</span> </x-heading.section>
+        <x-heading.section>
+            {{ __('Ordine') }} <span class="text-primary">{{ $order->id_code }}</span>
+        </x-heading.section>
     </div>
 
     <div class="mt-12 mb-20 grid gap-12">
@@ -55,7 +57,9 @@
                 <article class="grid grid-cols-1 gap-2 rounded border border-neutral-200 p-4">
                     <x-subheading.component>{{ __('Metodo di spedizione') }}</x-subheading.component>
 
-                    <x-heading.small-component> {!! localized_html($order->shipping_method->name) !!} </x-heading.small-component>
+                    <x-heading.small-component>
+                        {!! localized_html($order->shipping_method->name) !!}
+                    </x-heading.small-component>
 
                     <div>
                         <p>{!! $order->shipping_method->deliveryDateString() !!}</p>
@@ -88,7 +92,7 @@
                             <!--Data-->
                             <div class="md:col-span-3">
                                 <a href="{{ $orderItem->product ? $orderItem->product->url() : null }}">
-                                    <h3 class="art_name">{{ $orderItem->full_name }}</h3>
+                                    <h3 class="art_name font-heading-alt!">{{ $orderItem->full_name }}</h3>
                                 </a>
 
                                 <p class="font-semibold">{{ $orderItem->price }}</p>

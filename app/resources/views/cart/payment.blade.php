@@ -4,7 +4,7 @@
             @csrf
 
             <div class="cart-panel surface content-start">
-                <x-heading.small-component>{{ __('Pagamento') }}</x-heading.small-component>
+                <x-heading.small-component-sans>{{ __('Pagamento') }}</x-heading.small-component-sans>
                 @foreach ($paymentMethods as $paymentMethod)
                     <label class="chck_item grid grid-cols-[max-content_1fr] items-center gap-4 border-b border-neutral-200 last:border-0 sm:grid-cols-[5rem_1fr]">
                         <x-checkbox
@@ -15,7 +15,9 @@
                         />
 
                         <div class="grid grid-cols-1 gap-2 py-8">
-                            <h4 class="text-heading-400 text-xl font-medium">{{ localized_text($paymentMethod->name) }}</h4>
+                            <h4 class="text-heading-400 font-heading-alt! text-xl font-medium">
+                                {{ localized_text($paymentMethod->name) }}
+                            </h4>
 
                             <img
                                 class="max-h-18"

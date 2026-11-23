@@ -12,7 +12,7 @@
             @endif
 
             <div class="cart-order__data">
-                <p class="font-heading text-heading-400 text-lg leading-none font-medium">
+                <p class="font-heading-alt! text-heading-400 leading-none font-medium">
                     <a href="<?= $orderItem->product->url() ?>">{{ localized_text($orderItem->name) }}</a>
                 </p>
 
