@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Support\EssentialOilCatalogue;
+use App\Support\StorefrontItem;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -28,11 +29,11 @@ class EssentialOilController extends Controller
         $oil = $oils->firstWhere('slug', $slug);
         abort_unless($oil, 404);
 
-        return view('essential-oils.show', [
+        return view('product', [
             'title' => $oil['olio'].' · '.__('Oli essenziali Aufguss'),
             'location' => 'essential-oils',
-            'oil' => $oil,
-            'related' => $oils->where('slug', '!=', $slug)->take(4),
+            'item' => new StorefrontItem($oil),
+            'related' => $oils->where('slug', '!=', $slug)->take(4)->map(fn (array $related) => new StorefrontItem($related)),
         ]);
     }
 }

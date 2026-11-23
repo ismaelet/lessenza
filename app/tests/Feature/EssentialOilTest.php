@@ -68,13 +68,14 @@ class EssentialOilTest extends TestCase
 
     public function test_detail_data(): void
     {
-        $data = app(EssentialOilController::class)->show('anice', new EssentialOilCatalogue)->getData();
-        expect($data['oil']['cas'])->toBe('84650-59-9');
-        expect($data['oil']['frasi_H'])->toContain('H351');
-        expect(array_column($data['oil']['varianti'], 'prezzo_iva_esclusa'))->toBe(['15,90', '35,90']);
-        expect(array_column($data['oil']['varianti'], 'codice'))->toBe(['AANI-30', 'AANI-100']);
+        $view = app(EssentialOilController::class)->show('anice', new EssentialOilCatalogue);
+        $data = $view->getData();
+        expect($view->name())->toBe('product');
+        expect($data['item']->metadata['CAS'])->toBe('84650-59-9');
+        expect($data['item']->safety['hazards'])->toContain('H351');
+        expect(array_column($data['item']->variants, 'code'))->toBe(['AANI-30', 'AANI-100']);
         expect($data['related'])->toHaveCount(4);
-        expect($data['related']->pluck('slug')->all())->not->toContain('anice');
+        expect($data['related']->pluck('name')->all())->not->toContain('Anice');
     }
 
     public function test_unknown_oil(): void

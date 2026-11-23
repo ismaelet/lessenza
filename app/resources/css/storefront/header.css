@@ -106,7 +106,6 @@ header[data-floating="true"]:not(.opened) .h__main-content {
 .h__link {
   color: var(--header-fc);
   font-size: var(--fs-400);
-  letter-spacing: 0.05em;
   padding-block: 0.5rem;
   transition: border 0.3s;
 }

@@ -34,7 +34,7 @@
     $header['links'] = [
         ['label' => 'Home', 'location' => 'home', 'url' => client_url('/')],
         ['label' => __('Le Fragranze'), 'location' => 'shop', 'url' => client_url('/shop')],
-        ['label' => __('Oli essenziali'), 'location' => 'essential-oils', 'url' => route('essential-oils.index')],
+        ['label' => __('Oli Aufguss'), 'location' => 'essential-oils', 'url' => route('essential-oils.index')],
         ['label' => __('Tecnologie'), 'location' => 'technologies', 'url' => route('technologies')],
         ['label' => __('Chi Siamo'), 'location' => 'about-us', 'url' => client_url('/about-us')],
         ['label' => __('Recensioni'), 'location' => 'reviews', 'url' => client_url('/reviews')],

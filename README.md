@@ -56,6 +56,13 @@ adds 32 shop products (16 oils in two sizes) with fixed prices excluding VAT. It
 immutable snapshot of the client data, including product codes and safety sheet links. Rollback
 removes the imported products and retains the product type, which may be shared with other products.
 
+All catalogue cards use `x-product-card`, which accepts a database product, a catalogue oil, or a
+`StorefrontItem`. Both `/products/{slug}` and `/oli-essenziali/{slug}` render the shared
+`app/resources/views/product.blade.php` template. `app/app/Support/StorefrontItem.php` prepares the
+optional gallery, format, usage, and safety fields. Database products keep their existing Livewire
+purchase controls; catalogue oils keep their quote links. Imported database oils also display their
+matching catalogue labels and safety information, and changing size opens the matching shop product.
+
 The exact availability of individual features depends on the current application configuration and enabled integrations.
 
 ## Project Structure

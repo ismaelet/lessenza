@@ -16,7 +16,7 @@
         .button {
             --_padding-block: min(2.2em, 6vw);
             --_border-width: 1px;
-            min-width: 16rem;
+            min-width: 12rem;
             padding-block: 2rem;
             border-radius: var(--radius-md);
             font-family: var(--font-heading-alt);
@@ -92,6 +92,10 @@
                 pointer-events: none;
                 opacity: 0.5;
                 background-color: var(--color-neutral-400);
+            }
+
+            @media (width >= 25rem) {
+                min-width: 16rem;
             }
         }
     </style>

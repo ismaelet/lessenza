@@ -1605,31 +1605,25 @@ h3,
   background-color: var(--color-background-400);
 }
 
-.product-card,
-.oil-card {
+.product-card {
   transition:
     transform 0.2s,
     box-shadow 0.2s;
 }
 
 .product-card:hover,
-.product-card:focus-within,
-.oil-card:hover,
-.oil-card:focus-within {
+.product-card:focus-within {
   transform: translateY(-3px);
   box-shadow: 0 10px 28px rgba(0, 10, 28, 0.14);
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .product-card,
-  .oil-card {
+  .product-card {
     transition: none;
   }
 
   .product-card:hover,
-  .product-card:focus-within,
-  .oil-card:hover,
-  .oil-card:focus-within {
+  .product-card:focus-within {
     transform: none;
   }
 }
@@ -1641,8 +1635,7 @@ h3,
 }
 
 /* 3.2 Image */
-.product-card__image-wrapper,
-.oil-card__image-wrapper {
+.product-card__image-wrapper {
   padding: 1rem;
   background-color: #f6ebe5;
 }
@@ -1680,10 +1673,6 @@ h3,
 .product-card__price {
   color: var(--color-heading-400);
   white-space: nowrap;
-}
-
-.product-card__details {
-  color: var(--color-secondary-300);
 }
 
 /* 3.4 Price */
@@ -1851,4 +1840,10 @@ h3,
 .cart-list__link {
   max-width: max-content;
   padding-inline: 0.2em;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(16rem, 100%), 1fr));
+  gap: 1.5rem;
 }

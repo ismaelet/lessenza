@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Support\StorefrontItem;
 use Illuminate\View\View;
 
 class ProductController extends Controller
@@ -12,10 +13,13 @@ class ProductController extends Controller
      */
     public function show(Product $product): View
     {
+        $product->loadMissing('product_type');
+
         return view('product', [
             'title' => $product->name,
             'location' => 'shop',
-            'product' => $product,
+            'item' => new StorefrontItem($product),
+            'related' => $product->relatedProducts()->map(fn (Product $related) => new StorefrontItem($related)),
         ]);
     }
 }

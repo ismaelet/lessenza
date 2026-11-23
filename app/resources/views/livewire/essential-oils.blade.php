@@ -4,7 +4,13 @@
             <x-subheading.section>{{ __('La collezione') }}</x-subheading.section>
             <x-heading.section>{{ __('Le :count fragranze', ['count' => $total]) }}</x-heading.section>
         </div>
-        <form action="{{ route('essential-oils.index') }}#oli" method="GET" wire:submit="$refresh" role="search" class="oil-search">
+        <form
+            action="{{ route('essential-oils.index') }}#oli"
+            method="GET"
+            wire:submit="$refresh"
+            role="search"
+            class="oil-search"
+        >
             <label for="oil-search" class="sr-only">{{ __('Cerca un olio o un profumo') }}</label>
             <x-input
                 id="oil-search"
@@ -15,13 +21,14 @@
             />
         </form>
     </div>
+
     @if ($oils->isEmpty())
         <p role="status">{{ __('Nessun olio trovato. Prova con un altro nome o profumo.') }}</p>
     @else
-        <div class="oil-grid">
+        <div class="product-grid">
             @foreach ($oils as $oil)
                 <div wire:key="oil-{{ $oil['slug'] }}">
-                    <x-essential-oil-card :$oil />
+                    <x-product-card :product="$oil" />
                 </div>
             @endforeach
         </div>
