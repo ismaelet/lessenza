@@ -116,6 +116,28 @@ class EssentialOilMigrationTest extends TestCase
         $this->assertDatabaseHas('products', ['name' => 'Existing Anice', 'price' => 99]);
     }
 
+    public function test_moves_existing_safety_links_to_storage_and_restores_them_on_rollback(): void
+    {
+        $this->migration()->up();
+        $product = Product::where('slug', 'olio-essenziale-anice-30ml')->firstOrFail();
+        $original = $product->description;
+        $product->update(['description' => $original.'<p>Custom content</p>']);
+
+        $migration = require database_path('migrations/2026_11_23_120000_move_essential_oil_safety_links_to_public_storage.php');
+        $migration->up();
+
+        $this->assertSame(
+            str_replace('href="/oli-essenziali/', 'href="/storage/oli-essenziali/', $original).'<p>Custom content</p>',
+            $product->fresh()->description,
+        );
+
+        $migration->up();
+        $this->assertStringNotContainsString('/storage/storage/', $product->fresh()->description);
+
+        $migration->down();
+        $this->assertSame($original.'<p>Custom content</p>', $product->fresh()->description);
+    }
+
     private function migration(): Migration
     {
         return require database_path('migrations/2026_11_22_170000_add_aufguss_essential_oil_products.php');

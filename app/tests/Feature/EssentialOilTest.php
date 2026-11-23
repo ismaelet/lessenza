@@ -74,6 +74,9 @@ class EssentialOilTest extends TestCase
         expect($data['item']->metadata['CAS'])->toBe('84650-59-9');
         expect($data['item']->safety['hazards'])->toContain('H351');
         expect(array_column($data['item']->variants, 'code'))->toBe(['AANI-30', 'AANI-100']);
+        expect($data['item']->image)->toBe(public_asset('oli-essenziali/immagini/anteprima/Anice.jpg'));
+        expect($data['item']->gallery[1]['src'])->toStartWith(asset('storage/oli-essenziali').'/');
+        expect($data['item']->safety['url'])->toBe(public_asset('oli-essenziali/schede_sicurezza/SDS_Anice.pdf'));
         expect($data['related'])->toHaveCount(4);
         expect($data['related']->pluck('name')->all())->not->toContain('Anice');
     }
@@ -94,7 +97,7 @@ class EssentialOilTest extends TestCase
         foreach ($oils as $oil) {
             expect(array_column($oil['varianti'], 'formato'))->toBe(['30 ml', '100 ml']);
             foreach ([$oil['anteprima'], $oil['scheda_sicurezza'], ...array_column($oil['varianti'], 'immagine')] as $asset) {
-                expect(is_file(public_path('oli-essenziali/'.$asset)))->toBeTrue();
+                expect(is_file(storage_path('app/public/oli-essenziali/'.$asset)))->toBeTrue();
             }
         }
     }

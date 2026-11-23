@@ -54,7 +54,7 @@ final readonly class StorefrontItem
         $this->product = $product;
         $this->name = $product ? localized_text($product->name) : $oil['olio'];
         $this->url = $product ? $product->url() : route('essential-oils.show', $oil['slug']);
-        $this->image = $oil ? asset('oli-essenziali/'.$oil['anteprima']) : $product->image;
+        $this->image = $oil ? public_asset('oli-essenziali/'.$oil['anteprima']) : $product->image;
         $this->priceLabel = $product ? $product->priceString() : $this->oilPrice($oil['varianti'][0]['prezzo_iva_esclusa']);
         $this->priceFrom = $product === null;
         $this->category = $oil ? __('Oli essenziali · Linea Aufguss') : localized_text($product->relationLoaded('product_type') ? $product->product_type?->name : '');
@@ -86,7 +86,7 @@ final readonly class StorefrontItem
         $this->variants = $variants;
         $this->selectedVariant = $selected;
         $this->gallery = array_merge([['src' => $this->image, 'alt' => $this->name]], $oil ? [[
-            'src' => asset('oli-essenziali/'.$oil['varianti'][0]['immagine']),
+            'src' => public_asset('oli-essenziali/'.$oil['varianti'][0]['immagine']),
             'alt' => __('Etichetta :oil :size', ['oil' => $oil['olio'], 'size' => $oil['varianti'][0]['formato']]),
         ]] : []);
         $this->metadata = $oil ? [
@@ -113,7 +113,7 @@ final readonly class StorefrontItem
                 'code' => $statement[1],
                 'text' => trim($statement[2]),
             ], $statements),
-            'url' => asset('oli-essenziali/'.$oil['scheda_sicurezza']),
+            'url' => public_asset('oli-essenziali/'.$oil['scheda_sicurezza']),
         ] : null;
     }
 

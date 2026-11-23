@@ -50,7 +50,11 @@ The application includes functionality for:
 The Aufguss essential oil catalogue is available at `/oli-essenziali`, with searchable fragrances,
 individual product pages, 30 ml and 100 ml formats, safety sheet downloads, and quote enquiries
 through the contact form. Catalogue content is maintained in `app/resources/data/oli-essenziali.json`;
-the supplied images, labels, and PDFs are in `app/public/oli-essenziali/`. The dedicated catalogue
+the supplied images, labels, and PDFs are versioned in `app/storage/app/public/oli-essenziali/`
+and served under `/storage/oli-essenziali/`. During deployment, publish these files to the public
+storage directory, run `php artisan storage:link` and `php artisan migrate` from `app/`, and remove
+the old `app/public/oli-essenziali/` directory if the deployment leaves obsolete files behind.
+The migration updates safety PDF links in existing product descriptions. The dedicated catalogue
 supports adding the selected size to the cart as well as quote enquiries. Its order buttons use the
 matching database products and the existing Livewire cart flow. The
 `2026_11_22_170000_add_aufguss_essential_oil_products` data migration also adds 32 shop products (16 oils in two sizes) with fixed prices excluding VAT. It contains an

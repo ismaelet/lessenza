@@ -94,8 +94,8 @@ class Product extends Model
 
         if (! FileHelper::exists($imagePath)) {
             $oil = app(EssentialOilCatalogue::class)->forProduct($this);
-            if ($oil && is_file(public_path('oli-essenziali/'.$oil['anteprima']))) {
-                return asset('oli-essenziali/'.$oil['anteprima']);
+            if ($oil && FileHelper::exists('oli-essenziali/'.$oil['anteprima'])) {
+                return public_asset('oli-essenziali/'.$oil['anteprima']);
             }
 
             return Vite::image('no-image.webp');

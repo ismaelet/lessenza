@@ -29,7 +29,8 @@ it('uses the base catalogue image for either oil size at all image resolutions',
     $product = new Product;
     $product->id = 9999;
     $product->slug = 'olio-essenziale-anice-'.$size;
-    $expected = asset('oli-essenziali/immagini/anteprima/Anice.jpg');
+    Storage::disk('public')->put('oli-essenziali/immagini/anteprima/Anice.jpg', 'catalogue image');
+    $expected = public_asset('oli-essenziali/immagini/anteprima/Anice.jpg');
 
     expect($product->image)->toBe($expected);
     foreach ([100, 400, 1024] as $resolution) {
@@ -62,6 +63,7 @@ it('renders the oil base image in cart line items', function () {
     $product->id = 9999;
     $product->name = 'Anice Aufguss 100 ml';
     $product->slug = 'olio-essenziale-anice-100ml';
+    Storage::disk('public')->put('oli-essenziali/immagini/anteprima/Anice.jpg', 'catalogue image');
     $line = new OrderItem;
     $line->id = 1;
     $line->quantity = 1;
@@ -73,5 +75,5 @@ it('renders the oil base image in cart line items', function () {
         'editable' => false,
     ])->render();
 
-    expect($html)->toContain(asset('oli-essenziali/immagini/anteprima/Anice.jpg'));
+    expect($html)->toContain(public_asset('oli-essenziali/immagini/anteprima/Anice.jpg'));
 });

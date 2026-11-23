@@ -24,7 +24,7 @@
         <div class="oil-hero__image-wrapper relative">
             <img
                 class="oil-hero__image absolute"
-                src="{{ asset('oli-essenziali/immagini/aufguss_meister_banner.png') }}"
+                src="{{ public_asset('oli-essenziali/immagini/aufguss_meister_banner.png') }}"
                 alt="{{ __('Aufgussmeister durante una gettata in sauna') }}"
                 fetchpriority="high"
             />
