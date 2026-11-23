@@ -126,9 +126,11 @@
                                 :key="'oil-cart-'.$purchaseProducts[$variant['productSlug']]->id"
                             />
                         @endisset
-                        <x-button :href="$variant['enquiryUrl']" variant="secondary">{{ __('Richiedi preventivo') }}</x-button>
+                        <x-button
+                            :href="$variant['enquiryUrl']"
+                            variant="secondary"
+                        >{{ __('Richiedi preventivo') }}</x-button>
                     </div>
-                    <p class="text-sm">{{ __('Codice prodotto:') }} {{ $variant['code'] }}</p>
                 </div>
             @endforeach
 
@@ -140,8 +142,8 @@
             @endif
             @if ($item->usageHtml)
                 <div class="item-usage">
-                    <strong class="text-heading-400">{{ $item->safety ? __('Consiglio d\'uso') : __('Modalità d\'uso:') }}</strong>
-                    <div>{!! $item->usageHtml !!}</div>
+                    <strong class="text-heading-400">{{ $item->safety ? __('Consiglio d\'uso:') : __('Modalità d\'uso:') }}</strong>
+                    <div class="text-secondary-300">{!! $item->usageHtml !!}</div>
                 </div>
             @endif
             @if ($item->warningsHtml)
@@ -155,7 +157,11 @@
                     @foreach ($item->metadata as $label => $value)
                         <div>
                             <dt>{{ $label }}</dt>
-                            <dd @if ($label === __('Codice')) x-text="@js(array_column($item->variants, 'code'))[selected]" @endif>{{ $value }}</dd>
+                            <dd
+                                @if ($label === __('Codice')) x-text="@js(array_column($item->variants, 'code'))[selected]" @endif
+                            >
+                                {{ $value }}
+                            </dd>
                         </div>
                     @endforeach
                 </dl>
@@ -166,19 +172,30 @@
     @if ($item->safety)
         <section class="item-safety">
             <div class="grid gap-4">
-                <x-subheading.section>{{ __('Documentazione') }}</x-subheading.section>
-                <x-heading.section>{{ __('Informazioni di sicurezza') }}</x-heading.section>
+                <x-heading.small-component>{{ __('Informazioni di sicurezza') }}</x-heading.small-component>
                 <p>
                     {{ __('Elementi dell\'etichetta secondo il Regolamento CE 1272/2008 (CLP). Consulta l\'etichetta e la scheda di sicurezza prima dell\'uso.') }}
                 </p>
             </div>
             <div class="item-safety__body">
                 <div class="grid content-start gap-3">
-                    <x-heading.small-component>{{ $item->safety['warning'] }}</x-heading.small-component>
-                    <p>{{ $item->safety['pictograms'] }}</p>
-                    <p>{{ __('Consulta i pittogrammi sull\'etichetta del prodotto.') }}</p>
+                    <p class="item-safety__warning">{{ $item->safety['warning'] }}</p>
+                    <div class="item-safety__symbols">
+                        @foreach ($item->safety['symbols'] as $symbol)
+                            <figure>
+                                <img src="{{ $symbol['image'] }}" alt="{{ $symbol['label'] }}" width="64" height="64" loading="lazy" />
+                                <figcaption><span>{{ $symbol['code'] }}</span>{{ $symbol['label'] }}</figcaption>
+                            </figure>
+                        @endforeach
+                    </div>
                 </div>
-                <p>{{ $item->safety['hazards'] }}</p>
+                <table class="item-safety__statements" aria-label="{{ __('Informazioni di sicurezza') }}">
+                    <tbody>
+                        @foreach ($item->safety['statements'] as $statement)
+                            <tr><th scope="row">{{ $statement['code'] }}</th><td>{{ $statement['text'] }}</td></tr>
+                        @endforeach
+                    </tbody>
+                </table>
             </div>
             <div class="item-download">
                 <strong class="text-heading-400">{{ __('Scheda di sicurezza') }} {{ $item->name }} (PDF)</strong>

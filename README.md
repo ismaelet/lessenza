@@ -64,6 +64,10 @@ optional gallery, format, usage, and safety fields. Database products keep their
 purchase controls; catalogue oils offer order buttons and quote links. Imported database oils also
 display their matching catalogue labels and safety information, and changing size opens the matching shop product.
 
+Safety panels use the original catalogue hazard statements, separated by H/EUH code. GHS pictograms
+in `app/public/images/ghs/` are downloaded from the
+[CCOHS pictogram kit](https://www.ccohs.ca/WHMISpictograms.html).
+
 The exact availability of individual features depends on the current application configuration and enabled integrations.
 
 ## Project Structure

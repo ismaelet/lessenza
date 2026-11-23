@@ -139,6 +139,30 @@ class SharedProductPresentationTest extends TestCase
         $this->assertSame('AANI-100', $large->variants[1]['code']);
     }
 
+    public function test_safety_rows_preserve_all_hazard_text_and_reference_existing_pictograms(): void
+    {
+        foreach (['it', 'en'] as $locale) {
+            app()->setLocale($locale);
+            foreach ((new EssentialOilCatalogue)->all() as $oil) {
+                $safety = (new StorefrontItem($oil))->safety;
+                $reconstructed = implode(' ', array_map(fn (array $row) => $row['code'].' '.$row['text'], $safety['statements']));
+                $this->assertSame($oil['frasi_H'], $reconstructed);
+                foreach ($safety['symbols'] as $symbol) {
+                    $this->assertFileExists(public_path('images/ghs/'.$symbol['code'].'.png'));
+                    $this->assertNotSame('', $symbol['label']);
+                }
+            }
+        }
+
+        app()->setLocale('it');
+        $anice = app(EssentialOilController::class)->show('anice', new EssentialOilCatalogue)->getData()['item'];
+        $this->assertSame(['H351', 'H341', 'H317', 'H412'], array_column($anice->safety['statements'], 'code'));
+        $this->assertSame(['GHS07', 'GHS08'], array_column($anice->safety['symbols'], 'code'));
+        $patchouli = app(EssentialOilController::class)->show('patchouli', new EssentialOilCatalogue)->getData()['item'];
+        $this->assertSame(['H304', 'EUH208'], array_column($patchouli->safety['statements'], 'code'));
+        $this->assertStringContainsString('Contiene cariofillene.', $patchouli->safety['statements'][1]['text']);
+    }
+
     public function test_optional_empty_fields_are_hidden_and_availability_is_retained(): void
     {
         $product = Product::firstOrFail();

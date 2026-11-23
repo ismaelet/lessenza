@@ -94,10 +94,25 @@ final readonly class StorefrontItem
             'CAS' => $oil['cas'],
             __('Formati') => implode(' · ', array_column($variants, 'size')),
         ] : [];
+        $symbols = [];
+        $statements = [];
+        if ($oil) {
+            preg_match_all('/\b(GHS\d{2})\s+([^,]+)/u', $oil['pittogrammi'], $symbols, PREG_SET_ORDER);
+            preg_match_all('/\b((?:EU)?H\d{3})\s+(.+?)(?=\s+(?:EU)?H\d{3}\b|$)/su', $oil['frasi_H'], $statements, PREG_SET_ORDER);
+        }
         $this->safety = $oil ? [
             'warning' => $oil['avvertenza'],
             'pictograms' => $oil['pittogrammi'],
             'hazards' => $oil['frasi_H'],
+            'symbols' => array_map(fn (array $symbol) => [
+                'code' => $symbol[1],
+                'label' => trim($symbol[2]),
+                'image' => asset('images/ghs/'.$symbol[1].'.png'),
+            ], $symbols),
+            'statements' => array_map(fn (array $statement) => [
+                'code' => $statement[1],
+                'text' => trim($statement[2]),
+            ], $statements),
             'url' => asset('oli-essenziali/'.$oil['scheda_sicurezza']),
         ] : null;
     }

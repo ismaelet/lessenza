@@ -49,7 +49,7 @@
 <section class="padded-section full-width overflow-hidden sm:pb-6 md:pb-12">
     <div class="text-center">
         <x-heading.main>{{ __('Le nostre tecnologie') }}</x-heading.main>
-        <p class="mt-12">
+        <p class="text-secondary-300 mt-12">
             {{ __('Rendi unica la tua area wellness con docce emozionali e sistemi automatici di ultima generazione. Profumi, luci e getti d’acqua studiati per offrire ai tuoi clienti un’esperienza indimenticabile.') }}
         </p>
     </div>
