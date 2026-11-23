@@ -86,9 +86,9 @@ final readonly class StorefrontItem
         }
         $this->variants = $variants;
         $this->selectedVariant = $selected;
-        $this->gallery = $oil ? array_map(fn (array $variant, int $index) => [
+        $this->gallery = array_merge([['src' => $this->image, 'alt' => $this->name, 'variant' => null]], $oil ? array_map(fn (array $variant, int $index) => [
             'src' => $variant['image'], 'alt' => $variant['imageAlt'], 'variant' => $index,
-        ], $variants, array_keys($variants)) : [['src' => $this->image, 'alt' => $this->name, 'variant' => null]];
+        ], $variants, array_keys($variants)) : []);
         $this->metadata = $oil ? [
             __('Nome botanico') => $oil['nome_latino'],
             'CAS' => $oil['cas'],

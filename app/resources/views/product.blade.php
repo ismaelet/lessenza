@@ -16,35 +16,65 @@
     </nav>
 
     <section class="item-detail" x-data="{ selected: {{ $item->selectedVariant }} }">
-        <div class="item-gallery">
-            @foreach ($item->gallery as $image)
-                <img
-                    @if ($image['variant'] !== null)
-                        x-show="selected === {{ $image['variant'] }}"
-                        @if ($image['variant'] !== $item->selectedVariant) style="display: none" @endif
-                    @endif
-                    src="{{ $image['src'] }}"
-                    alt="{{ $image['alt'] }}"
-                    @class(['item-label', 'product-spotlight product-img active' => $item->product !== null])
-                />
-            @endforeach
+        <div class="item-gallery" x-data="{ showLabel: false }">
+            <div class="item-gallery__stage">
+                @foreach ($item->gallery as $image)
+                    <img
+                        x-show="{{ $image['variant'] === null ? '!showLabel' : 'showLabel && selected === '.$image['variant'] }}"
+                        @if ($image['variant'] !== null) style="display: none" @endif
+                        src="{{ $image['src'] }}"
+                        alt="{{ $image['alt'] }}"
+                        class="item-gallery__image"
+                    />
+                @endforeach
+            </div>
             @if ($item->variants)
-                <img src="{{ $item->image }}" alt="{{ $item->name }}" class="item-gallery__preview" loading="lazy" />
+                <div class="item-gallery__thumbnails" role="group" aria-label="{{ __('Immagini del prodotto') }}">
+                    <button
+                        type="button"
+                        class="item-gallery__thumbnail"
+                        @click="showLabel = false"
+                        :aria-pressed="(! showLabel).toString()"
+                        aria-label="{{ $item->name }}"
+                    >
+                        <img src="{{ $item->image }}" alt="" />
+                    </button>
+                    <button
+                        type="button"
+                        class="item-gallery__thumbnail"
+                        @click="showLabel = true"
+                        :aria-pressed="showLabel.toString()"
+                        aria-label="{{ __('Informazioni di sicurezza') }}"
+                    >
+                        @foreach ($item->variants as $index => $variant)
+                            <img
+                                x-show="selected === {{ $index }}"
+                                @if ($index !== $item->selectedVariant) style="display: none" @endif
+                                src="{{ $variant['image'] }}"
+                                alt=""
+                            />
+                        @endforeach
+                    </button>
+                </div>
             @endif
         </div>
         <div class="item-detail__info product-data">
-            @if ($item->category)
-                <p class="item-eyebrow">{{ $item->category }}</p>
-            @endif
-            <x-heading.main>{{ $item->name }}</x-heading.main>
+            <div class="">
+                @if ($item->category)
+                    <p class="item-eyebrow">{{ $item->category }}</p>
+                @endif
+                <x-heading.main>{{ $item->name }}</x-heading.main>
+            </div>
             @if ($item->botanicalName)
                 <p class="italic">{{ $item->botanicalName }}</p>
             @endif
             @if ($item->scent)
-                <p class="item-scent">{{ $item->scent }}</p>
+                <p class="item-scent bg-background-500 text-trim text-secondary-300 w-fit rounded-full px-3 py-3 text-sm font-medium">
+                    {{ $item->scent }}
+                </p>
             @endif
             @if ($item->descriptionHtml)
-                <div class="item-description">{!! $item->descriptionHtml !!}</div>
+                <div class="item-description text-secondary-300">{!! $item->descriptionHtml !!}</div>
             @endif
             @if ($item->variants)
                 <fieldset class="item-formats">
@@ -71,8 +101,14 @@
                         <span class="js-full-price text-600 font-heading text-heading-400 font-semibold">{{ $item->priceLabel }}</span>
                     </p>
                     <div @class(['product-availability flex items-center gap-1', 'text-good-400' => $item->product->inStock, 'text-bad-400' => ! $item->product->inStock])>
-                        @if ($item->product->inStock) <x-icon-checked /> @else <x-icon-close-border /> @endif
-                        <p>{{ $item->product->inStock ? ($item->product->longDelivery() ? __('Disponibile su ordinazione') : __('Disponibile')) : __('Non disponibile') }}</p>
+                        @if ($item->product->inStock)
+                            <x-icon-checked />
+                        @else
+                            <x-icon-close-border />
+                        @endif
+                        <p>
+                            {{ $item->product->inStock ? ($item->product->longDelivery() ? __('Disponibile su ordinazione') : __('Disponibile')) : __('Non disponibile') }}
+                        </p>
                     </div>
                 </div>
             @endif
@@ -88,7 +124,11 @@
                 <livewire:product.add-to-cart :product="$item->product" />
             @endif
             @foreach ($item->variants as $index => $variant)
-                <div class="item-enquiry" x-show="selected === {{ $index }}" @if ($index !== $item->selectedVariant) style="display: none" @endif>
+                <div
+                    class="item-enquiry"
+                    x-show="selected === {{ $index }}"
+                    @if ($index !== $item->selectedVariant) style="display: none" @endif
+                >
                     <x-button :href="$variant['enquiryUrl']">{{ __('Richiedi preventivo') }}</x-button>
                     <p class="text-sm">{{ __('Codice prodotto:') }} {{ $variant['code'] }}</p>
                 </div>
@@ -115,7 +155,10 @@
             @if ($item->metadata)
                 <dl class="item-meta">
                     @foreach ($item->metadata as $label => $value)
-                        <div><dt>{{ $label }}</dt><dd>{{ $value }}</dd></div>
+                        <div>
+                            <dt>{{ $label }}</dt>
+                            <dd>{{ $value }}</dd>
+                        </div>
                     @endforeach
                 </dl>
             @endif
@@ -127,7 +170,9 @@
             <div class="grid gap-4">
                 <x-subheading.section>{{ __('Documentazione') }}</x-subheading.section>
                 <x-heading.section>{{ __('Informazioni di sicurezza') }}</x-heading.section>
-                <p>{{ __('Elementi dell\'etichetta secondo il Regolamento CE 1272/2008 (CLP). Consulta l\'etichetta e la scheda di sicurezza prima dell\'uso.') }}</p>
+                <p>
+                    {{ __('Elementi dell\'etichetta secondo il Regolamento CE 1272/2008 (CLP). Consulta l\'etichetta e la scheda di sicurezza prima dell\'uso.') }}
+                </p>
             </div>
             <div class="item-safety__body">
                 <div class="grid content-start gap-3">
@@ -139,7 +184,12 @@
             </div>
             <div class="item-download">
                 <strong class="text-heading-400">{{ __('Scheda di sicurezza') }} {{ $item->name }} (PDF)</strong>
-                <x-button :href="$item->safety['url']" variant="secondary" size="sm" download>{{ __('Scarica SDS') }}</x-button>
+                <x-button
+                    :href="$item->safety['url']"
+                    variant="secondary"
+                    size="sm"
+                    download
+                >{{ __('Scarica SDS') }}</x-button>
             </div>
         </section>
     @endif
@@ -159,7 +209,7 @@
         <script defer>
             window.dataLayer = window.dataLayer || [];
             window.dataLayer.push({
-                event: "view_item",
+                event: 'view_item',
                 ecommerce: {
                     items: [@js([
                         'item_name' => $item->name,
@@ -167,8 +217,8 @@
                         'price' => number_format($item->product->price(), 2, '.', ''),
                         'item_category' => $item->product->product_type->name ?? '',
                         'quantity' => 1,
-                    ])]
-                }
+                    ])],
+                },
             });
         </script>
     @endif

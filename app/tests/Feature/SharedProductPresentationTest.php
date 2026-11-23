@@ -70,10 +70,14 @@ class SharedProductPresentationTest extends TestCase
         $this->assertSame('<p>Product warnings</p>', $item->warningsHtml);
         $this->assertNull($item->safety);
         $this->assertSame([], $item->variants);
+        $this->assertCount(1, $item->gallery);
 
         $oil = $oilView->getData()['item'];
         $this->assertNull($oil->product);
         $this->assertCount(2, $oil->variants);
+        $this->assertSame($oil->image, $oil->gallery[0]['src']);
+        $this->assertNull($oil->gallery[0]['variant']);
+        $this->assertSame([0, 1], array_column(array_slice($oil->gallery, 1), 'variant'));
         $this->assertSame('AANI-100', $oil->variants[1]['code']);
         $this->assertStringContainsString('formato=100%20ml', $oil->variants[1]['enquiryUrl']);
         $this->assertStringContainsString('SDS_Anice.pdf', $oil->safety['url']);
