@@ -19,6 +19,7 @@ class ProductController extends Controller
             'title' => $product->name,
             'location' => 'shop',
             'item' => new StorefrontItem($product),
+            'purchaseProducts' => collect([$product])->keyBy('slug'),
             'related' => $product->relatedProducts()->map(fn (Product $related) => new StorefrontItem($related)),
         ]);
     }

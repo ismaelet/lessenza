@@ -51,8 +51,9 @@ The Aufguss essential oil catalogue is available at `/oli-essenziali`, with sear
 individual product pages, 30 ml and 100 ml formats, safety sheet downloads, and quote enquiries
 through the contact form. Catalogue content is maintained in `app/resources/data/oli-essenziali.json`;
 the supplied images, labels, and PDFs are in `app/public/oli-essenziali/`. The dedicated catalogue
-uses the enquiry flow. The `2026_11_22_170000_add_aufguss_essential_oil_products` data migration also
-adds 32 shop products (16 oils in two sizes) with fixed prices excluding VAT. It contains an
+supports adding the selected size to the cart as well as quote enquiries. Its order buttons use the
+matching database products and the existing Livewire cart flow. The
+`2026_11_22_170000_add_aufguss_essential_oil_products` data migration also adds 32 shop products (16 oils in two sizes) with fixed prices excluding VAT. It contains an
 immutable snapshot of the client data, including product codes and safety sheet links. Rollback
 removes the imported products and retains the product type, which may be shared with other products.
 
@@ -60,8 +61,8 @@ All catalogue cards use `x-product-card`, which accepts a database product, a ca
 `StorefrontItem`. Both `/products/{slug}` and `/oli-essenziali/{slug}` render the shared
 `app/resources/views/product.blade.php` template. `app/app/Support/StorefrontItem.php` prepares the
 optional gallery, format, usage, and safety fields. Database products keep their existing Livewire
-purchase controls; catalogue oils keep their quote links. Imported database oils also display their
-matching catalogue labels and safety information, and changing size opens the matching shop product.
+purchase controls; catalogue oils offer order buttons and quote links. Imported database oils also
+display their matching catalogue labels and safety information, and changing size opens the matching shop product.
 
 The exact availability of individual features depends on the current application configuration and enabled integrations.
 

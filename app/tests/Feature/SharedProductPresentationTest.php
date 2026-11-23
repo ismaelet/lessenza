@@ -163,6 +163,61 @@ class SharedProductPresentationTest extends TestCase
 
     public function test_add_to_cart_preserves_quantity_extra_concentration_pricing_and_events(): void
     {
+        $this->createCartTables();
+
+        Livewire::test(AddToCart::class, ['product' => Product::firstOrFail()])
+            ->set('quantity', 3)
+            ->call('extraConcentratedUpdated', true)
+            ->call('addToCart')
+            ->assertHasNoErrors()
+            ->assertSet('quantity', 1)
+            ->assertDispatched('updateCart')
+            ->assertDispatched('meta-add-to-cart');
+
+        $line = OrderItem::firstOrFail();
+        $this->assertSame(3, $line->quantity);
+        $this->assertEquals(1, $line->extra_concentrated);
+        $this->assertEqualsWithDelta(54.9, $line->unit_price_net, 0.001);
+        $this->assertEqualsWithDelta(164.7, $line->total_price_net, 0.001);
+    }
+
+    public function test_oil_order_buttons_add_the_matching_size_at_its_database_price(): void
+    {
+        $this->createCartTables();
+        foreach ([['30ml', 15.9], ['100ml', 35.9]] as [$size, $price]) {
+            DB::table('products')->insert([
+                'name' => 'Anice '.$size,
+                'slug' => 'olio-essenziale-anice-'.$size,
+                'product_type_id' => 1,
+                'price' => $price,
+            ]);
+        }
+        $data = app(EssentialOilController::class)->show('anice', new EssentialOilCatalogue)->getData();
+        $products = $data['purchaseProducts'];
+        $this->assertCount(2, $products);
+
+        foreach ([['30ml', 15.9], ['100ml', 35.9]] as [$size, $price]) {
+            $product = $products['olio-essenziale-anice-'.$size];
+            Livewire::test(AddToCart::class, [
+                'product' => $product,
+                'label' => "Aggiungi all'ordine",
+                'showQuantity' => false,
+            ])->assertSee("Aggiungi all'ordine")
+                ->assertDontSee('name="quantity"', false)
+                ->call('addToCart')
+                ->assertHasNoErrors()
+                ->assertDispatched('updateCart')
+                ->assertDispatched('meta-add-to-cart');
+
+            $line = OrderItem::where('product_id', $product->id)->firstOrFail();
+            $this->assertSame(1, $line->quantity);
+            $this->assertEqualsWithDelta($price, $line->unit_price_net, 0.001);
+        }
+        $this->assertDatabaseCount('order_items', 2);
+    }
+
+    private function createCartTables(): void
+    {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->nullable();
@@ -194,19 +249,5 @@ class SharedProductPresentationTest extends TestCase
             DB::table($name)->insert(['id' => 1, 'name' => 'Default']);
         }
 
-        Livewire::test(AddToCart::class, ['product' => Product::firstOrFail()])
-            ->set('quantity', 3)
-            ->call('extraConcentratedUpdated', true)
-            ->call('addToCart')
-            ->assertHasNoErrors()
-            ->assertSet('quantity', 1)
-            ->assertDispatched('updateCart')
-            ->assertDispatched('meta-add-to-cart');
-
-        $line = OrderItem::firstOrFail();
-        $this->assertSame(3, $line->quantity);
-        $this->assertEquals(1, $line->extra_concentrated);
-        $this->assertEqualsWithDelta(54.9, $line->unit_price_net, 0.001);
-        $this->assertEqualsWithDelta(164.7, $line->total_price_net, 0.001);
     }
 }

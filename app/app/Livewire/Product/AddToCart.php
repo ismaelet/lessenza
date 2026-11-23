@@ -30,6 +30,10 @@ class AddToCart extends Component
      */
     public bool $extraConcentrated = false;
 
+    public string $label = 'Aggiungi al carrello';
+
+    public bool $showQuantity = true;
+
     /**
      * Lifecycle hook: Render the component view
      */

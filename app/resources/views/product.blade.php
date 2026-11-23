@@ -107,7 +107,9 @@
                 @if ($item->product->canBeExtraConcentrated())
                     <livewire:product.extra-concentrated-check />
                 @endif
-                <livewire:product.add-to-cart :product="$item->product" />
+                @if (! $item->variants)
+                    <livewire:product.add-to-cart :product="$item->product" />
+                @endif
             @endif
             @foreach ($item->variants as $index => $variant)
                 <div
@@ -115,7 +117,17 @@
                     x-show="selected === {{ $index }}"
                     @if ($index !== $item->selectedVariant) style="display: none" @endif
                 >
-                    <x-button :href="$variant['enquiryUrl']">{{ __('Richiedi preventivo') }}</x-button>
+                    <div class="flex flex-wrap gap-4">
+                        @isset($purchaseProducts[$variant['productSlug']])
+                            <livewire:product.add-to-cart
+                                :product="$purchaseProducts[$variant['productSlug']]"
+                                label="Aggiungi all'ordine"
+                                :show-quantity="$item->product !== null"
+                                :key="'oil-cart-'.$purchaseProducts[$variant['productSlug']]->id"
+                            />
+                        @endisset
+                        <x-button :href="$variant['enquiryUrl']" variant="secondary">{{ __('Richiedi preventivo') }}</x-button>
+                    </div>
                     <p class="text-sm">{{ __('Codice prodotto:') }} {{ $variant['code'] }}</p>
                 </div>
             @endforeach

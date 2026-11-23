@@ -2,11 +2,21 @@
 
 namespace App\Support;
 
+use App\Models\Product;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 
 class EssentialOilCatalogue
 {
+    public function forProduct(Product $product): ?array
+    {
+        if (! preg_match('/^olio-essenziale-(.+)-(?:30|100)ml$/', $product->slug ?? '', $matches)) {
+            return null;
+        }
+
+        return $this->all()->firstWhere('slug', $matches[1]);
+    }
+
     public function all(): Collection
     {
         return collect(json_decode(file_get_contents(resource_path('data/oli-essenziali.json')), true, flags: JSON_THROW_ON_ERROR))

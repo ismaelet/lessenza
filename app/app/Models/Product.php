@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Helpers\FileHelper;
+use App\Support\EssentialOilCatalogue;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
@@ -87,6 +88,11 @@ class Product extends Model
         $imagePath = 'products/'.$this->id.'-'.$resolution.'.webp';
 
         if (! FileHelper::exists($imagePath)) {
+            $oil = app(EssentialOilCatalogue::class)->forProduct($this);
+            if ($oil && is_file(public_path('oli-essenziali/'.$oil['anteprima']))) {
+                return asset('oli-essenziali/'.$oil['anteprima']);
+            }
+
             return Vite::image('no-image.webp');
         }
 

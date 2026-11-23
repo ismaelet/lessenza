@@ -50,7 +50,7 @@ final readonly class StorefrontItem
     public function __construct(Product|array $source)
     {
         $product = $source instanceof Product ? $source : null;
-        $oil = is_array($source) ? $source : $this->oilForProduct($source);
+        $oil = is_array($source) ? $source : app(EssentialOilCatalogue::class)->forProduct($source);
         $this->product = $product;
         $this->name = $product ? localized_text($product->name) : $oil['olio'];
         $this->url = $product ? $product->url() : route('essential-oils.show', $oil['slug']);
@@ -78,6 +78,7 @@ final readonly class StorefrontItem
                 'size' => $variant['formato'],
                 'priceLabel' => $product?->slug === $productSlug ? $product->priceString() : $this->oilPrice($variant['prezzo_iva_esclusa']),
                 'code' => $variant['codice'],
+                'productSlug' => $productSlug,
                 'enquiryUrl' => route('contacts', ['olio' => $oil['slug'], 'formato' => $variant['formato']]),
                 'productUrl' => $product ? route('product.show', $productSlug) : null,
             ];
@@ -99,15 +100,6 @@ final readonly class StorefrontItem
             'hazards' => $oil['frasi_H'],
             'url' => asset('oli-essenziali/'.$oil['scheda_sicurezza']),
         ] : null;
-    }
-
-    private function oilForProduct(Product $product): ?array
-    {
-        if (! preg_match('/^olio-essenziale-(.+)-(?:30|100)ml$/', $product->slug ?? '', $matches)) {
-            return null;
-        }
-
-        return app(EssentialOilCatalogue::class)->all()->firstWhere('slug', $matches[1]);
     }
 
     private function oilPrice(string $price): string
