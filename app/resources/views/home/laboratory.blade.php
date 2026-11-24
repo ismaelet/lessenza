@@ -4,7 +4,7 @@
 
 <section class="laboratory padded-section span-full-width">
 	<div class="center-content main-wrap grid">
-		<x-subheading.section>{{ __('il nostro') }}</x-subheading.section>
+		<x-eyebrow>{{ __('il nostro') }}</x-eyebrow>
 		<x-heading.section>{{ __('Laboratorio') }}</x-heading.section>
 
 		<p class="laboratory__text page-text mar-t-3">

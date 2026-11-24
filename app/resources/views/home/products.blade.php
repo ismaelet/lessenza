@@ -101,7 +101,7 @@
 
 			<div class="grid grid-cols-1 gap-16 px-2 lg:px-0">
 				<div class="text-center lg:text-left">
-					<x-subheading.section>{{ __('Scopri le') }}</x-subheading.section>
+					<x-eyebrow>{{ __('Scopri le') }}</x-eyebrow>
 					<x-heading.section>{{ __('Fragranze per bagno turco e doccia') }}</x-heading.section>
 				</div>
 
@@ -156,7 +156,7 @@
 
 				<div class="relative grid grid-cols-1 gap-16 px-2 lg:row-start-1 lg:px-0">
 					<div class="text-center lg:text-left">
-						<x-subheading.section>{{ __('I nostri prodotti') }}</x-subheading.section>
+						<x-eyebrow>{{ __('I nostri prodotti') }}</x-eyebrow>
 						<x-heading.section>Concentrati sauna</x-heading.section>
 					</div>
 

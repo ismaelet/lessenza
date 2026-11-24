@@ -2,7 +2,7 @@
     <div class="breakout home-oils__inner">
         <div class="home-oils__intro">
             <div>
-                <p class="home-oils__eyebrow">{{ __('Novità 2027') }}</p>
+                <x-eyebrow>{{ __('Novità 2027') }}</x-eyebrow>
                 <x-heading.section id="home-oils-title">{{ __('Oli essenziali') }}</x-heading.section>
                 <p class="home-oils__tagline">{{ __('L’essenza più pura del tuo rituale in sauna.') }}</p>
             </div>

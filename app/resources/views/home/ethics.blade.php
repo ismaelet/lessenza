@@ -8,7 +8,7 @@
 			data-spacing="700"
 		>
 			<div>
-				<x-subheading.section>{{ __('La nostra') }}</x-subheading.section>
+				<x-eyebrow>{{ __('La nostra') }}</x-eyebrow>
 				<x-heading.section>Mission</x-heading.section>
 			</div>
 

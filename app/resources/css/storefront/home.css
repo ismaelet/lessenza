@@ -16,14 +16,11 @@
   align-items: center;
 }
 
-.home-oils__eyebrow {
+.home-oils .eyebrow {
   margin-bottom: 1rem;
   color: var(--color-primary-400);
-  font-family: var(--font-heading);
-  font-size: 1.125rem;
-  font-weight: 300;
-  font-style: italic;
-  letter-spacing: 0.1em;
+  line-height: 1.5rem;
+  text-transform: none;
 }
 
 .home-oils #home-oils-title {

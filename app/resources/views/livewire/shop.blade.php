@@ -103,9 +103,9 @@
 		<section class="shop__header">
 			<!-- Title -->
 			<x-heading.section>{{ __('Catalogo') }}</x-heading.section>
-			<x-subheading.section>
+			<x-eyebrow>
 				{{ trans_choice(':count risultato|:count risultati', $productCount, ['count' => $productCount]) }}
-			</x-subheading.section>
+			</x-eyebrow>
 
 			<!-- Sort products -->
 			<section class="sort-bar">

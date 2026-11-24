@@ -22,11 +22,11 @@
 		>
 			<div class="section1__text-block section__text-block grid">
 				<div>
-					<x-subheading.section
+					<x-eyebrow
 						class="load--fade-in js-load"
 						data-delay="1"
 						data-direction="top"
-					>{{ __('Imprenditoria') }}</x-subheading.section>
+					>{{ __('Imprenditoria') }}</x-eyebrow>
 					<x-heading.section
 						class="load--fade-in js-load"
 						data-delay="0"
@@ -88,11 +88,11 @@
 
 				<div class="section2__text-block section__text-block grid">
 					<div>
-						<x-subheading.section
+						<x-eyebrow
 							class="load--fade-in js-load"
 							data-delay="1"
 							data-direction="top"
-						>{{ __('La nostra') }}</x-subheading.section>
+						>{{ __('La nostra') }}</x-eyebrow>
 						<x-heading.section
 							class="load--fade-in js-load"
 							data-delay="0"

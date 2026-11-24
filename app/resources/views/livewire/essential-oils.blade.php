@@ -1,7 +1,7 @@
 <section id="oli" class="oil-catalogue">
     <div class="oil-tools">
         <div class="grid gap-3">
-            <x-subheading.section>{{ __('La collezione') }}</x-subheading.section>
+            <x-eyebrow>{{ __('La collezione') }}</x-eyebrow>
             <x-heading.section>{{ __('Le :count fragranze', ['count' => $total]) }}</x-heading.section>
         </div>
         <form
