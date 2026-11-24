@@ -10,24 +10,22 @@
         </div>
 
         <div class="home-oils__cards">
-            @foreach ([
-                ['image' => 'eucalyptus', 'name' => 'Eucalipto', 'notes' => 'Fresco · Balsamico · Penetrante'],
-                ['image' => 'sweet-orange', 'name' => 'Arancio Dolce', 'notes' => 'Fruttato · Solare · Allegro'],
-                ['image' => 'lavender', 'name' => 'Lavanda', 'notes' => 'Floreale · Morbido · Rilassante'],
-            ] as $oil)
-                <article class="home-oils__card">
-                    <div class="home-oils__illustration">
-                        <img
-                            src="{{ asset('images/home/essential-oils/' . $oil['image'] . '.jpg') }}"
-                            alt=""
-                            loading="lazy"
-                            width="443"
-                            height="430"
-                        >
-                    </div>
-                    <x-heading.small-component>{{ __($oil['name']) }}</x-heading.small-component>
-                    <p>{{ __($oil['notes']) }}</p>
-                </article>
+            @foreach ($essentialOils->take(3) as $initialOil)
+                <div class="home-oils__slot">
+                    @foreach ($essentialOils->filter(fn ($oil, $index) => $index % 3 === $loop->index) as $oil)
+                        <article class="home-oils__card" @if (! $loop->first) hidden @endif>
+                            <a href="{{ $oil->url }}" class="home-oils__product">
+                                <div class="home-oils__illustration">
+                                    <img src="{{ $oil->image }}" alt="" loading="lazy" width="600" height="600">
+                                </div>
+                                <x-heading.small-component>{{ $oil->name }}</x-heading.small-component>
+                                <p class="bg-background-500 text-trim text-secondary-300 w-fit rounded-full px-3 py-3 text-sm font-medium">
+                                    {{ preg_replace('/\s*,\s*/u', ' · ', $oil->scent ?? '') }}
+                                </p>
+                            </a>
+                        </article>
+                    @endforeach
+                </div>
             @endforeach
         </div>
 
