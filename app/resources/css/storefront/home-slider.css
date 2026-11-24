@@ -149,7 +149,7 @@
 
 .big-search-bar input {
   padding-left: var(--_padding);
-  font-family: var(--font-heading);
+  font-family: var(--font-heading-alt);
   letter-spacing: 0.05em;
 }
 
