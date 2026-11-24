@@ -7,7 +7,7 @@
                 <p class="home-oils__tagline">{{ __('L’essenza più pura del tuo rituale in sauna.') }}</p>
             </div>
             <p>
-                {{ __('Oli essenziali puri, senza alcol, per le gettate in sauna. Sedici fragranze da scoprire, dalle note balsamiche agli accordi agrumati e floreali.') }}
+                {{ __('Oli essenziali selezionati da un Aufguss Meister professionista per persistenza e durata in cabina.') }}
             </p>
         </div>
 
