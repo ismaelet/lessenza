@@ -16,6 +16,7 @@
 			<x-banners.discount />
 		</div>
 		@include('home/products')
+		@include('home/essential-oils')
 		@include('home/technologies')
 		@include('home/history')
 		@include('home/female')

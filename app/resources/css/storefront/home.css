@@ -1,3 +1,146 @@
+.home-oils {
+  padding-block: 6rem 5rem;
+  background-color: var(--color-heading-400);
+  color: var(--color-background-400);
+  line-height: 1.5;
+}
+
+.home-oils__inner {
+  display: grid;
+  gap: 4rem;
+}
+
+.home-oils__intro {
+  display: grid;
+  gap: 2rem;
+  align-items: center;
+}
+
+.home-oils__eyebrow {
+  margin-bottom: 1rem;
+  color: var(--color-primary-400);
+  font-family: var(--font-heading);
+  font-size: 1.125rem;
+  font-weight: 300;
+  font-style: italic;
+  letter-spacing: 0.1em;
+}
+
+.home-oils #home-oils-title {
+  color: inherit;
+  font-size: var(--text-900);
+  line-height: 1.1112;
+}
+
+.home-oils__tagline {
+  margin-top: 1.375rem;
+}
+
+.home-oils__cards {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.home-oils__card {
+  min-width: 0;
+  overflow: hidden;
+  padding: 1rem 1.25rem 2rem;
+  background-color: var(--color-background-400);
+  color: var(--color-secondary-300);
+}
+
+.home-oils__illustration {
+  position: relative;
+  aspect-ratio: 424 / 210;
+  overflow: hidden;
+  mix-blend-mode: multiply;
+}
+
+.home-oils__illustration img {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 204.08%;
+}
+
+.home-oils__card h3 {
+  margin: 1.5rem 0.75rem 1.125rem;
+  color: var(--color-heading-400);
+  font-size: clamp(2rem, 3.2vw, 3rem);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: 0.05em;
+}
+
+.home-oils__card p {
+  margin-inline: 0.75rem;
+}
+
+.home-oils__footer {
+  display: grid;
+  align-items: end;
+  gap: 2.5rem;
+  border-top: 1px solid var(--color-background-400);
+  padding-top: 2.5rem;
+}
+
+.home-oils__facts {
+  display: grid;
+  gap: 2rem;
+}
+
+.home-oils__facts dt {
+  margin-bottom: 0.75rem;
+  font-family: var(--font-heading);
+  font-size: 3rem;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: 0.05em;
+}
+
+.home-oils__footer .button {
+  min-width: 0;
+  padding-block: 1.75rem;
+  font-weight: 700;
+}
+
+@media (min-width: 640px) {
+  .home-oils__cards,
+  .home-oils__facts {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .home-oils__card {
+    padding-inline: 0.75rem;
+  }
+
+  .home-oils__card h3,
+  .home-oils__card p {
+    margin-inline: 0;
+  }
+}
+
+@media (min-width: 1024px) {
+  .home-oils__intro {
+    grid-template-columns: minmax(0, 820fr) minmax(0, 560fr);
+    gap: 3.75rem;
+  }
+
+  .home-oils__card {
+    padding-inline: 1.25rem;
+  }
+
+  .home-oils__card h3,
+  .home-oils__card p {
+    margin-inline: 0.75rem;
+  }
+
+  .home-oils__footer {
+    grid-template-columns: minmax(0, 1056fr) minmax(16rem, 328fr);
+  }
+}
+
 .padded-section {
   padding-block: min(8rem, 25vw);
 }
