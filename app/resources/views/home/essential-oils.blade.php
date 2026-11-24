@@ -6,22 +6,26 @@
                 <x-heading.section id="home-oils-title">{{ __('Oli essenziali') }}</x-heading.section>
                 <p class="home-oils__tagline">{{ __('L’essenza più pura del tuo rituale in sauna.') }}</p>
             </div>
-            <p>{{ __('Oli essenziali puri, senza alcol, per le gettate in sauna. Sedici fragranze da scoprire, dalle note balsamiche agli accordi agrumati e floreali.') }}</p>
+            <p>
+                {{ __('Oli essenziali puri, senza alcol, per le gettate in sauna. Sedici fragranze da scoprire, dalle note balsamiche agli accordi agrumati e floreali.') }}
+            </p>
         </div>
 
         <div class="home-oils__cards">
             @foreach ($essentialOils->take(3) as $initialOil)
                 <div class="home-oils__slot">
                     @foreach ($essentialOils->filter(fn ($oil, $index) => $index % 3 === $loop->index) as $oil)
-                        <article class="home-oils__card" @if (! $loop->first) hidden @endif>
+                        <article class="home-oils__card overflow-hidden rounded-lg" @if (! $loop->first) hidden @endif>
                             <a href="{{ $oil->url }}" class="home-oils__product">
                                 <div class="home-oils__illustration">
-                                    <img src="{{ $oil->image }}" alt="" loading="lazy" width="600" height="600">
+                                    <img src="{{ $oil->image }}" alt="" loading="lazy" width="600" height="600" />
                                 </div>
-                                <x-heading.small-component>{{ $oil->name }}</x-heading.small-component>
-                                <p class="bg-background-500 text-trim text-secondary-300 w-fit rounded-full px-3 py-3 text-sm font-medium">
-                                    {{ preg_replace('/\s*,\s*/u', ' · ', $oil->scent ?? '') }}
-                                </p>
+                                <div class="home-oils__content">
+                                    <x-heading.component class="line-clamp-1">{{ $oil->name }}</x-heading.component>
+                                    <p class="bg-background-400 text-trim text-secondary-300 w-fit rounded-full px-3 py-3 text-sm font-medium">
+                                        {{ preg_replace('/\s*,\s*/u', ' · ', $oil->scent ?? '') }}
+                                    </p>
+                                </div>
                             </a>
                         </article>
                     @endforeach
@@ -31,9 +35,18 @@
 
         <div class="home-oils__footer">
             <dl class="home-oils__facts">
-                <div><dt>100%</dt><dd>{{ __('oli essenziali puri') }}</dd></div>
-                <div><dt>16</dt><dd>{{ __('fragranze da esplorare') }}</dd></div>
-                <div><dt>30 / 100 ml</dt><dd>{{ __('due formati, un rituale') }}</dd></div>
+                <div>
+                    <dt>100%</dt>
+                    <dd>{{ __('oli essenziali puri') }}</dd>
+                </div>
+                <div>
+                    <dt>16</dt>
+                    <dd>{{ __('fragranze da esplorare') }}</dd>
+                </div>
+                <div>
+                    <dt>30 / 100 ml</dt>
+                    <dd>{{ __('due formati, un rituale') }}</dd>
+                </div>
             </dl>
             <x-button href="{{ route('essential-oils.index') }}">{{ __('Scopri le fragranze') }}</x-button>
         </div>

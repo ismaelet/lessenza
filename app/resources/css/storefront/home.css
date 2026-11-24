@@ -41,7 +41,6 @@
 .home-oils__card {
   min-width: 0;
   overflow: hidden;
-  padding: 1rem 1.25rem 2rem;
   background-color: var(--color-background-400);
   color: var(--color-secondary-300);
 }
@@ -52,10 +51,15 @@
 
 .home-oils__card {
   grid-area: 1 / 1;
+  background-color: var(--color-background-500);
 }
 
 .home-oils__card[hidden] {
   display: none;
+}
+
+.home-oils__content {
+  padding: 0rem 1.25rem 2rem;
 }
 
 .home-oils__product {
@@ -78,19 +82,17 @@
 .home-oils__illustration img {
   position: absolute;
   inset: 0;
+  left: 50%;
+  translate: -50% 0;
   display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
+  width: 110%;
+  max-width: unset;
+  object-fit: cover;
+  object-position: top;
 }
 
 .home-oils__card h3 {
   margin: 1.5rem 0.75rem 1.125rem;
-  color: var(--color-heading-400);
-  font-size: clamp(2rem, 3.2vw, 3rem);
-  font-weight: 500;
-  line-height: 1;
-  letter-spacing: 0.05em;
 }
 
 .home-oils__card p {
@@ -129,7 +131,7 @@
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
-  .home-oils__card {
+  .home-oils__content {
     padding-inline: 0.75rem;
   }
 
@@ -145,7 +147,7 @@
     gap: 3.75rem;
   }
 
-  .home-oils__card {
+  .home-oils__content {
     padding-inline: 1.25rem;
   }
 
